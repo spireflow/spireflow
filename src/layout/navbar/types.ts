@@ -29,12 +29,18 @@ export interface LanguageButtonProps {
   languageDropdown: DropdownProps;
   themeDropdown: DropdownProps;
   userDropdown: DropdownProps;
+  notificationsDropdown: DropdownProps;
   t: (key: string) => string;
 }
 
 export interface ThemeButtonProps {
   theme: string | undefined;
   selectTheme: (theme: string) => void;
+  themeTooltip: TooltipProps;
+  userDropdown: DropdownProps;
+  languageDropdown: DropdownProps;
+  notificationsDropdown: DropdownProps;
+  t: (key: string) => string;
 }
 
 export interface UserButtonProps {
@@ -43,6 +49,7 @@ export interface UserButtonProps {
   userDropdown: DropdownProps;
   themeDropdown: DropdownProps;
   languageDropdown: DropdownProps;
+  notificationsDropdown: DropdownProps;
   userTooltip: TooltipProps;
   showLogoutModal: () => void;
   showAboutModal: () => void;
@@ -59,4 +66,14 @@ export interface UserButtonProps {
 
 export interface ChangelogModalProps {
   closeModal: () => void;
+}
+
+export interface NotificationsButtonProps {
+  notificationsDropdown: DropdownProps;
+  notificationsTooltip: TooltipProps;
+  themeDropdown: DropdownProps;
+  languageDropdown: DropdownProps;
+  userDropdown: DropdownProps;
+  searchClose: () => void;
+  t: (key: string) => string;
 }

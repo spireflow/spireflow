@@ -1,13 +1,15 @@
 import { useTooltip } from "../../../hooks/useTooltip";
 
 export const useNavbarTooltips = () => {
-  const paletteTooltip = useTooltip();
+  const themeTooltip = useTooltip();
   const languageTooltip = useTooltip();
   const userTooltip = useTooltip();
+  const notificationsTooltip = useTooltip();
 
   return {
-    paletteTooltip,
+    themeTooltip,
     languageTooltip,
     userTooltip,
+    notificationsTooltip,
   };
 };

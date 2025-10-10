@@ -13,6 +13,7 @@ export const LanguageButton = ({
   languageDropdown,
   themeDropdown,
   userDropdown,
+  notificationsDropdown,
   t,
 }: LanguageButtonProps) => (
   <div
@@ -26,6 +27,7 @@ export const LanguageButton = ({
         themeDropdown.close();
         languageDropdown.toggle();
         userDropdown.close();
+        notificationsDropdown.close();
       }}
       aria-label={t("changeLanguage")}
       className="flex justify-center items-center text-secondaryText hover:text-primaryText"
@@ -35,9 +37,10 @@ export const LanguageButton = ({
     {languageTooltip.isTooltipVisible &&
       !themeDropdown.isOpen &&
       !userDropdown.isOpen &&
-      !languageDropdown.isOpen && (
+      !languageDropdown.isOpen &&
+      !notificationsDropdown.isOpen && (
         <div className="absolute top-10 right-3 hidden xl:flex">
-          <Tooltip text={t("changeLanguage")} className="h-8 px-3 min-w-32" />
+          <Tooltip text={t("changeLanguage")} className="h-8 px-3" />
         </div>
       )}
     {languageDropdown.isOpen && (

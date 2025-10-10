@@ -16,6 +16,7 @@ export const UserButton = ({
   userDropdown,
   themeDropdown,
   languageDropdown,
+  notificationsDropdown,
   userTooltip,
   showLogoutModal,
   showAboutModal,
@@ -42,6 +43,7 @@ export const UserButton = ({
             userDropdown.toggle();
             themeDropdown.close();
             languageDropdown.close();
+            notificationsDropdown.close();
             searchClose();
           }}
           className="text-base flex rounded-full justify-center items-center gap-2 w-full h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-outlinedButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon"
@@ -54,11 +56,12 @@ export const UserButton = ({
       {userTooltip.isTooltipVisible &&
         !userDropdown.isOpen &&
         !themeDropdown.isOpen &&
-        !languageDropdown.isOpen && (
+        !languageDropdown.isOpen &&
+        !notificationsDropdown.isOpen && (
           <div className="absolute top-12 right-4 pointer-events-none hidden xl:flex">
             <Tooltip
               text={t("openUserMenu")}
-              className="h-8 px-2 min-w-[7rem] pointer-events-none"
+              className="h-8 px-3 pointer-events-none"
             />
           </div>
         )}

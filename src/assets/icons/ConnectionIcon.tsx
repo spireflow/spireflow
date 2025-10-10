@@ -1,0 +1,43 @@
+export const ConnectionIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    width="20"
+    height="20"
+  >
+    <circle
+      cx="256"
+      cy="256"
+      r="48"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="32"
+    />
+    <circle
+      cx="416"
+      cy="256"
+      r="48"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="32"
+    />
+    <path
+      d="M160 256v-48a32 32 0 0132-32h224M96 256v-48a32 32 0 0132-32h128"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="32"
+    />
+    <circle
+      cx="96"
+      cy="256"
+      r="48"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="32"
+    />
+  </svg>
+);

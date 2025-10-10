@@ -34,8 +34,8 @@ export const darkTheme = {
   outlinedButtonBgHover: "rgb(255, 255, 255, 0.07)",
   containedButtonBg: "rgb(61, 142, 108)",
   containedButtonBgHover: "rgb(61, 185, 133)",
-  dropdownBg: "rgb(44, 49, 55)",
-  dropdownBgHover: "rgb(54, 59, 66)",
+  dropdownBg: "rgb(36, 39, 43)",
+  dropdownBgHover: "rgb(42, 46, 51)",
   calendarTodayBg: "rgb(255,255,255,0.08)",
   calendarListDayHeaderBg: "rgb(255,255,255,0.02)",
   chartPrimaryBg: "rgb(61, 185, 133)",
@@ -57,6 +57,12 @@ export const darkTheme = {
   calendarMainColor: "rgb(61, 142, 108)",
   scrollbarThumb: "rgba(94, 98, 105, 0.7)",
   themeToggleActiveBg: "rgb(42, 46, 51)",
+
+  // Notifications
+  notificationBadgeBg: "rgb(34, 154, 90)",
+  notificationItemBg: "rgb(36, 39, 43)",
+  notificationItemBgHover: "rgb(42, 46, 51)",
+  notificationHeaderBg: "rgb(31, 34, 38)",
 
   // Borders
   mainBorder: "rgb(255,255,255,0.08)",

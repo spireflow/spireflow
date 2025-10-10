@@ -10,6 +10,7 @@ import { LogoutModal } from "../../components/auth/LogoutModal";
 import { AboutModal } from "./AboutModal";
 import { ChangelogModal } from "./ChangelogModal";
 import { ThemeButton } from "./ThemeButton";
+import { NotificationsButton } from "./NotificationsButton";
 import { LanguageButton } from "./LanguageButton";
 import { UserButton } from "./UserButton";
 import { HamburgerButton } from "./HamburgerButton";
@@ -44,6 +45,7 @@ export const Navbar = () => {
     languageDropdown,
     selectTheme,
     searchDropdown,
+    notificationsDropdown,
   } = useNavbar();
 
   const {
@@ -65,7 +67,8 @@ export const Navbar = () => {
     handleLoginButton,
   } = useNavbarModals();
 
-  const { languageTooltip, userTooltip } = useNavbarTooltips();
+  const { languageTooltip, userTooltip, notificationsTooltip, themeTooltip } =
+    useNavbarTooltips();
 
   return (
     <>
@@ -102,7 +105,26 @@ export const Navbar = () => {
             />
           </div>
           <div className="flex items-center gap-[0.5rem] md:gap-2 xl:gap-7 z-[99]">
-            <ThemeButton theme={theme} selectTheme={selectTheme} />
+            <ThemeButton
+              theme={theme}
+              selectTheme={selectTheme}
+              themeTooltip={themeTooltip}
+              userDropdown={userDropdown}
+              languageDropdown={languageDropdown}
+              notificationsDropdown={notificationsDropdown}
+              t={t}
+            />
+            <div className="hidden xl:flex">
+              <NotificationsButton
+                notificationsDropdown={notificationsDropdown}
+                notificationsTooltip={notificationsTooltip}
+                themeDropdown={themeDropdown}
+                languageDropdown={languageDropdown}
+                userDropdown={userDropdown}
+                searchClose={searchDropdown.close}
+                t={t}
+              />
+            </div>
             <div className="hidden xl:flex">
               <LanguageButton
                 currentLanguage={currentLanguage}
@@ -110,6 +132,7 @@ export const Navbar = () => {
                 languageDropdown={languageDropdown}
                 themeDropdown={themeDropdown}
                 userDropdown={userDropdown}
+                notificationsDropdown={notificationsDropdown}
                 t={t}
               />
             </div>
@@ -120,6 +143,7 @@ export const Navbar = () => {
                 userDropdown={userDropdown}
                 themeDropdown={themeDropdown}
                 languageDropdown={languageDropdown}
+                notificationsDropdown={notificationsDropdown}
                 userTooltip={userTooltip}
                 showLogoutModal={showLogoutModal}
                 showAboutModal={showAboutModal}

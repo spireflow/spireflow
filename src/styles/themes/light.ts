@@ -33,7 +33,7 @@ export const lightTheme = {
   containedButtonBg: "rgb(79, 142, 247)",
   containedButtonBgHover: "rgb(118, 167, 247)",
   dropdownBg: "rgb(255, 255, 255)",
-  dropdownBgHover: "rgb(240, 240, 245, 0.9)",
+  dropdownBgHover: "rgb(249, 250, 251)",
   calendarTodayBg: "rgb(222, 194, 242, 0.15)",
   calendarListDayHeaderBg: "rgb(0,0,0,0.03)",
   chartPrimaryBg: "rgb(118, 167, 247)",
@@ -55,6 +55,12 @@ export const lightTheme = {
   calendarMainColor: "rgb(118, 167, 247)",
   scrollbarThumb: "rgba(94, 98, 105, 0.5)",
   themeToggleActiveBg: "white",
+
+  // Notifications
+  notificationBadgeBg: "rgb(22, 163, 74)",
+  notificationItemBg: "rgb(255, 255, 255)",
+  notificationItemBgHover: "rgb(249, 250, 251)",
+  notificationHeaderBg: "rgb(255, 255, 255)",
 
   // Borders
   mainBorder: "rgb(0,0,0,0.12)",
