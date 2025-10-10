@@ -14,6 +14,7 @@ interface PageWrapperProps {
   hidePaper?: boolean;
   pageName?: string;
   dataForExport?: unknown;
+  hideTopBar?: boolean;
 }
 
 export const PageWrapper = ({
@@ -21,6 +22,7 @@ export const PageWrapper = ({
   hidePaper = false,
   pageName,
   dataForExport,
+  hideTopBar = false,
 }: PageWrapperProps) => {
   const handleExportToCSV = () => {
     if (dataForExport) {
@@ -50,15 +52,20 @@ export const PageWrapper = ({
         "pt-[5.5rem] md:pt-[5.5rem] xl:pt-[5.5rem] 1xl:pt-[5.5rem] 3xl:pt-[6rem]"
       }
       ${
-        hidePaper &&
-        // Spacing for Home and Analytics pages
+        hidePaper && hideTopBar &&
+        // Spacing for Homepage only (no breadcrumb bar)
+        "pt-[3.8rem] md:!pt-[5.3rem] xl:!pt-[5.3rem] 3xl:!pt-[5.8rem] md:px-8 xl:px-0 pb-0 md:!pb-8 xl:pb-8"
+      }
+      ${
+        hidePaper && !hideTopBar &&
+        // Spacing for Analytics page (with breadcrumb bar)
         "pt-[4rem] md:!pt-[5.5rem] xl:!pt-[5.5rem] 3xl:!pt-[6rem] md:px-8 xl:px-0 pb-0 md:!pb-8 xl:pb-8"
       }
       `}
       role="main"
     >
       <div className="flex flex-col max-w-full w-full min-h-full lg:h-unset">
-        {!hidePaper && (
+        {!hidePaper && !hideTopBar && (
           // Breadcrumbs for Orders, Customers, Products and Calendar pages
           <div className="px-6 xsm:px-8 xl:px-0 w-full flex justify-between items-center">
             <Breadcrumbs pageName={pageName} />
@@ -70,11 +77,13 @@ export const PageWrapper = ({
             className="flex flex-col w-full max-w-full h-full py-4 px-6 pt-6 sm:py-6 xsm:px-8 md:p-0"
             aria-hidden="true"
           >
-            <div className="w-full flex justify-between items-center">
-              {/* Breadcrumbs for Home and Analytics pages */}
-              <Breadcrumbs pageName={pageName} />
-              {csvButton}
-            </div>
+            {!hideTopBar && (
+              <div className="w-full flex justify-between items-center">
+                {/* Breadcrumbs for Home and Analytics pages */}
+                <Breadcrumbs pageName={pageName} />
+                {csvButton}
+              </div>
+            )}
             <div className="flex flex-col w-full gap-y-4 1xl:gap-y-6 max-w-full h-full pt-3">
               {/* Content for Home and Analytics pages */}
               {children}

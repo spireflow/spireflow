@@ -8,6 +8,7 @@ const Home = async () => {
   return (
     <PageWrapper
       hidePaper
+      hideTopBar
       className="pt-32"
       pageName="Dashboard"
       dataForExport={homepageData}

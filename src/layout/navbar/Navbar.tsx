@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { useUser } from "@clerk/nextjs";
 
 import { LoginModal } from "../../components/auth/LoginModal";
 import { SignUpModal } from "../../components/auth/SignUpModal";
@@ -23,16 +22,13 @@ import { useAppStore } from "../../store/appStore";
 
 export const Navbar = () => {
   const t = useTranslations("navbar");
-  const { isLoaded } = useUser();
-  const isLoggingOut = useAppStore((state) => state.isLoggingOut);
-  const isLoggingIn = useAppStore((state) => state.isLoggingIn);
   const setIsLoggingOut = useAppStore((state) => state.setIsLoggingOut);
   const setIsLoggingIn = useAppStore((state) => state.setIsLoggingIn);
 
   useEffect(() => {
     setIsLoggingOut(false);
     setIsLoggingIn(false);
-  }, []);
+  }, [setIsLoggingOut, setIsLoggingIn]);
 
   const {
     theme,
@@ -69,12 +65,12 @@ export const Navbar = () => {
     handleLoginButton,
   } = useNavbarModals();
 
-  const { paletteTooltip, languageTooltip, userTooltip } = useNavbarTooltips();
+  const { languageTooltip, userTooltip } = useNavbarTooltips();
 
   return (
     <>
       <div
-        className={`w-screen flex items-center z-30  fixed h-[4.5rem]  3xl:h-20  w-full border-none border-solid border-mainBorder `}
+        className={`w-screen flex items-center z-30  fixed h-[4.5rem] bg-secondaryBg 3xl:h-20  w-full border-b border-solid border-mainBorder `}
       >
         {/* Placeholder for maintaining consistent spacing with page wrapper  */}
         <div
@@ -118,31 +114,22 @@ export const Navbar = () => {
               />
             </div>
             <div className="mr-1 2xl:-mr-unset">
-              {(isLoaded && session && session.username && !isLoggingIn) ||
-              isLoggingOut ? (
-                <UserButton
-                  userIconBtnRef={userIconBtnRef}
-                  closeMobileMenu={closeMobileMenu}
-                  userDropdown={userDropdown}
-                  themeDropdown={themeDropdown}
-                  languageDropdown={languageDropdown}
-                  userTooltip={userTooltip}
-                  showLogoutModal={showLogoutModal}
-                  showAboutModal={showAboutModal}
-                  showChangelogModal={showChangelogModal}
-                  session={session}
-                  theme={theme}
-                  searchClose={searchDropdown.close}
-                  t={t}
-                />
-              ) : (
-                <button
-                  onClick={handleLoginButton}
-                  className="transition text-sm 2xl:text-base ml-2 hidden xl:block rounded-xl w-36 2xl:w-40 h-9 2xl:h-10 flex justify-center items-center font-medium border !border-mainColor text-primaryText hover:bg-navbarButtonBgHover bg-navbarButtonBg text-white"
-                >
-                  {t("signIn")}
-                </button>
-              )}
+              <UserButton
+                userIconBtnRef={userIconBtnRef}
+                closeMobileMenu={closeMobileMenu}
+                userDropdown={userDropdown}
+                themeDropdown={themeDropdown}
+                languageDropdown={languageDropdown}
+                userTooltip={userTooltip}
+                showLogoutModal={showLogoutModal}
+                showAboutModal={showAboutModal}
+                showChangelogModal={showChangelogModal}
+                handleLoginButton={handleLoginButton}
+                session={session}
+                theme={theme}
+                searchClose={searchDropdown.close}
+                t={t}
+              />
             </div>
             <HamburgerButton
               isMobileMenuOpen={isMobileMenuOpen}
