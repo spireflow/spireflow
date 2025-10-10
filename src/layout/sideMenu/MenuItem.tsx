@@ -10,7 +10,7 @@ import { useTooltip } from "../../hooks/useTooltip";
 import { Tooltip } from "../../components/common/Tooltip";
 import { useIsFirstRender } from "../../hooks/useIsFirstRender";
 import { MenuItemProps } from "./types";
-import { poppins } from "../../styles/fonts";
+import { outfit } from "../../styles/fonts";
 
 export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
   const toggleMobileMenu = useAppStore((state) => state.toggleMobileMenu);
@@ -87,7 +87,7 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
         {(isSideMenuOpen || !isDesktop) && (
           <div
             className={`text-xs xl:text-[12px] 3xl:text-[0.88rem] font-normal tracking-wide ${
-              poppins.className
+              outfit.className
             }  ${
               isActive
                 ? "text-navItemTextActive text-navItemTextActive"

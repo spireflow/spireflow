@@ -5,7 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 
 import "../../styles/globals.css";
-import { poppins } from "../../styles/fonts";
+import { outfit } from "../../styles/fonts";
 import { Providers } from "../../services/providers";
 import { Locale, locales } from "../../i18n/navigation";
 
@@ -28,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning={true}>
-      <body className={`${poppins.className}`} suppressHydrationWarning={true}>
+      <body className={`${outfit.className}`} suppressHydrationWarning={true}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>

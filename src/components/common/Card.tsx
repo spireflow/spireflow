@@ -23,7 +23,7 @@ export const Card = ({
                 ${className} `}
     >
       {title && (
-        <div className="text-[0.9rem] w-full px-6 border-b border-mainBorder pb-4 1xl:text-[1rem] 3xl:text-[1.25rem] font-semibold text-primaryText">
+        <div className="text-[0.9rem] w-full px-6 border-b border-mainBorder pb-4 1xl:text-[1rem] 3xl:text-[1.2rem] font-semibold text-primaryText">
           {title}
         </div>
       )}
