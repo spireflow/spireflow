@@ -62,6 +62,7 @@ export interface UserButtonProps {
   theme: string | undefined;
   t: (key: string) => string;
   searchClose: () => void;
+  currentLanguage: string;
 }
 
 export interface ChangelogModalProps {

@@ -11,7 +11,6 @@ import { AboutModal } from "./AboutModal";
 import { ChangelogModal } from "./ChangelogModal";
 import { ThemeButton } from "./ThemeButton";
 import { NotificationsButton } from "./NotificationsButton";
-import { LanguageButton } from "./LanguageButton";
 import { UserButton } from "./UserButton";
 import { HamburgerButton } from "./HamburgerButton";
 import { useNavbar } from "./hooks/useNavbar";
@@ -67,13 +66,13 @@ export const Navbar = () => {
     handleLoginButton,
   } = useNavbarModals();
 
-  const { languageTooltip, userTooltip, notificationsTooltip, themeTooltip } =
+  const { userTooltip, notificationsTooltip, themeTooltip } =
     useNavbarTooltips();
 
   return (
     <>
       <div
-        className={`w-screen flex items-center z-30  fixed h-[4.5rem] bg-secondaryBg 3xl:h-20  w-full border-b border-solid border-mainBorder `}
+        className={`w-screen flex items-center z-30  fixed h-[4.5rem] bg-primaryBg 3xl:h-20  w-full border-b border-solid border-mainBorder `}
       >
         {/* Placeholder for maintaining consistent spacing with page wrapper  */}
         <div
@@ -104,7 +103,7 @@ export const Navbar = () => {
               }}
             />
           </div>
-          <div className="flex items-center gap-[0.5rem] md:gap-2 xl:gap-7 z-[99]">
+          <div className="flex items-center gap-[0.5rem] md:gap-2 xl:gap-3.5 z-[99]">
             <ThemeButton
               theme={theme}
               selectTheme={selectTheme}
@@ -114,7 +113,7 @@ export const Navbar = () => {
               notificationsDropdown={notificationsDropdown}
               t={t}
             />
-            <div className="hidden xl:flex">
+            <div className="hidden xl:flex xl:ml-3.5">
               <NotificationsButton
                 notificationsDropdown={notificationsDropdown}
                 notificationsTooltip={notificationsTooltip}
@@ -122,17 +121,6 @@ export const Navbar = () => {
                 languageDropdown={languageDropdown}
                 userDropdown={userDropdown}
                 searchClose={searchDropdown.close}
-                t={t}
-              />
-            </div>
-            <div className="hidden xl:flex">
-              <LanguageButton
-                currentLanguage={currentLanguage}
-                languageTooltip={languageTooltip}
-                languageDropdown={languageDropdown}
-                themeDropdown={themeDropdown}
-                userDropdown={userDropdown}
-                notificationsDropdown={notificationsDropdown}
                 t={t}
               />
             </div>
@@ -152,6 +140,7 @@ export const Navbar = () => {
                 session={session}
                 theme={theme}
                 searchClose={searchDropdown.close}
+                currentLanguage={currentLanguage}
                 t={t}
               />
             </div>

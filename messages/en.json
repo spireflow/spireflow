@@ -454,6 +454,7 @@
     "passwordMinimumLength": "Password must be at least 6 characters long",
     "changeTheme": "Change theme",
     "changeLanguage": "Change language",
+    "language": "Language",
     "openUserMenu": "Open user menu",
     "notifications": "Notifications",
     "notificationUpdateTitle": "Update complete",

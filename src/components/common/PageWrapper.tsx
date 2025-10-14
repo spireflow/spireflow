@@ -84,7 +84,7 @@ export const PageWrapper = ({
                 {csvButton}
               </div>
             )}
-            <div className="flex flex-col w-full gap-y-4 1xl:gap-y-6 max-w-full h-full pt-3">
+            <div className={`flex flex-col w-full gap-y-4 1xl:gap-y-6 max-w-full h-full ${hideTopBar ? 'pt-5' : 'pt-3'}`}>
               {/* Content for Home and Analytics pages */}
               {children}
             </div>

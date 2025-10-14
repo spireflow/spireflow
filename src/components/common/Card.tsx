@@ -18,7 +18,7 @@ export const Card = ({
   return (
     <div
       id={id}
-      className={`border light:shadow-lg border-cardBorder rounded-[10px] !border-cardBorder bg-primaryBg
+      className={`border light:shadow-lg border-cardBorder rounded-[12px] !border-cardBorder bg-primaryBg
                 relative w-full text-left h-full pt-5  
                 ${className} `}
     >

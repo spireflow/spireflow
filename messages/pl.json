@@ -453,6 +453,7 @@
     "passwordMinimumLength": "Hasło musi mieć co najmniej 6 znaków",
     "changeTheme": "Zmień motyw",
     "changeLanguage": "Przełącz język",
+    "language": "Język",
     "openUserMenu": "Otwórz menu",
     "notifications": "Powiadomienia",
     "notificationUpdateTitle": "Aktualizacja zakończona",

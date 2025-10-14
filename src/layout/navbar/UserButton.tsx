@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 import { Tooltip } from "../../components/common/Tooltip";
@@ -9,6 +9,10 @@ import { HistoryIcon } from "../../assets/icons/HistoryIcon";
 import { InfoIcon } from "../../assets/icons/InfoIcon";
 import { LogoutIcon } from "../../assets/icons/LogoutIcon";
 import { GithubIcon } from "../../assets/icons/GithubIcon";
+import { LanguageIcon } from "../../assets/icons/LanguageIcon";
+import { CheckIcon } from "../../assets/icons/CheckIcon";
+import { Link as NavigationLink } from "../../i18n/navigation";
+import { ArrowDownSimpleIcon } from "../../assets/icons/ArrowDownSimpleIcon";
 
 export const UserButton = ({
   userIconBtnRef,
@@ -25,8 +29,10 @@ export const UserButton = ({
   session,
   t,
   searchClose,
+  currentLanguage,
 }: UserButtonProps) => {
   const isLoggedIn = session?.isLoggedIn || false;
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
   return (
     <div
@@ -109,8 +115,52 @@ export const UserButton = ({
                 </div>
                 <button aria-label={t("about")}>{t("about")}</button>
               </div>
+              <div className="border-t border-mainBorder">
+                <div
+                  className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center"
+                  onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                >
+                  <div className="flex items-center">
+                    <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
+                      <LanguageIcon />
+                    </div>
+                    <span>{t("language")}</span>
+                  </div>
+                  <div className={`text-secondaryText transition-transform ${isLanguageMenuOpen ? 'rotate-180' : ''}`}>
+                    <ArrowDownSimpleIcon />
+                  </div>
+                </div>
+                {isLanguageMenuOpen && (
+                  <div className="bg-dropdownBg">
+                    <NavigationLink
+                      href="/"
+                      locale="en"
+                      className="px-4 py-2 pr-5 pl-[2.4rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                    >
+                      <span>{t("english")}</span>
+                      {currentLanguage === "en" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </NavigationLink>
+                    <NavigationLink
+                      href="/"
+                      locale="pl"
+                      className="px-4 py-2 pr-5 pl-[2.4rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                    >
+                      <span>{t("polish")}</span>
+                      {currentLanguage === "pl" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </NavigationLink>
+                  </div>
+                )}
+              </div>
               <div
-                className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
+                className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer border-t border-mainBorder"
                 onClick={() => {
                   userDropdown.close();
                   showLogoutModal();
@@ -169,6 +219,50 @@ export const UserButton = ({
                   <InfoIcon />
                 </div>
                 <button aria-label={t("about")}>{t("about")}</button>
+              </div>
+              <div className="border-t border-mainBorder">
+                <div
+                  className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center"
+                  onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                >
+                  <div className="flex items-center">
+                    <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
+                      <LanguageIcon />
+                    </div>
+                    <span>{t("language")}</span>
+                  </div>
+                  <div className={`text-secondaryText transition-transform ${isLanguageMenuOpen ? 'rotate-180' : ''}`}>
+                    <ArrowDownSimpleIcon />
+                  </div>
+                </div>
+                {isLanguageMenuOpen && (
+                  <div className="bg-dropdownBg">
+                    <NavigationLink
+                      href="/"
+                      locale="en"
+                      className="px-4 py-2 pr-5 pl-[2.4rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                    >
+                      <span>{t("english")}</span>
+                      {currentLanguage === "en" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </NavigationLink>
+                    <NavigationLink
+                      href="/"
+                      locale="pl"
+                      className="px-4 py-2 pr-5 pl-[2.4rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                    >
+                      <span>{t("polish")}</span>
+                      {currentLanguage === "pl" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </NavigationLink>
+                  </div>
+                )}
               </div>
             </>
           )}
