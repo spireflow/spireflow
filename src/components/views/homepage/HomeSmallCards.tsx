@@ -1,4 +1,3 @@
-import { BarChart, Color } from "@tremor/react";
 import { useTranslations } from "next-intl";
 
 import { useTranslateData } from "../../../hooks/useTranslateData";
@@ -38,7 +37,6 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
   return (
     <>
       {translatedData.map((item, index) => {
-        const chartArray = item.chartData;
         return (
           <Card
             key={`${item.title}-${index}`}
@@ -64,7 +62,7 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
                 </div>
               </div>
               <div className="w-full sm:w-[40%] md:w-[45%] lg:w-[50%] xl:w-[40%] 2xl:w-1/2 md:pl-3 md:ml-2 2xl:ml-0 sm:flex mt-4 sm:mt-0 pr-0 2xl:pr-2 sm:pr-0">
-                {/* <Chart chartData={chartArray} color={item.color} /> */}
+                {/* Chart removed */}
               </div>
             </div>
           </Card>
@@ -73,24 +71,3 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
     </>
   );
 };
-
-interface ChartProps {
-  color: Color;
-  chartData: {}[];
-}
-
-const Chart = ({ color, chartData }: ChartProps) => (
-  <div className="w-full h-full">
-    <BarChart
-      data={chartData}
-      index={Object.keys(chartData[0])[0]}
-      categories={["metric"]}
-      colors={[color]}
-      showLegend={false}
-      className="h-14 1xl:h-16"
-      showTooltip={false}
-      showXAxis={false}
-      showYAxis={false}
-    />
-  </div>
-);

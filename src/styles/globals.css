@@ -325,7 +325,7 @@ a {
 }
 
 .menuItemLogo svg {
-  @apply w-[22px] h-[22px] 3xl:w-[25px] 3xl:h-[25px];
+  @apply w-[22px] h-[22px] 3xl:w-[23px] 3xl:h-[23px];
 }
 
 /* Hide unnecessary grid lines in Tremor bar charts */
