@@ -2,6 +2,7 @@ export const darkTheme = {
   // Texts
   primaryText: "rgb(231, 233, 236)",
   secondaryText: "rgb(201, 203, 207)",
+  subtitleText: "rgb(140, 145, 150)",
   secondaryTextHover: "rgb(255, 255, 255, 0.8)",
   coloredText: "rgb(61, 185, 133)",
   coloredTextHover: "rgb(105, 217, 170)",
@@ -25,6 +26,7 @@ export const darkTheme = {
   // Backgrounds
   primaryBg: "rgb(31, 34, 38)",
   secondaryBg: "rgb(26, 29, 32)",
+  tabsBg: "rgb(28, 31, 35)",
   mainColor: "rgb(61, 185, 133)",
   navigationBg: "rgb(31, 34, 38)",
   navItemBg: "rgb(12, 18, 24, 0)",
@@ -75,13 +77,13 @@ export const darkTheme = {
   notificationHeaderBg: "rgb(31, 34, 38)",
 
   // Borders
-  mainBorder: "rgb(255,255,255,0.11)",
+  mainBorder: "rgb(255,255,255,0.05)",
   mainBorderHover: "rgb(255,255,255,0.2)",
   outlinedButtonBorder: "rgb(255,255,255,0.11)",
   inputBorder: "rgb(255,255,255,0.11)",
   inputBorderHover: "rgb(255,255,255,0.2)",
   calendarBorder: "rgb(255,255,255,0.09)",
-  cardBorder: "rgb(255,255,255,0.08)",
+  cardBorder: "rgb(255,255,255,0.04)",
   themeToggleActiveBorder: "rgb(255, 255, 255, 0.11)",
   mapCountryBorder: "rgb(255,255,255,0.1)",
 

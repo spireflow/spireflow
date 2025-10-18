@@ -91,7 +91,7 @@ export const NotificationsButton = ({
         >
           <BellIcon />
           {newNotificationsCount > 0 && (
-            <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-notificationBadgeBg text-[10px] font-semibold text-white">
+            <span className="absolute -top-[0.2rem] -right-[0.2rem] flex h-4 w-4 items-center justify-center rounded-full bg-notificationBadgeBg text-[10px] font-semibold text-white">
               {newNotificationsCount}
             </span>
           )}

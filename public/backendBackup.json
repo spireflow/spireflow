@@ -1069,6 +1069,447 @@
     ],
     "revenueOverTime": [
       {
+        "date": "Mar 23",
+        "websiteSales": 2200,
+        "inStoreSales": 3700
+      },
+      {
+        "date": "Apr 23",
+        "websiteSales": 4500,
+        "inStoreSales": 2200
+      },
+      {
+        "date": "May 23",
+        "websiteSales": 4800,
+        "inStoreSales": 1800
+      },
+      {
+        "date": "Jun 23",
+        "websiteSales": 2800,
+        "inStoreSales": 4200
+      },
+      {
+        "date": "Jul 23",
+        "websiteSales": 1900,
+        "inStoreSales": 5200
+      },
+      {
+        "date": "Aug 23",
+        "websiteSales": 5500,
+        "inStoreSales": 3500
+      },
+      {
+        "date": "Sep 23",
+        "websiteSales": 6400,
+        "inStoreSales": 4100
+      },
+      {
+        "date": "Oct 23",
+        "websiteSales": 5200,
+        "inStoreSales": 2400
+      },
+      {
+        "date": "Nov 23",
+        "websiteSales": 3800,
+        "inStoreSales": 1700
+      },
+      {
+        "date": "Dec 23",
+        "websiteSales": 6800,
+        "inStoreSales": 4800
+      },
+      {
+        "date": "Jan 24",
+        "websiteSales": 6400,
+        "inStoreSales": 4200
+      },
+      {
+        "date": "Feb 24",
+        "websiteSales": 4800,
+        "inStoreSales": 5400
+      }
+    ],
+    "revenuePerCountry": [
+      {
+        "name": "United States of America",
+        "price": 9155
+      },
+      {
+        "name": "France",
+        "price": 8140
+      },
+      {
+        "name": "United Kingdom",
+        "price": 7134
+      },
+      {
+        "name": "Norway",
+        "price": 2122
+      },
+      {
+        "name": "Australia",
+        "price": 2411
+      },
+      {
+        "name": "Poland",
+        "price": 1640
+      },
+      {
+        "name": "India",
+        "price": 2620
+      },
+      {
+        "name": "Kazakhstan",
+        "price": 3120
+      },
+      {
+        "name": "Brazil",
+        "price": 4120
+      },
+      {
+        "name": "Namibia",
+        "price": 5162
+      }
+    ]
+  },
+  "oldHomepage": {
+    "bestSellingProducts": [
+      {
+        "name": "iPad Z50",
+        "profit": 1800,
+        "revenue": 3600
+      },
+      {
+        "name": "Apple TV 4K",
+        "profit": 3000,
+        "revenue": 2000
+      },
+      {
+        "name": "Dell XLS 30",
+        "profit": 1143,
+        "revenue": 2500
+      }
+    ],
+    "customerSatisfaction": [
+      {
+        "brandName": "iPhone 80A",
+        "customerSatisfaction": 92.3,
+        "totalSales": 50437,
+        "numberOfOrders": 17417
+      },
+      {
+        "brandName": "Samsung Galaxy Z99",
+        "customerSatisfaction": 85.8,
+        "totalSales": 16554,
+        "numberOfOrders": 10589
+      },
+      {
+        "brandName": "Google Pixel X20",
+        "customerSatisfaction": 71.5,
+        "totalSales": 33665,
+        "numberOfOrders": 8633
+      },
+      {
+        "brandName": "OnePlus 30T",
+        "customerSatisfaction": 97.4,
+        "totalSales": 55022,
+        "numberOfOrders": 2110
+      },
+      {
+        "brandName": "Xiaomi Mi 20X",
+        "customerSatisfaction": 82.3,
+        "totalSales": 14974,
+        "numberOfOrders": 3705
+      },
+      {
+        "brandName": "iPad Z50",
+        "customerSatisfaction": 93.9,
+        "totalSales": 40746,
+        "numberOfOrders": 1379
+      },
+      {
+        "brandName": "Samsung Galaxy Note S20",
+        "customerSatisfaction": 77.7,
+        "totalSales": 55675,
+        "numberOfOrders": 5754
+      },
+      {
+        "brandName": "Microsoft Surface X7",
+        "customerSatisfaction": 71.8,
+        "totalSales": 5744,
+        "numberOfOrders": 9842
+      },
+      {
+        "brandName": "Amazon Fire HDX 20",
+        "customerSatisfaction": 81.1,
+        "totalSales": 42032,
+        "numberOfOrders": 5529
+      },
+      {
+        "brandName": "Lenovo Tab Z10",
+        "customerSatisfaction": 71,
+        "totalSales": 14680,
+        "numberOfOrders": 8279
+      },
+      {
+        "brandName": "MacBook Air X",
+        "customerSatisfaction": 89.4,
+        "totalSales": 45191,
+        "numberOfOrders": 1641
+      },
+      {
+        "brandName": "Dell XLS 30",
+        "customerSatisfaction": 84.1,
+        "totalSales": 40551,
+        "numberOfOrders": 1260
+      },
+      {
+        "brandName": "HP Phantom x500",
+        "customerSatisfaction": 80.5,
+        "totalSales": 47924,
+        "numberOfOrders": 5759
+      },
+      {
+        "brandName": "Lenovo ThinkPad Z1 Ultra",
+        "customerSatisfaction": 81.5,
+        "totalSales": 49088,
+        "numberOfOrders": 1712
+      },
+      {
+        "brandName": "ASUS ZenBook Pro 30",
+        "customerSatisfaction": 70.5,
+        "totalSales": 12582,
+        "numberOfOrders": 3788
+      },
+      {
+        "brandName": "Samsung Pro L40",
+        "customerSatisfaction": 73.4,
+        "totalSales": 26290,
+        "numberOfOrders": 4673
+      },
+      {
+        "brandName": "Motorola V8",
+        "customerSatisfaction": 91.1,
+        "totalSales": 21345,
+        "numberOfOrders": 1047
+      }
+    ],
+    "homeSmallCards": [
+      {
+        "title": "Sales",
+        "metric": "$12,699",
+        "metricPrev": "$ 9,456",
+        "delta": "34.3%",
+        "deltaType": "moderateIncrease",
+        "color": "purple",
+        "increased": true,
+        "changeValue": 12.5,
+        "changeText": "Last 3 weeks",
+        "chartData": [
+          {
+            "date": "08.10.23",
+            "metric": 445
+          },
+          {
+            "date": "11.10.23",
+            "metric": 743
+          },
+          {
+            "date": "14.10.23",
+            "metric": 488
+          },
+          {
+            "date": "17.10.23",
+            "metric": 788
+          },
+          {
+            "date": "20.10.23",
+            "metric": 1488
+          },
+          {
+            "date": "23.10.23",
+            "metric": 2088
+          },
+          {
+            "date": "26.10.23",
+            "metric": 1188
+          },
+          {
+            "date": "29.10.23",
+            "metric": 420
+          },
+          {
+            "date": "01.11.23",
+            "metric": 650
+          }
+        ]
+      },
+      {
+        "title": "Profit",
+        "metric": "$40,598",
+        "metricPrev": "$ 45,564",
+        "delta": "10.9%",
+        "deltaType": "moderateDecrease",
+        "color": "cyan",
+        "increased": true,
+        "changeValue": 36.5,
+        "changeText": "Last month",
+        "chartData": [
+          {
+            "date": "02.10.23",
+            "metric": 2850
+          },
+          {
+            "date": "06.10.23",
+            "metric": 4150
+          },
+          {
+            "date": "10.10.23",
+            "metric": 2350
+          },
+          {
+            "date": "14.10.23",
+            "metric": 1950
+          },
+          {
+            "date": "18.10.23",
+            "metric": 3150
+          },
+          {
+            "date": "22.10.23",
+            "metric": 2550
+          },
+          {
+            "date": "26.10.23",
+            "metric": 4350
+          },
+          {
+            "date": "30.10.23",
+            "metric": 3450
+          },
+          {
+            "date": "01.11.23",
+            "metric": 4850
+          }
+        ]
+      },
+      {
+        "title": "Traffic",
+        "metric": "12072",
+        "metricPrev": "856",
+        "delta": "25.3%",
+        "deltaType": "moderateIncrease",
+        "color": "purple",
+        "increased": false,
+        "changeValue": 5.4,
+        "changeText": "Yesterday",
+        "chartData": [
+          {
+            "date": "26.10.23 00:00",
+            "metric": 3100
+          },
+          {
+            "date": "26.10.23 03:00",
+            "metric": 3900
+          },
+          {
+            "date": "26.10.23 06:00",
+            "metric": 2700
+          },
+          {
+            "date": "26.10.23 09:00",
+            "metric": 4300
+          },
+          {
+            "date": "26.10.23 12:00",
+            "metric": 4500
+          },
+          {
+            "date": "26.10.23 15:00",
+            "metric": 1800
+          },
+          {
+            "date": "26.10.23 18:00",
+            "metric": 2600
+          },
+          {
+            "date": "26.10.23 21:00",
+            "metric": 3200
+          },
+          {
+            "date": "26.10.23 23:59",
+            "metric": 2300
+          }
+        ]
+      },
+      {
+        "title": "Customers",
+        "metric": "1042",
+        "metricPrev": "856",
+        "delta": "25.3%",
+        "deltaType": "moderateIncrease",
+        "color": "cyan",
+        "increased": true,
+        "changeValue": 22.7,
+        "changeText": "Last week",
+        "chartData": [
+          {
+            "date": "02.10.23",
+            "metric": 1050
+          },
+          {
+            "date": "06.10.23",
+            "metric": 1780
+          },
+          {
+            "date": "10.10.23",
+            "metric": 890
+          },
+          {
+            "date": "14.10.23",
+            "metric": 1520
+          },
+          {
+            "date": "18.10.23",
+            "metric": 980
+          },
+          {
+            "date": "22.10.23",
+            "metric": 1210
+          },
+          {
+            "date": "26.10.23",
+            "metric": 440
+          },
+          {
+            "date": "30.10.23",
+            "metric": 730
+          },
+          {
+            "date": "01.11.23",
+            "metric": 1390
+          }
+        ]
+      }
+    ],
+    "regions": [
+      {
+        "name": "North America",
+        "region": "us",
+        "sales": 875000,
+        "delta": "5.7%",
+        "deltaType": "increase"
+      },
+      {
+        "name": "Europe",
+        "region": "europe",
+        "sales": 560000,
+        "delta": "2.8%",
+        "deltaType": "moderateDecrease"
+      }
+    ],
+    "revenueOverTime": [
+      {
         "date": "Apr 23",
         "websiteSales": 2200,
         "inStoreSales": 3700

@@ -4,7 +4,7 @@ import { Grid, Col } from "@tremor/react";
 
 import { HomeSmallCards } from "./HomeSmallCards";
 import { RevenueOverTime } from "./RevenueOverTime";
-import { Regions } from "./Regions";
+import { CalendarActivity } from "./CalendarActivity";
 import { BestSellingProducts } from "./BestSellingProducts";
 import { CustomerSatisfaction } from "./CustomerSatisfaction";
 import { HomepageViewProps } from "./types";
@@ -13,33 +13,34 @@ import { RevenuePerCountry } from "./RevenuePerCountry";
 export const HomepageView = ({ homepageData }: HomepageViewProps) => {
   return (
     <>
-      {/* First row */}
-      <Grid numItems={2} numItemsLg={4} className="gap-x-4 gap-y-4">
-        {homepageData?.homeSmallCards && (
-          <HomeSmallCards homeSmallCardsData={homepageData.homeSmallCards} />
-        )}
-      </Grid>
-      {/* Second row */}
+      {/* First and Second row combined */}
       <Grid
         numItems={1}
-        numItemsSm={2}
-        numItemsMd={2}
+        numItemsSm={1}
+        numItemsMd={1}
         numItemsLg={3}
         className="gap-x-4 1xl:gap-x-6 gap-y-6"
       >
-        <Col numColSpan={1} numColSpanLg={2}>
+        <Col numColSpan={1} numColSpanLg={2} className="flex flex-col gap-6">
+          {/* Top Metrics Cards */}
+          {homepageData?.homeSmallCards && (
+            <HomeSmallCards homeSmallCardsData={homepageData.homeSmallCards} />
+          )}
+          
+          {/* Revenue Over Time */}
           {homepageData?.revenueOverTime && (
             <RevenueOverTime
               revenueOverTimeData={homepageData.revenueOverTime}
             />
           )}
         </Col>
-        <Col numColSpan={1} numColSpanLg={1}>
-          {homepageData?.regions && (
-            <Regions regionsData={homepageData.regions} />
-          )}
+        
+        {/* Calendar & Activity - Extended height */}
+        <Col numColSpan={1} numColSpanLg={1} className="flex">
+          <CalendarActivity />
         </Col>
       </Grid>
+      
       {/* Third row */}
       <Grid
         numItems={1}

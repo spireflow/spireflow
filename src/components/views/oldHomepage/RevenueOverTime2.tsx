@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   AreaChart,
   Area,
@@ -6,6 +6,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { useTheme } from "next-themes";
@@ -14,6 +15,7 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 
 import {
+  RevenueOverTimeCustomLegendProps,
   RevenueOverTimeProps,
   RevenueOverTimeTooltipProps,
 } from "./types";
@@ -69,7 +71,27 @@ const RevenueOverTimeTooltip = ({
   );
 };
 
-export const RevenueOverTime = ({
+const CustomLegend = ({ payload }: RevenueOverTimeCustomLegendProps) => {
+  return (
+    <div className="flex flex-row justify-end gap-8 text-white w-full mb-8 lg:mb-6 1xl:mb-6">
+      {payload?.map(
+        (entry: { value: string; color?: string }, index: number) => (
+          <div key={`legend-${index}`} className="flex items-center">
+            <div
+              className="w-3 h-3 mr-2 rounded"
+              style={{ backgroundColor: entry.color }}
+            />
+            <span className="text-xs 1xl:text-sm text-primaryText">
+              {entry.value}
+            </span>
+          </div>
+        )
+      )}
+    </div>
+  );
+};
+
+export const RevenueOverTime2 = ({
   revenueOverTimeData,
 }: RevenueOverTimeProps) => {
   const t = useTranslations("homepage.revenueOverTime");
@@ -89,90 +111,13 @@ export const RevenueOverTime = ({
   );
 
   const { width: windowWidth } = useWindowDimensions();
-  
-  const [timeRange, setTimeRange] = useState<"Monthly" | "Quarterly">("Monthly");
-
-  // Function to group monthly data into quarterly data
-  const processDataByTimeRange = (data: typeof translatedData) => {
-    if (timeRange === "Monthly") {
-      return data;
-    }
-
-    // Group by quarters
-    const quarters: { [key: string]: { websiteSales: number; inStoreSales: number; count: number } } = {};
-    
-    data.forEach((item) => {
-      // Extract month and year from date (e.g., "Mar 23" -> month=03, year=23)
-      const [monthStr, yearStr] = item.date.split(" ");
-      const monthMap: { [key: string]: number } = {
-        Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
-        Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
-      };
-      
-      const month = monthMap[monthStr];
-      const quarter = Math.floor(month / 3) + 1;
-      const quarterKey = `Q${quarter} ${yearStr}`;
-      
-      if (!quarters[quarterKey]) {
-        quarters[quarterKey] = { websiteSales: 0, inStoreSales: 0, count: 0 };
-      }
-      
-      quarters[quarterKey].websiteSales += item.websiteSales;
-      quarters[quarterKey].inStoreSales += item.inStoreSales;
-      quarters[quarterKey].count += 1;
-    });
-
-    // Convert to array and calculate averages
-    return Object.entries(quarters).map(([date, values]) => ({
-      date,
-      websiteSales: Math.round(values.websiteSales / values.count),
-      inStoreSales: Math.round(values.inStoreSales / values.count),
-    }));
-  };
-
-  const displayData = processDataByTimeRange(translatedData);
-
-  const customHeader = (
-    <div className="flex items-center justify-between">
-      <div className="flex flex-col gap-0.5">
-        <span className="text-[0.9rem] 1xl:text-[1rem] 3xl:text-[1.2rem] font-semibold text-primaryText">
-          {t("title")}
-        </span>
-        <span style={{ fontSize: '0.85rem', color: 'rgb(140, 145, 150)' }}>
-          Track revenue changes over time
-        </span>
-      </div>
-      <div className="flex items-center gap-1 bg-tabsBg rounded-lg p-1">
-        <button
-          onClick={() => setTimeRange("Monthly")}
-          className={`px-3 py-1 text-xs rounded-md transition-colors ${
-            timeRange === "Monthly"
-              ? "bg-inputBg text-primaryText"
-              : "text-secondaryText hover:text-primaryText"
-          }`}
-        >
-          Monthly
-        </button>
-        <button
-          onClick={() => setTimeRange("Quarterly")}
-          className={`px-3 py-1 text-xs rounded-md transition-colors ${
-            timeRange === "Quarterly"
-              ? "bg-inputBg text-primaryText"
-              : "text-secondaryText hover:text-primaryText"
-          }`}
-        >
-          Quarterly
-        </button>
-      </div>
-    </div>
-  );
 
   return (
-    <Card className="h-full" id="revenueOverTime" customHeader={customHeader} hasSubtitle={true}>
-      <div className="h-[15.5rem] 1xl:h-[16.3rem] 3xl:h-[18.5rem] w-full">
+    <Card className="h-full" id="revenueOverTime" title={t("title")}>
+      <div className="h-[18rem] 1xl:h-[18.8rem] 3xl:h-[21rem] w-full mt-[1rem] md:mt-[0.6rem] 3xl:mt-4">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
-            data={displayData}
+            data={translatedData}
             margin={{
               top: 10,
               right: windowWidth > 700 ? 30 : 10,
@@ -227,8 +172,13 @@ export const RevenueOverTime = ({
               isAnimationActive={false}
               cursor={{ fill: "rgba(255,255,255,0.05)" }}
             />
+            <Legend
+              verticalAlign="top"
+              align="right"
+              content={<CustomLegend />}
+            />
             <Area
-              type="monotone"
+              type="linear"
               dataKey="websiteSales"
               name={t("websiteSales")}
               stroke={chartColors.primary.disabled}
@@ -238,7 +188,7 @@ export const RevenueOverTime = ({
               isAnimationActive={false}
             />
             <Area
-              type="monotone"
+              type="linear"
               dataKey="inStoreSales"
               name={t("inStoreSales")}
               stroke={chartColors.primary.fill}

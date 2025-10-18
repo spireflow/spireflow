@@ -1,12 +1,22 @@
 import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+} from "recharts";
 
 import { useTranslateData } from "../../../hooks/useTranslateData";
 import { HomeSmallCardsProps } from "./types";
 import { Card } from "../../common/Card";
-import { Badge } from "../../common/Badge";
+import { useChartColors } from "../../../hooks/useChartColors";
 
 export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
   const t = useTranslations("homepage.homeSmallCards");
+  const { theme } = useTheme();
+  const chartColors = useChartColors(theme as "dark" | "light");
+
   const translations = {
     Sales: t("sales"),
     Profit: t("profit"),
@@ -19,55 +29,84 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
   };
 
   const translatedData = useTranslateData(homeSmallCardsData, translations);
+  
+  // Take first 3 cards
+  const metricsData = translatedData.slice(0, 3);
+  
+  // Hardcoded percentages for visual representation
+  const hardcodedPercentages = [37, 28, 64];
 
-  const cardIds = ["salesCard", "profitCard", "trafficCard", "customersCard"];
+  const getChartColor = (index: number) => {
+    const colors = [
+      chartColors.primary.fill, // Green
+      chartColors.secondary.fill, // Blue
+      chartColors.primary.fill, // Green
+    ];
+    return colors[index];
+  };
 
-  // Helper function to format numbers with commas
-  const formatMetric = (metric: string) => {
-    // If it already has formatting ($ or commas), return as is
-    if (metric.includes(',') || metric.includes('$')) {
-      return metric;
-    }
-    // Otherwise, add thousand separators
-    const num = parseInt(metric.replace(/\D/g, ''));
-    if (isNaN(num)) return metric;
-    return num.toLocaleString('en-US');
+  const renderCircularChart = (percentage: number, color: string) => {
+    const data = [
+      { name: "completed", value: percentage },
+      { name: "remaining", value: 100 - percentage },
+    ];
+
+    return (
+      <ResponsiveContainer width={110} height={110}>
+        <PieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            innerRadius={38}
+            outerRadius={50}
+            startAngle={90}
+            endAngle={-270}
+            dataKey="value"
+            stroke="none"
+            isAnimationActive={false}
+          >
+            <Cell fill={color} />
+            <Cell fill="rgba(255, 255, 255, 0.1)" />
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    );
   };
 
   return (
-    <>
-      {translatedData.map((item, index) => {
-        return (
-          <Card
-            key={`${item.title}-${index}`}
-            id={cardIds[index]}
-            className="h-46 sm-24 lg:h-28 1xl:h-28 pt-4 1xl:pt-5 3xl:p-6 3xl:pt-5 3xl:h-32 pr-[0.8rem] md:!pr-[0.5rem] lg:!pr-[0.8rem] xl:!pr-[0.1rem] 2xl:!pr-[1.2rem] pl-5 2xl:pl-7"
+    <Card className="!pt-2 !pb-2 [&>div]:!pb-2 [&>div]:!pt-2">
+      <div className="flex flex-row justify-between items-center gap-8 px-4 py-1">
+        {metricsData.map((metric, index) => (
+          <div
+            key={metric.title}
+            className="flex flex-1 items-center justify-center gap-12"
           >
-            <div className="flex small-box max-[420px]:-ml-3 flex-col sm:flex-row justify-between md:justify-normal">
-              <div className="flex w-full sm:w-1/2 mt-[0.35rem] lg:mt-0 lg:gap-5 pl-1 sm:pl-0">
-                <div className="flex flex-col items-start gap-[0.1rem]">
-                  <div className="text-primaryText font-medium text-md sm:text-md lg:text-xs 1xl:text-sm tracking-tight flex sm:block items-center lg:mr-0 mr-2 mb-0">
-                    {item.title}
-                  </div>
-                  <div className="pb-1 lg:pb-0 text-[1.1rem] lg:text-[1.2rem] lg:text-md 1xl:text-[1.15rem] 3xl:text-[1.75rem] font-semibold text-primaryText flex items-center gap-[1.2rem]">
-                    {formatMetric(item.metric)}
-                    <Badge
-                      value={item.changeValue}
-                      type={item.increased ? "increase" : "decrease"}
-                    />
-                  </div>
-                  <div className="flex lg:hidden xl:flex text-xs text-secondaryText whitespace-nowrap">
-                    {item.changeText}
-                  </div>
-                </div>
-              </div>
-              <div className="w-full sm:w-[40%] md:w-[45%] lg:w-[50%] xl:w-[40%] 2xl:w-1/2 md:pl-3 md:ml-2 2xl:ml-0 sm:flex mt-4 sm:mt-0 pr-0 2xl:pr-2 sm:pr-0">
-                {/* Chart removed */}
+            <div className="flex flex-col justify-center gap-1.5">
+              <h3 className="text-secondaryText text-sm font-medium">
+                {metric.title}
+              </h3>
+              <p className="text-primaryText text-2xl 1xl:text-3xl font-bold mb-1">
+                {metric.metric}
+              </p>
+              <p className="text-sm flex items-center gap-1.5">
+                <span className={metric.increased ? "text-green-500" : "text-red-500"}>
+                  {metric.increased ? "+" : "-"}{metric.changeValue}%
+                </span>
+                <span className="text-secondaryText text-xs">{metric.changeText}</span>
+              </p>
+            </div>
+            <div className="relative flex items-center justify-center flex-shrink-0">
+              {renderCircularChart(hardcodedPercentages[index], getChartColor(index))}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-primaryText text-base font-bold">
+                  {hardcodedPercentages[index]}%
+                </span>
               </div>
             </div>
-          </Card>
-        );
-      })}
-    </>
+          </div>
+        ))}
+      </div>
+    </Card>
   );
 };

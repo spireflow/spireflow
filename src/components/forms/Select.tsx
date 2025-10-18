@@ -22,6 +22,7 @@ interface SelectProps {
   isBottomPlaceholderVisible?: boolean;
   enableOptionsDropdownScroll?: boolean;
   ariaLabel?: string;
+  compact?: boolean; // New prop for compact size
 }
 
 export const Select = ({
@@ -33,6 +34,7 @@ export const Select = ({
   isBottomPlaceholderVisible = false,
   enableOptionsDropdownScroll = false,
   ariaLabel,
+  compact = false,
 }: SelectProps) => {
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string | number>(
@@ -70,7 +72,9 @@ export const Select = ({
     <>
       <div className={`relative `} ref={dropdownRef}>
         <div
-          className="text-sm 3xl:text-base rounded-md p-2 pl-3 pr-3 w-full cursor-pointer border border-mainBorder bg-selectBg text-primaryText placeholder-secondaryText hover:!border-inputBorderHover hover:bg-inputBgHover hover:bg-selectBgHover"
+          className={`rounded-md w-full cursor-pointer border border-mainBorder bg-selectBg text-primaryText placeholder-secondaryText hover:!border-inputBorderHover hover:bg-inputBgHover hover:bg-selectBgHover ${
+            compact ? "text-xs p-1.5 pl-2.5 pr-2.5" : "text-sm 3xl:text-base p-2 pl-3 pr-3"
+          }`}
           onClick={() => setIsSelectOpen(!isSelectOpen)}
           aria-expanded={isSelectOpen}
           aria-label={ariaLabel || placeholder || "Select"}
@@ -78,7 +82,9 @@ export const Select = ({
           {value || placeholder}
         </div>
         <div
-          className="text-secondaryText absolute top-2 right-1 w-6 h-6 cursor-pointer pointer-events-none"
+          className={`text-secondaryText absolute cursor-pointer pointer-events-none ${
+            compact ? "top-1.5 right-1 w-4 h-4" : "top-2 right-1 w-6 h-6"
+          }`}
           onClick={() => setIsSelectOpen(!isSelectOpen)}
           aria-label={isSelectOpen ? "Collapse dropdown" : "Expand dropdown"}
         >
@@ -88,7 +94,7 @@ export const Select = ({
         {isSelectOpen && (
           <div
             className={`rounded-md backdrop-blur-lg absolute w-full ${
-              direction === "top" ? "bottom-[2.8rem]" : "top-[2.9rem]"
+              direction === "top" ? "bottom-[2.8rem]" : compact ? "top-[2.4rem]" : "top-[2.9rem]"
             } 
             ${
               enableOptionsDropdownScroll ? "max-h-[13rem] overflow-y-auto" : ""
@@ -100,7 +106,9 @@ export const Select = ({
               {customOptions?.map((option, index) => (
                 <div
                   key={index}
-                  className={`flex items-center justify-between text-sm 3xl:text-base p-2 cursor-pointer hover:bg-dropdownBgHover hover:bg-dropdownBgHover
+                  className={`flex items-center justify-between cursor-pointer hover:bg-dropdownBgHover hover:bg-dropdownBgHover ${
+                    compact ? "text-xs p-1.5" : "text-sm 3xl:text-base p-2"
+                  }
                 ${
                   value === option &&
                   "bg-dropdownBgHover bg-dropdownBgHover pointer-events-none"
@@ -120,7 +128,9 @@ export const Select = ({
               ))}
               {isBottomPlaceholderVisible && (
                 <div
-                  className={`text-sm 3xl:text-base p-2 cursor-pointer hover:bg-dropdownBgHover hover:bg-dropdownBgHover
+                  className={`cursor-pointer hover:bg-dropdownBgHover hover:bg-dropdownBgHover ${
+                    compact ? "text-xs p-1.5" : "text-sm 3xl:text-base p-2"
+                  }
                 ${
                   !selectedValue &&
                   "bg-dropdownBgHover bg-dropdownBgHover pointer-events-none"

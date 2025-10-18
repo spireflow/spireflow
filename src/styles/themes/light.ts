@@ -2,6 +2,7 @@ export const lightTheme = {
   // Texts
   primaryText: "rgb(22, 40, 74)",
   secondaryText: "rgb(0,0,0,0.6)",
+  subtitleText: "rgb(0,0,0,0.4)",
   secondaryTextHover: "rgb(0,0,0,0.8)",
   coloredText: "rgb(0, 96, 255)",
   coloredTextHover: "rgb(76, 144, 255)",
@@ -23,6 +24,7 @@ export const lightTheme = {
   // Backgrounds
   primaryBg: "white",
   secondaryBg: "rgb(247, 247, 247)",
+  tabsBg: "rgb(250, 250, 250)",
   mainColor: "rgb(118, 167, 247)",
   navigationBg: "white",
   navItemBg: "rgb(0,0,0,0)",

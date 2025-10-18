@@ -9,6 +9,7 @@ import { EVENTS_QUERY } from "../queries/EventsQuery";
 import { CUSTOMERS_QUERY } from "../queries/CustomersQuery";
 import { PRODUCTS_QUERY } from "../queries/ProductsQuery";
 import { HOMEPAGE_QUERY } from "../queries/homepage/HomepageQuery";
+import { OLD_HOMEPAGE_QUERY } from "../queries/oldHomepage/OldHomepageQuery";
 
 interface QueryMap {
   [key: string]: DocumentNode;
@@ -19,6 +20,7 @@ const QUERY_MAP: QueryMap = {
   events: EVENTS_QUERY,
   customers: CUSTOMERS_QUERY,
   homepage: HOMEPAGE_QUERY,
+  oldHomepage: OLD_HOMEPAGE_QUERY,
   orders: ORDERS_QUERY,
   products: PRODUCTS_QUERY,
 };
@@ -58,12 +60,13 @@ export const getData = async (pageName: string) => {
 
     switch (pageName) {
       case "homepage":
+      case "oldHomepage":
       case "analytics":
         return data;
       default:
         return data[pageName];
     }
-  } catch (error) {
+  } catch {
     throw new Error(`Error fetching data for page ${pageName}`);
   }
 };
