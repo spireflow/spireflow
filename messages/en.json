@@ -431,6 +431,8 @@
     "githubRepository": "GitHub Repository"
   },
   "navbar": {
+    "auth": "Auth",
+    "register": "Register",
     "signIn": "Sign in",
     "signOut": "Sign out",
     "signUp": "Sign up",

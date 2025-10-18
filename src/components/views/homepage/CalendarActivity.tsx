@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -116,7 +117,8 @@ const BestsellingProductsTooltip = ({
 
 const BestsellingProducts = () => {
   const { width: windowWidth } = useWindowDimensions();
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <div className="px-4 pt-8 pb-4">
@@ -133,7 +135,7 @@ const BestsellingProducts = () => {
           >
             <CartesianGrid
               strokeDasharray="0"
-              stroke={theme === "light" ? "rgb(240, 240, 240)" : "rgb(45, 50, 55)"}
+              stroke={currentTheme === "light" ? "rgb(240, 240, 240)" : "rgb(45, 50, 55)"}
               vertical={false}
             />
             <XAxis
@@ -153,7 +155,7 @@ const BestsellingProducts = () => {
             <Bar
               dataKey="value1"
               stackId="a"
-              fill="rgb(61, 185, 133)"
+              fill={currentTheme === "light" ? "rgb(125, 214, 230)" : "rgb(61, 185, 133)"}
               radius={[0, 0, 0, 0]}
               barSize={25}
               isAnimationActive={false}
@@ -174,10 +176,29 @@ const BestsellingProducts = () => {
 };
 
 const ActivityItem = ({ activity }: { activity: Activity }) => {
-  const getAvatarColor = (color: "green" | "blue") => {
-    if (color === "green") return "bg-[rgb(61,185,133)]";
-    if (color === "blue") return "bg-[rgb(83,133,198)]";
-    return "bg-[rgb(61,185,133)]";
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  const currentTheme = theme === "system" ? systemTheme : theme;
+  
+  const getAvatarBgColor = (color: "green" | "blue") => {
+    // If not mounted yet, return transparent to avoid flash
+    if (!mounted) {
+      return "transparent";
+    }
+    
+    if (color === "green") {
+      // Light mode = teal, dark mode = green
+      return currentTheme === "light" ? "rgb(125, 214, 230)" : "rgb(61, 185, 133)";
+    }
+    if (color === "blue") {
+      return "rgb(83, 133, 198)";
+    }
+    return currentTheme === "light" ? "rgb(125, 214, 230)" : "rgb(61, 185, 133)";
   };
 
   const getIcon = (iconType: string) => {
@@ -208,13 +229,12 @@ const ActivityItem = ({ activity }: { activity: Activity }) => {
   return (
     <div className="flex items-start gap-3 py-5 border-b border-mainBorder last:border-b-0 hover:bg-navItemBgHover transition-colors px-4 cursor-pointer">
       <div
-        className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${getAvatarColor(
-          activity.color
-        )}`}
+        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
         style={{ 
           display: 'flex', 
           alignItems: 'center', 
-          justifyContent: 'center' 
+          justifyContent: 'center',
+          backgroundColor: getAvatarBgColor(activity.color)
         }}
       >
         {getIcon(activity.icon)}

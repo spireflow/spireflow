@@ -25,6 +25,10 @@ export const useNavbarModals = () => {
     setIsChangelogModalOpen(true);
   };
 
+  const showSignUpModal = () => {
+    setIsSignUpModalOpen(true);
+  };
+
   const switchToSignUp = () => {
     setIsLoginModalOpen(false);
     setIsSignUpModalOpen(true);
@@ -53,6 +57,7 @@ export const useNavbarModals = () => {
     showLogoutModal,
     showAboutModal,
     showChangelogModal,
+    showSignUpModal,
     switchToSignUp,
     switchToSignIn,
     handleLoginButton,

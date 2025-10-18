@@ -61,6 +61,7 @@ export const Navbar = () => {
     showLogoutModal,
     showAboutModal,
     showChangelogModal,
+    showSignUpModal,
     switchToSignUp,
     switchToSignIn,
     handleLoginButton,
@@ -137,6 +138,7 @@ export const Navbar = () => {
                 showAboutModal={showAboutModal}
                 showChangelogModal={showChangelogModal}
                 handleLoginButton={handleLoginButton}
+                showSignUpModal={showSignUpModal}
                 session={session}
                 theme={theme}
                 searchClose={searchDropdown.close}

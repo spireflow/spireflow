@@ -430,6 +430,8 @@
     "githubRepository": "GitHub"
   },
   "navbar": {
+    "auth": "Autoryzacja",
+    "register": "Rejestracja",
     "signIn": "Zaloguj się",
     "signOut": "Wyloguj się",
     "signUp": "Zarejestruj się",
