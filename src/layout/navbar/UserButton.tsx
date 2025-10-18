@@ -81,6 +81,16 @@ export const UserButton = ({
                 </div>
                 {session?.username || "Email"}
               </div>
+              <NavigationLink
+                href="/profile"
+                className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
+                onClick={() => userDropdown.close()}
+              >
+                <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem] stroke-grayIcon fill-grayIcon">
+                  <UserIcon />
+                </div>
+                <button>{t("userProfile")}</button>
+              </NavigationLink>
               <div
                 className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
                 onClick={() => {
@@ -186,6 +196,16 @@ export const UserButton = ({
                 </div>
                 <button>{t("signIn")}</button>
               </div>
+              <NavigationLink
+                href="/profile"
+                className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
+                onClick={() => userDropdown.close()}
+              >
+                <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem] stroke-grayIcon fill-grayIcon">
+                  <UserIcon />
+                </div>
+                <button>{t("userProfile")}</button>
+              </NavigationLink>
               <div
                 className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
                 onClick={() => {

@@ -434,6 +434,7 @@
     "signIn": "Sign in",
     "signOut": "Sign out",
     "signUp": "Sign up",
+    "userProfile": "User Profile",
     "about": "About",
     "changelog": "Changelog",
     "yourEmail": "Your e-mail",
@@ -522,6 +523,30 @@
     "customers": "Customers",
     "products": "Products",
     "analytics": "Analytics",
-    "calendar": "Calendar"
+    "calendar": "Calendar",
+    "profile": "Profile"
+  },
+  "profile": {
+    "memberSince": "Member since",
+    "editProfile": "Edit Profile",
+    "saveChanges": "Save Changes",
+    "contactInformation": "Contact Information",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "socialLinks": "Social Links",
+    "quickStats": "Quick Stats",
+    "totalOrders": "Total Orders",
+    "completedTasks": "Completed Tasks",
+    "activeProjects": "Active Projects",
+    "about": "About",
+    "accountSettings": "Account Settings",
+    "emailNotifications": "Email Notifications",
+    "emailNotificationsDesc": "Receive email updates about your account",
+    "twoFactorAuth": "Two-Factor Authentication",
+    "twoFactorAuthDesc": "Add an extra layer of security to your account",
+    "darkMode": "Dark Mode",
+    "darkModeDesc": "Enable dark mode theme",
+    "recentActivity": "Recent Activity"
   }
 }

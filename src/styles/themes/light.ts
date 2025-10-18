@@ -33,6 +33,7 @@ export const lightTheme = {
   navItemActiveBgHover: "rgb(101, 150, 231, 0.2)",
   inputBg: "rgb(240, 240, 245, 0.1)",
   inputBgHover: "white",
+  toggleSwitchBg: "rgb(200, 200, 200)",
   paginationActiveBg: "rgb(0, 0, 0, 0.08)",
   buttonActiveBg: "rgb(0,0,0,0.1)",
   outlinedButtonBg: "white",

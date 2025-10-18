@@ -35,6 +35,7 @@ export const darkTheme = {
   navItemActiveBgHover: "rgb(255,255,255,0.1)",
   inputBg: "rgb(255, 255, 255, 0.05)",
   inputBgHover: "rgb(255, 255, 255, 0.07)",
+  toggleSwitchBg: "rgb(255, 255, 255, 0.08)",
   paginationActiveBg: "rgb(255, 255, 255, 0.05)",
   buttonActiveBg: "rgb(35, 42, 49)",
   outlinedButtonBg: "rgb(255, 255, 255, 0.05)",

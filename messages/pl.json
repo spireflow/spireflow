@@ -433,8 +433,9 @@
     "signIn": "Zaloguj się",
     "signOut": "Wyloguj się",
     "signUp": "Zarejestruj się",
+    "userProfile": "Profil użytkownika",
     "about": "O aplikacji",
-    "changelog": "Historia zmian",
+    "changelog": "Lista zmian",
     "yourEmail": "Twój e-mail",
     "yourPassword": "Twoje hasło",
     "noAccount": "Nie masz jeszcze konta?",
@@ -521,6 +522,30 @@
     "customers": "Klienci",
     "products": "Produkty",
     "analytics": "Analityka",
-    "calendar": "Kalendarz"
+    "calendar": "Kalendarz",
+    "profile": "Profil"
+  },
+  "profile": {
+    "memberSince": "Członek od",
+    "editProfile": "Edytuj profil",
+    "saveChanges": "Zapisz zmiany",
+    "contactInformation": "Informacje kontaktowe",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "location": "Lokalizacja",
+    "socialLinks": "Media społecznościowe",
+    "quickStats": "Szybkie statystyki",
+    "totalOrders": "Wszystkie zamówienia",
+    "completedTasks": "Ukończone zadania",
+    "activeProjects": "Aktywne projekty",
+    "about": "O mnie",
+    "accountSettings": "Ustawienia konta",
+    "emailNotifications": "Powiadomienia e-mail",
+    "emailNotificationsDesc": "Otrzymuj aktualizacje e-mail o swoim koncie",
+    "twoFactorAuth": "Uwierzytelnianie dwuskładnikowe",
+    "twoFactorAuthDesc": "Dodaj dodatkową warstwę bezpieczeństwa do konta",
+    "darkMode": "Tryb ciemny",
+    "darkModeDesc": "Włącz ciemny motyw",
+    "recentActivity": "Ostatnia aktywność"
   }
 }
