@@ -68,7 +68,7 @@ export interface RevenueOverTimeProps {
 interface OldHomepageData {
   bestSellingProducts: BestSellingProductsProps["bestSellingProductsData"];
   customerSatisfaction: CustomerSatisfactionProps["customerSatisfactionData"];
-  homeSmallCards: HomeSmallCardsProps["homeSmallCardsData"];
+  oldHomeSmallCards: HomeSmallCardsProps["homeSmallCardsData"];
   regions: RegionsProps["regionsData"];
   revenueOverTime: RevenueOverTimeProps["revenueOverTimeData"];
   revenuePerCountry: RevenuePerCountryProps["revenuePerCountryData"];

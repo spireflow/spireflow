@@ -4,7 +4,7 @@ import { Grid, Col } from "@tremor/react";
 
 import { HomeSmallCards } from "./HomeSmallCards";
 import { RevenueOverTime } from "./RevenueOverTime";
-import { CalendarActivity } from "./CalendarActivity";
+import { WeeklyPerformance } from "./WeeklyPerformance";
 import { BestSellingProducts } from "./BestSellingProducts";
 import { CustomerSatisfaction } from "./CustomerSatisfaction";
 import { HomepageViewProps } from "./types";
@@ -26,7 +26,7 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
           {homepageData?.homeSmallCards && (
             <HomeSmallCards homeSmallCardsData={homepageData.homeSmallCards} />
           )}
-          
+
           {/* Revenue Over Time */}
           {homepageData?.revenueOverTime && (
             <RevenueOverTime
@@ -34,13 +34,18 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
             />
           )}
         </Col>
-        
+
         {/* Calendar & Activity - Extended height */}
         <Col numColSpan={1} numColSpanLg={1} className="flex">
-          <CalendarActivity />
+          {homepageData?.weeklyPerformance && homepageData?.weeklyActivities && (
+            <WeeklyPerformance
+              weeklyPerformanceData={homepageData.weeklyPerformance}
+              weeklyActivities={homepageData.weeklyActivities}
+            />
+          )}
         </Col>
       </Grid>
-      
+
       {/* Third row */}
       <Grid
         numItems={1}

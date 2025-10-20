@@ -1000,71 +1000,6 @@
             "metric": 2300
           }
         ]
-      },
-      {
-        "title": "Customers",
-        "metric": "1042",
-        "metricPrev": "856",
-        "delta": "25.3%",
-        "deltaType": "moderateIncrease",
-        "color": "cyan",
-        "increased": true,
-        "changeValue": 22.7,
-        "changeText": "Last week",
-        "chartData": [
-          {
-            "date": "02.10.23",
-            "metric": 1050
-          },
-          {
-            "date": "06.10.23",
-            "metric": 1780
-          },
-          {
-            "date": "10.10.23",
-            "metric": 890
-          },
-          {
-            "date": "14.10.23",
-            "metric": 1520
-          },
-          {
-            "date": "18.10.23",
-            "metric": 980
-          },
-          {
-            "date": "22.10.23",
-            "metric": 1210
-          },
-          {
-            "date": "26.10.23",
-            "metric": 440
-          },
-          {
-            "date": "30.10.23",
-            "metric": 730
-          },
-          {
-            "date": "01.11.23",
-            "metric": 1390
-          }
-        ]
-      }
-    ],
-    "regions": [
-      {
-        "name": "North America",
-        "region": "us",
-        "sales": 875000,
-        "delta": "5.7%",
-        "deltaType": "increase"
-      },
-      {
-        "name": "Europe",
-        "region": "europe",
-        "sales": 560000,
-        "delta": "2.8%",
-        "deltaType": "moderateDecrease"
       }
     ],
     "revenueOverTime": [
@@ -1169,6 +1104,61 @@
       {
         "name": "Namibia",
         "price": 5162
+      }
+    ],
+    "weeklyPerformance": [
+      {
+        "name": "Mon",
+        "revenue": 4000,
+        "profit": 2400
+      },
+      {
+        "name": "Tue",
+        "revenue": 3200,
+        "profit": 1198
+      },
+      {
+        "name": "Wed",
+        "revenue": 2000,
+        "profit": 1000
+      },
+      {
+        "name": "Thu",
+        "revenue": 5000,
+        "profit": 3000
+      },
+      {
+        "name": "Fri",
+        "revenue": 3500,
+        "profit": 2700
+      },
+      {
+        "name": "Sat",
+        "revenue": 2500,
+        "profit": 6200
+      },
+      {
+        "name": "Sun",
+        "revenue": 4200,
+        "profit": 2800
+      }
+    ],
+    "weeklyActivities": [
+      {
+        "id": 1,
+        "user": "Henry",
+        "action": "uploaded smartfirm file",
+        "time": "1 day ago",
+        "icon": "document",
+        "color": "green"
+      },
+      {
+        "id": 2,
+        "user": "You",
+        "action": "assigned @Renee to do illustration of process",
+        "time": "2 days ago",
+        "icon": "users",
+        "color": "blue"
       }
     ]
   },
@@ -1294,7 +1284,7 @@
         "numberOfOrders": 1047
       }
     ],
-    "homeSmallCards": [
+    "oldHomeSmallCards": [
       {
         "title": "Sales",
         "metric": "$12,699",

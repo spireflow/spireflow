@@ -16,9 +16,9 @@ export const OldHomepageView = ({ oldHomepageData }: OldHomepageViewProps) => {
     <>
       {/* First row */}
       <Grid numItems={2} numItemsLg={4} className="gap-x-4 gap-y-4">
-        {oldHomepageData?.homeSmallCards && (
+        {oldHomepageData?.oldHomeSmallCards && (
           <HomeSmallCards2
-            homeSmallCardsData={oldHomepageData.homeSmallCards}
+            homeSmallCardsData={oldHomepageData.oldHomeSmallCards}
           />
         )}
       </Grid>

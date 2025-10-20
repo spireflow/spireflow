@@ -4,12 +4,20 @@ import path from "path";
 
 import { client } from "./apolloClient";
 import { ORDERS_QUERY } from "../queries/OrdersQuery";
-import { ANALYTICS_QUERY } from "../queries/analytics/AnalyticsQuery";
+import { ANALYTICS_QUERY } from "../queries/AnalyticsQuery";
 import { EVENTS_QUERY } from "../queries/EventsQuery";
 import { CUSTOMERS_QUERY } from "../queries/CustomersQuery";
 import { PRODUCTS_QUERY } from "../queries/ProductsQuery";
-import { HOMEPAGE_QUERY } from "../queries/homepage/HomepageQuery";
-import { OLD_HOMEPAGE_QUERY } from "../queries/oldHomepage/OldHomepageQuery";
+import { HOMEPAGE_QUERY } from "../queries/HomepageQuery";
+import { OLD_HOMEPAGE_QUERY } from "../queries/OldHomepageQuery";
+
+import type { OrderType } from "../components/views/orders/types";
+import type { Customer } from "../components/views/customers/types";
+import type { ProductCategory } from "../components/views/products/types";
+import type { CalendarEvent } from "../components/views/calendar/types";
+import type { AnalyticsViewProps } from "../components/views/analytics/types";
+import type { HomepageViewProps } from "../components/views/homepage/types";
+import type { OldHomepageViewProps } from "../components/views/oldHomepage/types";
 
 interface QueryMap {
   [key: string]: DocumentNode;
@@ -25,13 +33,26 @@ const QUERY_MAP: QueryMap = {
   products: PRODUCTS_QUERY,
 };
 
-const switchToBackupData = true;
+const switchToBackupData = false;
 
-export const getData = async (pageName: string) => {
+// Map page names to their return types
+interface PageDataMap {
+  orders: OrderType[];
+  customers: Customer[];
+  products: ProductCategory[];
+  events: CalendarEvent[];
+  analytics: AnalyticsViewProps["analyticsData"];
+  homepage: HomepageViewProps["homepageData"];
+  oldHomepage: OldHomepageViewProps["oldHomepageData"];
+}
+
+type PageName = keyof PageDataMap;
+
+export const getData = async <T extends PageName>(
+  pageName: T
+): Promise<PageDataMap[T]> => {
   // Use this if you don't want to setup NodeJS/GraphQL backend
   // Application will read data from public/backendBackup.json instead of fetching it from backend
-  // I created this solution with a thought that if this is open source project, not "real" production application,
-  // perhaps the time will come when I will shut down backend server
   if (switchToBackupData) {
     const backupFilePath = path.join(
       process.cwd(),
@@ -40,11 +61,19 @@ export const getData = async (pageName: string) => {
     );
     try {
       const raw = fs.readFileSync(backupFilePath, "utf-8");
-      const allData = JSON.parse(raw);
-      if (!allData[pageName]) {
+      const allData: unknown = JSON.parse(raw);
+
+      // Type guard to ensure data structure
+      if (!allData || typeof allData !== "object") {
+        throw new Error("Invalid backup data structure");
+      }
+
+      const typedData = allData as Record<string, unknown>;
+      if (!typedData[pageName]) {
         throw new Error(`No backup data for page ${pageName}`);
       }
-      return allData[pageName];
+
+      return typedData[pageName] as PageDataMap[T];
     } catch (error) {
       throw new Error(`Error reading backup: ${error}`);
     }
@@ -62,9 +91,9 @@ export const getData = async (pageName: string) => {
       case "homepage":
       case "oldHomepage":
       case "analytics":
-        return data;
+        return data as PageDataMap[T];
       default:
-        return data[pageName];
+        return data[pageName] as PageDataMap[T];
     }
   } catch {
     throw new Error(`Error fetching data for page ${pageName}`);

@@ -69,9 +69,10 @@ interface HomepageData {
   bestSellingProducts: BestSellingProductsProps["bestSellingProductsData"];
   customerSatisfaction: CustomerSatisfactionProps["customerSatisfactionData"];
   homeSmallCards: HomeSmallCardsProps["homeSmallCardsData"];
-  regions: RegionsProps["regionsData"];
   revenueOverTime: RevenueOverTimeProps["revenueOverTimeData"];
   revenuePerCountry: RevenuePerCountryProps["revenuePerCountryData"];
+  weeklyPerformance: WeeklyPerformanceProps["weeklyPerformanceData"];
+  weeklyActivities: WeeklyActivity[];
 }
 
 export interface HomepageViewProps {
@@ -85,6 +86,25 @@ export interface Country {
 
 export interface RevenuePerCountryProps {
   revenuePerCountryData: Country[];
+}
+
+export interface WeeklyPerformanceData {
+  name: string;
+  revenue: number;
+  profit: number;
+}
+
+export interface WeeklyActivity {
+  id: number;
+  user: string;
+  action: string;
+  time: string;
+  icon: "update" | "users" | "check" | "document";
+  color: "green" | "blue";
+}
+
+export interface WeeklyPerformanceProps {
+  weeklyPerformanceData: WeeklyPerformanceData[];
 }
 
 export interface BestSellingCustomTooltipProps {

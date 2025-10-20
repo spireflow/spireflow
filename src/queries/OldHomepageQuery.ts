@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const HOMEPAGE_QUERY = gql`
-  query GetHomepageData {
+export const OLD_HOMEPAGE_QUERY = gql`
+  query GetOldHomepageData {
     bestSellingProducts {
       name
       profit
@@ -13,7 +13,7 @@ export const HOMEPAGE_QUERY = gql`
       totalSales
       numberOfOrders
     }
-    homeSmallCards {
+    oldHomeSmallCards {
       title
       metric
       metricPrev

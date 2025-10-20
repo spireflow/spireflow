@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const OLD_HOMEPAGE_QUERY = gql`
-  query GetOldHomepageData {
+export const HOMEPAGE_QUERY = gql`
+  query GetHomepageData {
     bestSellingProducts {
       name
       profit
@@ -25,13 +25,6 @@ export const OLD_HOMEPAGE_QUERY = gql`
       changeText
       chartData
     }
-    regions {
-      name
-      region
-      sales
-      delta
-      deltaType
-    }
     revenueOverTime {
       date
       websiteSales
@@ -40,6 +33,19 @@ export const OLD_HOMEPAGE_QUERY = gql`
     revenuePerCountry {
       name
       price
+    }
+    weeklyPerformance {
+      name
+      revenue
+      profit
+    }
+    weeklyActivities {
+      id
+      user
+      action
+      time
+      icon
+      color
     }
   }
 `;
