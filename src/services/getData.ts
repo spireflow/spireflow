@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 
 import { client } from "./apolloClient";
-import { switchToBackupData } from "./providers";
 import { ORDERS_QUERY } from "../queries/OrdersQuery";
 import { ANALYTICS_QUERY } from "../queries/AnalyticsQuery";
 import { EVENTS_QUERY } from "../queries/EventsQuery";
@@ -46,6 +45,9 @@ interface PageDataMap {
 }
 
 type PageName = keyof PageDataMap;
+
+// Set to true to use backup JSON file instead of an actual backend
+export const switchToBackupData = false;
 
 export const getData = async <T extends PageName>(
   pageName: T

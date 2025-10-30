@@ -478,9 +478,13 @@
     "authErrors": {
       "session_exists": "Jesteś już zalogowany",
       "form_identifier_not_found": "Email nie znaleziony",
-      "form_password_incorrect": "Nieprawidłowe hasło",
+      "form_password_incorrect": "Nieprawidłowy email lub hasło",
       "user_locked": "Konto czasowo zablokowane. Spróbuj później",
-      "defaultError": "Błąd logowania"
+      "defaultError": "Błąd logowania",
+      "emailAlreadyExists": "Użytkownik już istnieje. Użyj innego emaila.",
+      "invalidEmail": "Nieprawidłowy format emaila",
+      "passwordError": "Błąd hasła",
+      "networkError": "Nie można połączyć się z serwerem. Spróbuj ponownie."
     },
     "search": {
       "placeholder": "Szukaj...",

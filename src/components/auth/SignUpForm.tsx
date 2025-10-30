@@ -25,6 +25,7 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
     setShowEmailError,
     showPasswordError,
     setShowPasswordError,
+    signUpError,
     handleSubmit,
     onSubmit,
     control,
@@ -53,6 +54,7 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
                 placeholder={t("yourEmail")}
                 icon={<MailIcon />}
                 onInput={() => setShowPasswordError(false)}
+                maxLength={20}
               />
             )}
           />
@@ -62,17 +64,6 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
             <div className="relative">
               <div className="bg-secondaryBg bg-inputBg text-primaryText inline text-xs rounded p-2 px-4 w-full right-0 bottom-full border border-inputBorder rounded-md">
                 {errors.email.message}
-                <svg
-                  className="absolute text-inputBg h-0 left-0 ml-3 top-[1.9rem]"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 255 255"
-                >
-                  <polygon
-                    className="fill-current border border-inputBorder"
-                    points="0,0 127.5,127.5 255,0"
-                  />
-                </svg>
               </div>
             </div>
           </div>
@@ -88,6 +79,7 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
                 placeholder={t("yourPassword")}
                 icon={<PasswordIcon />}
                 onInput={() => setShowEmailError(false)}
+                maxLength={20}
               />
             )}
           />
@@ -97,17 +89,6 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
             <div className="relative mb-8">
               <div className="bg-secondaryBg bg-inputBg text-primaryText text-xs rounded p-2 px-4 inline right-0 bottom-full border border-inputBorder rounded-md">
                 {errors.password.message}
-                <svg
-                  className="absolute text-inputBg h-0 left-0 ml-3 top-[1.9rem]"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 255 255"
-                >
-                  <polygon
-                    className="fill-current border border-inputBorder"
-                    points="0,0 127.5,127.5 255,0"
-                  />
-                </svg>
               </div>
             </div>
           </div>
@@ -123,13 +104,24 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
             {errors.password.message}
           </p>
         )}
-        <div className="flex justify-center items-center w-4/5 mt-4 1xl:mt-6">
+        {signUpError && (
+          <p className="text-sm text-red-500 -mb-3 text-left w-full">
+            {signUpError}
+          </p>
+        )}
+        <div className="flex justify-center items-center w-4/5 mt-4 1xl:mt-6 h-[2.5rem]">
           <ContainedButton
             disabled={loading}
             type="submit"
             className="ignore-error-hide"
           >
-            {loading ? <SpinnerIcon /> : t("createAccount")}
+            {loading ? (
+              <div className="pt-[0.3rem]">
+                <SpinnerIcon width={45} height={45} />
+              </div>
+            ) : (
+              t("createAccount")
+            )}
           </ContainedButton>
         </div>
         <div className="w-full text-xs 1xl:text-sm flex justify-center gap-2 mt-4 1xl:mt-6">

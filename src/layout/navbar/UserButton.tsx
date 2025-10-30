@@ -41,7 +41,7 @@ export const UserButton = ({
       onMouseEnter={userTooltip.showTooltip}
       onMouseLeave={userTooltip.hideTooltip}
     >
-      <div className="h-10 w-10">
+      <div className={isLoggedIn ? "h-10 w-auto" : "h-10 w-10"}>
         <button
           ref={userIconBtnRef}
           onClick={() => {
@@ -52,11 +52,23 @@ export const UserButton = ({
             notificationsDropdown.close();
             searchClose();
           }}
-          className="text-base flex rounded-full justify-center items-center gap-2 w-full h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-outlinedButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon"
+          className={`text-base flex justify-center items-center h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-outlinedButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon ${
+            isLoggedIn ? "w-auto px-3 rounded-xl" : "w-full rounded-full"
+          }`}
           type="button"
           aria-label={t("openUserMenu")}
         >
           <UserIcon />
+          {isLoggedIn && session?.username && (
+            <>
+              <span className="text-sm font-medium text-primaryText whitespace-nowrap ml-2 mr-2">
+                {session.username}
+              </span>
+              <div className="text-secondaryText w-5 h-5 ml-2">
+                <ArrowDownSimpleIcon />
+              </div>
+            </>
+          )}
         </button>
       </div>
       {userTooltip.isTooltipVisible &&

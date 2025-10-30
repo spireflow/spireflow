@@ -4,7 +4,7 @@ import path from "path";
 
 import { client } from "../../../services/apolloClient";
 import { NOTIFICATIONS_QUERY } from "../../../queries/NotificationsQuery";
-import { switchToBackupData } from "../../../services/providers";
+import { switchToBackupData } from "../../../services/getData";
 
 export async function GET() {
   try {

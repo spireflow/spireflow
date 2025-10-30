@@ -1,6 +1,7 @@
-import type { NextFetchEvent, NextRequest } from "next/server";
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
+import { getSessionCookie } from "better-auth/cookies";
 
 import { locales, localePrefix, defaultLocale } from "./i18n/navigation";
 
@@ -11,42 +12,41 @@ const handleI18nRouting = createMiddleware({
   localeDetection: false,
 });
 
-const isPublicRoute = createRouteMatcher([
-  "/login(.*)",
-  "/register(.*)",
-  "/:locale/login(.*)",
-  "/:locale/register(.*)",
-]);
+// Public routes that don't require authentication
+const publicPaths = ["/login", "/register"];
 
-export default async function middleware(
-  request: NextRequest,
-  event: NextFetchEvent
-) {
-  // Check if Clerk environment variables are present
-  const hasClerkEnvs =
-    process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
-    process.env.CLERK_SECRET_KEY;
+const isPublicPath = (pathname: string): boolean => {
+  // Remove locale prefix if present (e.g., /en/login -> /login)
+  const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, "/");
+  return publicPaths.some((path) => pathWithoutLocale.startsWith(path));
+};
 
-  // If Clerk envs are missing, skip Clerk middleware and just handle i18n
-  if (!hasClerkEnvs) {
+const middleware = (request: NextRequest) => {
+  // Check if Better Auth environment variables are present
+  const hasBetterAuthEnvs =
+    process.env.NEXT_PUBLIC_AUTH_URL && process.env.BETTER_AUTH_SECRET;
+
+  // If Better Auth envs are missing, skip auth checks and just handle i18n
+  if (!hasBetterAuthEnvs) {
     return handleI18nRouting(request);
   }
 
-  return clerkMiddleware(async (auth, req) => {
-    // Uncomment this code if you want to protect all routes except the public ones
-    // I commented it out for demo purposes
+  // Uncomment this code if you want to protect all routes except the public ones
+  // I commented it out for demo purposes
 
-    // if (!isPublicRoute(req)) {
-    //   const locale = req.nextUrl.pathname.match(/^\/([a-z]{2})\//)?.at(1) || "";
-    //   const signInUrl = new URL(`/${locale ? locale + "/" : ""}login`, req.url);
-    //   await auth.protect({
-    //     unauthenticatedUrl: signInUrl.toString(),
-    //   });
-    // }
+  // const sessionCookie = getSessionCookie(request);
+  // const pathname = request.nextUrl.pathname;
 
-    return handleI18nRouting(request);
-  })(request, event);
-}
+  // if (!sessionCookie && !isPublicPath(pathname)) {
+  //   const locale = pathname.match(/^\/([a-z]{2})\//)?.at(1) || "";
+  //   const loginUrl = new URL(`/${locale ? locale + "/" : ""}login`, request.url);
+  //   return NextResponse.redirect(loginUrl);
+  // }
+
+  return handleI18nRouting(request);
+};
+
+export default middleware;
 
 export const config = {
   matcher: "/((?!_next|_vercel|api|trpc|.*\\..*).*)",

@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-
+// eslint-disable-next-line
 const createNextIntlPlugin = require('next-intl/plugin');
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/i18n.ts");
@@ -35,7 +35,7 @@ const securityHeaders = [
         // limiting potential vectors for cross-site scripting (XSS) attacks
         // by explicitly whitelisting trusted sources for various content types
         key: 'Content-Security-Policy',
-        value: "default-src 'self'; worker-src blob: 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.accounts.dev https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://*.clerk.accounts.dev; img-src 'self' data: https://res.cloudinary.com https://*.clerk.accounts.dev; font-src 'self' data: https://*.clerk.accounts.dev; connect-src 'self' https://* data: https://*.clerk.accounts.dev; frame-ancestors 'none'; frame-src https://*.clerk.accounts.dev"
+        value: "default-src 'self'; worker-src blob: 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://res.cloudinary.com; font-src 'self' data:; connect-src 'self' http://localhost:4000 https://* data:; frame-ancestors 'none'; frame-src 'none'"
     },
     {
         // X-Frame-Options prevents our application from being embedded within iframes

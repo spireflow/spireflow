@@ -21,7 +21,6 @@ interface LoginFormProps {
 
 export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
   const {
-    handleLogin,
     showEmailError,
     setShowEmailError,
     showPasswordError,
@@ -38,16 +37,15 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
   const isLoggingIn = useAppStore((state) => state.isLoggingIn);
 
   return (
-    <div className="w-full md:w-[19rem] 1xl:w-[22rem] flex flex-col items-center py-0 1xl:py-4">
-      <h1 className={`text-3xl 1xl:text-4xl font-bold text-primaryText`}>
+    <div className="w-full md:w-[18.5rem] 1xl:w-[20rem] flex flex-col items-center mb-2">
+      <h1 className="text-3xl 1xl:text-4xl font-bold mb-12 1xl:mb-16 mt-2 1xl:mt-4 text-primaryText">
         {t("signIn")}
       </h1>
       <form
-        className="w-full flex flex-col gap-3 py-12 pt-10 1xl:pt-14"
+        className="w-full flex flex-col gap-4 items-center"
         onSubmit={handleSubmit(onSubmit)}
-        autoComplete="new-password"
       >
-        <div className="mb-2 w-full relative h-[2.7rem]">
+        <div className="mb-1 w-full relative h-[2.7rem]">
           <Controller
             name="email"
             control={control}
@@ -59,12 +57,13 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
                 placeholder={t("yourEmail")}
                 icon={<MailIcon />}
                 onInput={() => setShowPasswordError(false)}
+                maxLength={20}
               />
             )}
           />
         </div>
         {errors.email && showEmailError && (
-          <div className="hidden md:block absolute left-[23rem] 1xl:left-[25.8rem] top-[8.4rem] 1xl:top-[10.4rem] z-50 min-w-[20rem] w-auto pointer-events-none">
+          <div className="hidden md:block absolute left-[22.2rem] 1xl:left-[23.5rem] top-[9.4rem] 1xl:top-[11rem] z-50 min-w-[20rem] w-auto">
             <div className="relative">
               <div className="bg-secondaryBg bg-inputBg text-primaryText inline text-xs rounded p-2 px-4 w-full right-0 bottom-full border border-inputBorder rounded-md">
                 {errors.email.message}
@@ -72,7 +71,7 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
             </div>
           </div>
         )}
-        <div className="mb-2 relative h-[2.7rem]">
+        <div className="mb-1 w-full relative h-[2.7rem]">
           <Controller
             name="password"
             control={control}
@@ -84,12 +83,13 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
                 placeholder={t("yourPassword")}
                 icon={<PasswordIcon />}
                 onInput={() => setShowEmailError(false)}
+                maxLength={20}
               />
             )}
           />
         </div>
         {errors.password && showPasswordError && (
-          <div className="hidden md:block absolute left-[23rem] 1xl:left-[25.8rem] top-[12rem] 1xl:top-[14rem] 1xl:top-[14.4rem] z-50 min-w-[20rem] w-auto pointer-events-none">
+          <div className="absolute hidden md:block left-[22.2rem] 1xl:left-[23.5rem] top-[13rem] 1xl:top-[14.5rem] 1xl:top-[14.9rem] z-50 min-w-[20rem] w-auto">
             <div className="relative mb-8">
               <div className="bg-secondaryBg bg-inputBg text-primaryText text-xs rounded p-2 px-4 inline right-0 bottom-full border border-inputBorder rounded-md">
                 {errors.password.message}
@@ -99,62 +99,40 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
         )}
         {/* On mobile I used standard red text for errors instead of tooltips to save space */}
         {!authErrorDisplayed && errors.email && showEmailError && (
-          <p className="text-sm text-red-500 -mb-2 md:hidden">
+          <p className="text-sm text-red-500 -mb-2 md:hidden text-left w-full">
             {errors.email.message}
           </p>
         )}
         {!authErrorDisplayed && errors.password && showPasswordError && (
-          <p className="text-sm text-red-500 -mb-3 md:hidden">
+          <p className="text-sm text-red-500 -mb-3 md:hidden text-left w-full">
             {errors.password.message}
           </p>
         )}
         {authErrorDisplayed && (
-          <p className="text-sm text-red-500 -mb-3">{authErrorDisplayed}</p>
+          <p className="text-sm text-red-500 -mb-3 text-left w-full">{authErrorDisplayed}</p>
         )}
-        <div className="w-10/12 lg:w-12/12 flex gap-4 justify-center flex-col items-center mx-auto mt-4 1xl:mt-6">
-          <div className="w-full h-10 max-h-10">
-            <ContainedButton disabled={isLoggingIn} type="submit">
-              {isLoggingIn ? (
-                <div className="w-6 h-6 -mt-4 -ml-5">
-                  <SpinnerIcon />
-                </div>
-              ) : (
-                "Login"
-              )}
-            </ContainedButton>
-          </div>
-          <div className="w-full h-10 max-h-10">
-            <ContainedButton
-              disabled={isLoggingIn}
-              className="ignore-error-hide"
-              handleClick={() => {
-                handleLogin({
-                  email: "",
-                  password: "",
-                  isDemo: true,
-                });
-              }}
-              type="button"
-            >
-              {isLoggingIn ? (
-                <div className="w-6 h-6 -mt-4 -ml-5">
-                  <SpinnerIcon />
-                </div>
-              ) : (
-                t("sampleAccount")
-              )}
-            </ContainedButton>
-            <div className="w-full text-[12px] 1xl:text-sm flex justify-center gap-2 mt-8 1xl:mt-10">
-              <div className="text-primaryText text-nowrap">
-                {t("noAccount")}
+        <div className="flex justify-center items-center w-4/5 mt-4 1xl:mt-6 h-[2.5rem]">
+          <ContainedButton
+            disabled={isLoggingIn}
+            type="submit"
+            className="ignore-error-hide"
+          >
+            {isLoggingIn ? (
+              <div className="pt-[0.3rem]">
+                <SpinnerIcon width={45} height={45} />
               </div>
-              <div
-                onClick={switchToSignUp}
-                className="text-coloredText text-semibold cursor-pointer hover:text-coloredTextHover ignore-error-hide text-nowrap"
-              >
-                {t("registerHere")}
-              </div>
-            </div>
+            ) : (
+              "Login"
+            )}
+          </ContainedButton>
+        </div>
+        <div className="w-full text-xs 1xl:text-sm flex justify-center gap-2 mt-4 1xl:mt-6">
+          <div className="text-primaryText">{t("noAccount")}</div>
+          <div
+            onClick={switchToSignUp}
+            className="text-coloredText text-semibold cursor-pointer hover:text-coloredTextHover ignore-error-hide"
+          >
+            {t("registerHere")}
           </div>
         </div>
       </form>

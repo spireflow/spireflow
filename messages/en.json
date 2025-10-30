@@ -479,9 +479,13 @@
     "authErrors": {
       "session_exists": "Already signed in",
       "form_identifier_not_found": "Email not found",
-      "form_password_incorrect": "Incorrect password",
+      "form_password_incorrect": "Invalid email or password",
       "user_locked": "Account locked, try again later",
-      "defaultError": "Sign in error"
+      "defaultError": "Sign in error",
+      "emailAlreadyExists": "User already exists. Use another email.",
+      "invalidEmail": "Invalid email format",
+      "passwordError": "Password error",
+      "networkError": "Cannot connect to server. Please try again."
     },
     "search": {
       "placeholder": "Search...",

@@ -3,42 +3,60 @@ import * as Yup from "yup";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useSignUp } from "@clerk/nextjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { SignUpData } from "../../components/auth/SignUpForm";
+import { signUp } from "../../lib/auth-client";
 
 export const useHandleSignUp = () => {
   const [loading, setLoading] = useState(false);
   const [showEmailError, setShowEmailError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
-  const { isLoaded, signUp, setActive } = useSignUp();
+  const [signUpError, setSignUpError] = useState<string>("");
   const router = useRouter();
   const t = useTranslations("navbar");
 
   const handleSignUp = async (data: SignUpData) => {
-    if (!isLoaded || !signUp) {
-      return;
-    }
+    setLoading(true);
+    setSignUpError("");
 
     try {
-      const result = await signUp.create({
-        emailAddress: data.email,
+      const { error } = await signUp.email({
+        email: data.email,
         password: data.password,
+        name: data.email,
       });
 
-      if (result.status === "complete") {
-        await setActive({ session: result.createdSessionId });
-
-        router.push("/");
-
-        console.log("Successfully signed up");
-      } else {
-        console.log("Signup process status:", result.status);
+      if (error) {
+        setLoading(false);
+        // Map Better Auth errors to user-friendly messages
+        const errorMessage = mapSignUpError(error.message || error.code || "UNKNOWN_ERROR");
+        setSignUpError(errorMessage);
+        return;
       }
+
+      // Success - DON'T remove spinner, let it stay until page reloads
+      router.push("/");
+      location.reload();
     } catch (error) {
-      console.error("An error occurred during signup:", error);
+      setLoading(false);
+      console.error("Sign up error:", error);
+      setSignUpError(t("authErrors.networkError"));
     }
+  };
+
+  // Map Better Auth error messages to translation keys
+  const mapSignUpError = (errorMessage: string): string => {
+    if (errorMessage.includes("already exists") || errorMessage.includes("User already exists")) {
+      return t("authErrors.emailAlreadyExists");
+    }
+    if (errorMessage.includes("Invalid email")) {
+      return t("authErrors.invalidEmail");
+    }
+    if (errorMessage.includes("Password")) {
+      return t("authErrors.passwordError");
+    }
+    return t("authErrors.defaultError");
   };
 
   const validationSchema = Yup.object().shape({
@@ -60,20 +78,7 @@ export const useHandleSignUp = () => {
   });
 
   const onSubmit = async (data: SignUpData) => {
-    setLoading(true);
-    try {
-      // Creating accounts is disabled for demo purposes
-      // await handleSignUp(data);
-      demoSignupHandler();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const demoSignupHandler = () => {
-    alert("Creating accounts on demo application is disabled, sorry");
+    await handleSignUp(data);
   };
 
   useEffect(() => {
@@ -113,7 +118,7 @@ export const useHandleSignUp = () => {
     setShowEmailError,
     showPasswordError,
     setShowPasswordError,
-    demoSignupHandler,
+    signUpError,
     handleSubmit,
     onSubmit,
     control,

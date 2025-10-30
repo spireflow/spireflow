@@ -4,14 +4,10 @@ import * as Yup from "yup";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSignIn } from "@clerk/nextjs";
 
 import { LoginData } from "../../components/auth/LoginForm";
 import { useAppStore } from "../../store/appStore";
-
-export interface HandleLoginProps extends LoginData {
-  isDemo?: boolean;
-}
+import { signIn } from "../../lib/auth-client";
 
 export const useHandleLogin = () => {
   const [authError, setAuthError] = useState<string>("");
@@ -21,77 +17,62 @@ export const useHandleLogin = () => {
   const [showPasswordError, setShowPasswordError] = useState(false);
   const [authErrorDisplayed, setAuthErrorDisplayed] = useState("");
   const t = useTranslations("navbar");
-  const { isLoaded, signIn, setActive } = useSignIn();
 
   const setIsLoggingIn = useAppStore((state) => state.setIsLoggingIn);
   const clearAuthError = () => setAuthError("");
   const currentPathname = usePathname();
 
-  const handleLogin = async (data: HandleLoginProps) => {
-    if (!isLoaded || !signIn) {
-      return;
-    }
-
+  const handleLogin = async (data: LoginData) => {
     setIsLoggingIn(true);
+    setAuthError("");
 
-    const { email, password, isDemo } = data;
-
-    // Handle demo account
-    const loginEmail = isDemo
-      ? process.env.NEXT_PUBLIC_SAMPLE_ACCOUNT_EMAIL || ""
-      : email;
-    const loginPassword = isDemo
-      ? process.env.NEXT_PUBLIC_SAMPLE_ACCOUNT_PASSWORD || ""
-      : password;
+    const { email, password } = data;
 
     try {
-      const result = await signIn.create({
-        identifier: loginEmail,
-        password: loginPassword,
-      });
+      const { error } = await signIn.email({ email, password });
 
-      if (result.status === "complete") {
-        await setActive({ session: result.createdSessionId });
+      if (error) {
+        setIsLoggingIn(false);
+        const errorMessage = error.message || error.code || "UNKNOWN_ERROR";
+        const translatedError = mapBetterAuthError(errorMessage);
+        setAuthError(translatedError);
+        return;
+      }
 
-        if (currentPathname === "/pl/login") {
-          router.push("/pl");
-        } else if (currentPathname === "/login") {
-          router.push("/");
-        } else {
-          location.reload();
-        }
+      // Success - redirect
+      if (currentPathname === "/pl/login") {
+        router.push("/pl");
+      } else if (currentPathname === "/login") {
+        router.push("/");
+      } else {
+        location.reload();
       }
     } catch (error) {
-      console.log("Clerk login error:", error);
-
-      const clerkError = error as {
-        errors?: {
-          message?: string;
-          code?: string;
-          meta?: any;
-        }[];
-      };
-
-      if (clerkError.errors && clerkError.errors.length > 0) {
-        const firstError = clerkError.errors[0];
-
-        if (firstError.code) {
-          const translatedError =
-            t.raw(`authErrors.${firstError.code}`) !==
-            `authErrors.${firstError.code}`
-              ? t(`authErrors.${firstError.code}`)
-              : firstError.message || t("authErrors.defaultError");
-
-          setAuthError(translatedError);
-        } else if (firstError.message) {
-          setAuthError(firstError.message);
-        } else {
-          setAuthError(t("authErrors.defaultError"));
-        }
-      } else {
-        setAuthError(t("authErrors.defaultError"));
-      }
+      setIsLoggingIn(false);
+      console.log("Network error during login:", error);
+      setAuthError(t("authErrors.networkError"));
     }
+  };
+
+  // Map Better Auth error messages to translation keys
+  const mapBetterAuthError = (errorMessage: string): string => {
+    const lowerError = errorMessage.toLowerCase();
+
+    // Better Auth returns INVALID_EMAIL_OR_PASSWORD for both wrong email and wrong password
+    if (
+      lowerError.includes("invalid email or password") ||
+      lowerError.includes("invalid_email_or_password")
+    ) {
+      return t("authErrors.form_password_incorrect");
+    }
+    if (lowerError.includes("locked") || lowerError.includes("blocked")) {
+      return t("authErrors.user_locked");
+    }
+    if (lowerError.includes("session")) {
+      return t("authErrors.session_exists");
+    }
+
+    return t("authErrors.defaultError");
   };
 
   const validationSchema = Yup.object().shape({
@@ -147,13 +128,10 @@ export const useHandleLogin = () => {
     }
   }, [errors.password]);
 
-  // Effects that delay showing auth error to prevent spam
+  // Show auth error immediately without delay
   useEffect(() => {
     if (authError) {
-      setTimeout(() => {
-        setAuthErrorDisplayed(authError);
-        setIsLoggingIn(false);
-      }, 700);
+      setAuthErrorDisplayed(authError);
     } else {
       setAuthErrorDisplayed("");
     }

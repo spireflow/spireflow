@@ -1,5 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
-import { useUser } from "@clerk/nextjs";
+
+import { useSession } from "../../lib/auth-client";
 
 import { AnalyticsIcon } from "../../assets/icons/AnalyticsIcon";
 import { AreaIcon } from "../../assets/icons/AreaIcon";
@@ -24,7 +25,9 @@ export const SideMenuMobile = ({
   onLoginButtonClick,
 }: SideMenuMobileProps) => {
   const toggleMobileMenu = useAppStore((state) => state.toggleMobileMenu);
-  const { isSignedIn, isLoaded } = useUser();
+  const { data: sessionData, isPending } = useSession();
+  const isSignedIn = !!sessionData;
+  const isLoaded = !isPending;
   const t = useTranslations("sideMenu");
   const locale = useLocale();
 

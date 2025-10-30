@@ -3,19 +3,19 @@ import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { useAppStore } from "../../../store/appStore";
 import { useDropdown } from "../../../hooks/useDropdown";
-import { useUser } from "@clerk/nextjs";
+import { useSession } from "../../../lib/auth-client";
 
 export const useNavbar = () => {
   const { theme, setTheme } = useTheme();
   const [currentLanguage, setCurrentLanguage] = useState("en");
   const { isMobileMenuOpen, toggleMobileMenu, isSideMenuOpen } = useAppStore();
   const t = useTranslations("navbar");
-  const { user, isLoaded } = useUser();
+  const { data: sessionData, isPending } = useSession();
 
-  const session = isLoaded
+  const session = !isPending
     ? {
-        username: user?.primaryEmailAddress?.emailAddress || null,
-        isLoggedIn: !!user,
+        username: sessionData?.user?.email || null,
+        isLoggedIn: !!sessionData,
       }
     : null;
 

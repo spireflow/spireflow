@@ -12,6 +12,7 @@ interface InputProps {
   className?: string;
   autoComplete?: string;
   ariaLabel?: string;
+  maxLength?: number;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -28,6 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       className,
       autoComplete,
       ariaLabel,
+      maxLength,
     },
     ref
   ) => {
@@ -53,6 +55,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           name={name}
           autoComplete={autoComplete}
           aria-label={ariaLabel || placeholder}
+          maxLength={maxLength}
         />
       </div>
     );

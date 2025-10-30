@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useClerk } from "@clerk/nextjs";
 
 import { useAppStore } from "../../store/appStore";
+import { signOut } from "../../lib/auth-client";
 
 export const useHandleLogout = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { signOut } = useClerk();
   const setIsLoggingOut = useAppStore((state) => state.setIsLoggingOut);
 
   const handleLogout = async () => {
