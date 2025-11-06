@@ -10,8 +10,6 @@ import { OrdersPagination } from "./OrdersPagination";
 import { SearchIcon } from "../../../assets/icons/SearchIcon";
 import { OutlinedButton } from "../../common/OutlinedButton";
 import { Input } from "../../forms/Input";
-import { useTranslateData } from "../../../hooks/useTranslateData";
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
 import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
 import { useTooltip } from "../../../hooks/useTooltip";
 import { Tooltip } from "../../common/Tooltip";
@@ -20,8 +18,6 @@ import { OrdersViewProps } from "./types";
 
 export const OrdersView = ({ ordersData }: OrdersViewProps) => {
   const t = useTranslations("orders");
-  const backendTranslations = useBackendTranslations("orders");
-  const translatedData = useTranslateData(ordersData, backendTranslations);
 
   const {
     table,
@@ -39,12 +35,12 @@ export const OrdersView = ({ ordersData }: OrdersViewProps) => {
     itemsPerPage,
     setCurrentPage,
     resetFilters,
-  } = useOrders({ orders: translatedData });
+  } = useOrders({ orders: ordersData });
 
   const csvTooltip = useTooltip();
 
   const handleExportToCSV = () => {
-    exportToCSV(translatedData, "orders");
+    exportToCSV(ordersData, "orders");
   };
 
   return (

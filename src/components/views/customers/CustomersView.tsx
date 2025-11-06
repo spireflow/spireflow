@@ -11,8 +11,6 @@ import { CustomersPagination } from "./CustomersPagination";
 import { CustomersSortDropdown } from "./CustomersSortDropdown";
 import { CustomersTable } from "./CustomersTable";
 import { useCustomers } from "./useCustomers";
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
 import { Tooltip } from "../../common/Tooltip";
 import { Customer } from "./types";
@@ -23,8 +21,6 @@ interface CustomersViewProps {
 
 export const CustomersView = ({ customers }: CustomersViewProps) => {
   const t = useTranslations("customers");
-  const backendTranslations = useBackendTranslations("customers");
-  const translatedData = useTranslateData(customers, backendTranslations);
 
   const {
     table,
@@ -49,7 +45,7 @@ export const CustomersView = ({ customers }: CustomersViewProps) => {
     handleMouseEnter,
     handleMouseLeave,
     tooltipRef,
-  } = useCustomers(translatedData);
+  } = useCustomers(customers);
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -118,7 +114,7 @@ export const CustomersView = ({ customers }: CustomersViewProps) => {
             onMouseLeave={handleMouseLeave}
           >
             <OutlinedButton
-              handleClick={() => handleExportToCSV(translatedData)}
+              handleClick={() => handleExportToCSV(customers)}
               className="!px-[0.8rem]"
             >
               <DownloadIcon />

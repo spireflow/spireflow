@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";
 import { UpdateIcon } from "../../../assets/icons/UpdateIcon";
@@ -39,6 +40,8 @@ const WeeklyPerformanceTooltip = ({
   payload,
   label,
 }: WeeklyPerformanceTooltipProps) => {
+  const t = useTranslations("homepage.weeklyPerformance");
+
   if (!active || !payload || payload.length === 0 || !label) return null;
 
   const revenueEntry = payload.find((p) => p.dataKey === "revenue");
@@ -53,7 +56,7 @@ const WeeklyPerformanceTooltip = ({
               className="w-2 h-2 mr-2 rounded inline-block"
               style={{ backgroundColor: revenueEntry.color }}
             />
-            {`Revenue:   `}
+            {`${t("revenue")}:   `}
           </span>
           <span className="pl-[0.7rem]">
             ${Intl.NumberFormat("us").format(revenueEntry.value ?? 0)}
@@ -67,7 +70,7 @@ const WeeklyPerformanceTooltip = ({
               className="w-2 h-2 mr-2 rounded inline-block"
               style={{ backgroundColor: profitEntry.color }}
             />
-            {`Profit:   `}
+            {`${t("profit")}:   `}
           </span>
           <span className="pl-[0.7rem]">
             ${Intl.NumberFormat("us").format(profitEntry.value ?? 0)}
@@ -253,11 +256,13 @@ export const WeeklyPerformance = ({
   weeklyPerformanceData,
   weeklyActivities,
 }: WeeklyPerformanceProps & { weeklyActivities: WeeklyActivity[] }) => {
+  const t = useTranslations("homepage.weeklyPerformance");
+
   return (
     <Card
       className="flex flex-col h-full"
       id="weekly-performance"
-      title="Weekly Performance"
+      title={t("title")}
     >
       <div className="flex-1 flex flex-col">
         {/* Weekly Performance Chart Section */}
@@ -266,7 +271,9 @@ export const WeeklyPerformance = ({
         {/* Activity Section */}
         <div className="mt-4">
           <div className="px-4 mb-2">
-            <h3 className="text-sm font-semibold text-primaryText">Activity</h3>
+            <h3 className="text-sm font-semibold text-primaryText">
+              {t("activity")}
+            </h3>
           </div>
           <div className="flex flex-col">
             {weeklyActivities.map((activity) => (

@@ -12,17 +12,13 @@ export const OrderSelects = ({
   const t = useTranslations("orders");
 
   const deliveryTypeOptions = [
-    t("deliveryType.standardShipping"),
-    t("deliveryType.twoDayShipping"),
-    t("deliveryType.freeShipping"),
-    t("deliveryType.expressShipping"),
+    "Standard shipping",
+    "Two-day shipping",
+    "Free shipping",
+    "Express shipping",
   ];
 
-  const statusOptions = [
-    t("status.delivered"),
-    t("status.inTransit"),
-    t("status.shipped"),
-  ];
+  const statusOptions = ["Delivered", "In Transit", "Shipped"];
 
   const selectsConfig = [
     {

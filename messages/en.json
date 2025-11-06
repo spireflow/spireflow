@@ -54,6 +54,12 @@
       "norway": "Norway",
       "australia": "Australia",
       "poland": "Poland"
+    },
+    "weeklyPerformance": {
+      "title": "Weekly Performance",
+      "activity": "Activity",
+      "revenue": "Revenue",
+      "profit": "Profit"
     }
   },
   "orders": {

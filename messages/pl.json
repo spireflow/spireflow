@@ -54,6 +54,12 @@
       "norway": "Norwegia",
       "australia": "Australia",
       "poland": "Polska"
+    },
+    "weeklyPerformance": {
+      "title": "Wydajność tygodniowa",
+      "activity": "Aktywność",
+      "revenue": "Przychód",
+      "profit": "Zysk"
     }
   },
   "orders": {
