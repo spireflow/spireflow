@@ -4,7 +4,7 @@ import { AreaChart } from "@tremor/react";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 
-import { CenteredPageWrapper } from "../../../components/common/CenteredPageWrapper";
+import { CenteredPageWrapper } from "../../../../components/common/CenteredPageWrapper";
 
 const Area = () => {
   const dataFormatter = (number: number) => {

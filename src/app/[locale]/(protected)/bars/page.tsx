@@ -3,7 +3,7 @@
 import { BarChart } from "@tremor/react";
 import { useTranslations } from "next-intl";
 
-import { CenteredPageWrapper } from "../../../components/common/CenteredPageWrapper";
+import { CenteredPageWrapper } from "../../../../components/common/CenteredPageWrapper";
 
 const Bars = () => {
   const t = useTranslations("singleCharts.bars");

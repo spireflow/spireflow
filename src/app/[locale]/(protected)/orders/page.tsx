@@ -1,6 +1,6 @@
-import { PageWrapper } from "../../../components/common/PageWrapper";
-import { OrdersView } from "../../../components/views/orders/OrdersView";
-import { getData } from "../../../services/getData";
+import { PageWrapper } from "../../../../components/common/PageWrapper";
+import { OrdersView } from "../../../../components/views/orders/OrdersView";
+import { getData } from "../../../../services/getData";
 
 const Orders = async () => {
   const ordersData = await getData("orders");

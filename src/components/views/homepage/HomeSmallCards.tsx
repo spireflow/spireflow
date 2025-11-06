@@ -61,18 +61,17 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
 
     return (
       <div 
-        style={{ transform: 'scale(0.95) translateY(0.1rem)', transformOrigin: 'center' }}
         onMouseEnter={() => setHoveredChart(index)}
         onMouseLeave={() => setHoveredChart(null)}
       >
-        <ResponsiveContainer width={110} height={110}>
+        <ResponsiveContainer width={90} height={90}>
           <PieChart>
             <Pie
               data={data}
               cx="50%"
               cy="50%"
-              innerRadius={38}
-              outerRadius={50}
+              innerRadius={32}
+              outerRadius={41}
               startAngle={90}
               endAngle={-270}
               dataKey="value"
@@ -89,12 +88,12 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
   };
 
   return (
-    <Card className="!pt-2 !pb-2 [&>div]:!pb-2 [&>div]:!pt-2">
-      <div className="flex flex-row justify-between items-center gap-8 px-4 py-1">
+    <Card className="!pt-2 !pb-2 [&>div]:!pb-2 [&>div]:!pt-2 flex items-center h-[calc(100%-1rem)]">
+      <div className="flex flex-row justify-between items-center gap-8 px-4 py-1 w-full">
         {metricsData.map((metric, index) => (
           <div
             key={metric.title}
-            className="flex flex-1 items-center justify-center gap-12"
+            className="flex flex-1 items-center justify-center gap-8"
           >
             <div className="flex flex-col justify-center gap-1.5">
               <h3 className="text-secondaryText text-sm font-medium">

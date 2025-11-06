@@ -1,6 +1,6 @@
-import { PageWrapper } from "../../../components/common/PageWrapper";
-import { getData } from "../../../services/getData";
-import { AnalyticsView } from "../../../components/views/analytics/AnalyticsView";
+import { PageWrapper } from "../../../../components/common/PageWrapper";
+import { getData } from "../../../../services/getData";
+import { AnalyticsView } from "../../../../components/views/analytics/AnalyticsView";
 
 const Analytics = async () => {
   const analyticsData = await getData("analytics");

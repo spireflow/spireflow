@@ -228,7 +228,7 @@ export const RevenueOverTime = ({
               cursor={{ fill: "rgba(255,255,255,0.05)" }}
             />
             <Area
-              type="monotone"
+              type="linear"
               dataKey="websiteSales"
               name={t("websiteSales")}
               stroke={chartColors.primary.disabled}
@@ -238,7 +238,7 @@ export const RevenueOverTime = ({
               isAnimationActive={false}
             />
             <Area
-              type="monotone"
+              type="linear"
               dataKey="inStoreSales"
               name={t("inStoreSales")}
               stroke={chartColors.primary.fill}

@@ -1,5 +1,5 @@
-import { PageWrapper } from "../../../components/common/PageWrapper";
-import { ProfileView } from "../../../components/views/profile/ProfileView";
+import { PageWrapper } from "../../../../components/common/PageWrapper";
+import { ProfileView } from "../../../../components/views/profile/ProfileView";
 
 const Profile = async () => {
   return (

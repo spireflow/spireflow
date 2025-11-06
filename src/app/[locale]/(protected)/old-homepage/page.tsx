@@ -1,6 +1,6 @@
-import { PageWrapper } from "../../../components/common/PageWrapper";
-import { getData } from "../../../services/getData";
-import { OldHomepageView } from "../../../components/views/oldHomepage/OldHomepageView";
+import { PageWrapper } from "../../../../components/common/PageWrapper";
+import { getData } from "../../../../services/getData";
+import { OldHomepageView } from "../../../../components/views/oldHomepage/OldHomepageView";
 
 const OldHomepage = async () => {
   const oldHomepageData = await getData("oldHomepage");

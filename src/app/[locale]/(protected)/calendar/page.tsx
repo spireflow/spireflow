@@ -1,6 +1,6 @@
-import { PageWrapper } from "../../../components/common/PageWrapper";
-import { CalendarView } from "../../../components/views/calendar/CalendarView";
-import { getData } from "../../../services/getData";
+import { PageWrapper } from "../../../../components/common/PageWrapper";
+import { CalendarView } from "../../../../components/views/calendar/CalendarView";
+import { getData } from "../../../../services/getData";
 
 export const Calendar = async () => {
   const eventsData = await getData("events");

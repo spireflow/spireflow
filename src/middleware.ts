@@ -31,17 +31,16 @@ const middleware = (request: NextRequest) => {
     return handleI18nRouting(request);
   }
 
-  // Uncomment this code if you want to protect all routes except the public ones
-  // I commented it out for demo purposes
+  // 🔐 Route protection enabled
+  const sessionCookie = getSessionCookie(request);
+  const pathname = request.nextUrl.pathname;
 
-  // const sessionCookie = getSessionCookie(request);
-  // const pathname = request.nextUrl.pathname;
-
-  // if (!sessionCookie && !isPublicPath(pathname)) {
-  //   const locale = pathname.match(/^\/([a-z]{2})\//)?.at(1) || "";
-  //   const loginUrl = new URL(`/${locale ? locale + "/" : ""}login`, request.url);
-  //   return NextResponse.redirect(loginUrl);
-  // }
+  // Redirect to login if not authenticated and trying to access protected route
+  if (!sessionCookie && !isPublicPath(pathname)) {
+    const locale = pathname.match(/^\/([a-z]{2})\//)?.at(1) || "";
+    const loginUrl = new URL(`/${locale ? locale + "/" : ""}login`, request.url);
+    return NextResponse.redirect(loginUrl);
+  }
 
   return handleI18nRouting(request);
 };
