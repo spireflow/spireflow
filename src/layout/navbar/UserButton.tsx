@@ -41,7 +41,7 @@ export const UserButton = ({
       onMouseEnter={userTooltip.showTooltip}
       onMouseLeave={userTooltip.hideTooltip}
     >
-      <div className={isLoggedIn ? "h-10 w-auto" : "h-10 w-10"}>
+      <div className={isLoggedIn ? "h-10 w-auto sm:w-auto" : "h-10 w-10"}>
         <button
           ref={userIconBtnRef}
           onClick={() => {
@@ -53,7 +53,9 @@ export const UserButton = ({
             searchClose();
           }}
           className={`text-base flex justify-center items-center h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-outlinedButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon ${
-            isLoggedIn ? "w-auto px-3 rounded-xl" : "w-full rounded-full"
+            isLoggedIn && session?.username
+              ? "w-10 sm:w-auto sm:px-3 rounded-full sm:rounded-xl"
+              : "w-full rounded-full"
           }`}
           type="button"
           aria-label={t("openUserMenu")}
@@ -61,10 +63,10 @@ export const UserButton = ({
           <UserIcon />
           {isLoggedIn && session?.username && (
             <>
-              <span className="text-sm font-medium text-primaryText whitespace-nowrap ml-2 mr-2">
+              <span className="hidden sm:inline text-sm font-medium text-primaryText whitespace-nowrap ml-2 mr-2">
                 {session.username}
               </span>
-              <div className="text-secondaryText w-5 h-5 ml-2">
+              <div className="hidden sm:block text-secondaryText w-5 h-5 ml-2">
                 <ArrowDownSimpleIcon />
               </div>
             </>
@@ -99,7 +101,9 @@ export const UserButton = ({
                     </div>
                     <span>{t("auth")}</span>
                   </div>
-                  <div className={`text-secondaryText transition-transform ${isAuthMenuOpen ? 'rotate-180' : ''}`}>
+                  <div
+                    className={`text-secondaryText transition-transform ${isAuthMenuOpen ? "rotate-180" : ""}`}
+                  >
                     <ArrowDownSimpleIcon />
                   </div>
                 </div>
@@ -161,7 +165,9 @@ export const UserButton = ({
                     </div>
                     <span>{t("language")}</span>
                   </div>
-                  <div className={`text-secondaryText transition-transform ${isLanguageMenuOpen ? 'rotate-180' : ''}`}>
+                  <div
+                    className={`text-secondaryText transition-transform ${isLanguageMenuOpen ? "rotate-180" : ""}`}
+                  >
                     <ArrowDownSimpleIcon />
                   </div>
                 </div>
@@ -262,7 +268,9 @@ export const UserButton = ({
                     </div>
                     <span>{t("auth")}</span>
                   </div>
-                  <div className={`text-secondaryText transition-transform ${isAuthMenuOpen ? 'rotate-180' : ''}`}>
+                  <div
+                    className={`text-secondaryText transition-transform ${isAuthMenuOpen ? "rotate-180" : ""}`}
+                  >
                     <ArrowDownSimpleIcon />
                   </div>
                 </div>
@@ -324,7 +332,9 @@ export const UserButton = ({
                     </div>
                     <span>{t("language")}</span>
                   </div>
-                  <div className={`text-secondaryText transition-transform ${isLanguageMenuOpen ? 'rotate-180' : ''}`}>
+                  <div
+                    className={`text-secondaryText transition-transform ${isLanguageMenuOpen ? "rotate-180" : ""}`}
+                  >
                     <ArrowDownSimpleIcon />
                   </div>
                 </div>

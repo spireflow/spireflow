@@ -1155,7 +1155,7 @@
       {
         "id": 2,
         "user": "You",
-        "action": "assigned @Renee to do illustration of process",
+        "action": "assigned task to Renee",
         "time": "2 days ago",
         "icon": "users",
         "color": "blue"

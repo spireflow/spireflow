@@ -16,17 +16,35 @@ export const ChangelogModal = ({ closeModal }: ChangelogModalProps) => {
   // Block body scroll when modal is open
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
-    
+    const originalPaddingRight = document.body.style.paddingRight;
+    const originalBackground = document.body.style.background;
+
+    // Calculate scrollbar width
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    // Get the scrollbar placeholder color from CSS variable
+    const scrollbarPlaceholderBg = getComputedStyle(document.documentElement)
+      .getPropertyValue("--scrollbarPlaceholderBg")
+      .trim();
+
+    // Add padding to compensate for scrollbar removal and set background
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.background = `linear-gradient(to right, transparent calc(100% - ${scrollbarWidth}px), ${scrollbarPlaceholderBg} calc(100% - ${scrollbarWidth}px))`;
+    }
 
     return () => {
       document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
+      document.body.style.background = originalBackground;
     };
   }, []);
 
   return (
     <div className="alternativeScrollbar">
-      <div className="fixed w-screen h-screen bg-[rgb(0,0,0,0.3)] top-0 left-0 backdrop-blur-md z-40" />
+      <div className="fixed w-screen h-screen bg-[rgb(0,0,0,0.35)] backdrop-blur-sm top-0 left-0 z-40" />
       <div className="fixed w-screen h-full flex justify-center items-center top-0 left-0 z-50">
         <div
           ref={modalRef}

@@ -13,7 +13,7 @@ export const SignUpModal = ({
   switchToSignIn,
 }: SignUpModalProps) => {
   return (
-    <Modal onClose={closeModal}>
+    <Modal onClose={closeModal} hasBlur={true}>
       <SignUpForm switchToSignIn={switchToSignIn} />
     </Modal>
   );

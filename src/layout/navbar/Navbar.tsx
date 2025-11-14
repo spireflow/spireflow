@@ -13,6 +13,7 @@ import { ThemeButton } from "./ThemeButton";
 import { NotificationsButton } from "./NotificationsButton";
 import { UserButton } from "./UserButton";
 import { HamburgerButton } from "./HamburgerButton";
+import { FloatingMenuButton } from "./FloatingMenuButton";
 import { useNavbar } from "./hooks/useNavbar";
 import { useNavbarModals } from "./hooks/useNavbarModals";
 import { useNavbarTooltips } from "./hooks/useNavbarTooltips";
@@ -159,9 +160,16 @@ export const Navbar = () => {
           isMobileMenuOpen={isMobileMenuOpen}
           onLoginButtonClick={handleLoginButton}
         />
+        <FloatingMenuButton
+          isMobileMenuOpen={isMobileMenuOpen}
+          toggleMobileMenu={() => {
+            searchDropdown.close();
+            toggleMobileMenu();
+          }}
+        />
         {isMobileMenuOpen && (
           <div
-            className="fixed top-[4.5rem] w-full h-full backdrop-blur-md z-10"
+            className="fixed top-[4.5rem] w-full h-full bg-[rgb(0,0,0,0.35)] z-10"
             onClick={toggleMobileMenu}
           />
         )}

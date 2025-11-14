@@ -90,19 +90,37 @@ const WeeklyPerformanceChart = ({
   const { theme, systemTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
 
+  // Limit data to 5 bars in specific ranges
+  const getDisplayData = () => {
+    if (windowWidth < 500 || (windowWidth >= 1000 && windowWidth <= 1500)) {
+      return data.slice(0, 5);
+    }
+    return data;
+  };
+
+  const displayData = getDisplayData();
+
+  // Adjust margins based on screen size
+  const getChartMargins = () => {
+    if (windowWidth < 450) {
+      return { top: 20, right: 5, left: -10, bottom: 5 };
+    }
+    if (windowWidth >= 1024 && windowWidth < 1750) {
+      return { top: 20, right: 10, left: -5, bottom: 5 };
+    }
+    return {
+      top: 20,
+      right: windowWidth > 400 ? 20 : 5,
+      left: windowWidth > 400 ? 0 : -10,
+      bottom: 5,
+    };
+  };
+
   return (
     <div className="px-4 pt-8 pb-4">
       <div className="w-full h-[17rem]">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={data}
-            margin={{
-              top: 20,
-              right: windowWidth > 400 ? 20 : 5,
-              left: windowWidth > 400 ? 0 : -10,
-              bottom: 5,
-            }}
-          >
+          <BarChart data={displayData} margin={getChartMargins()}>
             <CartesianGrid
               strokeDasharray="0"
               stroke={
@@ -229,7 +247,7 @@ const ActivityItem = ({ activity }: { activity: WeeklyActivity }) => {
   };
 
   return (
-    <div className="flex items-start gap-3 py-2.5 1xl:py-5 border-b border-mainBorder last:border-b-0 hover:bg-navItemBgHover transition-colors px-3 1xl:px-4 cursor-pointer">
+    <div className="flex items-start gap-3 py-2.5 lg:py-2 1xl:py-5 border-b border-mainBorder last:border-b-0 hover:bg-navItemBgHover transition-colors px-3 1xl:px-4 cursor-pointer">
       <div
         className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
         style={{
@@ -270,7 +288,7 @@ export const WeeklyPerformance = ({
 
         {/* Activity Section */}
         <div className="mt-1 2xl:mt-3">
-          <div className="px-4 mb-0 2xl:mb-1">
+          <div className="px-4 mb-2 1xl:mb-0 2xl:mb-1">
             <h3 className="text-sm font-semibold text-primaryText">
               {t("activity")}
             </h3>

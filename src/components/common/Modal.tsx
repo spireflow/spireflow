@@ -9,6 +9,7 @@ interface ModalProps {
   className?: string;
   ariaLabelledby?: string;
   ariaDescribedby?: string;
+  hasBlur?: boolean;
 }
 
 export const Modal = ({
@@ -16,6 +17,7 @@ export const Modal = ({
   onClose,
   ariaLabelledby,
   ariaDescribedby,
+  hasBlur = false,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -24,20 +26,37 @@ export const Modal = ({
   // Block body scroll when modal is open
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+    const originalBackground = document.body.style.background;
 
+    // Calculate scrollbar width
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    // Get the scrollbar placeholder color from CSS variable
+    const scrollbarPlaceholderBg = getComputedStyle(document.documentElement)
+      .getPropertyValue("--scrollbarPlaceholderBg")
+      .trim();
+
+    // Add padding to compensate for scrollbar removal and set background
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.background = `linear-gradient(to right, transparent calc(100% - ${scrollbarWidth}px), ${scrollbarPlaceholderBg} calc(100% - ${scrollbarWidth}px))`;
+    }
 
     return () => {
       document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
+      document.body.style.background = originalBackground;
     };
   }, []);
 
   return (
     <>
-      <div className="fixed w-[99.5vw] h-screen top-0 left-0 z-[9998] backdrop-blur-md" />
-      {/* I used here double overlay with 99.5vw blur and 100vw dark background to fix scrollbar shadow issue on Firefox
-      If you don't want backdrop blur, one 100vw overlay is enough */}
-      <div className="fixed w-screen h-screen bg-[rgb(0,0,0,0.3)] top-0 left-0 z-[9997]" />
+      <div
+        className={`fixed w-screen h-screen bg-[rgb(0,0,0,0.35)] top-0 left-0 z-[9997] ${hasBlur ? "backdrop-blur-sm" : ""}`}
+      />
       <div className="fixed w-screen h-screen flex justify-center items-center top-0 left-0 z-[9999]">
         <div
           ref={modalRef}

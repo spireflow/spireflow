@@ -48,7 +48,7 @@ export const ThemeButton = ({
       >
         {isMounted && (
           <div
-            className="absolute left-0.5 top-0.5 w-[42px] h-[2.425rem] bg-themeToggleActiveBg border border-themeToggleActiveBorder rounded-full shadow-sm transition-transform duration-300 ease-out"
+            className="absolute left-0.5 top-0.5 w-[42px] h-[2.1825rem] bg-themeToggleActiveBg border border-themeToggleActiveBorder rounded-full shadow-sm transition-transform duration-300 ease-out"
             style={{
               transform:
                 currentTheme === "dark"
@@ -58,7 +58,7 @@ export const ThemeButton = ({
           />
         )}
         <div
-          className={`relative z-10 w-[42px] h-[2.425rem] rounded-full flex items-center justify-center transition-colors duration-200 ${
+          className={`relative z-10 w-[42px] h-[2.1825rem] rounded-full flex items-center justify-center transition-colors duration-200 ${
             isMounted && currentTheme === "light"
               ? "text-primaryText"
               : "text-grayIcon"
@@ -67,7 +67,7 @@ export const ThemeButton = ({
           <SunIcon />
         </div>
         <div
-          className={`relative z-10 w-[42px] h-[2.425rem] rounded-full flex items-center justify-center transition-colors duration-200 ${
+          className={`relative z-10 w-[42px] h-[2.1825rem] rounded-full flex items-center justify-center transition-colors duration-200 ${
             isMounted && currentTheme === "dark"
               ? "text-primaryText"
               : "text-grayIcon"

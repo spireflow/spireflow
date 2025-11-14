@@ -37,12 +37,13 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
 
         {/* Calendar & Activity - Extended height */}
         <Col numColSpan={1} numColSpanLg={1} className="flex">
-          {homepageData?.weeklyPerformance && homepageData?.weeklyActivities && (
-            <WeeklyPerformance
-              weeklyPerformanceData={homepageData.weeklyPerformance}
-              weeklyActivities={homepageData.weeklyActivities}
-            />
-          )}
+          {homepageData?.weeklyPerformance &&
+            homepageData?.weeklyActivities && (
+              <WeeklyPerformance
+                weeklyPerformanceData={homepageData.weeklyPerformance}
+                weeklyActivities={homepageData.weeklyActivities}
+              />
+            )}
         </Col>
       </Grid>
 

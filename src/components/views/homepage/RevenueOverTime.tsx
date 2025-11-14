@@ -155,7 +155,7 @@ export const RevenueOverTime = ({
           Track revenue changes over time
         </span>
       </div>
-      <div className="flex items-center gap-1 bg-tabsBg rounded-lg p-1">
+      <div className="hidden xsm:flex items-center gap-1 bg-tabsBg rounded-lg p-1">
         <button
           onClick={() => setTimeRange("Monthly")}
           className={`px-3 py-1 text-xs rounded-md transition-colors ${
@@ -187,7 +187,7 @@ export const RevenueOverTime = ({
       customHeader={customHeader}
       hasSubtitle={true}
     >
-      <div className="h-[17rem] 1xl:h-[18rem] 3xl:h-[20rem] w-full">
+      <div className="w-full h-[17rem] lg:h-[19rem] 1xl:h-[18rem] 2xl:h-[19rem] 3xl:h-[20rem]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={displayData}

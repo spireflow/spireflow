@@ -80,7 +80,7 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
       <div
         onMouseEnter={() => setHoveredChart(index)}
         onMouseLeave={() => setHoveredChart(null)}
-        className="w-[112px] h-[112px] xsm:w-[75px] xsm:h-[75px] 2xl:w-[90px] 2xl:h-[90px]"
+        className="w-[112px] h-[112px] xsm:w-[75px] xsm:h-[75px] 2xl:w-[90px] 2xl:h-[90px] transition-transform duration-200 group-hover:scale-110"
       >
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -114,7 +114,7 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
             key={metric.title}
             className="border light:shadow-lg border-cardBorder rounded-[12px] bg-primaryBg relative w-full text-left py-6 px-8"
           >
-            <div className="flex items-center justify-between gap-3 w-full">
+            <div className="flex items-center justify-between gap-5 w-full">
               <div className="flex flex-col justify-center gap-1.5">
                 <h3 className="text-secondaryText text-sm font-medium">
                   {metric.title}
@@ -136,8 +136,8 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
                   </span>
                 </p>
               </div>
-              <div className="relative flex items-center justify-center flex-shrink-0">
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 transition-transform duration-200 group-hover:scale-110">
                   <span className="text-primaryText text-sm font-bold">
                     {hardcodedPercentages[index]}%
                   </span>
@@ -163,11 +163,11 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
 
       {/* Tablet+: single card with all metrics */}
       <div className="hidden xsm:flex border light:shadow-lg border-cardBorder rounded-[12px] bg-primaryBg relative w-full text-left py-6 3xl:py-[1.85rem]">
-        <div className="flex flex-row justify-between gap-4 1xl:gap-6 2xl:gap-8 px-4 w-full">
+        <div className="flex flex-row justify-between gap-3 1xl:gap-4 2xl:gap-6 3xl:gap-8 px-5 3xl:px-4 w-full">
           {metricsData.map((metric, index) => (
             <div
               key={metric.title}
-              className={`flex flex-1 items-center justify-center gap-3 1xl:gap-4 2xl:gap-8 ${
+              className={`flex flex-1 items-center justify-center gap-3 1xl:gap-4 2xl:gap-6 3xl:gap-10 ${
                 index === 2 ? "flex xsm:hidden md:flex" : ""
               }`}
             >
@@ -192,8 +192,8 @@ export const HomeSmallCards = ({ homeSmallCardsData }: HomeSmallCardsProps) => {
                   </span>
                 </p>
               </div>
-              <div className="relative flex items-center justify-center flex-shrink-0">
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 transition-transform duration-200 group-hover:scale-110">
                   <span className="text-primaryText text-sm 1xl:text-base font-bold">
                     {hardcodedPercentages[index]}%
                   </span>

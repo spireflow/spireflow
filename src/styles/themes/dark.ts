@@ -25,7 +25,7 @@ export const darkTheme = {
 
   // Backgrounds
   primaryBg: "rgb(31, 34, 38)",
-  secondaryBg: "rgb(26, 29, 32)",
+  secondaryBg: "rgb(24, 27, 30)",
   tabsBg: "rgb(28, 31, 35)",
   mainColor: "rgb(61, 185, 133)",
   navigationBg: "rgb(31, 34, 38)",
@@ -61,11 +61,14 @@ export const darkTheme = {
   datepickerHeaderBg: "rgb(41, 43, 48)",
   tooltipBg: "rgb(44, 49, 55)",
   scrollbarBg: "#22252a",
+  scrollbarPlaceholderBg: "rgb(26, 29, 32)",
   activeProductBg: "rgb(255,255,255,0.07)",
   calendarMainColor: "rgb(61, 142, 108)",
   scrollbarThumb: "rgba(94, 98, 105, 0.7)",
   themeToggleBg: "rgb(32, 35, 38)",
   themeToggleActiveBg: "rgb(41, 43, 48)",
+  floatingMenuButtonBg: "rgb(31, 34, 38)",
+  floatingMenuButtonBgHover: "rgb(41, 44, 48)",
   percentageBadgeGreenBg: "rgba(110, 231, 183, 0.05)",
   percentageBadgeRedBg: "rgba(253, 164, 175, 0.05)",
   percentageBadgeGreenBorder: "rgba(110, 231, 183, 0.3)",

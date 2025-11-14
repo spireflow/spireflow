@@ -67,7 +67,7 @@ export const ProductsView = ({ products }: { products: Product[] }) => {
       {isOpen && (
         <div
           ref={ref}
-          className="w-full h-full fixed left-0 top-0 pt-4 pb-8 z-50 bg-primaryBg px-8 overflow-auto backdrop-blur-xl"
+          className="w-full h-full fixed left-0 top-0 pt-4 pb-8 z-50 bg-primaryBg px-8 overflow-auto"
         >
           <button
             onClick={toggle}

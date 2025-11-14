@@ -11,7 +11,7 @@ interface LoginModalProps {
 export const LoginModal = ({ closeModal, switchToSignUp }: LoginModalProps) => {
   return (
     <>
-      <Modal onClose={closeModal}>
+      <Modal onClose={closeModal} hasBlur={true}>
         <LoginForm switchToSignUp={switchToSignUp} />
       </Modal>
     </>
