@@ -106,16 +106,18 @@ export const Navbar = () => {
             />
           </div>
           <div className="flex items-center gap-[0.5rem] md:gap-2 xl:gap-3.5 z-[99]">
-            <ThemeButton
-              theme={theme}
-              selectTheme={selectTheme}
-              themeTooltip={themeTooltip}
-              userDropdown={userDropdown}
-              languageDropdown={languageDropdown}
-              notificationsDropdown={notificationsDropdown}
-              t={t}
-            />
-            <div className="hidden xl:flex xl:ml-3.5">
+            <div className="hidden xl:flex">
+              <ThemeButton
+                theme={theme}
+                selectTheme={selectTheme}
+                themeTooltip={themeTooltip}
+                userDropdown={userDropdown}
+                languageDropdown={languageDropdown}
+                notificationsDropdown={notificationsDropdown}
+                t={t}
+              />
+            </div>
+            <div className="xl:ml-3.5">
               <NotificationsButton
                 notificationsDropdown={notificationsDropdown}
                 notificationsTooltip={notificationsTooltip}
@@ -144,16 +146,19 @@ export const Navbar = () => {
                 theme={theme}
                 searchClose={searchDropdown.close}
                 currentLanguage={currentLanguage}
+                selectTheme={selectTheme}
                 t={t}
               />
             </div>
-            <HamburgerButton
-              isMobileMenuOpen={isMobileMenuOpen}
-              toggleMobileMenu={() => {
-                searchDropdown.close();
-                toggleMobileMenu();
-              }}
-            />
+            <div className="hidden xl:block">
+              <HamburgerButton
+                isMobileMenuOpen={isMobileMenuOpen}
+                toggleMobileMenu={() => {
+                  searchDropdown.close();
+                  toggleMobileMenu();
+                }}
+              />
+            </div>
           </div>
         </div>
         <SideMenuMobile

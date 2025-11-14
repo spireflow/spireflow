@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Tooltip } from "../../components/common/Tooltip";
 import { NotificationsButtonProps } from "./types";
@@ -8,6 +8,8 @@ import { UsersIcon } from "../../assets/icons/UsersIcon";
 import { DocumentIcon } from "../../assets/icons/DocumentIcon";
 import { CheckIcon } from "../../assets/icons/CheckIcon";
 import { useNotificationsData } from "./hooks/useNotificationsData";
+import { AllNotificationsModal } from "../../components/views/notifications/AllNotificationsModal";
+import type { Notification } from "./hooks/useNotificationsData";
 
 export const NotificationsButton = ({
   notificationsDropdown,
@@ -18,7 +20,28 @@ export const NotificationsButton = ({
   searchClose,
   t,
 }: NotificationsButtonProps) => {
-  const { notifications } = useNotificationsData();
+  const { notifications: initialNotifications } = useNotificationsData();
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [isAllNotificationsModalOpen, setIsAllNotificationsModalOpen] =
+    useState(false);
+
+  // Load notifications - always use fresh data on page load, ignore localStorage
+  useEffect(() => {
+    if (initialNotifications.length > 0) {
+      setNotifications(initialNotifications);
+      // Clear localStorage on fresh page load to reset notifications
+      localStorage.removeItem("notificationsState");
+    }
+  }, [initialNotifications]);
+
+  // Update notifications callback
+  const handleNotificationsUpdate = (updatedNotifications: Notification[]) => {
+    setNotifications(updatedNotifications);
+    localStorage.setItem(
+      "notificationsState",
+      JSON.stringify(updatedNotifications)
+    );
+  };
 
   const newNotificationsCount = notifications.filter((n) => n.isNew).length;
 
@@ -47,7 +70,12 @@ export const NotificationsButton = ({
       <div className="h-10 w-10">
         <button
           onClick={() => {
-            notificationsDropdown.toggle();
+            // On mobile (<xl), open modal directly
+            if (window.innerWidth < 1280) {
+              setIsAllNotificationsModalOpen(true);
+            } else {
+              notificationsDropdown.toggle();
+            }
             themeDropdown.close();
             languageDropdown.close();
             userDropdown.close();
@@ -69,7 +97,8 @@ export const NotificationsButton = ({
         !notificationsDropdown.isOpen &&
         !themeDropdown.isOpen &&
         !languageDropdown.isOpen &&
-        !userDropdown.isOpen && (
+        !userDropdown.isOpen &&
+        !isAllNotificationsModalOpen && (
           <div className="absolute top-12 right-0 pointer-events-none hidden xl:flex">
             <Tooltip
               text={t("notifications") || "Notifications"}
@@ -78,7 +107,7 @@ export const NotificationsButton = ({
           </div>
         )}
       {notificationsDropdown.isOpen && (
-        <div className="absolute right-0 top-10 xl:top-11 mt-2 w-[22rem] border border-inputBorder bg-dropdownBg text-primaryText rounded-md shadow-lg overflow-hidden">
+        <div className="hidden xl:block absolute right-0 top-10 xl:top-11 mt-2 w-[22rem] border border-inputBorder bg-dropdownBg text-primaryText rounded-md shadow-lg overflow-hidden">
           {/* Header */}
           <div className="px-5 py-3 border-b border-mainBorder flex justify-between items-center bg-notificationHeaderBg">
             <h3 className="font-semibold text-base">Notifications</h3>
@@ -128,7 +157,7 @@ export const NotificationsButton = ({
           <div className="p-3 border-t border-mainBorder bg-notificationHeaderBg">
             <button
               onClick={() => {
-                // Mock action - do nothing
+                setIsAllNotificationsModalOpen(true);
                 notificationsDropdown.close();
               }}
               className="w-full py-2.5 px-4 rounded-lg bg-notificationBadgeBg hover:bg-notificationBadgeBgHover text-white font-medium text-sm transition-colors"
@@ -137,6 +166,13 @@ export const NotificationsButton = ({
             </button>
           </div>
         </div>
+      )}
+      {isAllNotificationsModalOpen && (
+        <AllNotificationsModal
+          closeModal={() => setIsAllNotificationsModalOpen(false)}
+          notifications={notifications}
+          onNotificationsUpdate={handleNotificationsUpdate}
+        />
       )}
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 
 import { CloseIcon } from "../../assets/icons/CloseIcon";
 import { useCloseModal } from "../../hooks/useCloseModal";
+import { ModalPortal } from "./ModalPortal";
 
 interface ModalProps {
   children: React.ReactNode;
@@ -53,7 +54,7 @@ export const Modal = ({
   }, []);
 
   return (
-    <>
+    <ModalPortal>
       <div
         className={`fixed w-screen h-screen bg-[rgb(0,0,0,0.35)] top-0 left-0 z-[9997] ${hasBlur ? "backdrop-blur-sm" : ""}`}
       />
@@ -75,6 +76,6 @@ export const Modal = ({
           {children}
         </div>
       </div>
-    </>
+    </ModalPortal>
   );
 };

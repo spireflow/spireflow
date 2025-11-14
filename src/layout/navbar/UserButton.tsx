@@ -9,6 +9,9 @@ import { InfoIcon } from "../../assets/icons/InfoIcon";
 import { GithubIcon } from "../../assets/icons/GithubIcon";
 import { LanguageIcon } from "../../assets/icons/LanguageIcon";
 import { CheckIcon } from "../../assets/icons/CheckIcon";
+import { MoonIcon } from "../../assets/icons/MoonIcon";
+import { SunIcon } from "../../assets/icons/SunIcon";
+import { PaletteIcon } from "../../assets/icons/PaletteIcon";
 import { Link as NavigationLink } from "../../i18n/navigation";
 import { ArrowDownSimpleIcon } from "../../assets/icons/ArrowDownSimpleIcon";
 
@@ -29,10 +32,14 @@ export const UserButton = ({
   t,
   searchClose,
   currentLanguage,
+  theme,
+  selectTheme,
 }: UserButtonProps) => {
   const isLoggedIn = session?.isLoggedIn || false;
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isAuthMenuOpen, setIsAuthMenuOpen] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+  const currentTheme = theme || "light";
 
   return (
     <div
@@ -208,6 +215,64 @@ export const UserButton = ({
                 )}
               </div>
 
+              {/* Theme Section - Expandable (visible only below xl) */}
+              <div className="xl:hidden">
+                <div
+                  className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center"
+                  onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+                >
+                  <div className="flex items-center">
+                    <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
+                      <PaletteIcon />
+                    </div>
+                    <span>{t("theme")}</span>
+                  </div>
+                  <div
+                    className={`text-secondaryText transition-transform ${isThemeMenuOpen ? "rotate-180" : ""}`}
+                  >
+                    <ArrowDownSimpleIcon />
+                  </div>
+                </div>
+                {isThemeMenuOpen && (
+                  <div className="bg-dropdownBg">
+                    <div className="border-t border-mainBorder"></div>
+                    <div
+                      className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                      onClick={() => {
+                        selectTheme("light");
+                      }}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-5 mr-[0.8rem]"></div>
+                        <span>{t("light")}</span>
+                      </div>
+                      {currentTheme === "light" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </div>
+                    <div
+                      className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                      onClick={() => {
+                        selectTheme("dark");
+                      }}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-5 mr-[0.8rem]"></div>
+                        <span>{t("dark")}</span>
+                      </div>
+                      {currentTheme === "dark" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </div>
+                    <div className="border-t border-mainBorder"></div>
+                  </div>
+                )}
+              </div>
+
               {/* Divider */}
               <div className="border-t border-mainBorder"></div>
 
@@ -371,6 +436,64 @@ export const UserButton = ({
                         </div>
                       )}
                     </NavigationLink>
+                  </div>
+                )}
+              </div>
+
+              {/* Theme Section - Expandable (visible only below xl) */}
+              <div className="xl:hidden">
+                <div
+                  className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center"
+                  onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+                >
+                  <div className="flex items-center">
+                    <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
+                      <PaletteIcon />
+                    </div>
+                    <span>{t("theme")}</span>
+                  </div>
+                  <div
+                    className={`text-secondaryText transition-transform ${isThemeMenuOpen ? "rotate-180" : ""}`}
+                  >
+                    <ArrowDownSimpleIcon />
+                  </div>
+                </div>
+                {isThemeMenuOpen && (
+                  <div className="bg-dropdownBg">
+                    <div className="border-t border-mainBorder"></div>
+                    <div
+                      className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                      onClick={() => {
+                        selectTheme("light");
+                      }}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-5 mr-[0.8rem]"></div>
+                        <span>{t("light")}</span>
+                      </div>
+                      {currentTheme === "light" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </div>
+                    <div
+                      className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+                      onClick={() => {
+                        selectTheme("dark");
+                      }}
+                    >
+                      <div className="flex items-center">
+                        <div className="w-5 mr-[0.8rem]"></div>
+                        <span>{t("dark")}</span>
+                      </div>
+                      {currentTheme === "dark" && (
+                        <div className="text-secondaryText">
+                          <CheckIcon />
+                        </div>
+                      )}
+                    </div>
+                    <div className="border-t border-mainBorder"></div>
                   </div>
                 )}
               </div>

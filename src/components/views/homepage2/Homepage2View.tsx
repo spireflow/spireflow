@@ -17,9 +17,7 @@ export const Homepage2View = ({ homepage2Data }: Homepage2ViewProps) => {
       {/* First row */}
       <Grid numItems={2} numItemsLg={4} className="gap-x-4 gap-y-4">
         {homepage2Data?.homeSmallCards && (
-          <HomeSmallCards2
-            homeSmallCardsData={homepage2Data.homeSmallCards}
-          />
+          <HomeSmallCards2 homeSmallCardsData={homepage2Data.homeSmallCards} />
         )}
       </Grid>
       {/* Second row */}

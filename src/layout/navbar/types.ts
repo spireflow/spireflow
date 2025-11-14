@@ -61,6 +61,7 @@ export interface UserButtonProps {
     isLoggedIn?: boolean;
   } | null;
   theme: string | undefined;
+  selectTheme: (theme: string) => void;
   t: (key: string) => string;
   searchClose: () => void;
   currentLanguage: string;

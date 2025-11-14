@@ -1,5 +1,3 @@
-"use client";
-
 import React, { memo } from "react";
 
 export const FullScreenLoader = memo(() => (
