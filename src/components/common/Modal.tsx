@@ -11,6 +11,7 @@ interface ModalProps {
   ariaLabelledby?: string;
   ariaDescribedby?: string;
   hasBlur?: boolean;
+  hasScrollContent?: boolean;
 }
 
 export const Modal = ({
@@ -19,6 +20,7 @@ export const Modal = ({
   ariaLabelledby,
   ariaDescribedby,
   hasBlur = false,
+  hasScrollContent = false,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -64,12 +66,14 @@ export const Modal = ({
           role="dialog"
           aria-labelledby={ariaLabelledby}
           aria-describedby={ariaDescribedby}
-          className="w-screen h-screen md:w-auto md:h-auto bg-modalBg shadow-xl px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem] pb-12 flex flex-col items-center justify-start sm:rounded-2xl relative"
+          className={`w-screen h-screen md:w-auto md:h-auto bg-loginModalBg shadow-xl px-[6vw] xsm:px-[18vw] sm:px-12 ${
+            hasScrollContent ? "pt-12 sm:pt-12" : "pt-24 sm:pt-[3rem]"
+          } pb-12 flex flex-col items-center justify-start sm:rounded-2xl relative`}
         >
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="absolute top-4 right-6 text-xl fill-secondaryText stroke-secondaryText hover:stroke-secondaryTextHover hover:fill-secondaryTextHover"
+            className="absolute top-4 right-4 text-xl fill-secondaryText stroke-secondaryText hover:stroke-secondaryTextHover hover:fill-secondaryTextHover"
           >
             <CloseIcon />
           </button>

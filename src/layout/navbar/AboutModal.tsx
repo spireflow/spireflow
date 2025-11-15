@@ -1,132 +1,175 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
-import { CloseIcon } from "../../assets/icons/CloseIcon";
 import { GithubIcon } from "../../assets/icons/GithubIcon";
-import { useCloseModal } from "../../hooks/useCloseModal";
 import { OutlinedButton } from "../../components/common/OutlinedButton";
 import { AboutModalProps } from "./types";
-import { ModalPortal } from "../../components/common/ModalPortal";
+import { Modal } from "../../components/common/Modal";
 
 export const AboutModal = ({ closeModal }: AboutModalProps) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  useCloseModal(modalRef, closeModal);
-
-  // Block body scroll when modal is open
-  useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
-    const originalPaddingRight = document.body.style.paddingRight;
-    const originalBackground = document.body.style.background;
-
-    // Calculate scrollbar width
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
-
-    // Get the scrollbar placeholder color from CSS variable
-    const scrollbarPlaceholderBg = getComputedStyle(document.documentElement)
-      .getPropertyValue("--scrollbarPlaceholderBg")
-      .trim();
-
-    // Add padding to compensate for scrollbar removal and set background
-    document.body.style.paddingRight = `${scrollbarWidth}px`;
-    document.body.style.overflow = "hidden";
-    if (scrollbarWidth > 0) {
-      document.body.style.background = `linear-gradient(to right, transparent calc(100% - ${scrollbarWidth}px), ${scrollbarPlaceholderBg} calc(100% - ${scrollbarWidth}px))`;
-    }
-
-    return () => {
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
-      document.body.style.background = originalBackground;
-    };
-  }, []);
+  const [isContributingModalOpen, setIsContributingModalOpen] = useState(false);
 
   return (
-    // I didn't use common modal component here because this modal needs unique padding values for mobile and tablet
-    <ModalPortal>
-      <div className="aboutModal alternativeScrollbar">
-        <div className="fixed w-screen h-screen bg-[rgb(0,0,0,0.35)] backdrop-blur-sm top-0 left-0 z-[9997]" />
-        <div className="fixed w-screen h-full flex justify-center items-center top-0 left-0 z-[9999]">
-          <div
-            ref={modalRef}
-            className="w-screen h-full md:w-auto md:h-auto bg-loginModalBg shadow-xl px-[0vw] md:px-10 pt-0 md:pt-[3rem] md:pb-12 flex flex-col items-center justify-start md:rounded-2xl relative"
-          >
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-xl fill-secondaryText stroke-secondaryText hover:stroke-secondaryTextHover hover:fill-secondaryTextHover"
+    <Modal onClose={closeModal} hasBlur={true} hasScrollContent={true}>
+      {!isContributingModalOpen ? (
+        <div className="w-full max-w-[32rem] h-full md:h-[65vh] overflow-auto pr-4">
+          <h2 className="text-primaryText text-3xl w-full text-left mb-4">
+            About
+          </h2>
+          <div className="text-primaryText text-base w-full text-left">
+            <p className="mb-4 text-base">
+              Spireflow is an open source and free dashboard template, written
+              in NextJS and TypeScript. It is connected to NodeJS backend with
+              PostgreSQL database containing data for a fictional electronic
+              store.
+            </p>
+            <p className="mb-4 text-base">
+              If you&apos;d like to contribute, check out our{" "}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsContributingModalOpen(true);
+                }}
+                className="text-mainColor hover:underline font-medium"
+              >
+                Contributing guide
+              </button>
+              .
+            </p>
+          </div>
+          <div className="flex flex-row justify-start w-full mt-3 text-base gap-3 sm:gap-4 sm:h-12 mb-4">
+            <Link
+              href="https://github.com/matt765/spireflow"
+              className="text-primaryText flex-1 xsm:flex-initial xsm:w-auto"
+              target="_blank"
             >
-              <CloseIcon />
-            </button>
-            <div className="md:max-h-[70vh] 1xl-max-h-[60vh] w-full -mr-4 overflow-auto pr-4 max-w-full md:max-w-[36rem]">
-              <div className="flex items-center justify-center w-full flex-col gap-2 mt-8 md:-mt-4 px-8 md:px-0">
-                <h2 className="text-primaryText text-3xl w-full text-left mt-2">
-                  About
-                </h2>
-              </div>
-              <div className="text-primaryText text-base w-full mt-4 text-left px-8 md:px-0">
-                <p className="mb-4 text-base">
-                  Spireflow is an open source and free dashboard template,
-                  written in NextJS and TypeScript. It is connected to NodeJS
-                  backend with PostgreSQL database containing data for a
-                  fictional electronic store.
-                </p>
-              </div>
-              <div className="flex flex-row justify-start w-full mt-3 text-base gap-3 sm:gap-4 px-8 md:px-0 sm:h-12 mb-4">
-                <Link
-                  href="https://github.com/matt765/spireflow"
-                  className="text-primaryText flex-1 xsm:flex-initial xsm:w-auto"
-                  target="_blank"
-                >
-                  <OutlinedButton
-                    text="Front-end"
-                    icon={<GithubIcon />}
-                    className="sm:!px-6"
-                  />
-                </Link>
-                <Link
-                  href="https://github.com/matt765/spireflow-backend"
-                  className="text-primaryText flex-1 xsm:flex-initial xsm:w-auto"
-                  target="_blank"
-                >
-                  <OutlinedButton
-                    text="Back-end"
-                    icon={<GithubIcon />}
-                    className="sm:!px-6"
-                  />
-                </Link>
-              </div>
-              <div className="text-primaryText text-base w-full text-left px-8 md:px-0">
-                <p className="text-left w-full mt-4 text-xl">Tech stack:</p>
-                <div className="mt-4">
-                  <p className="text-secondaryText mb-2">Front-End:</p>
-                </div>
-                <ul className="list-disc list-inside mb-4 pl-3 text-primaryText">
-                  <li>ReactJS</li>
-                  <li>NextJS</li>
-                  <li>TypeScript</li>
-                  <li>Tailwind</li>
-                  <li>Zustand</li>
-                  <li>Apollo Client</li>
-                  <li>Recharts</li>
-                  <li>Better-Auth</li>
-                  <li>Jest</li>
-                </ul>
-                <div>
-                  <p className="text-secondaryText mb-2">Back-End:</p>
-                </div>
-                <ul className="list-disc list-inside pl-3 mb-8 md:mb-0">
-                  <li>NodeJS</li>
-                  <li>Fastify</li>
-                  <li>PostgreSQL</li>
-                  <li>Prisma</li>
-                  <li>GraphQL</li>
-                </ul>
-              </div>
+              <OutlinedButton
+                text="Front-end"
+                icon={<GithubIcon />}
+                className="sm:!px-6"
+              />
+            </Link>
+            <Link
+              href="https://github.com/matt765/spireflow-backend"
+              className="text-primaryText flex-1 xsm:flex-initial xsm:w-auto"
+              target="_blank"
+            >
+              <OutlinedButton
+                text="Back-end"
+                icon={<GithubIcon />}
+                className="sm:!px-6"
+              />
+            </Link>
+          </div>
+          <div className="text-primaryText text-base w-full text-left">
+            <p className="text-left w-full mt-4 text-xl">Tech stack:</p>
+            <div className="mt-4">
+              <p className="text-secondaryText mb-2">Front-End:</p>
             </div>
+            <ul className="list-disc list-inside mb-4 pl-3 text-primaryText">
+              <li>ReactJS</li>
+              <li>NextJS</li>
+              <li>TypeScript</li>
+              <li>Tailwind</li>
+              <li>Zustand</li>
+              <li>Apollo Client</li>
+              <li>Recharts</li>
+              <li>Better-Auth</li>
+              <li>Jest</li>
+            </ul>
+            <div>
+              <p className="text-secondaryText mb-2">Back-End:</p>
+            </div>
+            <ul className="list-disc list-inside pl-3 mb-4">
+              <li>NodeJS</li>
+              <li>Fastify</li>
+              <li>PostgreSQL</li>
+              <li>Prisma</li>
+              <li>GraphQL</li>
+            </ul>
           </div>
         </div>
-      </div>
-    </ModalPortal>
+      ) : (
+        <div className="w-full max-w-[32rem] h-full md:h-[65vh] overflow-y-auto pr-4">
+          <h2 className="text-primaryText text-3xl w-full text-left mb-4">
+            Contributing guide
+          </h2>
+          <div className="text-primaryText text-base w-full text-left">
+            <p className="mb-4">
+              Hi there! 👋 Thanks for checking out this project.
+              <br />
+              Every form of contribution is valuable. Below are the main ways to
+              get involved:
+            </p>
+
+            <h3 className="text-xl font-semibold mt-6 mb-3">
+              1. Share Feedback and Ideas 💡
+            </h3>
+            <ul className="list-disc list-inside mb-4 pl-3 text-primaryText">
+              <li className="mb-2">
+                Use the{" "}
+                <a
+                  href="https://github.com/matt765/spireflow/discussions/1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-mainColor hover:underline"
+                >
+                  Discussions
+                </a>{" "}
+                on GitHub to share feedback, suggestions, or ideas for
+                improvement.
+              </li>
+              <li>
+                Open an{" "}
+                <a
+                  href="https://github.com/matt765/spireflow/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-mainColor hover:underline"
+                >
+                  Issue
+                </a>{" "}
+                if you&apos;ve found a bug or something doesn&apos;t work as
+                expected.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-semibold mt-6 mb-3">
+              2. Support Development 🔥
+            </h3>
+            <p className="mb-4">
+              If you&apos;d like to support continued work on the project, you
+              can do so through{" "}
+              <a
+                href="https://github.com/sponsors/matt765"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-mainColor hover:underline"
+              >
+                GitHub Sponsors
+              </a>
+              .
+            </p>
+
+            <h3 className="text-xl font-semibold mt-6 mb-3">
+              3. Contribute code
+            </h3>
+            <p className="mb-4">
+              Feel free to fork the repository and submit a merge requests. If
+              you&apos;ve spotted something that can be improved or fixed, your
+              input is more than welcome.
+            </p>
+
+            <h3 className="text-xl font-semibold mt-6 mb-3">
+              License Information for Contributors
+            </h3>
+            <p className="mb-4">
+              By submitting a contribution to this project, you agree that your
+              contributions are licensed under the MIT License.
+            </p>
+          </div>
+        </div>
+      )}
+    </Modal>
   );
 };

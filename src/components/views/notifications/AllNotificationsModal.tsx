@@ -117,7 +117,7 @@ export const AllNotificationsModal = ({
             <button
               onClick={closeModal}
               aria-label="Close modal"
-              className="absolute top-4 right-4 text-xl fill-secondaryText stroke-secondaryText hover:stroke-secondaryTextHover hover:fill-secondaryTextHover transition-colors"
+              className="absolute top-4 right-2 text-xl fill-secondaryText stroke-secondaryText hover:stroke-secondaryTextHover hover:fill-secondaryTextHover transition-colors"
             >
               <CloseIcon />
             </button>

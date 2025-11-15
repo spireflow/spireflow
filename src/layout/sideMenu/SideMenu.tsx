@@ -69,14 +69,6 @@ export const SideMenu = () => {
           path="/calendar"
         />
         <MenuCategory title={t("singleCharts")} />
-        <MenuItemWithSubmenu
-          title="Chart Options"
-          icon={<AreaIcon />}
-          submenuItems={[
-            { title: "Mock Option 1", path: "/mock-chart-1" },
-            { title: "Mock Option 2", path: "/mock-chart-2" },
-          ]}
-        />
         <MenuItem title={t("area")} icon={<AreaIcon />} path="/area" />
         <MenuItem title={t("bars")} icon={<BarsIcon />} path="/bars" />
         <MenuItem title={t("scatter")} icon={<ScatterIcon />} path="/scatter" />

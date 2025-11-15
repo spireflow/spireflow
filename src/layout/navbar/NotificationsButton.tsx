@@ -123,9 +123,13 @@ export const NotificationsButton = ({
             {notifications.map((notification) => (
               <div
                 key={notification.id}
-                className="px-5 py-3 hover:bg-notificationItemBgHover cursor-pointer border-b border-mainBorder transition-colors bg-notificationItemBg"
+                className="px-5 py-3 hover:bg-notificationItemBgHover cursor-pointer border-b border-mainBorder transition-colors"
                 onClick={() => {
-                  // Mock action - do nothing
+                  // Mark as read
+                  const updatedNotifications = notifications.map((n) =>
+                    n.id === notification.id ? { ...n, isNew: false } : n
+                  );
+                  handleNotificationsUpdate(updatedNotifications);
                 }}
               >
                 <div className="flex gap-3">
@@ -137,9 +141,14 @@ export const NotificationsButton = ({
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start gap-2 mb-1">
-                      <h4 className="font-medium text-sm text-primaryText">
-                        {notification.title}
-                      </h4>
+                      <div className="flex items-center gap-2">
+                        <h4 className="font-medium text-sm text-primaryText">
+                          {notification.title}
+                        </h4>
+                        {notification.isNew && (
+                          <span className="w-2 h-2 rounded-full bg-notificationBadgeBg"></span>
+                        )}
+                      </div>
                       <span className="text-xs text-secondaryText whitespace-nowrap">
                         {notification.time}
                       </span>
