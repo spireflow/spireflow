@@ -52,12 +52,14 @@ export const PageWrapper = ({
         "pt-[5.5rem] md:pt-[5.5rem] xl:pt-[5.5rem] 1xl:pt-[5.5rem] 3xl:pt-[6rem]"
       }
       ${
-        hidePaper && hideTopBar &&
+        hidePaper &&
+        hideTopBar &&
         // Spacing for Homepage only (no breadcrumb bar)
         "pt-[3.8rem] md:!pt-[5.3rem] xl:!pt-[5.3rem] 3xl:!pt-[5.8rem] md:px-8 xl:px-0 pb-0 md:!pb-8 xl:pb-8"
       }
       ${
-        hidePaper && !hideTopBar &&
+        hidePaper &&
+        !hideTopBar &&
         // Spacing for Analytics page (with breadcrumb bar)
         "pt-[4rem] md:!pt-[5.5rem] xl:!pt-[5.5rem] 3xl:!pt-[6rem] md:px-8 xl:px-0 pb-0 md:!pb-8 xl:pb-8"
       }
@@ -84,13 +86,23 @@ export const PageWrapper = ({
                 {csvButton}
               </div>
             )}
-            <div className={`flex flex-col w-full gap-y-4 1xl:gap-y-6 max-w-full h-full ${hideTopBar ? 'pt-5' : 'pt-3'}`}>
+            <div
+              className={`flex flex-col w-full gap-y-4 1xl:gap-y-6 max-w-full h-full ${hideTopBar ? "pt-5" : "pt-3"}`}
+            >
               {/* Content for Home and Analytics pages */}
               {children}
             </div>
           </div>
         ) : (
-          <div className="mt-3 flex w-full max-w-full px-6 py-8 xsm:p-8 1xl:p-10 bg-primaryBg xl:rounded-[10px] shadow-lg border-t xl:border border-mainBorder min-h-[100vh] xl:min-h-unset xl:rounded-[12px] xl:border">
+          <div
+            className={`mt-3 flex w-full max-w-full py-8 bg-primaryBg xl:rounded-[10px] shadow-lg border-t xl:border border-mainBorder min-h-[100vh] xl:min-h-unset xl:rounded-[12px] xl:border ${
+              ["Charts", "UI Elements", "Forms", "Tables"].includes(
+                pageName || ""
+              )
+                ? "px-8 xsm:px-10 1xl:px-12"
+                : "px-6 xsm:p-8 1xl:p-10"
+            }`}
+          >
             {/* Content for Orders, Customers, Products and Calendar pages */}
             {children}
           </div>

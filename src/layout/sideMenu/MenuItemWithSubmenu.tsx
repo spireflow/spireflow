@@ -12,6 +12,7 @@ import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
 interface SubmenuItem {
   title: string;
   path: string;
+  newTab?: boolean;
 }
 
 interface MenuItemWithSubmenuProps {
@@ -133,7 +134,11 @@ export const MenuItemWithSubmenu = ({
 
       {/* Submenu items */}
       {isExpanded && (isSideMenuOpen || !isDesktop) && (
-        <div className="ml-8 pl-6 border-l-2 border-cardBorder">
+        <div className="ml-[1.6rem] relative">
+          <div
+            className="absolute left-0 top-0 w-[2px] bg-cardBorder"
+            style={{ height: "calc(100% - 1.3rem)" }}
+          ></div>
           {submenuItems.map((item) => {
             const normalizedPathname = currentPathname?.endsWith("/")
               ? currentPathname.slice(0, -1)
@@ -147,11 +152,15 @@ export const MenuItemWithSubmenu = ({
               normalizedPathname === plPath;
 
             return (
-              <Link key={item.path} href={item.path}>
+              <Link
+                key={item.path}
+                href={item.path}
+                target={item.newTab ? "_blank" : undefined}
+              >
                 <div
                   onClick={handleMenuItemClick}
                   className={`
-                    flex rounded-md items-center py-[0.4rem] 1xl:py-[0.45rem] 3xl:py-[0.6rem] pl-4 mb-[1px] 1xl:mb-1 3xl:mb-2 w-full pr-2 transition ${
+                    flex rounded-md items-center py-[0.4rem] 1xl:py-[0.45rem] 3xl:py-[0.6rem] pl-[3.2rem] -ml-[1.6rem] mb-[1px] 1xl:mb-1 3xl:mb-2 w-[calc(100%+1.6rem)] pr-2 transition ${
                       isActive
                         ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover"
                         : "bg-navItemBg hover:bg-navItemBgHover"

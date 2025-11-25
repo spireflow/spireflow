@@ -25,7 +25,7 @@ export const darkTheme = {
 
   // Backgrounds
   primaryBg: "rgb(31, 34, 38)",
-  secondaryBg: "rgb(24, 27, 30)",
+  secondaryBg: "rgb(25, 28, 32)",
   tabsBg: "rgb(28, 31, 35)",
   mainColor: "rgb(61, 185, 133)",
   navigationBg: "rgb(31, 34, 38)",

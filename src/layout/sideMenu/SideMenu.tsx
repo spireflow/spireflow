@@ -6,10 +6,17 @@ import { BarsIcon } from "../../assets/icons/BarsIcon";
 import { CalendarIcon } from "../../assets/icons/CalendarIcon";
 import { CustomersIcon } from "../../assets/icons/CustomersIcon";
 import { DashboardIcon } from "../../assets/icons/DashboardIcon";
-import { LineIcon } from "../../assets/icons/LineIcon";
 import { OrdersIcon } from "../../assets/icons/OrdersIcon";
 import { ProductsIcon } from "../../assets/icons/ProductsIcon";
-import { ScatterIcon } from "../../assets/icons/ScatterIcon";
+import { UserIcon } from "../../assets/icons/UserIcon";
+import { PasswordIcon } from "../../assets/icons/PasswordIcon";
+import { DocumentIcon } from "../../assets/icons/DocumentIcon";
+import { DonutIcon } from "../../assets/icons/DonutIcon";
+import { EcommerceIcon } from "../../assets/icons/EcommerceIcon";
+import { UserProfileIcon } from "../../assets/icons/UserProfileIcon";
+import { FormsIcon } from "../../assets/icons/FormsIcon";
+import { UIElementsIcon } from "../../assets/icons/UIElementsIcon";
+import { TablesIcon } from "../../assets/icons/TablesIcon";
 import { useAppStore } from "../../store/appStore";
 import { MenuCategory } from "./MenuCategory";
 import { MenuItem } from "./MenuItem";
@@ -47,16 +54,14 @@ export const SideMenu = () => {
         </div>
         <MenuCategory title={t("pages")} />
         <MenuItem title={t("dashboard")} icon={<DashboardIcon />} path="/" />
-        <MenuItem title={t("orders")} icon={<OrdersIcon />} path="/orders" />
-        <MenuItem
-          title={t("customers")}
-          icon={<CustomersIcon />}
-          path="/customers"
-        />
-        <MenuItem
-          title={t("products")}
-          icon={<ProductsIcon />}
-          path="/products"
+        <MenuItemWithSubmenu
+          title={t("eCommerce")}
+          icon={<EcommerceIcon />}
+          submenuItems={[
+            { title: t("orders"), path: "/orders" },
+            { title: t("customers"), path: "/customers" },
+            { title: t("products"), path: "/products" },
+          ]}
         />
         <MenuItem
           title={t("analytics")}
@@ -64,15 +69,32 @@ export const SideMenu = () => {
           path="/analytics"
         />
         <MenuItem
+          title={t("userProfile")}
+          icon={<UserProfileIcon />}
+          path="/profile"
+        />
+        <MenuItem
           title={t("calendar")}
           icon={<CalendarIcon />}
           path="/calendar"
+        />{" "}
+        <MenuItemWithSubmenu
+          title={t("authentication")}
+          icon={<PasswordIcon />}
+          submenuItems={[
+            { title: t("login"), path: "/login", newTab: true },
+            { title: t("register"), path: "/register", newTab: true },
+          ]}
         />
-        <MenuCategory title={t("singleCharts")} />
-        <MenuItem title={t("area")} icon={<AreaIcon />} path="/area" />
-        <MenuItem title={t("bars")} icon={<BarsIcon />} path="/bars" />
-        <MenuItem title={t("scatter")} icon={<ScatterIcon />} path="/scatter" />
-        <MenuItem title={t("line")} icon={<LineIcon />} path="/line" />
+        <MenuCategory title={t("components")} />
+        <MenuItem
+          title={t("uiElements")}
+          icon={<UIElementsIcon />}
+          path="/ui-elements"
+        />
+        <MenuItem title={t("forms")} icon={<FormsIcon />} path="/forms" />
+        <MenuItem title={t("tables")} icon={<TablesIcon />} path="/tables" />
+        <MenuItem title={t("charts")} icon={<DonutIcon />} path="/charts" />
         <div
           onClick={toggleSideMenu}
           className="-mr-3 1xl:-mr-4 border-mainBorder hover:border-mainBorderHover border absolute h-6 w-6 1xl:w-7 1xl:h-7 bg-primaryBg rounded-full top-6 right-0 text-grayIcon text-secondaryText flex justify-center items-center cursor-pointer"
