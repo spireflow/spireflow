@@ -8,6 +8,8 @@ type CardProps = {
   customHeader?: ReactNode | boolean;
   hasSubtitle?: boolean;
   padding?: string;
+  addTitleMargin?: boolean;
+  isHeaderDividerVisible?: boolean;
 };
 
 export const Card = ({
@@ -18,6 +20,8 @@ export const Card = ({
   customHeader,
   hasSubtitle = false,
   padding = "px-6",
+  addTitleMargin = false,
+  isHeaderDividerVisible = false,
 }: CardProps) => {
   return (
     <div
@@ -28,7 +32,10 @@ export const Card = ({
     >
       {title && !customHeader && (
         <div
-          className={`text-[0.9rem] w-full ${padding} 1xl:text-[1rem] 3xl:text-[1.2rem] font-semibold text-primaryText`}
+          className={`text-[0.9rem] w-full ${padding} 1xl:text-[1rem] 3xl:text-[1.2rem] font-semibold text-primaryText 
+            ${addTitleMargin ? "mb-6" : ""}
+            ${isHeaderDividerVisible ? "border-b border-cardBorder pb-4" : ""}
+            `}
         >
           {title}
         </div>

@@ -6,6 +6,7 @@ export const SortIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth="1.5"
     fill="none"
+    stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
   >

@@ -1,10 +1,88 @@
 "use client";
 
-import { BarChart } from "@tremor/react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { useChartColors } from "../../../hooks/useChartColors";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { Card } from "../../common/Card";
 
+interface TooltipPayload {
+  dataKey: string;
+  name?: string;
+  value?: number;
+  color?: string;
+}
+
+interface BarTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayload[];
+  label?: string;
+}
+
+const BarTooltip = ({ active, payload, label }: BarTooltipProps) => {
+  if (!active || !payload || payload.length === 0 || !label) return null;
+
+  return (
+    <BaseTooltip title={label}>
+      {payload.map((entry, index) => (
+        <p
+          key={index}
+          className="px-3 pb-1 text-primaryText flex items-center justify-between"
+        >
+          <span>
+            <span
+              className="w-2 h-2 mr-2 rounded inline-block"
+              style={{ backgroundColor: entry.color }}
+            />
+            {`${entry.name}: `}
+          </span>
+          <span className="pl-[0.7rem]">
+            $ {Intl.NumberFormat("us").format(entry.value ?? 0)}
+          </span>
+        </p>
+      ))}
+    </BaseTooltip>
+  );
+};
+
+interface CustomLegendProps {
+  payload?: Array<{
+    value: string;
+    color: string;
+  }>;
+}
+
+const CustomLegend = ({ payload }: CustomLegendProps) => {
+  return (
+    <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-8 text-white w-full mb-6">
+      {payload?.map((entry, index) => (
+        <div key={`legend-${index}`} className="flex items-center">
+          <div
+            className="w-3 h-3 mr-2"
+            style={{ backgroundColor: entry.color }}
+          />
+          <span className="text-sm text-primaryText">{entry.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export const BarChartComponent = () => {
+  const { theme } = useTheme();
+  const chartColors = useChartColors(theme as "dark" | "light");
+  const { width: windowWidth } = useWindowDimensions();
   const t = useTranslations("singleCharts.bars");
 
   const barChartData = [
@@ -46,32 +124,91 @@ export const BarChartComponent = () => {
     },
   ];
 
-  const dataFormatter = (number: number) => {
-    return "$ " + Intl.NumberFormat("us").format(number).toString();
-  };
+  const barColors = [
+    "#3b82f6", // blue
+    "#14b8a6", // teal
+    "#f59e0b", // amber
+    "#f43f5e", // rose
+    "#6366f1", // indigo
+    "#10b981", // emerald
+  ];
 
   return (
     <Card
       className="w-full pt-11 pb-6"
       title={t("title")}
       padding="px-6 md:px-20"
+      isHeaderDividerVisible
+      addTitleMargin
     >
-      <BarChart
-        className="h-64 1xl:h-80 3xl:mt-6 single-chart-bars"
-        data={barChartData}
-        index="name"
-        categories={[
-          t("widgets"),
-          t("gadgets"),
-          t("modules"),
-          t("components"),
-          t("kits"),
-          t("accessories"),
-        ]}
-        colors={["blue", "teal", "amber", "rose", "indigo", "emerald"]}
-        valueFormatter={dataFormatter}
-        yAxisWidth={48}
-      />
+      <div className="h-64 1xl:h-80 w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={barChartData}
+            margin={{
+              top: 10,
+              right: windowWidth > 700 ? 30 : 10,
+              left: windowWidth > 700 ? 20 : 5,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke={chartColors.primary.grid}
+            />
+            <XAxis
+              dataKey="name"
+              stroke="rgba(255,255,255,0.1)"
+              tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
+            />
+            <YAxis
+              stroke="rgba(255,255,255,0.1)"
+              tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
+              tickFormatter={(value) => `$${Intl.NumberFormat("us").format(value)}`}
+              width={60}
+            />
+            <Tooltip
+              content={<BarTooltip />}
+              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+            />
+            <Legend
+              verticalAlign="top"
+              align="center"
+              content={<CustomLegend />}
+            />
+            <Bar
+              dataKey={t("widgets")}
+              fill={barColors[0]}
+              radius={[4, 4, 0, 0]}
+            />
+            <Bar
+              dataKey={t("gadgets")}
+              fill={barColors[1]}
+              radius={[4, 4, 0, 0]}
+            />
+            <Bar
+              dataKey={t("modules")}
+              fill={barColors[2]}
+              radius={[4, 4, 0, 0]}
+            />
+            <Bar
+              dataKey={t("components")}
+              fill={barColors[3]}
+              radius={[4, 4, 0, 0]}
+            />
+            <Bar
+              dataKey={t("kits")}
+              fill={barColors[4]}
+              radius={[4, 4, 0, 0]}
+            />
+            <Bar
+              dataKey={t("accessories")}
+              fill={barColors[5]}
+              radius={[4, 4, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </Card>
   );
 };

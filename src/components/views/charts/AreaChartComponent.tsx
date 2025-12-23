@@ -81,7 +81,7 @@ interface CustomLegendProps {
 
 const CustomLegend = ({ payload }: CustomLegendProps) => {
   return (
-    <div className="flex flex-row justify-end gap-8 text-white w-full mb-6">
+    <div className="flex flex-row justify-end text-white w-full mb-6" style={{ gap: "1rem" }}>
       {payload?.map((entry, index) => (
         <div key={`legend-${index}`} className="flex items-center">
           <div
@@ -136,8 +136,14 @@ export const AreaChartComponent = () => {
   ];
 
   return (
-    <Card className="w-full h-full" title={t("title")} padding="px-9">
-      <div className="h-72 1xl:h-80 3xl:h-96 mt-8 w-full">
+    <Card
+      className="w-full h-full"
+      title="Area Chart"
+      padding="px-9"
+      isHeaderDividerVisible
+      addTitleMargin
+    >
+      <div className="h-80 1xl:h-96 3xl:h-[28rem] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={chartdata}

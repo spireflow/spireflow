@@ -10,6 +10,9 @@ export const lightTheme = {
   navItemTextActive: "hsl(208.21deg 100% 50%)",
   navSectionTitle: "black",
   tableCellText: "rgb(68, 68, 68)",
+  tableRowBgHover: "rgb(0, 0, 0, 0.05)",
+  tableHeaderBg: "rgb(240, 240, 245, 0.1)",
+  tableHeaderBgHover: "rgb(0, 0, 0, 0.08)",
   greenBadgeText: "rgb(35, 140, 99)",
   redBadgeText: "rgb(213, 61, 79)",
   orangeBadgeText: "rgb(151, 96, 39)",
@@ -25,6 +28,8 @@ export const lightTheme = {
   primaryBg: "white",
   secondaryBg: "rgb(247, 247, 247)",
   tabsBg: "rgb(250, 250, 250)",
+  tabListBg: "rgb(240, 240, 245)",
+  tabActiveBg: "rgb(230, 230, 235)",
   mainColor: "rgb(118, 167, 247)",
   navigationBg: "white",
   navItemBg: "rgb(0,0,0,0)",
@@ -50,6 +55,7 @@ export const lightTheme = {
   loaderCircleBg: "#7376f2",
   selectBg: "rgb(255,255,255)",
   selectBgHover: "rgb(240, 240, 245, 0.2)",
+
   userButtonBg: "rgb(240, 240, 245, 0.4)",
   loginModalBg: "white",
   navbarButtonBg: "rgb(118, 167, 247)",
@@ -64,6 +70,8 @@ export const lightTheme = {
   calendarMainColor: "rgb(118, 167, 247)",
   scrollbarThumb: "rgba(94, 98, 105, 0.5)",
   themeToggleBg: "rgb(240, 240, 245)",
+  dropzoneBg: "rgb(247, 247, 247)",
+  dropzoneBgHover: "rgb(240, 240, 245)",
   themeToggleActiveBg: "white",
   floatingMenuButtonBg: "white",
   floatingMenuButtonBgHover: "rgb(245, 245, 250)",
@@ -73,6 +81,11 @@ export const lightTheme = {
   percentageBadgeRedBorder: "rgba(213, 61, 79, 0.3)",
   modalBg: "white",
   logoBg: "rgb(118, 167, 247)",
+  chipBg: "white",
+  chipBgHover: "rgba(210, 210, 210, 0.4)",
+  mutedBg: "rgb(247, 247, 247)",
+  errorBg: "rgb(195, 70, 70)",
+  skeletonBg: "rgb(225, 225, 230)",
 
   // Notifications
   notificationBadgeBg: "rgb(118, 167, 247)",
@@ -91,6 +104,9 @@ export const lightTheme = {
   cardBorder: "rgb(0,0,0,0.06)",
   themeToggleActiveBorder: "rgb(0, 0, 0, 0.1)",
   mapCountryBorder: "rgb(0,0,0,0.18)",
+  ringBorder: "rgb(0, 96, 255)",
+  checkboxBorder: "rgb(0,0,0,0.28)",
+  checkboxBorderDisabled: "rgb(0,0,0,0.18)",
 
   tremor: {
     brand: {

@@ -18,10 +18,10 @@ export const AboutModal = ({ closeModal }: AboutModalProps) => {
           </h2>
           <div className="text-primaryText text-base w-full text-left">
             <p className="mb-4 text-base">
-              Spireflow is an open source and free dashboard template, written
-              in NextJS and TypeScript. It is connected to NodeJS backend with
-              PostgreSQL database containing data for a fictional electronic
-              store.
+              Spireflow is an open source and free dashboard starter template,
+              written in NextJS and TypeScript. It is connected to NodeJS
+              backend with PostgreSQL database containing data for a fictional
+              electronic store.
             </p>
             <p className="mb-4 text-base">
               If you&apos;d like to contribute, check out the{" "}
@@ -71,6 +71,7 @@ export const AboutModal = ({ closeModal }: AboutModalProps) => {
               <li>NextJS</li>
               <li>TypeScript</li>
               <li>Tailwind</li>
+              <li>Shadcn</li>
               <li>Zustand</li>
               <li>Apollo Client</li>
               <li>Recharts</li>
@@ -85,6 +86,7 @@ export const AboutModal = ({ closeModal }: AboutModalProps) => {
               <li>Fastify</li>
               <li>PostgreSQL</li>
               <li>Prisma</li>
+              <li>Better-Auth</li>
               <li>GraphQL</li>
             </ul>
           </div>

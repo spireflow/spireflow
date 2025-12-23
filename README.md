@@ -18,7 +18,7 @@
   </a>
 </div>
 
-<h4 align="center">Open source and free dashboard template written in NextJS and TypeScript</h2>
+<h4 align="center">Open source and free dashboard starter template written in NextJS and TypeScript</h2>
 <br />
 
 <div align="center">
@@ -27,7 +27,7 @@
 
 ## :gear: Tech stack
 
-React 19, NextJS 15, TypeScript, Tailwind, Zustand, Apollo Client, Recharts, Better Auth, Jest
+React 19, NextJS 15, TypeScript, Tailwind, Shadcn, Zustand, Apollo Client, Recharts, Better Auth, Jest
 
 ## :sparkles: Features
 
@@ -48,7 +48,7 @@ Live (dashboard) [https://spireflow.vercel.app/](https://spireflow.vercel.app/)
 
 ## :cloud: Backend
 
-The application is provided along with an associated Node.js backend, which is also open source and available on my GitHub. You can deploy it on platforms like Heroku or Render. 
+The application is provided along with an associated Node.js backend, which is also open source and available on my GitHub. You can deploy it on platforms like Heroku or Render.
 
 The dashboard is designed to work as a standalone front-end application by default, so setting up the backend is entirely optional.
 
@@ -169,13 +169,13 @@ The application automatically detects your configuration:
 - **Backend + Auth configured**: Authentication enabled with protected routes
 - **Backend unavailable**: Automatically falls back to mock data (no crashes!)
 
-### Production deployment
+### Remote deployment
 
-For production (e.g., Vercel):
+For remote services (e.g., Vercel):
 
 1. Deploy your backend to a hosting service (e.g. Heroku/Render)
 2. Set environment variables in your Vercel project settings
-3. Deploy - the app automatically detects and uses the backend
+3. Deploy front-end app - it automatically detects and uses the backend
 
 ## 🧾 Pages
 

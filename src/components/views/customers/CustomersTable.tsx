@@ -49,14 +49,14 @@ export const CustomersTable = ({ table }: CustomersTableProps) => {
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
+              {headerGroup.headers.map((header, index) => (
                 <th
                   key={header.id}
                   colSpan={header.colSpan}
                   className={
                     header.column.getCanSort()
-                      ? "text-secondaryText font-normal text-left text-sm 3xl:text-base pl-4 py-3 3xl:py-3 border cursor-pointer select-none  bg-inputBg  border-inputBorder "
-                      : "text-secondaryText font-normal text-center text-sm 3xl:text-base pl-3 2xl:pl-5 py-3 3xl:py-3 border cursor-pointer select-none  bg-inputBg border-inputBorder"
+                      ? `text-secondaryText font-normal text-left text-sm 3xl:text-base pl-4 py-3 3xl:py-3 border-t border-b border-inputBorder cursor-pointer select-none bg-tableHeaderBg hover:bg-tableHeaderBgHover ${index === 0 ? "border-l" : ""} ${index === headerGroup.headers.length - 1 ? "border-r" : ""}`
+                      : `text-secondaryText font-normal text-center text-sm 3xl:text-base pl-3 2xl:pl-5 py-3 3xl:py-3 border-t border-b border-inputBorder cursor-pointer select-none bg-tableHeaderBg hover:bg-tableHeaderBgHover ${index === 0 ? "border-l" : ""} ${index === headerGroup.headers.length - 1 ? "border-r" : ""}`
                   }
                   onClick={header.column.getToggleSortingHandler()}
                   style={{
@@ -93,12 +93,12 @@ export const CustomersTable = ({ table }: CustomersTableProps) => {
                 setSelectedCustomer(row.original as CustomerColumns);
                 setIsCustomerModalOpen(true);
               }}
-              className="hover:bg-[rgb(255,255,255,0.03)] cursor-pointer"
+              className="hover:bg-tableRowBgHover cursor-pointer"
             >
-              {row.getVisibleCells().map((cell) => (
+              {row.getVisibleCells().map((cell, cellIndex) => (
                 <td
                   key={cell.id}
-                  className="text-tableCellText text-primaryText font-medium text-sm 3xl:text-base p-4 py-2 3xl:py-4 border border-inputBorder"
+                  className={`text-tableCellText text-primaryText font-medium text-sm 3xl:text-base p-4 py-2 3xl:py-4 border-b border-mainBorder ${cellIndex === 0 ? "border-l" : ""} ${cellIndex === row.getVisibleCells().length - 1 ? "border-r" : ""}`}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>

@@ -65,12 +65,14 @@ export const LineChartComponent = () => {
 
   return (
     <Card
-      className="w-full pt-11 pb-6"
-      title={t("title")}
+      className="w-full !pt-8 !pb-8"
+      title="Number of dragons in Westeros"
       padding="px-6 md:px-20"
+      isHeaderDividerVisible
+      addTitleMargin
     >
       <LineChart
-        className="mt-2 1xl:mt-6 h-56 1xl:h-72 3xl:h-80"
+        className="mt-2 1xl:mt-6 h-72 1xl:h-88 3xl:h-96"
         data={dragonPopulationInWesteros}
         index="year"
         categories={[t("houseTargaryen"), t("houseVelaryon")]}
