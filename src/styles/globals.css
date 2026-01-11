@@ -28,6 +28,10 @@ a {
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Main loader animation */
 
 @layer utilities {
@@ -258,6 +262,13 @@ input:-webkit-autofill {
 }
 .yarl__thumbnails_thumbnail {
   @apply !border-mainBorder !bg-galleryThumbnailBg backdrop-blur-md;
+}
+
+/* Lightbox navigation arrows */
+.yarl__button.yarl__navigation_prev svg,
+.yarl__button.yarl__navigation_next svg {
+  width: 48px;
+  height: 48px;
 }
 
 /* React Datepicker adjustments */

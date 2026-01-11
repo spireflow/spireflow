@@ -160,7 +160,7 @@ export const RevenueOverTime = ({
           onClick={() => setTimeRange("Monthly")}
           className={`px-3 py-1 text-xs rounded-md transition-colors ${
             timeRange === "Monthly"
-              ? "bg-inputBg text-primaryText"
+              ? "bg-revenueTabActiveBg text-primaryText"
               : "text-secondaryText hover:text-primaryText"
           }`}
         >
@@ -170,7 +170,7 @@ export const RevenueOverTime = ({
           onClick={() => setTimeRange("Quarterly")}
           className={`px-3 py-1 text-xs rounded-md transition-colors ${
             timeRange === "Quarterly"
-              ? "bg-inputBg text-primaryText"
+              ? "bg-revenueTabActiveBg text-primaryText"
               : "text-secondaryText hover:text-primaryText"
           }`}
         >

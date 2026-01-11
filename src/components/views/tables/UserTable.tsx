@@ -486,9 +486,11 @@ export const UserTable = () => {
             )}
             {userSorting[0] && (
               <Badge variant="outline" className="cursor-pointer py-1.5 px-3">
-                Sorted by:
-                {userSorting[0].id.charAt(0).toUpperCase() +
-                  userSorting[0].id.slice(1)}
+                Sorted by:{" "}
+                {userSorting[0].id === "joinDate"
+                  ? "Join Date"
+                  : userSorting[0].id.charAt(0).toUpperCase() +
+                    userSorting[0].id.slice(1)}
                 <button
                   onClick={() => setUserSorting([])}
                   className="ml-2"

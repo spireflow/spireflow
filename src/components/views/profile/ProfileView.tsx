@@ -29,7 +29,7 @@ export const ProfileView = () => {
       {/* Profile Header Card */}
       <Card className="!p-0 overflow-hidden">
         {/* Banner */}
-        <div className="h-40 relative bg-gradient-to-r from-[rgb(240,245,255)] to-[rgb(225,235,255)] dark:from-[rgb(30,33,36)] dark:to-[rgb(45,48,52)]">
+        <div className="h-40 relative bg-profileHeaderBg">
           <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
             <div className="w-24 h-24 rounded-full bg-primaryBg border-4 border-primaryBg flex items-center justify-center relative">
               <div className="w-full h-full rounded-full bg-gradient-to-br from-chartSecondaryBg to-chartPrimaryBg dark:from-[rgb(20,60,50)] dark:to-[rgb(55,150,120)] flex items-center justify-center text-white text-2xl font-bold">

@@ -81,7 +81,7 @@ export const NotificationsButton = ({
             userDropdown.close();
             searchClose();
           }}
-          className="relative text-base flex rounded-full justify-center items-center gap-2 w-full h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-outlinedButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon"
+          className="relative text-base flex rounded-full justify-center items-center gap-2 w-full h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-navbarIconButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon"
           type="button"
           aria-label={t("notifications") || "Notifications"}
         >

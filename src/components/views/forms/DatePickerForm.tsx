@@ -27,7 +27,7 @@ export const DatePickerForm = () => {
           <div
             // @ts-ignore
             onClick={() => datePickerRef.current.setOpen(true)}
-            className="absolute right-2 top-[0.5rem] stroke-gray-400 fill-gray-400 text-gray-400 hover:stroke-secondaryText cursor-pointer"
+            className="absolute right-2 top-[0.5rem] stroke-gray-400 fill-gray-400 text-gray-400 hover:stroke-calendarIconHover hover:fill-calendarIconHover cursor-pointer transition"
           >
             <CalendarIcon />
           </div>

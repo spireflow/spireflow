@@ -8,6 +8,8 @@ import { Navbar } from "./navbar/Navbar";
 import { SideMenu } from "./sideMenu/SideMenu";
 import { useAppStore } from "../store/appStore";
 import { FullScreenLoader } from "../components/common/FullScreenLoader";
+import { SettingsDrawer } from "./SettingsDrawer";
+import { SettingsIcon } from "../assets/icons/SettingsIcon";
 
 interface LayoutProps {
   children: ReactNode;
@@ -58,6 +60,22 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
+      {/* Fixed Settings Button - Desktop Only */}
+      {!pathsWithNoLayout.includes(currentPathname) && (
+        <div className="hidden xl:block fixed bottom-6 right-6 z-50">
+          <SettingsDrawer>
+            <button
+              className="w-16 h-16 rounded-full border border-mainBorder bg-floatingMenuButtonBg hover:bg-floatingMenuButtonBgHover text-settingsIcon stroke-settingsIcon fill-settingsIcon shadow-lg flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Open settings"
+            >
+              <div className="w-7 h-7 flex items-center justify-center">
+                <SettingsIcon />
+              </div>
+            </button>
+          </SettingsDrawer>
+        </div>
+      )}
+
       <div className="flex h-full w-full bg-secondaryBg overflow-x-hidden">
         {showLoader && <FullScreenLoader key="static-loader-key" />}
         {!pathsWithNoLayout.includes(currentPathname) && (

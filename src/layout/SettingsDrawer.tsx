@@ -224,7 +224,7 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
                   className={`relative flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
                     homepageLayout === "three-cards"
                       ? "border-mainColor bg-primaryBg"
-                      : "border-mainBorder bg-primaryBg hover:border-mainBorderHover"
+                      : "border-settingsButtonBorder bg-primaryBg hover:border-mainBorderHover"
                   }`}
                 >
                   <div className="w-full flex justify-center">
@@ -260,7 +260,7 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
                   className={`relative flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
                     homepageLayout === "four-cards"
                       ? "border-mainColor bg-primaryBg"
-                      : "border-mainBorder bg-primaryBg hover:border-mainBorderHover"
+                      : "border-settingsButtonBorder bg-primaryBg hover:border-mainBorderHover"
                   }`}
                 >
                   <div className="w-full flex justify-center">

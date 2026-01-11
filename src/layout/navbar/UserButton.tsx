@@ -60,7 +60,7 @@ export const UserButton = ({
             notificationsDropdown.close();
             searchClose();
           }}
-          className={`text-base flex justify-center items-center h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-outlinedButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon ${
+          className={`text-base flex justify-center items-center h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-navbarIconButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon ${
             isLoggedIn && session?.username
               ? "w-10 sm:w-auto sm:px-3 rounded-full sm:rounded-xl"
               : "w-full rounded-full"

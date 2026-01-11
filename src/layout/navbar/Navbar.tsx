@@ -84,7 +84,7 @@ export const Navbar = () => {
           `}
         ></div>
         <div
-          className={`px-6 pr-4 md:px-6  xl:pl-3 xl:pr-2 2xl:px-4 z-40 w-full flex justify-between xl:mx-auto items-center gap-4 xl:gap-7 
+          className={`px-6 pr-4 md:px-6  xl:pl-3 2xl:px-4 z-40 w-full flex justify-between xl:mx-auto items-center gap-4 xl:gap-7
          xl:max-w-[82%] 1xl:max-w-[82%] 2xl:max-w-[83vw] 3xl:max-w-[82vw] 5xl:max-w-[102rem]
           `}
         >
@@ -128,7 +128,7 @@ export const Navbar = () => {
                 t={t}
               />
             </div>
-            <div className="mr-1 2xl:-mr-unset">
+            <div className="flex items-center ml-auto">
               <UserButton
                 userIconBtnRef={userIconBtnRef}
                 closeMobileMenu={closeMobileMenu}
@@ -149,15 +149,15 @@ export const Navbar = () => {
                 selectTheme={selectTheme}
                 t={t}
               />
-            </div>
-            <div className="hidden xl:block">
-              <HamburgerButton
-                isMobileMenuOpen={isMobileMenuOpen}
-                toggleMobileMenu={() => {
-                  searchDropdown.close();
-                  toggleMobileMenu();
-                }}
-              />
+              <div className="hidden xl:block">
+                <HamburgerButton
+                  isMobileMenuOpen={isMobileMenuOpen}
+                  toggleMobileMenu={() => {
+                    searchDropdown.close();
+                    toggleMobileMenu();
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

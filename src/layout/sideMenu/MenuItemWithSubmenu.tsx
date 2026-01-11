@@ -76,62 +76,80 @@ export const MenuItemWithSubmenu = ({
   if (isFirstRender) return null;
 
   const isAnySubmenuActive = activeSubmenuPath !== null;
+  const isCollapsed = !isSideMenuOpen && isDesktop;
+
+  // When collapsed, link to first submenu item
+  const collapsedLinkPath = submenuItems[0]?.path || "/";
+
+  const sharedClassName = `
+    flex relative rounded-md items-center py-[0.5rem] 1xl:py-[0.55rem] 3xl:py-[0.7rem] pl-4 mb-[1px] 1xl:mb-1 3xl:mb-2 w-full pr-2 cursor-pointer transition ${
+      isAnySubmenuActive
+        ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover border-l-2 border-transparent"
+        : "bg-navItemBg hover:bg-navItemBgHover border-l-2 border-transparent"
+    }
+    ${
+      isCollapsed &&
+      "!pl-1 pl-8 justify-center items-center !w-10 rounded-full"
+    }
+  `;
+
+  const iconContent = (
+    <div
+      className={`menuItemIcon pr-3 ${
+        isAnySubmenuActive
+          ? "stroke-mainColor fill-mainColor text-mainColor"
+          : "stroke-grayIcon fill-grayIcon text-grayIcon"
+      }
+      ${isCollapsed && "pl-4"}
+      `}
+    >
+      {icon}
+    </div>
+  );
 
   return (
-    <div className="w-full">
-      <div
-        onClick={handleToggle}
-        className={`
-         flex relative rounded-md items-center py-[0.5rem] 1xl:py-[0.55rem] 3xl:py-[0.7rem] pl-4 mb-[1px] 1xl:mb-1 3xl:mb-2 w-full pr-2 cursor-pointer transition ${
-           isAnySubmenuActive
-             ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover border-l-2 border-transparent"
-             : "bg-navItemBg hover:bg-navItemBgHover border-l-2 border-transparent"
-         }
-         ${
-           !isSideMenuOpen &&
-           isDesktop &&
-           "!pl-1 pl-8 justify-center items-center !w-10 rounded-full"
-         }    
-        `}
-      >
-        <div
-          className={`menuItemIcon pr-3 ${
-            isAnySubmenuActive
-              ? "stroke-mainColor fill-mainColor text-mainColor"
-              : "stroke-grayIcon fill-grayIcon text-grayIcon"
-          }
-        ${!isSideMenuOpen && isDesktop && "pl-4"}
-         `}
+    <>
+      {isCollapsed ? (
+        <Link
+          href={collapsedLinkPath}
+          onClick={handleMenuItemClick}
+          className="flex flex-col justify-center w-full py-0 items-center"
         >
-          {icon}
-        </div>
-        {(isSideMenuOpen || !isDesktop) && (
-          <>
-            <div
-              className={`text-xs xl:text-[12px] 3xl:text-[0.88rem] font-medium tracking-wide flex-1 ${
-                outfit.className
-              } ${
-                isAnySubmenuActive
-                  ? "text-navItemTextActive"
-                  : "text-navItemText"
-              }`}
-            >
-              {title}
-            </div>
-            <div
-              className={`transition-transform ${
-                isExpanded ? "rotate-180" : "rotate-0"
-              } ${
-                isAnySubmenuActive
-                  ? "stroke-grayIcon text-grayIcon"
-                  : "stroke-grayIcon text-grayIcon"
-              }`}
-            >
-              <ChevronDownIcon />
-            </div>
-          </>
-        )}
-      </div>
+          <div className={sharedClassName}>
+            {iconContent}
+          </div>
+        </Link>
+      ) : (
+        <div className="w-full">
+          <div onClick={handleToggle} className={sharedClassName}>
+            {iconContent}
+            {(isSideMenuOpen || !isDesktop) && (
+              <>
+                <div
+                  className={`text-xs xl:text-[12px] 3xl:text-[0.88rem] font-medium tracking-wide flex-1 ${
+                    outfit.className
+                  } ${
+                    isAnySubmenuActive
+                      ? "text-navItemTextActive"
+                      : "text-navItemText"
+                  }`}
+                >
+                  {title}
+                </div>
+                <div
+                  className={`transition-transform ${
+                    isExpanded ? "rotate-180" : "rotate-0"
+                  } ${
+                    isAnySubmenuActive
+                      ? "stroke-grayIcon text-grayIcon"
+                      : "stroke-grayIcon text-grayIcon"
+                  }`}
+                >
+                  <ChevronDownIcon />
+                </div>
+              </>
+            )}
+          </div>
 
       {/* Submenu items */}
       {isExpanded && (isSideMenuOpen || !isDesktop) && (
@@ -183,6 +201,8 @@ export const MenuItemWithSubmenu = ({
           })}
         </div>
       )}
-    </div>
+        </div>
+      )}
+    </>
   );
 };

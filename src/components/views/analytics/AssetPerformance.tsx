@@ -144,7 +144,7 @@ export const AssetPerformance = ({
                         {asset.delta}%
                       </p>
                       <div className="hidden lg:block w-44">
-                        <div className="relative h-2 w-full bg-secondaryBg rounded-full overflow-hidden">
+                        <div className="relative h-2 w-full bg-assetPerformanceBarBg rounded-full overflow-hidden">
                           <div
                             className="absolute h-full rounded-full transition-all"
                             style={{

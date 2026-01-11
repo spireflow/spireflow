@@ -7,8 +7,6 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { DownloadIcon } from "../../assets/icons/DownloadIcon";
 import { exportToCSV } from "../../utils/exportToCSV";
 import { useTooltip } from "../../hooks/useTooltip";
-import { SettingsDrawer } from "../../layout/SettingsDrawer";
-import { SettingsIcon } from "../../assets/icons/SettingsIcon";
 
 interface PageWrapperProps {
   children: ReactNode;
@@ -66,20 +64,6 @@ export const PageWrapper = ({
 
   return (
     <>
-      {/* Fixed Settings Button - Desktop Only */}
-      <div className="hidden xl:block fixed bottom-6 right-6 z-50">
-        <SettingsDrawer>
-          <button
-            className="w-16 h-16 rounded-full border border-mainBorder bg-floatingMenuButtonBg hover:bg-floatingMenuButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon shadow-lg flex items-center justify-center transition-colors cursor-pointer"
-            aria-label="Open settings"
-          >
-            <div className="w-9 h-9 flex items-center justify-center">
-              <SettingsIcon />
-            </div>
-          </button>
-        </SettingsDrawer>
-      </div>
-
       <main
         className={`flex pb-0 flex-col min-h-screen max-w-full h-full w-full  pb-0 md:pb-0 xl:pb-8 items-center
       ${

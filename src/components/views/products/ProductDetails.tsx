@@ -179,7 +179,7 @@ export const ProductDetails = ({
             <div className="w-10 text-xl text-secondaryText">ID:</div>
             <Input value={activeProduct.productId} type="text"></Input>
             <button
-              className="absolute right-2 text-gray-400 hover:text-gray-300"
+              className="absolute right-2 text-grayIcon hover:text-grayIconHover"
               onClick={() => handleCopyToClipboard(activeProduct.productId)}
             >
               <CopyIcon />

@@ -35,7 +35,7 @@ export const ThemeButton = ({
       onMouseLeave={themeTooltip.hideTooltip}
     >
       <div
-        className="relative flex items-center bg-themeToggleBg border border-mainBorder hover:bg-white/7 rounded-full p-0.5 cursor-pointer"
+        className="group relative flex items-center bg-themeToggleBg border border-mainBorder hover:bg-themeToggleBgHover rounded-full p-0.5 cursor-pointer"
         onClick={toggleTheme}
         role="button"
         aria-label={t("changeTheme")}
@@ -48,7 +48,11 @@ export const ThemeButton = ({
       >
         {isMounted && (
           <div
-            className="absolute left-0.5 top-0.5 w-[42px] h-[2.1825rem] bg-themeToggleActiveBg border border-themeToggleActiveBorder rounded-full shadow-sm transition-transform duration-300 ease-out"
+            className={`absolute left-0.5 top-0.5 w-[42px] h-[2.1825rem] bg-themeToggleActiveBg border border-themeToggleActiveBorder rounded-full shadow-sm transition-all duration-300 ease-out ${
+              currentTheme === "dark"
+                ? "group-hover:bg-themeToggleActiveBgHover"
+                : "group-hover:bg-themeToggleActiveBgHoverLight dark:group-hover:bg-themeToggleActiveBgHover"
+            }`}
             style={{
               transform:
                 currentTheme === "dark"
