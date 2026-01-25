@@ -20,7 +20,9 @@
     "test:watch": "jest --watch --config src/tests/config/jest.config.js",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -37,6 +39,7 @@
     "@fontsource/jost": "^5.2.8",
     "@fontsource/nunito": "^5.2.7",
     "@fontsource/nunito-sans": "^5.2.7",
+    "@fontsource/outfit": "^5.2.8",
     "@fontsource/public-sans": "^5.2.7",
     "@fullcalendar/core": "^6.1.20",
     "@fullcalendar/daygrid": "^6.1.20",
@@ -103,8 +106,14 @@
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
+    "@chromatic-com/storybook": "^5.0.0",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
+    "@storybook/addon-a11y": "^10.2.0",
+    "@storybook/addon-docs": "^10.2.0",
+    "@storybook/addon-onboarding": "^10.2.0",
+    "@storybook/addon-vitest": "^10.2.0",
+    "@storybook/nextjs-vite": "^10.2.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
@@ -115,18 +124,25 @@
     "@types/react": "^19.2.7",
     "@types/react-datepicker": "^6.2.0",
     "@types/react-simple-maps": "^3.0.6",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18",
     "autoprefixer": "^10.4.23",
     "babel-jest": "^30.2.0",
     "encoding": "^0.1.13",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-storybook": "^10.2.0",
     "husky": "^9.1.7",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "lint-staged": "^16.2.7",
+    "playwright": "^1.58.0",
     "postcss": "^8.5.6",
     "prettier": "^3.7.4",
+    "storybook": "^10.2.0",
     "tailwindcss": "^4.1.18",
     "tailwindcss-themer": "^4.1.1",
-    "ts-jest": "^29.4.6"
+    "ts-jest": "^29.4.6",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
   }
 }

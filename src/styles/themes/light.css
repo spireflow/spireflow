@@ -21,6 +21,12 @@
   --color-percentageBadgeGreenTextAccented: rgb(20, 120, 80);
   --color-percentageBadgeRedTextAccented: rgb(180, 40, 60);
   --color-logoBasicText: black;
+  --color-settingsDrawerLabelText: rgb(0, 0, 0, 0.7);
+  --color-settingsDrawerSectionTitle: rgb(0, 0, 0, 0.5);
+  --color-tabLineActiveText: rgb(37, 99, 235);
+  --color-tabLineActiveTextHover: rgb(29, 78, 216);
+  --color-tabLineInactiveText: rgb(107, 114, 128);
+  --color-tabLineInactiveTextHover: rgb(75, 85, 99);
 
   /* Icons */
   --color-grayIcon: rgb(0, 0, 0, 0.7);
@@ -28,6 +34,7 @@
   --color-navItemIconActive: rgb(101, 150, 231);
   --color-settingsIcon: rgb(0, 0, 0, 0.55);
   --color-calendarIconHover: rgb(118, 167, 247);
+  --color-settingsDrawerDivider: rgb(0, 0, 0, 0.08);
 
   /* Backgrounds */
   --color-primaryBg: white;
@@ -98,13 +105,15 @@
   --color-skeletonBg: rgb(225, 225, 230);
   --color-navbarSearchInputBg: rgb(240, 240, 245, 0.2);
   --color-navbarSearchInputBgHover: rgb(240, 240, 245, 0.4);
-
-  /* Notifications */
   --color-notificationBadgeBg: rgb(118, 167, 247);
   --color-notificationBadgeBgHover: rgb(79, 142, 247);
   --color-notificationItemBg: rgb(255, 255, 255);
   --color-notificationItemBgHover: rgb(249, 250, 251);
   --color-notificationHeaderBg: rgb(255, 255, 255);
+  --color-settingsButtonBgHover: rgb(242, 242, 247);
+  --color-settingsLayoutPreviewBg: rgb(0, 0, 0, 0.12);
+  --color-settingsDrawerHeaderBg: rgb(247, 247, 247);
+  --color-profileHeaderBg: rgb(124, 186, 223, 0.24);
 
   /* Borders */
   --color-mainBorder: rgb(0, 0, 0, 0.12);
@@ -123,23 +132,6 @@
   --color-checkboxBorderDisabled: rgb(0, 0, 0, 0.18);
   --color-navbarSearchInputBorder: rgb(0, 0, 0, 0.12);
   --color-navbarSearchInputBorderHover: rgb(0, 0, 0, 0.2);
-
-  /* Settings Drawer */
-  --color-settingsDrawerHeaderBg: rgb(247, 247, 247);
-  --color-settingsDrawerDivider: rgb(0, 0, 0, 0.08);
-  --color-settingsDrawerLabelText: rgb(0, 0, 0, 0.7);
-  --color-settingsDrawerSectionTitle: rgb(0, 0, 0, 0.5);
-  --color-settingsButtonBgHover: rgb(242, 242, 247);
   --color-settingsButtonBorder: rgb(0, 0, 0, 0.18);
-  --color-settingsLayoutPreviewBg: rgb(0, 0, 0, 0.12);
-
-  /* Line Tabs */
   --color-tabLineActiveBorder: rgb(37, 99, 235);
-  --color-tabLineActiveText: rgb(37, 99, 235);
-  --color-tabLineActiveTextHover: rgb(29, 78, 216);
-  --color-tabLineInactiveText: rgb(107, 114, 128);
-  --color-tabLineInactiveTextHover: rgb(75, 85, 99);
-
-  /* Profile */
-  --color-profileHeaderBg: rgb(124, 186, 223, 0.24);
 }
