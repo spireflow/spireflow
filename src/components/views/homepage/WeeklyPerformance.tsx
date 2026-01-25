@@ -84,8 +84,10 @@ const WeeklyPerformanceTooltip = ({
 
 const WeeklyPerformanceChart = ({
   data,
+  isExpanded,
 }: {
   data: WeeklyPerformanceProps["weeklyPerformanceData"];
+  isExpanded?: boolean;
 }) => {
   const { width: windowWidth } = useWindowDimensions();
   const { theme, systemTheme } = useTheme();
@@ -120,7 +122,7 @@ const WeeklyPerformanceChart = ({
 
   return (
     <div className="px-4 pt-8 pb-4">
-      <div className="w-full h-[17rem]">
+      <div className={`w-full ${isExpanded ? "h-[21rem]" : "h-[17rem]"}`}>
         <ResponsiveContainer
           width="100%"
           height="100%"
@@ -322,7 +324,10 @@ export const WeeklyPerformance = ({
     >
       <div className="flex-1 flex flex-col">
         {/* Weekly Performance Chart Section */}
-        <WeeklyPerformanceChart data={weeklyPerformanceData} />
+        <WeeklyPerformanceChart
+          data={weeklyPerformanceData}
+          isExpanded={!weeklyActivities || weeklyActivities.length === 0}
+        />
 
         {/* Activity Section */}
         {weeklyActivities && weeklyActivities.length > 0 && (

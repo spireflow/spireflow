@@ -78,7 +78,7 @@ const LayoutPreview = ({ type }: { type: "three-cards" | "four-cards" }) => {
 
         {/* Sidebar - full height on right (same width as four-cards) */}
         <rect
-          x="80"
+          x="74"
           y="4"
           width="35"
           height="72"
@@ -302,6 +302,8 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
   const setChartAnimationsEnabled = useAppStore(
     (state) => state.setChartAnimationsEnabled
   );
+  const fixedNavbar = useAppStore((state) => state.fixedNavbar);
+  const setFixedNavbar = useAppStore((state) => state.setFixedNavbar);
   const [open, setOpen] = useState(false);
 
   return (
@@ -533,7 +535,7 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
             </div>
 
             {/* Chart Animations Section */}
-            <div className="px-6 py-5">
+            <div className="px-6 py-5 border-b border-settingsDrawerDivider">
               <div className="flex items-center justify-between">
                 <Label className="text-[0.9rem] font-medium tracking-wide text-primaryText">
                   {t("chartAnimations")}
@@ -541,6 +543,19 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
                 <Switch
                   checked={chartAnimationsEnabled}
                   onCheckedChange={setChartAnimationsEnabled}
+                />
+              </div>
+            </div>
+
+            {/* Fixed Navbar Section - desktop only */}
+            <div className="hidden xl:block px-6 py-5">
+              <div className="flex items-center justify-between">
+                <Label className="text-[0.9rem] font-medium tracking-wide text-primaryText">
+                  {t("fixedNavbar")}
+                </Label>
+                <Switch
+                  checked={fixedNavbar}
+                  onCheckedChange={setFixedNavbar}
                 />
               </div>
             </div>

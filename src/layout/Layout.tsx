@@ -108,7 +108,7 @@ export const Layout = ({ children }: LayoutProps) => {
           </>
         )}
         <div className="flex flex-col w-full xl:max-w-[82%] 1xl:max-w-[82%] 2xl:max-w-[83vw] 3xl:max-w-[82vw] 5xl:max-w-[102rem] mx-auto relative">
-          <div className="w-full flex justify-center max-w-full  px-0 md:px-0  xl:pl-3 xl:pr-2 2xl:px-4">
+          <div className="w-full flex justify-center max-w-full px-0 md:px-0 xl:pl-3 xl:pr-2 2xl:px-4">
             {children}
           </div>
         </div>

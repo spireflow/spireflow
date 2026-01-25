@@ -12,7 +12,6 @@ import {
 } from "../../common/shadcn/tooltip";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
-import { useAppStore } from "../../../store/appStore";
 
 export const ThreeSmallCards = ({
   threeSmallCardsData,
@@ -23,13 +22,8 @@ export const ThreeSmallCards = ({
   const is2XL = useMediaQuery("(min-width: 1750px)");
   const isMobile = useMediaQuery("(max-width: 479px)");
   const { shouldAnimate, animationBegin } = useChartAnimation("homepage");
-  const chartAnimationsEnabled = useAppStore(
-    (state) => state.chartAnimationsEnabled
-  );
 
-  const hoverScaleClass = chartAnimationsEnabled
-    ? "transition-transform duration-200 group-hover:scale-110"
-    : "";
+  const hoverScaleClass = "transition-transform duration-200 group-hover:scale-110";
 
   const translations = {
     Sales: t("sales"),

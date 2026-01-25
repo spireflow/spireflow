@@ -661,6 +661,7 @@
     "sidebarMode": "Sidebar Mode",
     "expanded": "Expanded",
     "collapsed": "Collapsed",
+    "fixedNavbar": "Fixed navbar",
     "githubRepository": "GitHub Repository"
   },
   "charts": {

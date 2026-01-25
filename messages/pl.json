@@ -660,6 +660,7 @@
     "sidebarMode": "Tryb panelu bocznego",
     "expanded": "Rozwinięty",
     "collapsed": "Zwinięty",
+    "fixedNavbar": "Przypięty navbar",
     "githubRepository": "Repozytorium GitHub"
   },
   "charts": {

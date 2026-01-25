@@ -48,9 +48,12 @@ export const useChartAnimation = (
 
   const shouldAnimate = chartAnimationsEnabled && wasFirstVisit.current;
 
+  const MIN_ANIMATION_BEGIN_MS = 100;
   const earlyStartMs = options?.earlyStartMs ?? 0;
   const baseDelay = isInitialLoad ? CHART_ANIMATION_DELAY_MS : 0;
-  const animationBegin = Math.max(0, baseDelay - earlyStartMs);
+  const maxEarlyStart = baseDelay * 0.8;
+  const clampedEarlyStart = Math.min(earlyStartMs, maxEarlyStart);
+  const animationBegin = Math.max(MIN_ANIMATION_BEGIN_MS, baseDelay - clampedEarlyStart);
 
   return { shouldAnimate, animationBegin };
 };

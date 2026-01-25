@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { LoginModal } from "../../components/auth/LoginModal";
 import { SignUpModal } from "../../components/auth/SignUpModal";
@@ -24,11 +24,27 @@ export const Navbar = () => {
   const t = useTranslations("navbar");
   const setIsLoggingOut = useAppStore((state) => state.setIsLoggingOut);
   const setIsLoggingIn = useAppStore((state) => state.setIsLoggingIn);
+  const fixedNavbar = useAppStore((state) => state.fixedNavbar);
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsLoggingOut(false);
     setIsLoggingIn(false);
   }, [setIsLoggingOut, setIsLoggingIn]);
+
+  useEffect(() => {
+    if (fixedNavbar || typeof window === "undefined") return;
+
+    const isDesktop = () => window.innerWidth >= 1280;
+
+    const handleScroll = () => {
+      if (!navbarRef.current || !isDesktop()) return;
+      navbarRef.current.style.transform = `translateY(-${window.scrollY}px)`;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [fixedNavbar]);
 
   const {
     theme,
@@ -70,19 +86,18 @@ export const Navbar = () => {
   return (
     <>
       <div
-        className={`w-screen flex items-center z-30  fixed h-[4.5rem] bg-primaryBg 3xl:h-20  w-full border-b border-solid border-mainBorder `}
+        ref={navbarRef}
+        className="w-screen flex items-center z-30 fixed h-[4.5rem] bg-primaryBg 3xl:h-20 border-b border-solid border-mainBorder"
+        style={{ willChange: fixedNavbar ? "auto" : "transform" }}
       >
-        {/* Placeholder for maintaining consistent spacing with page wrapper  */}
+        {/* Placeholder for maintaining consistent spacing with page wrapper */}
         <div
           className={`hidden xl:block xl:w-[210px] 1xl:min-w-[220px] 3xl:min-w-[270px] h-[3rem] transition-all duration-200 ease-in-out ${
             !isSideMenuOpen && "xl:!max-w-[3rem] !w-[3rem] xl:!min-w-[4.5rem]"
-          }
-          `}
+          }`}
         ></div>
         <div
-          className={`px-6 pr-4 md:px-6  xl:pl-3 2xl:px-4 z-40 w-full flex justify-between xl:mx-auto items-center gap-4 xl:gap-7
-         xl:max-w-[82%] 1xl:max-w-[82%] 2xl:max-w-[83vw] 3xl:max-w-[82vw] 5xl:max-w-[102rem]
-          `}
+          className={`px-6 pr-4 md:px-6 xl:pl-3 2xl:px-4 z-40 w-full flex justify-between xl:mx-auto items-center gap-4 xl:gap-7 xl:max-w-[82%] 1xl:max-w-[82%] 2xl:max-w-[83vw] 3xl:max-w-[82vw] 5xl:max-w-[102rem]`}
         >
           <div className="flex items-center gap-10">
             <div className="flex xsm:pl-2  xl:hidden">

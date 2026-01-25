@@ -36,14 +36,18 @@
   --color-settingsIcon: rgb(145, 150, 155);
   --color-calendarIconHover: rgb(190, 195, 200);
   --color-settingsDrawerDivider: rgb(255, 255, 255, 0.06);
+  --color-fourCardIconGreen: rgb(110, 220, 190);
+  --color-fourCardIconBlue: rgb(130, 180, 240);
 
   /* Backgrounds */
   --color-primaryBg: rgb(31, 34, 38);
   --color-secondaryBg: rgb(25, 28, 32);
+  --color-authPageBg: rgb(21, 23, 26);
   --color-assetPerformanceBarBg: rgb(25, 28, 32);
   --color-tabsBg: rgb(28, 31, 35);
   --color-tabListBg: rgb(25, 28, 32);
   --color-tabActiveBg: rgb(35, 38, 42);
+  --color-tabActiveBgHover: rgb(45, 48, 52);
   --color-revenueTabActiveBg: rgb(35, 38, 42);
   --color-mainColor: rgb(61, 185, 133);
   --color-progressIndicator: rgb(61, 185, 133);
@@ -75,7 +79,7 @@
   --color-loginModalBg: rgb(30, 33, 36);
   --color-navbarButtonBg: rgb(255, 255, 255, 0);
   --color-navbarButtonBgHover: rgb(255, 255, 255, 0.05);
-  --color-navbarIconButtonBgHover: rgb(255, 255, 255, 0.12);
+  --color-navbarIconButtonBgHover: rgb(255, 255, 255, 0.08);
   --color-galleryBg: rgb(0, 0, 0, 0.5);
   --color-galleryThumbnailBg: rgb(255, 255, 255, 0.01);
   --color-datepickerHeaderBg: rgb(41, 43, 48);
@@ -114,6 +118,8 @@
   --color-notificationItemBg: rgb(36, 39, 43);
   --color-notificationItemBgHover: rgb(42, 46, 51);
   --color-notificationHeaderBg: rgb(31, 34, 38);
+  --color-fourCardIconBg: rgb(255, 255, 255, 0.04);
+  --color-fourCardIconBgHover: rgb(255, 255, 255, 0.02);
 
   /* Borders */
   --color-mainBorder: rgb(255, 255, 255, 0.05);

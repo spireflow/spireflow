@@ -3,10 +3,21 @@ import { useTranslations } from "next-intl";
 import { useTranslateData } from "../../../hooks/useTranslateData";
 import { FourSmallCardsProps } from "./types";
 import { Card } from "../../common/Card";
-import { Badge } from "../../common/shadcn/badge";
+import { DollarIcon } from "../../../assets/icons/DollarIcon";
+import { AnalyticsIcon } from "../../../assets/icons/AnalyticsIcon";
+import { CustomersIcon } from "../../../assets/icons/CustomersIcon";
+import { EcommerceIcon } from "../../../assets/icons/EcommerceIcon";
+
+const iconConfig = [
+  { Icon: EcommerceIcon, iconClass: "text-fourCardIconGreen" },
+  { Icon: DollarIcon, iconClass: "text-fourCardIconBlue" },
+  { Icon: AnalyticsIcon, iconClass: "text-fourCardIconGreen" },
+  { Icon: CustomersIcon, iconClass: "text-fourCardIconBlue" },
+];
 
 export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
   const t = useTranslations("homepage.fourSmallCards");
+
   const translations = {
     Sales: t("sales"),
     Profit: t("profit"),
@@ -19,38 +30,44 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
   };
 
   const translatedData = useTranslateData(fourSmallCardsData, translations);
-
   const cardIds = ["salesCard", "profitCard", "trafficCard", "customersCard"];
 
   return (
     <>
       {translatedData.map((item, index) => {
+        const { Icon, iconClass } = iconConfig[index];
         return (
           <Card
             key={`${item.title}-${index}`}
             id={cardIds[index]}
-            className="h-46 sm-24 lg:h-28 1xl:h-28 pt-4 1xl:pt-5 3xl:p-6 3xl:h-32 pr-[0.8rem] md:!pr-[0.5rem] lg:!pr-[0.8rem] xl:!pr-[0.1rem] 2xl:!pr-[1.2rem] pl-5 2xl:pl-7"
+            className="lg:h-28 1xl:h-28 3xl:h-32 px-5 py-4 2xl:px-6"
           >
-            <div className="flex flex-col">
-              <div className="text-primaryText font-medium text-md sm:text-md lg:text-xs 1xl:text-sm tracking-tight mb-1">
-                {item.title}
+            <div className="flex items-center gap-6 h-full">
+              <div
+                className="flex items-center justify-center w-14 h-14 lg:w-12 lg:h-12 1xl:w-14 1xl:h-14 3xl:w-16 3xl:h-16 rounded-full border border-mainBorder transition-colors hover:bg-fourCardIconBgHover"
+              >
+                <div className={`${iconClass} stroke-current [&_svg]:w-6 [&_svg]:h-6 lg:[&_svg]:w-5 lg:[&_svg]:h-5 1xl:[&_svg]:w-6 1xl:[&_svg]:h-6 3xl:[&_svg]:w-7 3xl:[&_svg]:h-7`}>
+                  <Icon />
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <div className="text-[1.75rem] lg:text-[2rem] 1xl:text-[2.25rem] 3xl:text-4xl font-semibold text-primaryText">
+              <div className="flex flex-col justify-center">
+                <div className="text-secondaryText text-sm lg:text-xs 1xl:text-sm tracking-tight">
+                  {item.title}
+                </div>
+                <div className="text-[1.75rem] lg:text-[1.4rem] 1xl:text-[1.6rem] 3xl:text-[1.85rem] font-semibold text-primaryText">
                   {item.metric}
                 </div>
-                <Badge
-                  variant={item.increased ? "default" : "destructive"}
-                  className={
-                    item.increased ? "bg-green-600 hover:bg-green-600/80" : ""
-                  }
-                >
-                  {item.increased ? "+" : "-"}
-                  {item.changeValue}%
-                </Badge>
-              </div>
-              <div className="text-xs text-gray-400 mt-1">
-                {item.changeText}
+                <div className="flex items-center gap-1.5 text-xs text-secondaryText mt-0.5">
+                  <span>{item.changeText}</span>
+                  <span
+                    className={
+                      item.increased ? "text-green-500/70" : "text-red-500/70"
+                    }
+                  >
+                    {item.increased ? "+" : "-"}
+                    {item.changeValue}%
+                  </span>
+                </div>
               </div>
             </div>
           </Card>

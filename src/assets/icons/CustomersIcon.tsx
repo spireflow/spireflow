@@ -4,6 +4,7 @@ export const CustomersIcon = () => (
     viewBox="0 0 512 512"
     width="20"
     height="20"
+    stroke="currentColor"
   >
     <title>People</title>
     <path

@@ -188,13 +188,13 @@ export const RevenueOverTime = ({
         <TabsList className="bg-tabsBg">
           <TabsTrigger
             value="monthly"
-            className="text-xs data-[state=active]:bg-revenueTabActiveBg"
+            className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-tabActiveBgHover"
           >
             {t("monthly")}
           </TabsTrigger>
           <TabsTrigger
             value="quarterly"
-            className="text-xs data-[state=active]:bg-revenueTabActiveBg"
+            className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-tabActiveBgHover"
           >
             {t("quarterly")}
           </TabsTrigger>
@@ -284,7 +284,7 @@ export const RevenueOverTime = ({
               fill="url(#colorWebsite)"
               isAnimationActive={shouldAnimate}
               animationBegin={animationBegin}
-              animationDuration={800}
+              animationDuration={500}
               animationEasing="ease-out"
             />
             <Area
@@ -297,7 +297,7 @@ export const RevenueOverTime = ({
               fill="url(#colorInStore)"
               isAnimationActive={shouldAnimate}
               animationBegin={animationBegin}
-              animationDuration={800}
+              animationDuration={500}
               animationEasing="ease-out"
             />
           </AreaChart>

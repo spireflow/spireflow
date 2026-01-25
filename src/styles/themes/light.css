@@ -36,14 +36,18 @@
   --color-settingsIcon: rgb(0, 0, 0, 0.55);
   --color-calendarIconHover: rgb(118, 167, 247);
   --color-settingsDrawerDivider: rgb(0, 0, 0, 0.08);
+  --color-fourCardIconGreen: rgb(35, 140, 110);
+  --color-fourCardIconBlue: rgb(60, 120, 180);
 
   /* Backgrounds */
   --color-primaryBg: white;
   --color-secondaryBg: rgb(247, 247, 247);
+  --color-authPageBg: rgb(21, 23, 26);
   --color-assetPerformanceBarBg: rgb(235, 235, 235);
   --color-tabsBg: rgb(250, 250, 250);
   --color-tabListBg: rgb(240, 240, 245);
   --color-tabActiveBg: rgb(230, 230, 235);
+  --color-tabActiveBgHover: rgb(200, 224, 250);
   --color-revenueTabActiveBg: rgb(208, 229, 251, 0.56);
   --color-mainColor: rgb(118, 167, 247);
   --color-progressIndicator: rgb(118, 167, 247);
@@ -115,6 +119,8 @@
   --color-settingsLayoutPreviewBg: rgb(0, 0, 0, 0.12);
   --color-settingsDrawerHeaderBg: rgb(247, 247, 247);
   --color-profileHeaderBg: rgb(124, 186, 223, 0.24);
+  --color-fourCardIconBg: rgb(0, 0, 0, 0.05);
+  --color-fourCardIconBgHover: rgb(0, 0, 0, 0.03);
 
   /* Borders */
   --color-mainBorder: rgb(0, 0, 0, 0.12);

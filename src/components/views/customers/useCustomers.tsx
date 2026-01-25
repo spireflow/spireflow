@@ -97,9 +97,12 @@ export const useCustomers = (customers: Customer[]) => {
     }
   }, [customers]);
 
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [searchQuery, filters]);
+
   const filteredData = useMemo(() => {
     let data = customersData;
-    setCurrentPage(0);
     if (searchQuery) {
       data = data?.filter((customer) =>
         Object.values(customer).some(

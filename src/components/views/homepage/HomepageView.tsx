@@ -17,7 +17,7 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
     <>
       {/* Four Cards Layout Only */}
       {homepageLayout === "four-cards" && (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4 mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {homepageData?.fourSmallCards && (
             <FourSmallCards fourSmallCardsData={homepageData.fourSmallCards} />
           )}

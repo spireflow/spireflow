@@ -25,6 +25,8 @@ interface AppStore {
   setSidebarDefaultState: (state: SidebarDefaultState) => void;
   chartAnimationsEnabled: boolean;
   setChartAnimationsEnabled: (enabled: boolean) => void;
+  fixedNavbar: boolean;
+  setFixedNavbar: (fixed: boolean) => void;
   isInitialLoad: boolean;
   setIsInitialLoad: (isInitialLoad: boolean) => void;
   shouldStartChartAnimations: boolean;
@@ -85,6 +87,8 @@ export const useAppStore = create<AppStore>()(
       chartAnimationsEnabled: false,
       setChartAnimationsEnabled: (chartAnimationsEnabled) =>
         set(() => ({ chartAnimationsEnabled })),
+      fixedNavbar: true,
+      setFixedNavbar: (fixedNavbar) => set(() => ({ fixedNavbar })),
       isInitialLoad: true,
       setIsInitialLoad: (isInitialLoad) => set(() => ({ isInitialLoad })),
       shouldStartChartAnimations: false,
@@ -103,6 +107,7 @@ export const useAppStore = create<AppStore>()(
         fontType: state.fontType,
         sidebarDefaultState: state.sidebarDefaultState,
         chartAnimationsEnabled: state.chartAnimationsEnabled,
+        fixedNavbar: state.fixedNavbar,
       }),
     }
   )
