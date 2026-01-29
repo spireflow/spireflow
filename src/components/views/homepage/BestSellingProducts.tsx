@@ -131,6 +131,7 @@ export const BestSellingProducts = ({
               left: windowWidth > 700 ? 20 : 5,
               bottom: 5,
             }}
+            tabIndex={-1}
           >
             <Legend
               verticalAlign="top"
@@ -158,7 +159,7 @@ export const BestSellingProducts = ({
             <Tooltip
               content={<BestSellingTooltip />}
               isAnimationActive={false}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
             />
             <Bar
               dataKey={t("profitFromLastWeek")}

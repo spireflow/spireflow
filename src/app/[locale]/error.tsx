@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { CenteredPageWrapper } from "../../components/common/CenteredPageWrapper";
 import { Button } from "../../components/common/shadcn/button";
 
@@ -10,6 +12,10 @@ const Error = ({
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
+  useEffect(() => {
+    console.error("Error caught by boundary:", error);
+  }, [error]);
+
   return (
     <CenteredPageWrapper>
       <div className="flex pr-4 mx-auto items-center justify-center w-3/5 h-full flex-col border-mainBorder pt-8 pb-12 rounded-xl">

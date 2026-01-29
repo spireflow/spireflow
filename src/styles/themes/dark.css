@@ -42,7 +42,7 @@
   /* Backgrounds */
   --color-primaryBg: rgb(31, 34, 38);
   --color-secondaryBg: rgb(25, 28, 32);
-  --color-authPageBg: rgb(21, 23, 26);
+  --color-authPageBg: rgb(18, 20, 21);
   --color-assetPerformanceBarBg: rgb(25, 28, 32);
   --color-tabsBg: rgb(28, 31, 35);
   --color-tabListBg: rgb(25, 28, 32);
@@ -127,6 +127,7 @@
   --color-outlinedButtonBorder: rgb(255, 255, 255, 0.11);
   --color-inputBorder: rgba(255, 255, 255, 0.11);
   --color-inputBorderHover: rgba(255, 255, 255, 0.2);
+  --color-inputBorderFocus: rgba(255, 255, 255, 0.35);
   --color-calendarBorder: rgb(255, 255, 255, 0.09);
   --color-cardBorder: rgb(255, 255, 255, 0.04);
   --color-themeToggleActiveBorder: rgb(255, 255, 255, 0.11);
@@ -140,4 +141,5 @@
   --color-navbarSearchInputBorderHover: rgb(255, 255, 255, 0.2);
   --color-tabLineActiveBorder: rgb(83, 133, 198);
   --color-settingsButtonBorder: rgb(0, 0, 0, 0.1);
+  --color-chartVerticalLine: rgb(255, 255, 255, 0.15);
 }

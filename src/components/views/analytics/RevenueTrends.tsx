@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslations } from "next-intl";
 import {
   ResponsiveContainer,
@@ -15,21 +14,21 @@ import { useTheme } from "next-themes";
 import { Card } from "../../common/Card";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import {
-  PerformanceCustomLegendProps,
-  PerformanceCustomXAxisTickProps,
-  PerformanceProps,
-  PerformanceTooltipProps,
+  RevenueTrendsCustomLegendProps,
+  RevenueTrendsCustomXAxisTickProps,
+  RevenueTrendsProps,
+  RevenueTrendsTooltipProps,
 } from "./types";
 import { useChartColors } from "../../../hooks/useChartColors";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
-const PerformanceTooltip = ({
+const RevenueTrendsTooltip = ({
   active,
   payload,
   label,
-}: PerformanceTooltipProps) => {
-  const t = useTranslations("analytics.performance");
+}: RevenueTrendsTooltipProps) => {
+  const t = useTranslations("analytics.revenueTrends");
 
   if (!active || !payload || !payload.length || !label) return null;
 
@@ -39,7 +38,7 @@ const PerformanceTooltip = ({
     <BaseTooltip title={translatedLabel}>
       {payload.map((entry, index) => (
         <p
-          key={`performance-tooltip-${index}`}
+          key={`revenue-trends-tooltip-${index}`}
           className="px-3 pb-1 text-primaryText flex items-center justify-between"
         >
           <span>
@@ -58,7 +57,7 @@ const PerformanceTooltip = ({
   );
 };
 
-const CustomLegend = ({ payload }: PerformanceCustomLegendProps) => {
+const CustomLegend = ({ payload }: RevenueTrendsCustomLegendProps) => {
   return (
     <div className="flex flex-row justify-end gap-8 text-white w-full mb-6">
       {payload?.map((entry, index) => (
@@ -78,8 +77,8 @@ const CustomXAxisTick = ({
   x,
   y,
   payload,
-}: PerformanceCustomXAxisTickProps) => {
-  const t = useTranslations("analytics.performance");
+}: RevenueTrendsCustomXAxisTickProps) => {
+  const t = useTranslations("analytics.revenueTrends");
 
   const originalMonth = payload?.value || "";
   const translatedMonth = t(originalMonth.toLowerCase());
@@ -98,8 +97,8 @@ const CustomXAxisTick = ({
   );
 };
 
-export const Performance = ({ performanceData }: PerformanceProps) => {
-  const t = useTranslations("analytics.performance");
+export const RevenueTrends = ({ revenueTrendsData }: RevenueTrendsProps) => {
+  const t = useTranslations("analytics.revenueTrends");
 
   const { theme } = useTheme();
 
@@ -117,10 +116,10 @@ export const Performance = ({ performanceData }: PerformanceProps) => {
   };
 
   const chartData =
-    windowWidth > 500 ? performanceData.slice(-9) : performanceData.slice(-4);
+    windowWidth > 500 ? revenueTrendsData.slice(-9) : revenueTrendsData.slice(-4);
 
   return (
-    <Card className="performanceCard" id="performance" title={t("title")}>
+    <Card className="revenueTrendsCard" id="revenueTrends" title={t("title")}>
       {/* <p className="text-sm hidden sm:block text-secondaryText">
           {t("subtitle")}
         </p> */}
@@ -139,6 +138,7 @@ export const Performance = ({ performanceData }: PerformanceProps) => {
               left: windowWidth > 500 ? 20 : 7,
               bottom: 5,
             }}
+            tabIndex={-1}
           >
             <CartesianGrid
               strokeDasharray="0"
@@ -156,9 +156,9 @@ export const Performance = ({ performanceData }: PerformanceProps) => {
               ]}
             />
             <Tooltip
-              content={<PerformanceTooltip />}
+              content={<RevenueTrendsTooltip />}
               isAnimationActive={false}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
             />
             <Legend
               verticalAlign="top"

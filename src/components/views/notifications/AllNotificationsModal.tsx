@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, RefObject } from "react";
 
 import { UpdateIcon } from "../../../assets/icons/UpdateIcon";
 import { UsersIcon } from "../../../assets/icons/UsersIcon";
@@ -21,6 +21,7 @@ interface AllNotificationsModalProps {
   closeModal: () => void;
   notifications: Notification[];
   onNotificationsUpdate?: (notifications: Notification[]) => void;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }
 
 type FilterType = "all" | "new" | "read";
@@ -29,6 +30,7 @@ export const AllNotificationsModal = ({
   closeModal,
   notifications,
   onNotificationsUpdate,
+  returnFocusRef,
 }: AllNotificationsModalProps) => {
   const [filter, setFilter] = useState<FilterType>("all");
   const [localNotifications, setLocalNotifications] =
@@ -77,7 +79,15 @@ export const AllNotificationsModal = ({
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent className="w-full max-w-full h-full md:h-auto md:w-[37.5rem] md:max-w-[37.5rem] bg-modalBg shadow-xl px-6 md:px-8 pt-16 md:pt-12 pb-6 flex flex-col md:rounded-2xl border-none">
+      <DialogContent
+        className="w-full max-w-full h-full md:h-auto md:w-[37.5rem] md:max-w-[37.5rem] bg-modalBg shadow-xl px-6 md:px-8 pt-16 md:pt-12 pb-6 flex flex-col md:rounded-2xl border-none"
+        onCloseAutoFocus={(e) => {
+          if (returnFocusRef?.current) {
+            e.preventDefault();
+            returnFocusRef.current.focus();
+          }
+        }}
+      >
         <DialogHeader className="sr-only">
           <DialogTitle>Notifications</DialogTitle>
         </DialogHeader>
@@ -134,12 +144,20 @@ export const AllNotificationsModal = ({
               filteredNotifications.map((notification) => (
                 <div
                   key={notification.id}
-                  className={`p-3 rounded-lg border transition-all cursor-pointer ${
+                  tabIndex={0}
+                  role="button"
+                  className={`p-3 rounded-lg border transition-all cursor-pointer focus-visible:-outline-offset-2 ${
                     notification.isNew
                       ? "bg-outlinedButtonBg border-mainBorder hover:bg-notificationItemBgHover"
                       : "bg-primaryBg border-mainBorder hover:bg-notificationItemBgHover opacity-75"
                   }`}
                   onClick={() => handleMarkAsRead(notification.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleMarkAsRead(notification.id);
+                    }
+                  }}
                 >
                   <div className="flex gap-3">
                     {/* Icon */}

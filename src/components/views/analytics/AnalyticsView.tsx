@@ -3,7 +3,7 @@
 import { AssetPerformance } from "./AssetPerformance";
 import { TodaySales } from "./TodaySales";
 import { TotalProfit } from "./TotalProfit";
-import { Performance } from "./Performance";
+import { RevenueTrends } from "./RevenueTrends";
 import { YearOverview } from "./YearOverview";
 import { AnalyticsViewProps } from "./types";
 import { MarketMetrics } from "./MarketMetrics";
@@ -37,8 +37,8 @@ export const AnalyticsView = ({ analyticsData }: AnalyticsViewProps) => {
             )}
         </div>
         <div className="w-full lg:w-2/3">
-          {analyticsData?.monthPerformance && (
-            <Performance performanceData={analyticsData.monthPerformance} />
+          {analyticsData?.revenueTrends && (
+            <RevenueTrends revenueTrendsData={analyticsData.revenueTrends} />
           )}
         </div>
       </div>

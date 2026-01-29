@@ -1,4 +1,5 @@
 import { EventApi } from "@fullcalendar/core";
+import { RefObject } from "react";
 
 export type CalendarEvent = {
   id: string;
@@ -36,4 +37,5 @@ export interface AddEventModalProps {
   handleConfirmClick: () => void;
   IconComponent?: React.ElementType;
   type?: "delete" | "default";
+  returnFocusRef?: RefObject<HTMLElement | null>;
 }

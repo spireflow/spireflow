@@ -132,7 +132,7 @@ export const PageWrapper = ({
       </Breadcrumb>
       <div className="w-[6rem] h-[2.4rem] relative">
         <button
-          className="-mt-[0.1rem] text-xs xsm:text-sm 3xl:text-base cursor-pointer flex rounded-md justify-center items-center gap-2 w-full h-full p-2 px-4 !outline-0 border border-mainBorder hover:border-mainBorderHover text-primaryText stroke-grayIcon fill-grayIcon"
+          className="-mt-[0.1rem] text-xs xsm:text-sm 3xl:text-base cursor-pointer flex rounded-md justify-center items-center gap-2 w-full h-full p-2 px-4 border border-mainBorder hover:border-mainBorderHover text-primaryText stroke-grayIcon fill-grayIcon"
           onClick={handleExportToCSV}
           disabled={!dataForExport}
         >

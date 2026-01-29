@@ -12,14 +12,22 @@ import {
   DialogDescription,
 } from "../../components/common/shadcn/dialog";
 
-export const AboutModal = ({ closeModal }: AboutModalProps) => {
+export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
   const [isContributingModalOpen, setIsContributingModalOpen] = useState(false);
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent className="max-w-[90vw] sm:max-w-[38rem] pt-12 sm:pt-12">
+      <DialogContent
+        className="max-w-[90vw] sm:max-w-[38rem] pt-12 sm:pt-12"
+        onCloseAutoFocus={(e) => {
+          if (returnFocusRef?.current) {
+            e.preventDefault();
+            returnFocusRef.current.focus();
+          }
+        }}
+      >
         {!isContributingModalOpen ? (
-          <div className="w-full h-full max-h-[65vh] overflow-y-auto pr-4">
+          <div className="w-full h-full max-h-[65vh] overflow-y-auto pl-1 pr-4">
             <DialogHeader>
               <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
                 About
@@ -49,32 +57,32 @@ export const AboutModal = ({ closeModal }: AboutModalProps) => {
               </div>
             </DialogDescription>
             <div className="flex flex-row justify-start w-full mt-3 text-base gap-3 sm:gap-4 sm:h-12 mb-4">
-              <Link
-                href="https://github.com/matt765/spireflow"
-                className="text-primaryText flex-1 xsm:flex-initial xsm:w-auto"
-                target="_blank"
+              <Button
+                asChild
+                variant="outline"
+                className="flex-1 xsm:flex-initial xsm:w-auto h-full sm:!px-6 gap-2"
               >
-                <Button
-                  variant="outline"
-                  className="w-full h-full sm:!px-6 gap-2"
+                <Link
+                  href="https://github.com/matt765/spireflow"
+                  target="_blank"
                 >
                   <GithubIcon />
                   Front-end
-                </Button>
-              </Link>
-              <Link
-                href="https://github.com/matt765/spireflow-backend"
-                className="text-primaryText flex-1 xsm:flex-initial xsm:w-auto"
-                target="_blank"
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="flex-1 xsm:flex-initial xsm:w-auto h-full sm:!px-6 gap-2"
               >
-                <Button
-                  variant="outline"
-                  className="w-full h-full sm:!px-6 gap-2"
+                <Link
+                  href="https://github.com/matt765/spireflow-backend"
+                  target="_blank"
                 >
                   <GithubIcon />
                   Back-end
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
             <div className="text-primaryText text-base w-full text-left">
               <p className="text-left w-full mt-4 text-xl">Tech stack:</p>
@@ -107,7 +115,7 @@ export const AboutModal = ({ closeModal }: AboutModalProps) => {
             </div>
           </div>
         ) : (
-          <div className="w-full h-full max-h-[65vh] overflow-y-auto pr-4">
+          <div className="w-full h-full max-h-[65vh] overflow-y-auto pl-1 pr-4">
             <DialogHeader>
               <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
                 Contributing guide

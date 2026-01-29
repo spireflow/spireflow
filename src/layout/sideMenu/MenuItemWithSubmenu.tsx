@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, ReactElement } from "react";
+import { useState, useEffect, ReactElement, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
 
 import { useAppStore } from "../../store/appStore";
@@ -8,11 +8,6 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { Link } from "../../i18n/navigation";
 import { useIsFirstRender } from "../../hooks/useIsFirstRender";
 import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from "../../components/common/shadcn/tooltip";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -38,6 +33,7 @@ export const MenuItemWithSubmenu = ({
   submenuItems,
 }: MenuItemWithSubmenuProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [focusedSubmenuIndex, setFocusedSubmenuIndex] = useState(-1);
   const toggleMobileMenu = useAppStore((state) => state.toggleMobileMenu);
   const isSideMenuOpen = useAppStore((state) => state.isSideMenuOpen);
   const currentPathname = usePathname();
@@ -45,6 +41,8 @@ export const MenuItemWithSubmenu = ({
   const [activeSubmenuPath, setActiveSubmenuPath] = useState<string | null>(
     null
   );
+  const submenuRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const normalizedPathname = currentPathname?.endsWith("/")
@@ -82,15 +80,47 @@ export const MenuItemWithSubmenu = ({
     setIsExpanded(!isExpanded);
   };
 
+  const isCollapsed = !isSideMenuOpen && isDesktop;
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (isCollapsed) return;
+
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (!isExpanded) {
+          setIsExpanded(true);
+          setFocusedSubmenuIndex(0);
+          setTimeout(() => submenuRefs.current[0]?.focus(), 0);
+        } else {
+          setIsExpanded(false);
+          setFocusedSubmenuIndex(-1);
+        }
+      } else if (e.key === "ArrowDown" && isExpanded) {
+        e.preventDefault();
+        const nextIndex = Math.min(focusedSubmenuIndex + 1, submenuItems.length - 1);
+        setFocusedSubmenuIndex(nextIndex);
+        submenuRefs.current[nextIndex]?.focus();
+      } else if (e.key === "ArrowUp" && isExpanded) {
+        e.preventDefault();
+        const prevIndex = Math.max(focusedSubmenuIndex - 1, 0);
+        setFocusedSubmenuIndex(prevIndex);
+        submenuRefs.current[prevIndex]?.focus();
+      } else if (e.key === "Escape" && isExpanded) {
+        e.preventDefault();
+        setIsExpanded(false);
+        setFocusedSubmenuIndex(-1);
+      }
+    },
+    [isExpanded, focusedSubmenuIndex, submenuItems.length, isCollapsed]
+  );
+
   const isFirstRender = useIsFirstRender();
   if (isFirstRender) return null;
 
   const isAnySubmenuActive = activeSubmenuPath !== null;
-  const isCollapsed = !isSideMenuOpen && isDesktop;
 
-  // When collapsed, link to first submenu item
-  const collapsedLinkPath = submenuItems[0]?.path || "/";
-
+  
   const sharedClassName = `flex relative rounded-[6px] items-center py-[0.5rem] 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-[1px] 1xl:mb-1 3xl:mb-2 cursor-pointer transition-all duration-200 ${
     isCollapsed ? "ml-[0.75rem] mr-[0.85rem] pl-[0.6rem]" : "w-full pl-4 pr-2"
   } ${
@@ -113,7 +143,12 @@ export const MenuItemWithSubmenu = ({
 
   const mainContent = (
     <div
+      ref={triggerRef}
       onClick={!isCollapsed ? handleToggle : undefined}
+      onKeyDown={!isCollapsed ? handleKeyDown : undefined}
+      tabIndex={0}
+      role={!isCollapsed ? "button" : undefined}
+      aria-expanded={!isCollapsed ? isExpanded : undefined}
       className={sharedClassName}
     >
       {iconContent}
@@ -145,7 +180,7 @@ export const MenuItemWithSubmenu = ({
           <div>{mainContent}</div>
         </DropdownMenuTrigger>
         {isCollapsed && (
-          <DropdownMenuContent side="right" align="start" sideOffset={-4} className="min-w-[140px]">
+          <DropdownMenuContent side="right" align="start" sideOffset={-4} className="min-w-[140px]" onCloseAutoFocus={() => triggerRef.current?.focus()}>
             {submenuItems.map((item) => (
               <DropdownMenuItem key={item.path} asChild>
                 <Link
@@ -165,9 +200,9 @@ export const MenuItemWithSubmenu = ({
             <div className="ml-[1.6rem] relative">
               <div
                 className="absolute left-0 top-0 w-[2px] bg-cardBorder"
-                style={{ height: "calc(100% - 1.3rem)" }}
+                style={{ height: "calc(100% - 0.8rem)" }}
               ></div>
-              {submenuItems.map((item) => {
+              {submenuItems.map((item, index) => {
                 const normalizedPathname = currentPathname?.endsWith("/")
                   ? currentPathname.slice(0, -1)
                   : currentPathname;
@@ -184,16 +219,16 @@ export const MenuItemWithSubmenu = ({
                     key={item.path}
                     href={item.path}
                     target={item.newTab ? "_blank" : undefined}
+                    ref={(el) => { submenuRefs.current[index] = el; }}
+                    className="block mb-[1px] 1xl:mb-1 3xl:mb-2 -ml-[1.6rem] w-[calc(100%+1.6rem)] rounded-md"
                   >
                     <div
                       onClick={handleMenuItemClick}
-                      className={`
-                    flex rounded-md items-center py-[0.4rem] 1xl:py-[0.45rem] 3xl:py-[0.6rem] pl-[3.2rem] -ml-[1.6rem] mb-[1px] 1xl:mb-1 3xl:mb-2 w-[calc(100%+1.6rem)] pr-2 transition ${
+                      className={`flex rounded-md items-center py-[0.4rem] 1xl:py-[0.45rem] 3xl:py-[0.6rem] pl-[3.2rem] w-full pr-2 transition ${
                         isActive
                           ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover"
                           : "bg-navItemBg hover:bg-navItemBgHover"
-                      }
-                  `}
+                      }`}
                     >
                       <div
                         className={`text-xs xl:text-[11px] 3xl:text-[0.82rem] font-medium tracking-wide ${

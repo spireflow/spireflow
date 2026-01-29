@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import {
   Tooltip,
@@ -27,6 +27,8 @@ export const NotificationsButton = ({
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isAllNotificationsModalOpen, setIsAllNotificationsModalOpen] =
     useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const notificationsBtnRef = useRef<HTMLButtonElement>(null);
 
   // Load notifications - always use fresh data on page load, ignore localStorage
   useEffect(() => {
@@ -70,25 +72,61 @@ export const NotificationsButton = ({
     userDropdown.isOpen ||
     isAllNotificationsModalOpen;
 
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!notificationsDropdown.isOpen) return;
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev < notifications.length - 1 ? prev + 1 : prev
+        );
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+      } else if (e.key === "Enter" && highlightedIndex >= 0) {
+        e.preventDefault();
+        const notification = notifications[highlightedIndex];
+        const updatedNotifications = notifications.map((n) =>
+          n.id === notification.id ? { ...n, isNew: false } : n
+        );
+        handleNotificationsUpdate(updatedNotifications);
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        notificationsDropdown.close();
+        setHighlightedIndex(-1);
+        notificationsBtnRef.current?.focus();
+      }
+    },
+    [notificationsDropdown, notifications, highlightedIndex]
+  );
+
+  const handleCloseModal = useCallback(() => {
+    setIsAllNotificationsModalOpen(false);
+  }, []);
+
   return (
     <div className="relative" ref={notificationsDropdown.ref}>
       <Tooltip delayDuration={200}>
         <TooltipTrigger asChild>
           <div className="h-10 w-10">
             <button
+              ref={notificationsBtnRef}
               onClick={() => {
                 // On mobile (<xl), open modal directly
                 if (window.innerWidth < 1280) {
                   setIsAllNotificationsModalOpen(true);
                 } else {
                   notificationsDropdown.toggle();
+                  setHighlightedIndex(-1);
                 }
                 themeDropdown.close();
                 languageDropdown.close();
                 userDropdown.close();
                 searchClose();
               }}
-              className="relative text-base flex rounded-full justify-center items-center gap-2 w-full h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-navbarIconButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon"
+              onKeyDown={handleKeyDown}
+              className="relative text-base flex rounded-full justify-center items-center gap-2 w-full h-full border border-mainBorder bg-outlinedButtonBg hover:bg-navbarIconButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon"
               type="button"
               aria-label={t("notifications") || "Notifications"}
             >
@@ -126,10 +164,14 @@ export const NotificationsButton = ({
 
           {/* Notifications list */}
           <div className="max-h-[400px] overflow-y-auto">
-            {notifications.map((notification) => (
+            {notifications.map((notification, index) => (
               <div
                 key={notification.id}
-                className="px-5 py-3 hover:bg-notificationItemBgHover cursor-pointer border-b border-mainBorder transition-colors"
+                className={`px-5 py-3 cursor-pointer border-b border-mainBorder transition-colors ${
+                  index === highlightedIndex
+                    ? "bg-notificationItemBgHover"
+                    : "hover:bg-notificationItemBgHover"
+                }`}
                 onClick={() => {
                   // Mark as read
                   const updatedNotifications = notifications.map((n) =>
@@ -184,9 +226,10 @@ export const NotificationsButton = ({
       )}
       {isAllNotificationsModalOpen && (
         <AllNotificationsModal
-          closeModal={() => setIsAllNotificationsModalOpen(false)}
+          closeModal={handleCloseModal}
           notifications={notifications}
           onNotificationsUpdate={handleNotificationsUpdate}
+          returnFocusRef={notificationsBtnRef}
         />
       )}
     </div>

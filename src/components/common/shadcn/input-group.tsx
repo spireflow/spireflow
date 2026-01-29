@@ -73,7 +73,7 @@ const InputGroup = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "relative flex min-w-0 items-stretch rounded-md has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ringBorder has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-background has-[:disabled]:opacity-50",
+          "relative flex min-w-0 items-stretch rounded-md has-[:disabled]:opacity-50",
           className
         )}
         {...props}
@@ -250,12 +250,12 @@ InputGroupText.displayName = "InputGroupText";
  * Defines visual styles and heights using class-variance-authority.
  */
 const inputGroupInputVariants = cva(
-  "flex w-full rounded-md border text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-placeholderText focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 transition px-3",
+  "flex w-full rounded-md border text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-placeholderText focus-visible:!outline-none disabled:cursor-not-allowed disabled:opacity-50 transition px-3",
   {
     variants: {
       variant: {
-        default: "h-10 py-2 bg-inputBg hover:bg-inputBgHover border-inputBorder hover:border-inputBorderHover focus-visible:border-ringBorder",
-        navbarSearch: "h-[2.2rem] 1xl:h-[2.5rem] py-0 items-center bg-navbarSearchInputBg hover:bg-navbarSearchInputBgHover border-navbarSearchInputBorder hover:border-navbarSearchInputBorderHover focus-visible:border-ringBorder",
+        default: "h-10 py-2 bg-inputBg hover:bg-inputBgHover border-inputBorder hover:border-inputBorderHover focus:border-inputBorderFocus",
+        navbarSearch: "h-[2.2rem] 1xl:h-[2.5rem] py-0 items-center bg-navbarSearchInputBg hover:bg-navbarSearchInputBgHover border-navbarSearchInputBorder hover:border-navbarSearchInputBorderHover focus:border-inputBorderFocus",
       },
     },
     defaultVariants: {
@@ -337,7 +337,7 @@ const InputGroupTextarea = React.forwardRef<
   return (
     <textarea
       className={cn(
-        "flex min-h-[80px] w-full rounded-md border border-inputBorder bg-inputBg px-3 py-2 text-sm ring-offset-background placeholder:text-placeholderText focus-visible:outline-none focus-visible:border-ringBorder disabled:cursor-not-allowed disabled:opacity-50",
+        "flex min-h-[80px] w-full rounded-md border border-inputBorder bg-inputBg px-3 py-2 text-sm transition placeholder:text-placeholderText hover:bg-inputBgHover hover:border-inputBorderHover focus:border-inputBorderFocus focus-visible:!outline-none disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       ref={ref}

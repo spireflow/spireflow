@@ -138,6 +138,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                   left: windowWidth > 700 ? 20 : 5,
                   bottom: 5,
                 }}
+                tabIndex={-1}
               >
                 <CartesianGrid
                   strokeDasharray="3 3"
@@ -157,7 +158,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 />
                 <Tooltip
                   content={<TodaySalesTooltip />}
-                  cursor={{ fill: "rgba(255,255,255,0.05)" }}
+                  cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
                   isAnimationActive={false}
                 />
                 <Legend
@@ -206,6 +207,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                   left: windowWidth > 700 ? 20 : 5,
                   bottom: 5,
                 }}
+                tabIndex={-1}
               >
                 <CartesianGrid
                   strokeDasharray="3 3"
@@ -225,7 +227,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 />
                 <Tooltip
                   content={<TodaySalesTooltip />}
-                  cursor={{ fill: "rgba(255,255,255,0.05)" }}
+                  cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
                   isAnimationActive={false}
                 />
                 <Legend

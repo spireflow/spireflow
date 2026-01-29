@@ -32,8 +32,8 @@ export const useProducts = (products: Product[]) => {
     try {
       await navigator.clipboard.writeText(text);
       showTooltip();
-    } catch (err) {
-      console.error("Failed to copy: ", err);
+    } catch (err: unknown) {
+      console.error("Failed to copy:", err);
     }
   };
 

@@ -53,7 +53,7 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
   return (
     <Tooltip delayDuration={200}>
       <TooltipTrigger asChild>
-        <Link href={path}>
+        <Link href={path} className="block rounded-[6px]">
           <div
             onClick={handleMenuItemClick}
             className={`flex relative rounded-[6px] items-center py-[0.5rem] 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-[1px] 1xl:mb-1 3xl:mb-2 transition-all duration-200 ${

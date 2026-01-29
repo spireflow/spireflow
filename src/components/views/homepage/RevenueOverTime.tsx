@@ -12,12 +12,6 @@ import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "../../common/shadcn/tabs";
 
 import { RevenueOverTimeProps, RevenueOverTimeTooltipProps } from "./types";
 import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
@@ -178,28 +172,30 @@ export const RevenueOverTime = ({
           {t("subtitle")}
         </span>
       </div>
-      <Tabs
-        value={timeRange}
-        onValueChange={(value) =>
-          setTimeRange(value as "monthly" | "quarterly")
-        }
-        className="hidden xsm:block"
-      >
-        <TabsList className="bg-tabsBg">
-          <TabsTrigger
-            value="monthly"
-            className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-tabActiveBgHover"
-          >
-            {t("monthly")}
-          </TabsTrigger>
-          <TabsTrigger
-            value="quarterly"
-            className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-tabActiveBgHover"
-          >
-            {t("quarterly")}
-          </TabsTrigger>
-        </TabsList>
-      </Tabs>
+      <div className="hidden xsm:flex h-10 items-center rounded-md bg-tabsBg px-1">
+        <button
+          type="button"
+          onClick={() => setTimeRange("monthly")}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+            timeRange === "monthly"
+              ? "bg-revenueTabActiveBg text-primaryText hover:bg-tabActiveBgHover"
+              : "text-secondaryText"
+          }`}
+        >
+          {t("monthly")}
+        </button>
+        <button
+          type="button"
+          onClick={() => setTimeRange("quarterly")}
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+            timeRange === "quarterly"
+              ? "bg-revenueTabActiveBg text-primaryText hover:bg-tabActiveBgHover"
+              : "text-secondaryText"
+          }`}
+        >
+          {t("quarterly")}
+        </button>
+      </div>
     </div>
   );
 
@@ -226,6 +222,7 @@ export const RevenueOverTime = ({
               left: windowWidth > 700 ? 20 : 5,
               bottom: 5,
             }}
+            tabIndex={-1}
           >
             <defs>
               <linearGradient id="colorWebsite" x1="0" y1="0" x2="0" y2="1">
@@ -272,7 +269,7 @@ export const RevenueOverTime = ({
             <Tooltip
               content={<RevenueOverTimeTooltip />}
               isAnimationActive={false}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
             />
             <Area
               type="linear"

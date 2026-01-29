@@ -2,7 +2,7 @@
   "homepage": {
     "revenueOverTime": {
       "title": "Revenue over time",
-      "subtitle": "Track revenue changes over time",
+      "subtitle": "Historical performance",
       "monthly": "Monthly",
       "quarterly": "Quarterly",
       "websiteSales": "Website sales",
@@ -280,8 +280,8 @@
       "dec": "Dec",
       "sales": "Sales"
     },
-    "performance": {
-      "title": "Performance",
+    "revenueTrends": {
+      "title": "Revenue trends",
       "subtitle": "Comparison between sales and profit",
       "sales": "Sales",
       "profit": "Profit",
@@ -548,7 +548,7 @@
         "assetPerformance": "Asset performance",
         "todaysSales": "Today's sales",
         "totalProfit": "Total profit",
-        "performance": "Performance",
+        "revenueTrends": "Revenue trends",
         "yearOverview": "Year overview",
         "marketMetrics": "Market metrics",
         "revenueDistribution": "Revenue distribution",

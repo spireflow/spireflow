@@ -153,6 +153,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
                 left: windowWidth > 500 ? 20 : 7,
                 bottom: 5,
               }}
+              tabIndex={-1}
             >
               <defs>
                 <linearGradient id="colorPhones" x1="0" y1="0" x2="0" y2="1">
@@ -202,7 +203,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
               />
               <Tooltip
                 content={<YearOverviewTooltip />}
-                cursor={{ fill: "rgba(255,255,255,0.05)" }}
+                cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
                 isAnimationActive={false}
               />
               <Legend

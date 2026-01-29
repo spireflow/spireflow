@@ -33,12 +33,20 @@ export const ProductsView = ({ products }: { products: Product[] }) => {
       {category.sales.map((product: Product) => (
         <div
           key={product.name}
+          role="button"
+          tabIndex={0}
           onClick={() => handleProductClick(product)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleProductClick(product);
+            }
+          }}
           className={`text-md lg:text-sm 3xl:text-[16px] p-2 pl-6 cursor-pointer rounded-md ${
             activeProduct.name === product.name
-              ? "bg-activeProductBg text-primaryText"
-              : "hover:bg-activeProductBg text-primaryText"
-          }`}
+              ? "bg-activeProductBg"
+              : "hover:bg-activeProductBg focus-visible:bg-activeProductBg"
+          } text-primaryText`}
         >
           {product.name}
         </div>

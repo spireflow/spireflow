@@ -88,6 +88,10 @@ export const SideMenu = () => {
         <MenuItem title={t("charts")} icon={<DonutIcon />} path="/charts" />
         <div
           onClick={toggleSideMenu}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleSideMenu(); } }}
+          tabIndex={0}
+          role="button"
+          aria-label={isSideMenuOpen ? "Collapse menu" : "Expand menu"}
           className="-mr-3 1xl:-mr-4 border-mainBorder hover:border-mainBorderHover border absolute h-6 w-6 1xl:w-7 1xl:h-7 bg-primaryBg rounded-full top-6 right-0 text-grayIcon text-secondaryText flex justify-center items-center cursor-pointer"
         >
           {isSideMenuOpen ? <ArrowLeftIcon /> : <ArrowRightIcon />}

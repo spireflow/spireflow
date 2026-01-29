@@ -27,7 +27,7 @@ export const useNotificationsData = () => {
 
         const data = await response.json();
         setNotifications(data as Notification[]);
-      } catch (err) {
+      } catch (err: unknown) {
         const errorMessage =
           err instanceof Error ? err.message : "Unknown error";
         setError(errorMessage);

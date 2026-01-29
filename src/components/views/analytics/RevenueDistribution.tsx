@@ -106,6 +106,7 @@ export const RevenueDistribution = ({
               left: windowWidth > 400 ? 40 : 30,
               bottom: 5,
             }}
+            tabIndex={-1}
           >
             <CartesianGrid
               strokeDasharray="0"
@@ -126,7 +127,7 @@ export const RevenueDistribution = ({
             />
             <Tooltip
               content={<RevenueDistributionTooltip />}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
               isAnimationActive={false}
             />
             <Bar

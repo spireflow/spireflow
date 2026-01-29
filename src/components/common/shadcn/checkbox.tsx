@@ -27,13 +27,25 @@ import { cn } from "../../../lib/utils";
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
+>(({ className, onKeyDown, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}
     className={cn(
-      "peer h-4 w-4 shrink-0 rounded-sm border border-checkboxBorder ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ringBorder focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50 data-[state=checked]:bg-containedButtonBg data-[state=checked]:text-white data-[state=checked]:border-containedButtonBg",
+      "peer h-4 w-4 shrink-0 rounded-sm border border-checkboxBorder disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50 data-[state=checked]:bg-containedButtonBg data-[state=checked]:text-white data-[state=checked]:border-containedButtonBg",
       className
     )}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" && !props.disabled) {
+        e.preventDefault();
+        const mouseEvent = new MouseEvent("click", {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+        e.currentTarget.dispatchEvent(mouseEvent);
+      }
+      onKeyDown?.(e);
+    }}
     {...props}
   >
     <CheckboxPrimitive.Indicator

@@ -42,6 +42,7 @@ export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
     eventEnd,
     setEventEnd,
     addEventError,
+    lastFocusedElementRef,
   } = useCalendar({ calendarEvents: translatedData });
 
   const locale = useLocale();
@@ -93,6 +94,7 @@ export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
           onStartTimeChange={setEventStart}
           onEndTimeChange={setEventEnd}
           handleConfirmClick={handleAddEventModalConfirm}
+          returnFocusRef={lastFocusedElementRef}
         />
       )}
     </div>

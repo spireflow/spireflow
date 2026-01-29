@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 
 import {
@@ -51,6 +51,78 @@ export const UserButton = ({
     languageDropdown.isOpen ||
     notificationsDropdown.isOpen;
 
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const getMenuItems = useCallback((): HTMLElement[] => {
+    if (!menuRef.current) return [];
+    return Array.from(
+      menuRef.current.querySelectorAll<HTMLElement>('[role="menuitem"]')
+    ).filter((el) => el.offsetParent !== null);
+  }, []);
+
+  const focusItem = useCallback((index: number) => {
+    const items = getMenuItems();
+    if (items.length === 0) return;
+    const newIndex = ((index % items.length) + items.length) % items.length;
+    items[newIndex]?.focus();
+  }, [getMenuItems]);
+
+  const handleTriggerKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Escape" && userDropdown.isOpen) {
+        e.preventDefault();
+        userDropdown.close();
+        userIconBtnRef?.current?.focus();
+      }
+      if ((e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") && !userDropdown.isOpen) {
+        e.preventDefault();
+        userDropdown.toggle();
+        themeDropdown.close();
+        languageDropdown.close();
+        notificationsDropdown.close();
+        searchClose();
+        setTimeout(() => focusItem(0), 0);
+      }
+    },
+    [userDropdown, themeDropdown, languageDropdown, notificationsDropdown, searchClose, focusItem, userIconBtnRef]
+  );
+
+  const handleMenuKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      const items = getMenuItems();
+      const currentIndex = items.findIndex(
+        (item) => item === document.activeElement
+      );
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          focusItem(currentIndex + 1);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          focusItem(currentIndex - 1);
+          break;
+        case "Home":
+          e.preventDefault();
+          focusItem(0);
+          break;
+        case "End":
+          e.preventDefault();
+          focusItem(items.length - 1);
+          break;
+        case "Escape":
+          e.preventDefault();
+          userDropdown.close();
+          userIconBtnRef?.current?.focus();
+          break;
+        case "Tab":
+          userDropdown.close();
+          break;
+      }
+    },
+    [focusItem, getMenuItems, userDropdown, userIconBtnRef]
+  );
+
   return (
     <div className="relative ml-3 xl:ml-0" ref={userDropdown.ref}>
       <Tooltip delayDuration={200}>
@@ -66,13 +138,17 @@ export const UserButton = ({
                 notificationsDropdown.close();
                 searchClose();
               }}
-              className={`text-base flex justify-center items-center h-full !outline-0 border border-mainBorder bg-outlinedButtonBg hover:bg-navbarIconButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon ${
+              onKeyDown={handleTriggerKeyDown}
+              className={`text-base flex justify-center items-center h-full border border-mainBorder bg-outlinedButtonBg hover:bg-navbarIconButtonBgHover text-primaryText stroke-grayIcon fill-grayIcon ${
                 isLoggedIn && session?.username
                   ? "w-10 sm:w-auto sm:px-3 rounded-full sm:rounded-xl"
                   : "w-full rounded-full"
               }`}
               type="button"
               aria-label={t("openUserMenu")}
+              aria-haspopup="menu"
+              aria-expanded={userDropdown.isOpen}
+              aria-controls="user-dropdown-menu"
             >
               <UserIcon />
               {isLoggedIn && session?.username && (
@@ -100,7 +176,14 @@ export const UserButton = ({
         )}
       </Tooltip>
       {userDropdown.isOpen && (
-        <div className="absolute right-[0.5rem] text-sm 1xl:text-sm 2xl:text-base xl:right-0 top-10 xl:top-11 mt-2 w-[13.5rem] border border-inputBorder bg-dropdownBg text-primaryText placeholder-secondaryText rounded-md shadow">
+        <div
+          ref={menuRef}
+          id="user-dropdown-menu"
+          role="menu"
+          aria-label={t("openUserMenu")}
+          onKeyDown={handleMenuKeyDown}
+          className="absolute right-[0.5rem] text-sm 1xl:text-sm 2xl:text-base xl:right-0 top-10 xl:top-11 mt-2 w-[13.5rem] border border-inputBorder bg-dropdownBg text-primaryText placeholder-secondaryText rounded-md shadow"
+        >
           {/* Auth Section - Expandable */}
           <DropdownMenuItem
             icon={<UserIcon />}
@@ -109,36 +192,65 @@ export const UserButton = ({
             onToggle={() => setIsAuthMenuOpen(!isAuthMenuOpen)}
           >
             <div
-              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm"
+              tabIndex={-1}
+              role="menuitem"
+              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm focus-visible:bg-dropdownBgHover"
               onClick={() => {
                 userDropdown.close();
                 handleLoginButton();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  userDropdown.close();
+                  handleLoginButton();
+                }
               }}
             >
               <span>{t("signIn")}</span>
             </div>
             <div
-              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm"
+              tabIndex={-1}
+              role="menuitem"
+              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm focus-visible:bg-dropdownBgHover"
               onClick={() => {
                 userDropdown.close();
                 showSignUpModal();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  userDropdown.close();
+                  showSignUpModal();
+                }
               }}
             >
               <span>{t("register")}</span>
             </div>
             <div
-              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm"
+              tabIndex={-1}
+              role="menuitem"
+              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm focus-visible:bg-dropdownBgHover"
               onClick={() => {
                 userDropdown.close();
                 showLogoutModal();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  userDropdown.close();
+                  showLogoutModal();
+                }
               }}
             >
               <span>{t("signOut")}</span>
             </div>
             <NavigationLink
               href="/profile"
-              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm"
+              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm focus-visible:bg-dropdownBgHover"
               onClick={() => userDropdown.close()}
+              role="menuitem"
+              tabIndex={-1}
             >
               <span>{t("userProfile")}</span>
             </NavigationLink>
@@ -154,7 +266,9 @@ export const UserButton = ({
             <NavigationLink
               href="/"
               locale="en"
-              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm focus-visible:bg-dropdownBgHover"
+              role="menuitem"
+              tabIndex={-1}
             >
               <span>{t("english")}</span>
               {currentLanguage === "en" && (
@@ -166,7 +280,9 @@ export const UserButton = ({
             <NavigationLink
               href="/"
               locale="pl"
-              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
+              className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm focus-visible:bg-dropdownBgHover"
+              role="menuitem"
+              tabIndex={-1}
             >
               <span>{t("polish")}</span>
               {currentLanguage === "pl" && (
@@ -186,9 +302,15 @@ export const UserButton = ({
               onToggle={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
             >
               <div
-                className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
-                onClick={() => {
-                  selectTheme("light");
+                tabIndex={-1}
+                role="menuitem"
+                className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm focus-visible:bg-dropdownBgHover"
+                onClick={() => selectTheme("light")}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    selectTheme("light");
+                  }
                 }}
               >
                 <span>{t("light")}</span>
@@ -199,9 +321,15 @@ export const UserButton = ({
                 )}
               </div>
               <div
-                className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm"
-                onClick={() => {
-                  selectTheme("dark");
+                tabIndex={-1}
+                role="menuitem"
+                className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm focus-visible:bg-dropdownBgHover"
+                onClick={() => selectTheme("dark")}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    selectTheme("dark");
+                  }
                 }}
               >
                 <span>{t("dark")}</span>
@@ -219,40 +347,62 @@ export const UserButton = ({
 
           {/* Changelog */}
           <div
-            className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
+            tabIndex={-1}
+            role="menuitem"
+            className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
             onClick={() => {
               userDropdown.close();
               showChangelogModal();
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                userDropdown.close();
+                showChangelogModal();
+              }
             }}
           >
             <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
               <HistoryIcon />
             </div>
-            <button>{t("changelog")}</button>
+            <span>{t("changelog")}</span>
           </div>
 
           {/* About */}
           <div
-            className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
+            tabIndex={-1}
+            role="menuitem"
+            className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
             onClick={() => {
               userDropdown.close();
               showAboutModal();
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                userDropdown.close();
+                showAboutModal();
+              }
             }}
           >
             <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
               <InfoIcon />
             </div>
-            <button aria-label={t("about")}>{t("about")}</button>
+            <span>{t("about")}</span>
           </div>
 
           {/* Settings - Mobile Only */}
           <div className="xl:hidden">
             <SettingsDrawer>
-              <div className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer">
+              <div
+                tabIndex={-1}
+                role="menuitem"
+                className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
+              >
                 <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
                   <SettingsIcon />
                 </div>
-                <button>Settings</button>
+                <span>Settings</span>
               </div>
             </SettingsDrawer>
           </div>
@@ -264,12 +414,14 @@ export const UserButton = ({
           <Link
             href="https://github.com/matt765/spireflow"
             target="_blank"
-            className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer"
+            className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
+            role="menuitem"
+            tabIndex={-1}
           >
             <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem] stroke-grayIcon fill-grayIcon">
               <GithubIcon />
             </div>
-            <button>GitHub</button>
+            <span>GitHub</span>
           </Link>
         </div>
       )}

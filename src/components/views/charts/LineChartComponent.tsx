@@ -166,7 +166,7 @@ export const LineChartComponent = () => {
             />
             <Tooltip
               content={<LineChartTooltip />}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
               isAnimationActive={false}
             />
             <Legend

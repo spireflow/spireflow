@@ -57,7 +57,7 @@ export const InputFieldsForm = () => {
             type="text"
             id="error"
             placeholder="Error Input"
-            className="border-red-500 focus-visible:ring-red-500"
+            className="border-red-500 focus-visible:outline-red-500"
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-[0.8rem]">

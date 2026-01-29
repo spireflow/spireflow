@@ -280,8 +280,8 @@
       "dec": "Gru",
       "sales": "Sprzedaż"
     },
-    "performance": {
-      "title": "Wydajność",
+    "revenueTrends": {
+      "title": "Trendy przychodów",
       "subtitle": "Porównanie między sprzedażą, a zyskiem",
       "sales": "Sprzedaż",
       "profit": "Zysk",
@@ -547,7 +547,7 @@
         "assetPerformance": "Wydajność aktywów",
         "todaysSales": "Dzisiejsza sprzedaż",
         "totalProfit": "Całkowity zysk",
-        "performance": "Wydajność",
+        "revenueTrends": "Trendy przychodów",
         "yearOverview": "Przegląd roczny",
         "marketMetrics": "Wskażniki rynkowe",
         "revenueDistribution": "Rozkład przychodów",

@@ -141,12 +141,13 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
           </div>
           <div className="w-full text-xs 1xl:text-sm flex justify-center gap-2 mt-4 1xl:mt-6">
             <div className="text-primaryText">{t("noAccount")}</div>
-            <div
+            <button
+              type="button"
               onClick={switchToSignUp}
               className="text-coloredText text-semibold cursor-pointer hover:text-coloredTextHover ignore-error-hide"
             >
               {t("registerHere")}
-            </div>
+            </button>
           </div>
         </div>
       </form>

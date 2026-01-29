@@ -16,6 +16,13 @@ export const FileUploadForm = () => {
         <div className="flex items-center justify-center w-full">
           <label
             htmlFor="dropzone-file"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                document.getElementById("dropzone-file")?.click();
+              }
+            }}
             className="flex flex-col items-center justify-center w-full h-64 border-2 border-inputBorder border-dashed rounded-lg cursor-pointer bg-dropzoneBg hover:bg-dropzoneBgHover"
           >
             <div className="flex flex-col items-center justify-center pt-5 pb-6">

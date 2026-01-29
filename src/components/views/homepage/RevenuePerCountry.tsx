@@ -90,6 +90,7 @@ export const RevenuePerCountry = ({
               projectionConfig={{
                 scale: 200,
               }}
+              tabIndex={-1}
             >
               <Geographies geography="/geographies.json">
                 {({ geographies }) =>
@@ -120,6 +121,7 @@ export const RevenuePerCountry = ({
                                 ? "rgb(0,0,0,0.13)"
                                 : "rgba(255, 255, 255, 0.1)"
                           }
+                          tabIndex={-1}
                           style={{
                             default: { outline: "none" },
                             hover: { fill: HIGHLIGHT_COLOR, outline: "none" },

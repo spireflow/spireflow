@@ -16,6 +16,7 @@ export interface DropdownProps {
 
 export interface AboutModalProps {
   closeModal: () => void;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }
 
 export interface HamburgerButtonProps {
@@ -69,6 +70,7 @@ export interface UserButtonProps {
 
 export interface ChangelogModalProps {
   closeModal: () => void;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }
 
 export interface NotificationsButtonProps {

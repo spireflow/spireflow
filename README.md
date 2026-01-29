@@ -61,7 +61,7 @@ Live (dashboard) [https://spireflow.vercel.app/](https://spireflow.vercel.app/)
 
 ## :cloud: Backend
 
-The application is provided along with an associated Node.js backend, which is also open source and available on my GitHub. You can deploy it on platforms like Heroku or Render.
+The app can be connected to an associated Node.js backend, which is also open source and available on my GitHub. You can deploy it on platforms like Heroku or Render.
 
 The dashboard is designed to work as a standalone front-end application by default, so setting up the backend is entirely optional.
 
@@ -120,7 +120,7 @@ npm run dev
 
 🎉 **That's it!** Navigate to [http://localhost:3000](http://localhost:3000) to explore the dashboard.
 
-To allow immediate usage without a backend, the app defaults to mock data from `public/backendBackup.json` and bypasses authentication.
+The app works with mock data from `public/backendBackup.json` on default and has routes protection disabled. You can connect backend by adding `.env` variables similar to those in `.env.example` file.
 
 ## 📋 Available commands
 
@@ -178,8 +178,7 @@ That's it! The dashboard will automatically:
 The application automatically detects your configuration:
 
 - **No env vars**: Standalone demo mode with mock data, all routes accessible
-- **Env vars configured**: Route protection enabled (redirects to /login if not authenticated)
-- **Backend offline**: Falls back to mock data, but route protection stays enabled
+- **Env vars configured**: Fetching data from backend if it's online, with route protection enabled (redirects to /login if not authenticated)
 
 ### Remote deployment
 
@@ -187,7 +186,7 @@ For remote services (e.g., Vercel):
 
 1. Deploy your backend to a hosting service (e.g. Heroku/Render)
 2. Set environment variables in your Vercel project settings
-3. Deploy front-end app - it automatically detects and uses the backend
+3. Deploy front-end app with proper env variables - it automatically detects and uses the backend
 
 ## 🧾 Pages
 

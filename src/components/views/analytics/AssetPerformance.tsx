@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
@@ -44,6 +45,18 @@ export const AssetPerformance = ({
   const { theme } = useTheme();
   const chartColors = useChartColors(theme as "dark" | "light");
   const { shouldAnimate, animationBegin } = useChartAnimation("analytics");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (chartContainerRef.current) {
+      const rect = chartContainerRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
 
   const COLORS = [
     chartColors.primary.fill,
@@ -80,13 +93,18 @@ export const AssetPerformance = ({
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-4 1xl:mt-6 3xl:mt-8 gap-x-10 gap-y-10">
         <div className="flex justify-center items-center">
-          <div className="h-52 1xl:h-56 3xl:h-64 w-full relative">
+          <div
+            ref={chartContainerRef}
+            onMouseMove={handleMouseMove}
+            className="h-52 1xl:h-56 3xl:h-64 w-full relative"
+            tabIndex={-1}
+          >
             <ResponsiveContainer
               width="100%"
               height="100%"
               initialDimension={{ width: 320, height: 200 }}
             >
-              <PieChart>
+              <PieChart tabIndex={-1}>
                 <Pie
                   data={assetPerformanceData}
                   cx="50%"
@@ -113,6 +131,7 @@ export const AssetPerformance = ({
                 <Tooltip
                   content={<AssetTooltip />}
                   isAnimationActive={false}
+                  position={{ x: mousePosition.x + 15, y: mousePosition.y - 10 }}
                   wrapperStyle={{ zIndex: 10 }}
                 />
               </PieChart>

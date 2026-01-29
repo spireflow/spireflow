@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -9,13 +9,17 @@ import { SignUpData } from "../../components/auth/SignUpForm";
 import { signUp } from "../../lib/auth-client";
 import { isPresentationModeClient } from "../../utils/presentationMode";
 
+const SUBMIT_COOLDOWN_MS = 2000;
+
 /**
  * Sign-up form management with Better Auth integration.
  * Handles validation (Yup), error display, and i18n error mapping.
+ * Includes protection against rapid-fire submissions (e.g., holding Enter key)
+ * with a 2-second cooldown between submit attempts.
  *
  * @returns {Object} Form handlers, validation, and state
  * @returns {Function} handleSignUp - Async sign-up handler
- * @returns {Function} onSubmit - Form submit handler
+ * @returns {Function} onSubmit - Form submit handler (debounced)
  * @returns {Object} control - React Hook Form control
  * @returns {Object} errors - Form validation errors
  * @returns {boolean} loading - Loading state
@@ -29,7 +33,28 @@ export const useHandleSignUp = () => {
   const router = useRouter();
   const t = useTranslations("navbar");
 
-  const handleSignUp = async (data: SignUpData) => {
+  // Refs for preventing rapid-fire form submissions (e.g., holding Enter key)
+  const isSubmittingRef = useRef(false);
+  const lastSubmitTimeRef = useRef(0);
+
+  // Map Better Auth error messages to translation keys
+  const mapSignUpError = useCallback((errorMessage: string): string => {
+    if (
+      errorMessage.includes("already exists") ||
+      errorMessage.includes("User already exists")
+    ) {
+      return t("authErrors.emailAlreadyExists");
+    }
+    if (errorMessage.includes("Invalid email")) {
+      return t("authErrors.invalidEmail");
+    }
+    if (errorMessage.includes("Password")) {
+      return t("authErrors.passwordError");
+    }
+    return t("authErrors.defaultError");
+  }, [t]);
+
+  const handleSignUp = useCallback(async (data: SignUpData) => {
     // Check if running in presentation mode (no backend)
     if (isPresentationModeClient()) {
       alert(
@@ -61,29 +86,12 @@ export const useHandleSignUp = () => {
       // Success - DON'T remove spinner, let it stay until page reloads
       router.push("/");
       location.reload();
-    } catch (error) {
+    } catch (error: unknown) {
       setLoading(false);
       console.error("Sign up error:", error);
       setSignUpError(t("authErrors.networkError"));
     }
-  };
-
-  // Map Better Auth error messages to translation keys
-  const mapSignUpError = (errorMessage: string): string => {
-    if (
-      errorMessage.includes("already exists") ||
-      errorMessage.includes("User already exists")
-    ) {
-      return t("authErrors.emailAlreadyExists");
-    }
-    if (errorMessage.includes("Invalid email")) {
-      return t("authErrors.invalidEmail");
-    }
-    if (errorMessage.includes("Password")) {
-      return t("authErrors.passwordError");
-    }
-    return t("authErrors.defaultError");
-  };
+  }, [mapSignUpError, router, t]);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -103,9 +111,28 @@ export const useHandleSignUp = () => {
     mode: "onSubmit",
   });
 
-  const onSubmit = async (data: SignUpData) => {
-    await handleSignUp(data);
-  };
+  const onSubmit = useCallback(async (data: SignUpData) => {
+    const now = Date.now();
+
+    // Prevent rapid-fire submissions (e.g., user holding Enter key)
+    if (isSubmittingRef.current) {
+      return;
+    }
+
+    // Enforce cooldown between submissions to prevent spam
+    if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
+      return;
+    }
+
+    isSubmittingRef.current = true;
+    lastSubmitTimeRef.current = now;
+
+    try {
+      await handleSignUp(data);
+    } finally {
+      isSubmittingRef.current = false;
+    }
+  }, [handleSignUp]);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {

@@ -11,7 +11,7 @@ export const ANALYTICS_QUERY = gql`
         deltaType
         status
       }
-      monthPerformance {
+      revenueTrends {
         month
         sales
         profit

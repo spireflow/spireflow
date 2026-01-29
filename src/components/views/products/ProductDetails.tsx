@@ -59,7 +59,15 @@ export const ProductDetails = ({
       <div className="flex flex-col">
         <div className="flex gap-6 md:gap-8 items-center justify-start mb-16">
           <div
+            role="button"
+            tabIndex={0}
             onClick={() => setIsPhotoOpen(true)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setIsPhotoOpen(true);
+              }
+            }}
             className="group relative min-w-[9rem] hover:bg-[rgb(255,255,255,0.02)] cursor-pointer min-h-[9rem] w-[9rem] h-[9rem] xsm:min-h-[10rem] xsm:min-w-[10rem] sm:h-[10.5rem] sm:w-[10.5rem] 1xl:h-[12.5rem] 1xl:w-[12.5rem] 3xl:h-[15rem] 3xl:w-[15rem] p-0 rounded-xl flex justify-center items-center border border-mainBorder"
           >
             <div className="rounded-xl relative w-full h-full bg-[rgb(0,0,0,0.01)] flex justify-center items-center">

@@ -87,7 +87,7 @@ export const ThreeSmallCards = ({
           height="100%"
           initialDimension={{ width: 100, height: 100 }}
         >
-          <PieChart>
+          <PieChart tabIndex={-1}>
             <Pie
               data={data}
               cx="50%"
@@ -145,7 +145,7 @@ export const ThreeSmallCards = ({
               </div>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer">
+                  <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer" tabIndex={-1}>
                     <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}>
                       <span className="text-primaryText text-sm font-bold">
                         {hardcodedPercentages[index]}%
@@ -199,7 +199,7 @@ export const ThreeSmallCards = ({
               </div>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer">
+                  <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer" tabIndex={-1}>
                     <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}>
                       <span className="text-primaryText text-sm 1xl:text-base font-bold">
                         {hardcodedPercentages[index]}%

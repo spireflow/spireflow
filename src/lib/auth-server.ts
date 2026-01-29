@@ -39,7 +39,7 @@ export async function getSession() {
 
     // Better Auth returns { user, session }
     return data?.user ? data : null;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Failed to get session:", error);
     return null;
   }

@@ -53,13 +53,21 @@ RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
->(({ className, ...props }, ref) => (
+>(({ className, onKeyDown, ...props }, ref) => (
   <RadioGroupPrimitive.Item
     ref={ref}
+    tabIndex={0}
     className={cn(
-      "aspect-square h-4 w-4 rounded-full border border-checkboxBorder text-containedButtonBg ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ringBorder focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50",
+      "aspect-square h-4 w-4 rounded-full border border-checkboxBorder text-containedButtonBg disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50",
       className
     )}
+    onKeyDownCapture={(e) => {
+      if (e.key === "Enter" && !props.disabled) {
+        e.preventDefault();
+        (e.currentTarget as HTMLButtonElement).click();
+      }
+      onKeyDown?.(e);
+    }}
     {...props}
   >
     <RadioGroupPrimitive.Indicator className="flex items-center justify-center">

@@ -1,3 +1,4 @@
+import { RefObject } from "react";
 import { useTranslations } from "next-intl";
 
 import { ContainedButton } from "../common/ContainedButton";
@@ -16,9 +17,10 @@ import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 
 interface LogoutModalProps {
   closeModal: () => void;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }
 
-export const LogoutModal = ({ closeModal }: LogoutModalProps) => {
+export const LogoutModal = ({ closeModal, returnFocusRef }: LogoutModalProps) => {
   const { handleLogout, loading } = useHandleLogout();
   const t = useTranslations("navbar");
 
@@ -28,7 +30,15 @@ export const LogoutModal = ({ closeModal }: LogoutModalProps) => {
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent className="flex flex-col items-center justify-start">
+      <DialogContent
+        className="flex flex-col items-center justify-start"
+        onCloseAutoFocus={(e) => {
+          if (returnFocusRef?.current) {
+            e.preventDefault();
+            returnFocusRef.current.focus();
+          }
+        }}
+      >
         <DialogHeader>
           <div className="flex items-center justify-center w-full flex-col gap-2 -mt-2">
             <div className="rounded-full border border-mainBorder p-3 pl-4 w-16 h-16 flex justify-center items-center mr-[0rem] stroke-grayIcon fill-grayIcon">

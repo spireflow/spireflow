@@ -155,7 +155,7 @@ export const StackedBarChartComponent = () => {
             />
             <Tooltip
               content={<StackedTooltip />}
-              cursor={{ fill: "rgba(255, 255, 255, 0.02)" }}
+              cursor={{ fill: "rgba(255, 255, 255, 0.02)", stroke: "var(--color-chartVerticalLine)" }}
               isAnimationActive={false}
             />
             <Legend

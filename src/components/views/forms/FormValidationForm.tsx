@@ -44,7 +44,6 @@ export const FormValidationForm = () => {
   });
 
   const onSubmit = (values: yup.InferType<typeof formSchema>) => {
-    console.log(values);
     setIsSubmitted(true);
   };
 

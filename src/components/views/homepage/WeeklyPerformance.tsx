@@ -128,7 +128,7 @@ const WeeklyPerformanceChart = ({
           height="100%"
           initialDimension={{ width: 320, height: 200 }}
         >
-          <BarChart data={displayData} margin={getChartMargins()}>
+          <BarChart data={displayData} margin={getChartMargins()} tabIndex={-1}>
             <CartesianGrid
               strokeDasharray="0"
               stroke={
@@ -150,7 +150,7 @@ const WeeklyPerformanceChart = ({
             />
             <Tooltip
               content={<WeeklyPerformanceTooltip />}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
             />
             <Bar
               dataKey="revenue"

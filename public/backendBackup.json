@@ -2,7 +2,7 @@
   "analytics": {
     "assets": [
       {
-        "name": "Off Running Inc.",
+        "name": "Nexora Systems Inc.",
         "industry": "tech",
         "sales": 984888,
         "delta": 61.3,
@@ -10,7 +10,7 @@
         "status": "emerald"
       },
       {
-        "name": "Swan Holding",
+        "name": "Velora Holding",
         "industry": "health",
         "sales": 456700,
         "delta": 32.8,
@@ -18,7 +18,7 @@
         "status": "emerald"
       },
       {
-        "name": "Blingtech Inc.",
+        "name": "Quantumleap Inc.",
         "industry": "Tech",
         "sales": 390800,
         "delta": -18.3,
@@ -26,7 +26,7 @@
         "status": "rose"
       },
       {
-        "name": "Cortina Steal AG",
+        "name": "Ferron Steel AG",
         "industry": "manufacturing",
         "sales": 240000,
         "delta": 19.4,
@@ -34,7 +34,7 @@
         "status": "emerald"
       },
       {
-        "name": "Rain Drop Holding",
+        "name": "Opal Bridge Holding",
         "industry": "health",
         "sales": 190800,
         "delta": -19.4,
@@ -42,7 +42,7 @@
         "status": "rose"
       },
       {
-        "name": "Pas Crazy Inc.",
+        "name": "Zyphr Logic Inc.",
         "industry": "tech",
         "sales": 164400,
         "delta": -32.8,
@@ -50,7 +50,7 @@
         "status": "rose"
       },
       {
-        "name": "Hype Room Inc.",
+        "name": "Ironpeak Industries Inc.",
         "industry": "manufacturing",
         "sales": 139800,
         "delta": -40.1,
@@ -58,7 +58,7 @@
         "status": "rose"
       },
       {
-        "name": "Black Swan Holding",
+        "name": "Creston Holding",
         "industry": "health",
         "sales": 456700,
         "delta": 32.8,
@@ -66,7 +66,7 @@
         "status": "emerald"
       }
     ],
-    "monthPerformance": [
+    "revenueTrends": [
       {
         "month": "Jan",
         "sales": 2756,

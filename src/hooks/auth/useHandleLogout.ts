@@ -34,7 +34,7 @@ export const useHandleLogout = () => {
       await signOut();
 
       window.location.reload();
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Logout error:", err);
       if (err instanceof Error) {
         setError(`Logout error: ${err.message}`);

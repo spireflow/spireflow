@@ -187,21 +187,23 @@ export const Navbar = () => {
           />
         )}
       </div>
-      {isLogoutModalOpen && <LogoutModal closeModal={closeLogoutModal} />}
-      {isAboutModalOpen && <AboutModal closeModal={closeAboutModal} />}
+      {isLogoutModalOpen && <LogoutModal closeModal={closeLogoutModal} returnFocusRef={userIconBtnRef} />}
+      {isAboutModalOpen && <AboutModal closeModal={closeAboutModal} returnFocusRef={userIconBtnRef} />}
       {isChangelogModalOpen && (
-        <ChangelogModal closeModal={closeChangelogModal} />
+        <ChangelogModal closeModal={closeChangelogModal} returnFocusRef={userIconBtnRef} />
       )}
       {isLoginModalOpen && (
         <LoginModal
           closeModal={closeLoginModal}
           switchToSignUp={switchToSignUp}
+          returnFocusRef={userIconBtnRef}
         />
       )}
       {isSignUpModalOpen && (
         <SignUpModal
           closeModal={closeSignUpModal}
           switchToSignIn={switchToSignIn}
+          returnFocusRef={userIconBtnRef}
         />
       )}
     </>

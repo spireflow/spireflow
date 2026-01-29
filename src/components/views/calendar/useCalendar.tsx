@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import { EventResizeDoneArg } from "@fullcalendar/interaction";
 import { EventImpl } from "@fullcalendar/core/internal";
@@ -70,6 +70,7 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
   const [addEventError, setAddEventError] = useState("");
   const [addEventModalOpen, setAddEventModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
+  const lastFocusedElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     // Here we assign dates to each event from the backend based on index
@@ -95,18 +96,18 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
   };
 
   const handleAddEventModalOpen = (startStr: string) => {
+    lastFocusedElementRef.current = document.activeElement as HTMLElement;
     setSelectedDate(startStr);
     setAddEventModalOpen(true);
-    // Reset modal fields when opening
     setEventTitle("");
     setEventStart(hours[0]);
     setEventEnd(hours[0]);
     setAddEventError("");
   };
 
-  const handleAddEventModalClose = () => {
+  const handleAddEventModalClose = useCallback(() => {
     setAddEventModalOpen(false);
-  };
+  }, []);
 
   const handleAddEventModalConfirm = useCallback(() => {
     let validationError = "";
@@ -213,5 +214,6 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
     setEventEnd,
     addEventError,
     hours,
+    lastFocusedElementRef,
   };
 };

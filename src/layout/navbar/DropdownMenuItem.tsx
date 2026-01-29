@@ -9,7 +9,7 @@ const ExpandableDropdownSection = ({
   children,
 }: ExpandableDropdownSectionProps) => {
   return (
-    <div className="bg-dropdownBg relative">
+    <div className="bg-dropdownBg relative" role="menu">
       <div
         className="absolute left-[1.6rem] top-0 bottom-0 w-[2px] bg-mainBorder"
         style={{ height: "calc(100% - 1rem)" }}
@@ -34,11 +34,31 @@ export const DropdownMenuItem = ({
   onToggle,
   children,
 }: DropdownMenuItemProps) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onToggle();
+    }
+    if (e.key === "ArrowRight" && !isOpen) {
+      e.preventDefault();
+      onToggle();
+    }
+    if (e.key === "ArrowLeft" && isOpen) {
+      e.preventDefault();
+      onToggle();
+    }
+  };
+
   return (
-    <div>
+    <div role="none">
       <div
-        className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center"
+        className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center focus-visible:bg-dropdownBgHover"
         onClick={onToggle}
+        onKeyDown={handleKeyDown}
+        tabIndex={-1}
+        role="menuitem"
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
       >
         <div className="flex items-center">
           <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem] stroke-grayIcon fill-grayIcon">

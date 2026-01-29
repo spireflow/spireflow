@@ -16,15 +16,18 @@ interface UseSearchInputOptions {
   closeOthers?: () => void;
   open: () => void;
   close: () => void;
+  isOpen: boolean;
 }
 
 export const useSearchInput = ({
   closeOthers,
   open,
   close,
+  isOpen,
 }: UseSearchInputOptions) => {
   const t = useTranslations("navbar");
   const [searchText, setSearchText] = useState("");
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const { currentLanguage } = useNavbar();
   const router = useRouter();
   const homepageLayout = useAppStore((state) => state.homepageLayout);
@@ -34,7 +37,7 @@ export const useSearchInput = ({
     { section: "Asset performance", page: "Analytics", id: "assetPerformance" },
     { section: "Today's sales", page: "Analytics", id: "todaysSales" },
     { section: "Total profit", page: "Analytics", id: "totalProfit" },
-    { section: "Performance", page: "Analytics", id: "performance" },
+    { section: "Revenue trends", page: "Analytics", id: "revenueTrends" },
     { section: "Year overview", page: "Analytics", id: "yearOverview" },
     { section: "Market metrics", page: "Analytics", id: "marketMetrics" },
     {
@@ -91,7 +94,7 @@ export const useSearchInput = ({
     let translatedSection;
     try {
       translatedSection = t(`search.sections.${item.id}`);
-    } catch (error) {
+    } catch (_error: unknown) {
       translatedSection = item.section;
     }
 
@@ -99,7 +102,7 @@ export const useSearchInput = ({
     let translatedPage;
     try {
       translatedPage = t(`search.pages.${item.page}`);
-    } catch (error) {
+    } catch (_error: unknown) {
       translatedPage = item.page;
     }
 
@@ -120,13 +123,58 @@ export const useSearchInput = ({
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
+    setHighlightedIndex(-1);
     if (closeOthers) closeOthers();
     open();
   };
 
   const handleInputFocus = () => {
     if (closeOthers) closeOthers();
+  };
+
+  const handleClick = () => {
+    if (closeOthers) closeOthers();
     open();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Tab" && isOpen && !searchText) {
+      close();
+      setHighlightedIndex(-1);
+      return;
+    }
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      close();
+      setHighlightedIndex(-1);
+      return;
+    }
+
+    if (filteredSections.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (!isOpen) {
+        open();
+        return;
+      }
+      setHighlightedIndex((prev) =>
+        prev < filteredSections.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (!isOpen) {
+        open();
+        return;
+      }
+      if (highlightedIndex >= 0) {
+        handleSectionClick(filteredSections[highlightedIndex]);
+      }
+    }
   };
 
   const handleSectionClick = (section: Section) => {
@@ -179,8 +227,11 @@ export const useSearchInput = ({
     filteredSections,
     searchPlaceholder,
     noResultsText,
+    highlightedIndex,
     handleSearchChange,
     handleInputFocus,
+    handleClick,
     handleSectionClick,
+    handleKeyDown,
   };
 };

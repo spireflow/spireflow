@@ -109,6 +109,7 @@ export const TotalProfit = ({
               left: windowWidth > 700 ? 20 : 5,
               bottom: 5,
             }}
+            tabIndex={-1}
           >
             <defs>
               <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
@@ -140,7 +141,7 @@ export const TotalProfit = ({
             <YAxis hide />
             <Tooltip
               content={<TotalProfitTooltip />}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
               isAnimationActive={false}
             />
             <Area

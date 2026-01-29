@@ -85,7 +85,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <FontManager />
       {/* Fixed Settings Button - Desktop Only */}
       {!pathsWithNoLayout.includes(currentPathname) && (
-        <div className="hidden xl:block fixed bottom-6 right-6 z-50">
+        <div className="hidden xl:block fixed bottom-6 right-4 z-50">
           <SettingsDrawer>
             <button
               className="w-16 h-16 rounded-full border border-mainBorder bg-floatingMenuButtonBg hover:bg-floatingMenuButtonBgHover text-settingsIcon stroke-settingsIcon fill-settingsIcon shadow-lg flex items-center justify-center transition-colors cursor-pointer"

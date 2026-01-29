@@ -12,14 +12,14 @@ export interface AssetPerformanceProps {
   assetPerformanceData: Asset[];
 }
 
-export interface MonthPerformance {
+export interface RevenueTrendItem {
   month: string;
   sales: number;
   profit: number;
 }
 
-export interface PerformanceProps {
-  performanceData: MonthPerformance[];
+export interface RevenueTrendsProps {
+  revenueTrendsData: RevenueTrendItem[];
 }
 
 export interface TodaySalesDataUnit {
@@ -73,7 +73,7 @@ export interface YearOverviewProps {
 
 interface AnalyticsData {
   assets: AssetPerformanceProps["assetPerformanceData"];
-  monthPerformance: PerformanceProps["performanceData"];
+  revenueTrends: RevenueTrendsProps["revenueTrendsData"];
   todaySales: TodaySalesProps["todaySalesData"];
   totalProfitProducts: TotalProfitProps["totalProfitProducts"];
   totalProfitMonths: TotalProfitProps["totalProfitSales"];
@@ -126,7 +126,7 @@ export interface RevenueDistributionTooltipProps {
   label?: string;
 }
 
-export interface PerformanceTooltipProps {
+export interface RevenueTrendsTooltipProps {
   active?: boolean;
   payload?: Array<{ name: string; value: number; color?: string }>;
   label?: string;
@@ -142,11 +142,11 @@ export interface YearOverviewCustomLegendProps {
   payload?: Array<{ value: string; color: string }>;
 }
 
-export interface PerformanceCustomLegendProps {
+export interface RevenueTrendsCustomLegendProps {
   payload?: Array<{ value: string; color?: string }>;
 }
 
-export interface PerformanceCustomXAxisTickProps {
+export interface RevenueTrendsCustomXAxisTickProps {
   x?: number;
   y?: number;
   payload?: { value: string };

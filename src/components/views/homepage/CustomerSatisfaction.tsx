@@ -105,6 +105,7 @@ export const CustomerSatisfaction = ({
               left: windowWidth > 700 ? 20 : 5,
               bottom: 5,
             }}
+            tabIndex={-1}
           >
             <CartesianGrid
               strokeDasharray="3 3"

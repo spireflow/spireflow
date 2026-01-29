@@ -132,7 +132,7 @@ export const VerticalBarChartComponent = () => {
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
             />
-            <Tooltip content={<VerticalBarTooltip />} cursor={{ fill: 'rgba(255, 255, 255, 0.02)' }} isAnimationActive={false} />
+            <Tooltip content={<VerticalBarTooltip />} cursor={{ fill: "rgba(255, 255, 255, 0.02)", stroke: "var(--color-chartVerticalLine)" }} isAnimationActive={false} />
             <Legend wrapperStyle={{ paddingTop: '2rem' }} content={<BarCustomLegend />} />
             <Bar
               dataKey="sales"

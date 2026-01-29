@@ -84,7 +84,7 @@ export const WithLabel: Story = {
 
 export const Error: Story = {
   args: {
-    className: "border-red-500 focus-visible:ring-red-500",
+    className: "border-red-500 focus-visible:outline-red-500",
     placeholder: "Error state",
   },
 };

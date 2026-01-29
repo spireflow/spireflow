@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
@@ -10,13 +10,17 @@ import { useAppStore } from "../../store/appStore";
 import { signIn } from "../../lib/auth-client";
 import { isPresentationModeClient } from "../../utils/presentationMode";
 
+const SUBMIT_COOLDOWN_MS = 2000;
+
 /**
  * Login form management with Better Auth integration.
  * Handles validation (Yup), error display, and i18n error mapping.
+ * Includes protection against rapid-fire submissions (e.g., holding Enter key)
+ * with a 2-second cooldown between submit attempts.
  *
  * @returns {Object} Form handlers, validation, and state
  * @returns {Function} handleLogin - Async login handler
- * @returns {Function} onSubmit - Form submit handler
+ * @returns {Function} onSubmit - Form submit handler (debounced)
  * @returns {Object} control - React Hook Form control
  * @returns {Object} errors - Form validation errors
  * @returns {string} authError - Authentication error message
@@ -34,7 +38,32 @@ export const useHandleLogin = () => {
   const clearAuthError = () => setAuthError("");
   const currentPathname = usePathname();
 
-  const handleLogin = async (data: LoginData) => {
+  // Refs for preventing rapid-fire form submissions (e.g., holding Enter key)
+  const isSubmittingRef = useRef(false);
+  const lastSubmitTimeRef = useRef(0);
+
+  // Map Better Auth error messages to translation keys
+  const mapBetterAuthError = useCallback((errorMessage: string): string => {
+    const lowerError = errorMessage.toLowerCase();
+
+    // Better Auth returns INVALID_EMAIL_OR_PASSWORD for both wrong email and wrong password
+    if (
+      lowerError.includes("invalid email or password") ||
+      lowerError.includes("invalid_email_or_password")
+    ) {
+      return t("authErrors.form_password_incorrect");
+    }
+    if (lowerError.includes("locked") || lowerError.includes("blocked")) {
+      return t("authErrors.user_locked");
+    }
+    if (lowerError.includes("session")) {
+      return t("authErrors.session_exists");
+    }
+
+    return t("authErrors.defaultError");
+  }, [t]);
+
+  const handleLogin = useCallback(async (data: LoginData) => {
     // Check if running in presentation mode (no backend)
     if (isPresentationModeClient()) {
       alert(
@@ -67,33 +96,12 @@ export const useHandleLogin = () => {
       } else {
         location.reload();
       }
-    } catch (error) {
+    } catch (error: unknown) {
       setIsLoggingIn(false);
-      console.log("Network error during login:", error);
+      console.error("Network error during login:", error);
       setAuthError(t("authErrors.networkError"));
     }
-  };
-
-  // Map Better Auth error messages to translation keys
-  const mapBetterAuthError = (errorMessage: string): string => {
-    const lowerError = errorMessage.toLowerCase();
-
-    // Better Auth returns INVALID_EMAIL_OR_PASSWORD for both wrong email and wrong password
-    if (
-      lowerError.includes("invalid email or password") ||
-      lowerError.includes("invalid_email_or_password")
-    ) {
-      return t("authErrors.form_password_incorrect");
-    }
-    if (lowerError.includes("locked") || lowerError.includes("blocked")) {
-      return t("authErrors.user_locked");
-    }
-    if (lowerError.includes("session")) {
-      return t("authErrors.session_exists");
-    }
-
-    return t("authErrors.defaultError");
-  };
+  }, [currentPathname, mapBetterAuthError, router, setIsLoggingIn, t]);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -157,14 +165,31 @@ export const useHandleLogin = () => {
     }
   }, [authError]);
 
-  const onSubmit: SubmitHandler<LoginData> = async (data) => {
+  const onSubmit: SubmitHandler<LoginData> = useCallback(async (data) => {
+    const now = Date.now();
+
+    // Prevent rapid-fire submissions (e.g., user holding Enter key)
+    if (isSubmittingRef.current) {
+      return;
+    }
+
+    // Enforce cooldown between submissions to prevent spam
+    if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
+      return;
+    }
+
+    isSubmittingRef.current = true;
+    lastSubmitTimeRef.current = now;
+
     try {
       await handleLogin(data);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Login process error:", error);
       setIsLoggingIn(false);
+    } finally {
+      isSubmittingRef.current = false;
     }
-  };
+  }, [handleLogin, setIsLoggingIn]);
 
   return {
     handleLogin,

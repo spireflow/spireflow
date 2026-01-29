@@ -210,7 +210,7 @@ export const AreaChartComponent = () => {
             <Tooltip
               content={<AreaTooltip />}
               isAnimationActive={false}
-              cursor={{ fill: "rgba(255,255,255,0.05)" }}
+              cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
             />
             <Legend
               verticalAlign="top"

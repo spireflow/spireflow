@@ -124,6 +124,7 @@ export const MarketMetrics = ({ marketMetricsData }: MarketMetricsProps) => {
             outerRadius="80%"
             data={marketMetricsData}
             className="pt-4 mt-[1rem] lg:mt-0"
+            tabIndex={-1}
           >
             <PolarGrid stroke={chartColors.primary.grid} />
             <PolarAngleAxis

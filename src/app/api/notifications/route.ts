@@ -30,7 +30,7 @@ export async function GET() {
       });
 
       return NextResponse.json(data.notifications);
-    } catch (backendError) {
+    } catch (backendError: unknown) {
       // Fallback to backup if backend fails
       console.warn(
         "[Backend Failed] Using backup data for notifications:",
@@ -46,7 +46,7 @@ export async function GET() {
 
       return NextResponse.json(allData.notifications);
     }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error in notifications API route:", error);
     return NextResponse.json(
       { error: "Failed to fetch notifications" },

@@ -126,7 +126,7 @@ export const prepareDataForExport = <T extends object>(
       // Combine relevant arrays from analytics data
       return [
         ...mapWithDataType(analyticsData.assets, "assets"),
-        ...mapWithDataType(analyticsData.monthPerformance, "monthPerformance"),
+        ...mapWithDataType(analyticsData.revenueTrends, "revenueTrends"),
         ...mapWithDataType(analyticsData.todaySales, "todaySales"),
         ...mapWithDataType(
           analyticsData.totalProfitProducts,

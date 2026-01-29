@@ -128,17 +128,19 @@
   --color-outlinedButtonBorder: rgb(0, 0, 0, 0.18);
   --color-inputBorder: rgb(0, 0, 0, 0.15);
   --color-inputBorderHover: rgb(0, 0, 0, 0.3);
+  --color-inputBorderFocus: rgb(0, 0, 0, 0.4);
   --color-calendarBorder: rgb(0, 0, 0, 0.1);
   --color-cardBorder: rgb(0, 0, 0, 0.06);
   --color-themeToggleActiveBorder: rgb(0, 0, 0, 0.1);
   --color-themeToggleBorderHover: rgb(0, 0, 0, 0.2);
   --color-themeToggleActiveBgHover: rgb(235, 235, 240);
   --color-mapCountryBorder: rgb(0, 0, 0, 0.18);
-  --color-ringBorder: rgb(0, 96, 255);
+  --color-ringBorder: rgb(59, 130, 246);
   --color-checkboxBorder: rgb(0, 0, 0, 0.28);
   --color-checkboxBorderDisabled: rgb(0, 0, 0, 0.18);
   --color-navbarSearchInputBorder: rgb(0, 0, 0, 0.12);
   --color-navbarSearchInputBorderHover: rgb(0, 0, 0, 0.2);
   --color-settingsButtonBorder: rgb(0, 0, 0, 0.18);
   --color-tabLineActiveBorder: rgb(37, 99, 235);
+  --color-chartVerticalLine: rgb(0, 0, 0, 0.25);
 }

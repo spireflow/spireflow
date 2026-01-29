@@ -314,7 +314,7 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
           <DrawerTitle className="text-primaryText text-2xl font-semibold">
             {t("title")}
           </DrawerTitle>
-          <DrawerClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none">
+          <DrawerClose autoFocus className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none">
             <svg
               width="20"
               height="20"

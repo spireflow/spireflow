@@ -19,7 +19,7 @@ export const useChangelogModal = () => {
         const content = await response.text();
         setChangelogContent(content);
         setIsLoading(false);
-      } catch (err) {
+      } catch (err: unknown) {
         console.error("Error fetching changelog:", err);
         setError("Failed to load changelog. Please try again later.");
         setIsLoading(false);

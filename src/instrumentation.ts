@@ -48,47 +48,63 @@ const getNodeVersion = () => {
   return g.process?.version ?? "unknown";
 };
 
+const buildModeSection = (status: Awaited<ReturnType<typeof checkBackendHealth>>): string => {
+  const authConfigured = status.graphqlUrl && status.hasAuth;
+
+  if (status.isOnline && authConfigured) {
+    return [
+      "🔌 Mode: Connected to backend",
+      "   ├─ Backend: online",
+      "   └─ Route protection: enabled",
+    ].join("\n");
+  }
+
+  if (authConfigured) {
+    return [
+      "🔌 Mode: Backend offline",
+      "   ├─ Using mock data",
+      "   └─ Route protection: enabled",
+    ].join("\n");
+  }
+
+  return [
+    "🔌 Mode: Standalone",
+    "   ├─ Using mock data",
+    "   └─ Route protection: disabled",
+  ].join("\n");
+};
+
 const printStartupBanner = async () => {
   const status = await checkBackendHealth();
   const port = process.env.PORT || 3000;
   const nodeEnv = process.env.NODE_ENV || "development";
-
   const separator = "-----";
 
-  console.log("");
-  console.log(separator);
-  console.log("");
-  console.log(`SPIREFLOW v${packageJson.version}`);
-  console.log("");
-  console.log(`📊 Environment: ${nodeEnv}`);
-  console.log(`📦 Node: ${getNodeVersion()}`);
-  console.log("");
+  const banner = [
+    "",
+    separator,
+    "",
+    `SPIREFLOW v${packageJson.version}`,
+    "",
+    `📊 Environment: ${nodeEnv}`,
+    `📦 Node: ${getNodeVersion()}`,
+    "",
+    buildModeSection(status),
+    "",
+    `🌐 Dashboard: http://localhost:${port}`,
+    "",
+    separator,
+    "",
+  ].join("\n");
 
-  const authConfigured = status.graphqlUrl && status.hasAuth;
-
-  if (status.isOnline && authConfigured) {
-    console.log("🔌 Mode: Connected to backend");
-    console.log("   ├─ Backend: online");
-    console.log("   └─ Route protection: enabled");
-  } else if (authConfigured) {
-    console.log("🔌 Mode: Backend offline");
-    console.log("   ├─ Using mock data");
-    console.log("   └─ Route protection: enabled");
-  } else {
-    console.log("🔌 Mode: Standalone");
-    console.log("   ├─ Using mock data");
-    console.log("   └─ Route protection: disabled");
-  }
-
-  console.log("");
-  console.log(`🌐 Dashboard: http://localhost:${port}`);
-  console.log("");
-  console.log(separator);
-  console.log("");
+  console.log(banner);
 };
 
 export const register = async () => {
   if (process.env.NEXT_RUNTIME === "nodejs") {
-    await printStartupBanner();
+    const { acquireBannerLock } = await import("./instrumentation-node");
+    if (acquireBannerLock()) {
+      await printStartupBanner();
+    }
   }
 };

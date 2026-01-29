@@ -33,6 +33,7 @@ export const AddEventModal = ({
   onEndTimeChange,
   handleConfirmClick,
   type = "default",
+  returnFocusRef,
 }: AddEventModalProps) => {
   const t = useTranslations("calendar");
   const hours = Array.from({ length: 9 }, (_, i) => `${i + 8}:00`);
@@ -53,7 +54,15 @@ export const AddEventModal = ({
   return (
     <div>
       <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-        <DialogContent className="max-w-[90vw] sm:max-w-[28rem] px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem]">
+        <DialogContent
+          className="max-w-[90vw] sm:max-w-[28rem] px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem]"
+          onCloseAutoFocus={(e) => {
+            if (returnFocusRef?.current) {
+              e.preventDefault();
+              returnFocusRef.current.focus();
+            }
+          }}
+        >
           <div className="flex items-center justify-center w-full flex-col gap-2 -mt-2">
             <div className="text-grayIcon rounded-full border border-mainBorder p-4 pl-4 w-16 h-16 flex justify-center items-center mr-[0rem]">
               {type === "delete" ? (
