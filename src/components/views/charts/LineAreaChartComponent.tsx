@@ -20,12 +20,14 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for orders and returns chart. */
 interface DataPoint {
   month: string;
   orders: number;
   returns: number;
 }
 
+/** Props for line area chart tooltip component. */
 interface LineAreaTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -37,6 +39,11 @@ interface LineAreaTooltipProps {
   label?: string;
 }
 
+/**
+ * Custom tooltip displaying orders and returns values.
+ *
+ * @component
+ */
 const LineAreaTooltip = ({ active, payload, label }: LineAreaTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
@@ -63,6 +70,12 @@ const LineAreaTooltip = ({ active, payload, label }: LineAreaTooltipProps) => {
   );
 };
 
+/**
+ * Area chart showing orders and returns trends over time.
+ * Uses gradient fills and custom tooltip.
+ *
+ * @component
+ */
 export const LineAreaChartComponent = () => {
   const { theme } = useTheme();
   const chartColors = useChartColors(theme as "dark" | "light");
@@ -141,7 +154,7 @@ export const LineAreaChartComponent = () => {
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
             />
-            <Tooltip content={<LineAreaTooltip />} isAnimationActive={false} />
+            <Tooltip content={<LineAreaTooltip />} cursor={{ stroke: "var(--color-chartVerticalLine)" }} isAnimationActive={false} />
             <Legend
               wrapperStyle={{
                 paddingTop: "10px",

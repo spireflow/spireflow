@@ -674,6 +674,8 @@
     "twoAxisLineChart": "Wykres liniowy dwuosiowy",
     "mixedLineChart": "Wykres liniowy mieszany",
     "verticalBarChart": "Wykres słupkowy pionowy",
-    "lineChart": "Wykres liniowy"
+    "lineChart": "Wykres liniowy",
+    "areaFillByValueChart": "Wykres obszarowy wg wartości",
+    "gradientPieChart": "Wykres kołowy z gradientem"
   }
 }

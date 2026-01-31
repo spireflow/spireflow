@@ -18,7 +18,7 @@
   </a>
 </div>
 
-<h4 align="center">Open source and free dashboard starter template written in NextJS and TypeScript</h2>
+<h4 align="center">Open source and free dashboard starter written in NextJS and TypeScript</h2>
 <br />
 
 <div align="center">
@@ -61,7 +61,7 @@ Live (dashboard) [https://spireflow.vercel.app/](https://spireflow.vercel.app/)
 
 ## :cloud: Backend
 
-The app can be connected to an associated Node.js backend, which is also open source and available on my GitHub. You can deploy it on platforms like Heroku or Render.
+The app can be connected to an associated Node.js backend, which is also open source and available on my GitHub. You can deploy it locally or remotely on platforms like Heroku or Render.
 
 The dashboard is designed to work as a standalone front-end application by default, so setting up the backend is entirely optional.
 
@@ -187,6 +187,12 @@ For remote services (e.g., Vercel):
 1. Deploy your backend to a hosting service (e.g. Heroku/Render)
 2. Set environment variables in your Vercel project settings
 3. Deploy front-end app with proper env variables - it automatically detects and uses the backend
+
+### One-click deploy
+
+You can deploy your own instance of Spireflow on Vercel using the link below. The app will work in standalone mode with mock data out of the box.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/spireflow/Spireflow)
 
 ## 🧾 Pages
 

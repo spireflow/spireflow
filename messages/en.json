@@ -675,6 +675,8 @@
     "twoAxisLineChart": "Two Axis Line Chart",
     "mixedLineChart": "Mixed Line Chart",
     "verticalBarChart": "Vertical Bar Chart",
-    "lineChart": "Line Chart"
+    "lineChart": "Line Chart",
+    "areaFillByValueChart": "Area Fill By Value",
+    "gradientPieChart": "Gradient Pie Chart"
   }
 }

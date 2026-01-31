@@ -175,6 +175,7 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
+    lastFocusedElementRef.current = document.activeElement as HTMLElement;
     setSelectedEvent(clickInfo.event);
     setModalOpen(true);
     setCurrentAction("delete");

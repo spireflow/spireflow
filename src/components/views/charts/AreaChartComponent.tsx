@@ -19,6 +19,7 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { Card } from "../../common/Card";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Tooltip payload item structure. */
 interface TooltipPayload {
   dataKey: string;
   name?: string;
@@ -26,12 +27,18 @@ interface TooltipPayload {
   color?: string;
 }
 
+/** Props for area chart tooltip component. */
 interface AreaTooltipProps {
   active?: boolean;
   payload?: TooltipPayload[];
   label?: string;
 }
 
+/**
+ * Custom tooltip for displaying views and visitors data.
+ *
+ * @component
+ */
 const AreaTooltip = ({ active, payload, label }: AreaTooltipProps) => {
   if (!active || !payload || payload.length === 0 || !label) return null;
 
@@ -73,6 +80,7 @@ const AreaTooltip = ({ active, payload, label }: AreaTooltipProps) => {
   );
 };
 
+/** Props for custom legend component. */
 interface CustomLegendProps {
   payload?: Array<{
     value: string;
@@ -80,6 +88,11 @@ interface CustomLegendProps {
   }>;
 }
 
+/**
+ * Custom legend with colored indicators.
+ *
+ * @component
+ */
 const CustomLegend = ({ payload }: CustomLegendProps) => {
   return (
     <div className="flex flex-row justify-end text-white w-full mb-6" style={{ gap: "1rem" }}>
@@ -96,6 +109,12 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
   );
 };
 
+/**
+ * Area chart displaying website views and unique visitors over time.
+ * Uses Recharts with gradient fills and custom tooltip.
+ *
+ * @component
+ */
 export const AreaChartComponent = () => {
   const tCharts = useTranslations("charts");
   const { theme } = useTheme();

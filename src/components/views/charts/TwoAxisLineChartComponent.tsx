@@ -19,12 +19,14 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for two-axis line chart. */
 interface DataPoint {
   week: string;
   customers: number;
   avgOrderValue: number;
 }
 
+/** Props for two-axis chart tooltip component. */
 interface TwoAxisTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -36,6 +38,11 @@ interface TwoAxisTooltipProps {
   label?: string;
 }
 
+/**
+ * Custom tooltip displaying customer count and order value.
+ *
+ * @component
+ */
 const TwoAxisTooltip = ({ active, payload, label }: TwoAxisTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
@@ -64,6 +71,7 @@ const TwoAxisTooltip = ({ active, payload, label }: TwoAxisTooltipProps) => {
   );
 };
 
+/** Props for two-axis chart legend component. */
 interface TwoAxisLegendProps {
   payload?: Array<{
     value: string;
@@ -71,6 +79,11 @@ interface TwoAxisLegendProps {
   }>;
 }
 
+/**
+ * Custom legend with line-style indicators.
+ *
+ * @component
+ */
 const TwoAxisCustomLegend = ({ payload }: TwoAxisLegendProps) => {
   return (
     <div className="flex flex-row justify-center gap-8 text-white w-full" style={{ gap: '2rem' }}>
@@ -89,6 +102,12 @@ const TwoAxisCustomLegend = ({ payload }: TwoAxisLegendProps) => {
   );
 };
 
+/**
+ * Dual Y-axis line chart showing customers and average order value.
+ * Uses separate scales for count and currency values.
+ *
+ * @component
+ */
 export const TwoAxisLineChartComponent = () => {
   const t = useTranslations("charts");
   const { theme } = useTheme();
@@ -150,7 +169,7 @@ export const TwoAxisLineChartComponent = () => {
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               tickFormatter={(value) => `$${value}`}
             />
-            <Tooltip content={<TwoAxisTooltip />} isAnimationActive={false} />
+            <Tooltip content={<TwoAxisTooltip />} cursor={{ stroke: "var(--color-chartVerticalLine)" }} isAnimationActive={false} />
             <Legend iconType="line" wrapperStyle={{ paddingTop: '2rem' }} content={<TwoAxisCustomLegend />} />
             <Line
               yAxisId="left"

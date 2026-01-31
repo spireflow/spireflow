@@ -36,7 +36,7 @@ import {
   DropdownMenuTrigger,
 } from "../../common/shadcn/dropdown-menu";
 
-// Types for User Table
+/** User data structure for the user management table. */
 type User = {
   id: number;
   name: string;
@@ -114,7 +114,13 @@ const userTableData: User[] = [
   },
 ];
 
-// Status Badge Component
+/**
+ * Displays a colored badge based on status value.
+ * Supports active and inactive user states.
+ *
+ * @component
+ * @param {string} status - Status text to display and determine color
+ */
 const StatusBadge = ({ status }: { status: string }) => {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -145,6 +151,12 @@ const StatusBadge = ({ status }: { status: string }) => {
   );
 };
 
+/**
+ * Displays sort direction indicator arrow.
+ *
+ * @component
+ * @param {false | 'asc' | 'desc'} isSorted - Current sort state
+ */
 const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   if (!isSorted)
     return <div className="inline-flex w-4 h-4 ml-1 flex-shrink-0" />;
@@ -159,6 +171,12 @@ const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   );
 };
 
+/**
+ * User management table with column visibility, role filtering, and sorting.
+ * Uses TanStack Table with dropdown controls for filtering and sorting.
+ *
+ * @component
+ */
 export const UserTable = () => {
   const t = useTranslations("tables.cardTitles");
 

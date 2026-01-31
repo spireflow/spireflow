@@ -26,7 +26,7 @@ export const InputFieldsForm = () => {
             type="text"
             id="active"
             placeholder="Active Input"
-            className="border-ringBorder"
+            className="border-ringBorder hover:border-ringBorder focus:!border-ringBorder"
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-[0.8rem]">
@@ -57,7 +57,7 @@ export const InputFieldsForm = () => {
             type="text"
             id="error"
             placeholder="Error Input"
-            className="border-red-500 focus-visible:outline-red-500"
+            className="border-red-500 hover:border-red-500 focus:!border-red-500 focus-visible:outline-red-500"
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-[0.8rem]">

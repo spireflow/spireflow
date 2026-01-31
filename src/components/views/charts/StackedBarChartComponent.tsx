@@ -19,6 +19,7 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for stacked bar chart. */
 interface DataPoint {
   day: string;
   desktop: number;
@@ -26,6 +27,7 @@ interface DataPoint {
   tablet: number;
 }
 
+/** Props for stacked chart tooltip component. */
 interface StackedTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -37,6 +39,7 @@ interface StackedTooltipProps {
   label?: string;
 }
 
+/** Props for stacked chart legend component. */
 interface StackedLegendProps {
   payload?: Array<{
     value: string;
@@ -44,6 +47,11 @@ interface StackedLegendProps {
   }>;
 }
 
+/**
+ * Custom tooltip displaying device breakdown with total.
+ *
+ * @component
+ */
 const StackedTooltip = ({ active, payload, label }: StackedTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
@@ -80,6 +88,11 @@ const StackedTooltip = ({ active, payload, label }: StackedTooltipProps) => {
   );
 };
 
+/**
+ * Custom legend with colored indicators.
+ *
+ * @component
+ */
 const StackedCustomLegend = ({ payload }: StackedLegendProps) => {
   return (
     <div className="flex flex-row justify-center gap-8 text-white w-full mt-4">
@@ -98,6 +111,12 @@ const StackedCustomLegend = ({ payload }: StackedLegendProps) => {
   );
 };
 
+/**
+ * Stacked bar chart showing daily traffic by device type.
+ * Uses Recharts with stacked bars for desktop, mobile, and tablet.
+ *
+ * @component
+ */
 export const StackedBarChartComponent = () => {
   const t = useTranslations("charts");
   const { theme } = useTheme();

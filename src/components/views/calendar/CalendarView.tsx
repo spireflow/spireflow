@@ -80,6 +80,7 @@ export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
           confirmButtonText={t("yes")}
           cancelButtonText={t("cancel")}
           type="delete"
+          returnFocusRef={lastFocusedElementRef}
         />
       )}
       {addEventModalOpen && (

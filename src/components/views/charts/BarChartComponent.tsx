@@ -19,6 +19,7 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { Card } from "../../common/Card";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Tooltip payload item structure. */
 interface TooltipPayload {
   dataKey: string;
   name?: string;
@@ -26,12 +27,18 @@ interface TooltipPayload {
   color?: string;
 }
 
+/** Props for bar chart tooltip component. */
 interface BarTooltipProps {
   active?: boolean;
   payload?: TooltipPayload[];
   label?: string;
 }
 
+/**
+ * Custom tooltip displaying product category sales data.
+ *
+ * @component
+ */
 const BarTooltip = ({ active, payload, label }: BarTooltipProps) => {
   if (!active || !payload || payload.length === 0 || !label) return null;
 
@@ -58,6 +65,7 @@ const BarTooltip = ({ active, payload, label }: BarTooltipProps) => {
   );
 };
 
+/** Props for custom legend component. */
 interface CustomLegendProps {
   payload?: Array<{
     value: string;
@@ -65,6 +73,11 @@ interface CustomLegendProps {
   }>;
 }
 
+/**
+ * Custom legend with colored indicators.
+ *
+ * @component
+ */
 const CustomLegend = ({ payload }: CustomLegendProps) => {
   return (
     <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-8 text-white w-full mb-6">
@@ -81,6 +94,12 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
   );
 };
 
+/**
+ * Grouped bar chart showing quarterly sales by product category.
+ * Uses Recharts with multiple colored bars per data point.
+ *
+ * @component
+ */
 export const BarChartComponent = () => {
   const { theme } = useTheme();
   const chartColors = useChartColors(theme as "dark" | "light");

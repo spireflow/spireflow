@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { ThemeButtonProps } from "./types";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
@@ -25,7 +25,8 @@ export const ThemeButton = ({
   }, []);
 
   const toggleTheme = () => {
-    selectTheme(currentTheme === "dark" ? "light" : "dark");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    selectTheme(newTheme);
     userDropdown.close();
     languageDropdown.close();
     notificationsDropdown.close();
@@ -40,7 +41,7 @@ export const ThemeButton = ({
     <Tooltip delayDuration={200}>
       <TooltipTrigger asChild>
         <div
-          className="group relative flex items-center bg-themeToggleBg border border-mainBorder hover:bg-themeToggleBgHover rounded-full p-0.5 cursor-pointer"
+          className="group relative flex items-center bg-themeToggleBg border border-mainBorder rounded-full p-0.5 cursor-pointer"
           onClick={toggleTheme}
           role="button"
           aria-label={t("changeTheme")}
@@ -53,11 +54,7 @@ export const ThemeButton = ({
         >
           {isMounted && (
             <div
-              className={`absolute left-0.5 top-0.5 w-[42px] h-[2.1825rem] bg-themeToggleActiveBg border border-themeToggleActiveBorder rounded-full shadow-sm transition-all duration-300 ease-out ${
-                currentTheme === "dark"
-                  ? "group-hover:bg-themeToggleActiveBgHover"
-                  : "group-hover:bg-themeToggleActiveBgHoverLight dark:group-hover:bg-themeToggleActiveBgHover"
-              }`}
+              className="absolute left-0.5 top-0.5 w-[42px] h-[2.1825rem] rounded-full shadow-sm border border-themeToggleActiveBorder bg-themeToggleActiveBg"
               style={{
                 transform:
                   currentTheme === "dark"
@@ -67,7 +64,7 @@ export const ThemeButton = ({
             />
           )}
           <div
-            className={`relative z-10 w-[42px] h-[2.1825rem] rounded-full flex items-center justify-center transition-colors duration-200 ${
+            className={`relative z-10 w-[42px] h-[2.1825rem] rounded-full flex items-center justify-center ${
               isMounted && currentTheme === "light"
                 ? "text-primaryText"
                 : "text-grayIcon"
@@ -76,7 +73,7 @@ export const ThemeButton = ({
             <SunIcon />
           </div>
           <div
-            className={`relative z-10 w-[42px] h-[2.1825rem] rounded-full flex items-center justify-center transition-colors duration-200 ${
+            className={`relative z-10 w-[42px] h-[2.1825rem] rounded-full flex items-center justify-center ${
               isMounted && currentTheme === "dark"
                 ? "text-primaryText"
                 : "text-grayIcon"

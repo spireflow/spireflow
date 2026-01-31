@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -80,8 +81,12 @@ export const Default: Story = {
           <p className="text-sm text-primaryText">Dialog content here.</p>
         </div>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
-          <Button>Confirm</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button>Confirm</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -112,7 +117,9 @@ export const WithForm: Story = {
           </div>
         </div>
         <DialogFooter>
-          <Button>Save changes</Button>
+          <DialogClose asChild>
+            <Button>Save changes</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -133,8 +140,12 @@ export const Destructive: Story = {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
-          <Button variant="destructive">Delete</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button variant="destructive">Delete</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>

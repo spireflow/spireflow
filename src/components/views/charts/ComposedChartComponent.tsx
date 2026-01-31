@@ -20,6 +20,7 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for composed chart. */
 interface DataPoint {
   month: string;
   revenue: number;
@@ -27,6 +28,7 @@ interface DataPoint {
   margin: number;
 }
 
+/** Props for composed chart tooltip component. */
 interface ComposedTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -38,6 +40,7 @@ interface ComposedTooltipProps {
   label?: string;
 }
 
+/** Props for composed chart legend component. */
 interface ComposedLegendProps {
   payload?: Array<{
     value: string;
@@ -45,6 +48,11 @@ interface ComposedLegendProps {
   }>;
 }
 
+/**
+ * Custom tooltip displaying revenue, profit, and margin.
+ *
+ * @component
+ */
 const ComposedTooltip = ({ active, payload, label }: ComposedTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
@@ -73,6 +81,11 @@ const ComposedTooltip = ({ active, payload, label }: ComposedTooltipProps) => {
   );
 };
 
+/**
+ * Custom legend with colored indicators.
+ *
+ * @component
+ */
 const ComposedCustomLegend = ({ payload }: ComposedLegendProps) => {
   return (
     <div className="flex flex-row justify-center gap-8 text-white w-full mt-4">
@@ -91,6 +104,12 @@ const ComposedCustomLegend = ({ payload }: ComposedLegendProps) => {
   );
 };
 
+/**
+ * Combined bar and line chart showing revenue, profit, and margin.
+ * Uses dual Y-axes for currency and percentage values.
+ *
+ * @component
+ */
 export const ComposedChartComponent = () => {
   const t = useTranslations("charts");
   const { theme } = useTheme();
@@ -152,7 +171,7 @@ export const ComposedChartComponent = () => {
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               tickFormatter={(value) => `${value}%`}
             />
-            <Tooltip content={<ComposedTooltip />} isAnimationActive={false} />
+            <Tooltip content={<ComposedTooltip />} cursor={{ stroke: "var(--color-chartVerticalLine)" }} isAnimationActive={false} />
             <Legend
               verticalAlign="bottom"
               align="center"

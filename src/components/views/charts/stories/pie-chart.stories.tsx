@@ -8,6 +8,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { PieChartTooltip } from "./ChartTooltip";
+
 interface PieChartDemoProps {
   data: Array<{ name: string; value: number }>;
   colors?: string[];
@@ -78,16 +80,8 @@ const PieChartDemo = ({
             ))}
           </Pie>
           <Tooltip
-            contentStyle={{
-              backgroundColor: "var(--color-tooltipBg)",
-              border: "1px solid var(--color-mainBorder)",
-              borderRadius: "6px",
-              color: "var(--color-primaryText)",
-            }}
-            formatter={(value: number) => [
-              `$${Intl.NumberFormat("en").format(value)}`,
-              "Value",
-            ]}
+            content={<PieChartTooltip />}
+            isAnimationActive={false}
           />
           {showLegend && (
             <Legend

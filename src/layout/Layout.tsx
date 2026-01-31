@@ -26,7 +26,14 @@ export const Layout = ({ children }: LayoutProps) => {
     setIsInitialLoad,
     setShouldStartChartAnimations,
   } = useAppStore();
-  const [showLoader, setShowLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(() => {
+    // Check pathname synchronously to avoid flash on auth pages
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname;
+      return !pathname.includes("/login") && !pathname.includes("/register");
+    }
+    return true;
+  });
   const loaderTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const animationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null
@@ -42,6 +49,8 @@ export const Layout = ({ children }: LayoutProps) => {
     "/pl/register",
   ];
 
+  const isAuthPage = pathsWithNoLayout.includes(currentPathname);
+
   const { setTheme, themes } = useTheme();
 
   // Set Obsidian as theme if theme is not recognized
@@ -53,9 +62,17 @@ export const Layout = ({ children }: LayoutProps) => {
     }
   }, [setTheme, themes]);
 
-  // Show loader screen for 1 second on first render
+  // Show loader screen for 1 second on first render (only on non-auth pages)
   // Start chart animations at 80% of loader duration
   useEffect(() => {
+    // Skip loader entirely on auth pages
+    if (isAuthPage) {
+      setShowLoader(false);
+      setIsInitialLoad(false);
+      setShouldStartChartAnimations(true);
+      return;
+    }
+
     if (!loaderInitializedRef.current) {
       loaderInitializedRef.current = true;
 
@@ -78,7 +95,7 @@ export const Layout = ({ children }: LayoutProps) => {
         clearTimeout(animationTimeoutRef.current);
       }
     };
-  }, []);
+  }, [isAuthPage]);
 
   return (
     <>
@@ -100,7 +117,9 @@ export const Layout = ({ children }: LayoutProps) => {
       )}
 
       <div className="flex min-h-screen w-full bg-secondaryBg overflow-x-hidden">
-        {showLoader && <FullScreenLoader key="static-loader-key" />}
+        {showLoader && !pathsWithNoLayout.includes(currentPathname) && (
+          <FullScreenLoader key="static-loader-key" />
+        )}
         {!pathsWithNoLayout.includes(currentPathname) && (
           <>
             <SideMenu />

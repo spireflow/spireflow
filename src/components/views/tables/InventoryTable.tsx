@@ -28,7 +28,7 @@ import {
   PaginationEllipsis,
 } from "../../common/shadcn/pagination";
 
-// Types for Inventory Table
+/** Inventory item data structure for the inventory table. */
 type InventoryItem = {
   id: string;
   sku: string;
@@ -234,6 +234,12 @@ const inventoryTableData: InventoryItem[] = [
   },
 ];
 
+/**
+ * Displays sort direction indicator arrow.
+ *
+ * @component
+ * @param {false | 'asc' | 'desc'} isSorted - Current sort state
+ */
 const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   if (!isSorted)
     return <div className="inline-flex w-4 h-4 ml-1 flex-shrink-0" />;
@@ -248,6 +254,12 @@ const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   );
 };
 
+/**
+ * Inventory table with pagination and low stock highlighting.
+ * Uses TanStack Table with shadcn Pagination component.
+ *
+ * @component
+ */
 export const InventoryTable = () => {
   const t = useTranslations("pagination");
   const tTables = useTranslations("tables.cardTitles");

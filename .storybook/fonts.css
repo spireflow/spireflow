@@ -6,3 +6,32 @@
 :root {
   --font-outfit: "Outfit";
 }
+
+.sbdocs a.spireflow-demo-button,
+.sbdocs a.spireflow-demo-button:link,
+.sbdocs a.spireflow-demo-button:visited,
+.sbdocs a.spireflow-demo-button:hover,
+.sbdocs a.spireflow-demo-button:active {
+  display: inline-block !important;
+  padding: 4px 14px !important;
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  margin-top: 8px !important;
+  line-height: 1.4 !important;
+}
+
+.sbdocs a.spireflow-demo-button p,
+.sbdocs a.spireflow-demo-button:link p,
+.sbdocs a.spireflow-demo-button:visited p,
+.sbdocs a.spireflow-demo-button:hover p {
+  color: #ffffff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.sbdocs a.spireflow-demo-button:hover {
+  background-color: #2563eb !important;
+}

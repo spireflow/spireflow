@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { ChartTooltip } from "./ChartTooltip";
+
 interface StackedBarChartDemoProps {
   data: Array<Record<string, string | number>>;
   dataKeys: string[];
@@ -101,12 +103,9 @@ const StackedBarChartDemo = ({
             </>
           )}
           <Tooltip
-            contentStyle={{
-              backgroundColor: "var(--color-tooltipBg)",
-              border: "1px solid var(--color-mainBorder)",
-              borderRadius: "6px",
-              color: "var(--color-primaryText)",
-            }}
+            content={<ChartTooltip />}
+            cursor={{ fill: "var(--color-chartCursorBg)", stroke: "var(--color-chartVerticalLine)" }}
+            isAnimationActive={false}
           />
           {showLegend && (
             <Legend wrapperStyle={{ color: "var(--color-primaryText)" }} />

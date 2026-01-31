@@ -21,6 +21,8 @@
   --color-percentageBadgeRedText: rgb(180, 40, 60);
   --color-percentageBadgeGreenTextAccented: rgb(20, 120, 80);
   --color-percentageBadgeRedTextAccented: rgb(180, 40, 60);
+  --color-destructiveAlertText: rgb(0, 0, 0, 0.9);
+  --color-destructiveAlertIcon: rgb(220, 38, 38);
   --color-logoBasicText: black;
   --color-settingsDrawerLabelText: rgb(0, 0, 0, 0.7);
   --color-settingsDrawerSectionTitle: rgb(0, 0, 0, 0.5);
@@ -107,6 +109,7 @@
   --color-chipBgHover: rgb(61, 160, 208, 0.1);
   --color-mutedBg: rgb(247, 247, 247);
   --color-errorBg: rgb(195, 70, 70);
+  --color-destructiveAlertBg: rgb(239, 68, 68, 0.3);
   --color-skeletonBg: rgb(225, 225, 230);
   --color-navbarSearchInputBg: rgb(240, 240, 245, 0.2);
   --color-navbarSearchInputBgHover: rgb(240, 240, 245, 0.4);
@@ -143,4 +146,7 @@
   --color-settingsButtonBorder: rgb(0, 0, 0, 0.18);
   --color-tabLineActiveBorder: rgb(37, 99, 235);
   --color-chartVerticalLine: rgb(0, 0, 0, 0.25);
+  --color-chartCursorBg: rgb(0, 0, 0, 0.05);
+  --color-destructiveAlertBorder: rgb(239, 68, 68, 0.5);
+  --authModalShadow: 0 18px 35px -10px rgb(0, 0, 0, 0.3), 0 6px 16px -5px rgb(0, 0, 0, 0.15);
 }

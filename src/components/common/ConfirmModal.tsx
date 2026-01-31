@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 
 import { ContainedButton } from "../common/ContainedButton";
 import { Button } from "../common/shadcn/button";
@@ -17,6 +17,7 @@ interface ConfirmModalProps {
   cancelButtonText: string;
   IconComponent?: React.ElementType;
   type?: "delete" | "default";
+  returnFocusRef?: RefObject<HTMLElement | null>;
 }
 
 /**
@@ -57,11 +58,20 @@ export const ConfirmModal = ({
   confirmButtonText,
   cancelButtonText,
   type = "default",
+  returnFocusRef,
 }: ConfirmModalProps) => {
   return (
     <div>
       <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-        <DialogContent className="max-w-[90vw] sm:max-w-[28rem] px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem]">
+        <DialogContent
+          className="max-w-[90vw] sm:max-w-[28rem] px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem]"
+          onCloseAutoFocus={(e) => {
+            if (returnFocusRef?.current) {
+              e.preventDefault();
+              returnFocusRef.current.focus();
+            }
+          }}
+        >
           <div className="flex items-center justify-center w-full flex-col gap-2 -mt-2">
             <div className="text-grayIcon rounded-full border border-mainBorder p-4 pl-4 w-16 h-16 flex justify-center items-center mr-[0rem]">
               {type === "delete" ? <DeleteIcon /> : <ConfirmIcon />}

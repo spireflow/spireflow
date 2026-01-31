@@ -17,9 +17,9 @@ const buttonVariants = cva(
           "bg-containedButtonBg text-white hover:bg-containedButtonBgHover",
         destructive: "bg-errorBg text-white hover:bg-errorBg/85",
         outline:
-          "border border-outlinedButtonBorder bg-outlinedButtonBg hover:bg-outlinedButtonBgHover hover:text-primaryText",
+          "border border-outlinedButtonBorder bg-outlinedButtonBg text-primaryText hover:bg-outlinedButtonBgHover",
         secondary: "bg-secondaryBg text-primaryText hover:brightness-95",
-        ghost: "hover:bg-navItemBgHover hover:text-primaryText",
+        ghost: "text-primaryText hover:bg-navItemBgHover",
         link: "text-coloredText underline-offset-4 hover:underline",
       },
       size: {

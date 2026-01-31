@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { ChartTooltip } from "./ChartTooltip";
+
 interface AreaChartDemoProps {
   data: Array<Record<string, string | number>>;
   dataKeys: string[];
@@ -77,12 +79,8 @@ const AreaChartDemo = ({
             tickFormatter={(value: number) => Intl.NumberFormat("en").format(value)}
           />
           <Tooltip
-            contentStyle={{
-              backgroundColor: "var(--color-tooltipBg)",
-              border: "1px solid var(--color-mainBorder)",
-              borderRadius: "6px",
-              color: "var(--color-primaryText)",
-            }}
+            content={<ChartTooltip />}
+            isAnimationActive={false}
           />
           {showLegend && (
             <Legend wrapperStyle={{ color: "var(--color-primaryText)" }} />

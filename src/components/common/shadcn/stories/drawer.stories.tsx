@@ -70,7 +70,9 @@ export const Bottom: Story = {
           <p className="text-sm text-primaryText">Drawer content goes here.</p>
         </div>
         <DrawerFooter>
-          <Button>Submit</Button>
+          <DrawerClose asChild>
+            <Button>Submit</Button>
+          </DrawerClose>
           <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
           </DrawerClose>
@@ -102,7 +104,9 @@ export const Right: Story = {
           </div>
         </div>
         <DrawerFooter>
-          <Button>Save</Button>
+          <DrawerClose asChild>
+            <Button>Save</Button>
+          </DrawerClose>
           <DrawerClose asChild>
             <Button variant="outline">Close</Button>
           </DrawerClose>

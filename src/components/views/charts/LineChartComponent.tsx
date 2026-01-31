@@ -19,12 +19,18 @@ import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartColors } from "../../../hooks/useChartColors";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Props for line chart tooltip component. */
 interface LineChartTooltipProps {
   active?: boolean;
   payload?: Array<{ name: string; value: number; color?: string }>;
   label?: string;
 }
 
+/**
+ * Custom tooltip displaying data series values.
+ *
+ * @component
+ */
 const LineChartTooltip = ({
   active,
   payload,
@@ -55,6 +61,11 @@ const LineChartTooltip = ({
   );
 };
 
+/**
+ * Custom legend with colored indicators.
+ *
+ * @component
+ */
 const CustomLegend = ({
   payload,
 }: {
@@ -77,6 +88,12 @@ const CustomLegend = ({
   );
 };
 
+/**
+ * Line chart showing dragon population in Westeros over time.
+ * Uses Recharts with custom tooltip and historical event labels.
+ *
+ * @component
+ */
 export const LineChartComponent = () => {
   const tCharts = useTranslations("charts");
   const t = useTranslations("singleCharts.line");

@@ -17,6 +17,7 @@ import { useChartColors } from "../../../hooks/useChartColors";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for radar chart. */
 interface DataPoint {
   subject: string;
   productA: number;
@@ -24,16 +25,24 @@ interface DataPoint {
   fullMark: number;
 }
 
+/** Props for radar chart tooltip component. */
 interface RadarTooltipProps {
   active?: boolean;
   payload?: Array<{
     name: string;
     value: number;
     dataKey: string;
+    color?: string;
+    stroke?: string;
   }>;
   label?: string;
 }
 
+/**
+ * Custom tooltip displaying product comparison scores.
+ *
+ * @component
+ */
 const RadarTooltip = ({ active, payload, label }: RadarTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
@@ -44,7 +53,13 @@ const RadarTooltip = ({ active, payload, label }: RadarTooltipProps) => {
           key={index}
           className="px-3 pb-1 text-primaryText flex items-center justify-between"
         >
-          <span>{entry.name}: </span>
+          <span>
+            <span
+              className="w-2 h-2 mr-2 rounded inline-block"
+              style={{ backgroundColor: entry.color || entry.stroke }}
+            />
+            {entry.name}:
+          </span>
           <span className="pl-[0.7rem]">{entry.value}/100</span>
         </p>
       ))}
@@ -52,6 +67,12 @@ const RadarTooltip = ({ active, payload, label }: RadarTooltipProps) => {
   );
 };
 
+/**
+ * Radar chart comparing two products across multiple attributes.
+ * Uses overlapping filled areas for visual comparison.
+ *
+ * @component
+ */
 export const RadarChartComponent = () => {
   const t = useTranslations("charts");
   const { theme } = useTheme();

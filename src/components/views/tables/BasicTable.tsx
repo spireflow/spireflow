@@ -15,7 +15,7 @@ import { Card } from "../../common/Card";
 import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 
-// Types for Basic Table
+/** Product data structure for the basic table. */
 type Product = {
   id: number;
   name: string;
@@ -93,7 +93,13 @@ const basicTableData: Product[] = [
   },
 ];
 
-// Status Badge Component
+/**
+ * Displays a colored badge based on status value.
+ * Supports completed/in stock, pending/low stock, and failed/out of stock states.
+ *
+ * @component
+ * @param {string} status - Status text to display and determine color
+ */
 const StatusBadge = ({ status }: { status: string }) => {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -122,6 +128,12 @@ const StatusBadge = ({ status }: { status: string }) => {
   );
 };
 
+/**
+ * Displays sort direction indicator arrow.
+ *
+ * @component
+ * @param {false | 'asc' | 'desc'} isSorted - Current sort state
+ */
 const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   if (!isSorted)
     return <div className="inline-flex w-4 h-4 ml-1 flex-shrink-0" />;
@@ -136,6 +148,12 @@ const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   );
 };
 
+/**
+ * Basic sortable table displaying product inventory.
+ * Uses TanStack Table for sorting functionality.
+ *
+ * @component
+ */
 export const BasicTable = () => {
   const t = useTranslations("tables.cardTitles");
 

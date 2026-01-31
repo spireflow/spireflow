@@ -9,7 +9,34 @@ import {
   Legend,
   ResponsiveContainer,
   ZAxis,
+  TooltipProps,
 } from "recharts";
+
+interface TooltipPayloadItem {
+  name: string;
+  value: number;
+  dataKey: string;
+}
+
+const ScatterTooltipContent = ({
+  active,
+  payload,
+}: TooltipProps<number, string>) => {
+  if (!active || !payload || payload.length === 0) return null;
+
+  return (
+    <div className="bg-primaryBg border border-mainBorder rounded px-3 py-2 shadow-lg">
+      {payload.map((entry, index) => {
+        const item = entry as unknown as TooltipPayloadItem;
+        return (
+          <p key={index} className="text-primaryText text-sm">
+            {item.name}: {item.value}
+          </p>
+        );
+      })}
+    </div>
+  );
+};
 
 interface ScatterChartDemoProps {
   data: Array<Array<{ x: number; y: number; z?: number }>>;
@@ -89,13 +116,9 @@ const ScatterChartDemo = ({
           />
           {showBubbles && <ZAxis type="number" dataKey="z" range={[60, 400]} />}
           <Tooltip
-            contentStyle={{
-              backgroundColor: "var(--color-tooltipBg)",
-              border: "1px solid var(--color-mainBorder)",
-              borderRadius: "6px",
-              color: "var(--color-primaryText)",
-            }}
+            content={<ScatterTooltipContent />}
             cursor={{ strokeDasharray: "3 3" }}
+            isAnimationActive={false}
           />
           {showLegend && (
             <Legend wrapperStyle={{ color: "var(--color-primaryText)" }} />

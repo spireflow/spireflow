@@ -20,13 +20,16 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { Card } from "../../common/Card";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for scatter chart. */
 interface DataPoint {
   country: string;
   lifeExpectancy: number;
   gdp: number;
   population: number;
+  color: string;
 }
 
+/** Props for scatter chart tooltip component. */
 interface ScatterTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -34,27 +37,33 @@ interface ScatterTooltipProps {
   }>;
 }
 
+/**
+ * Custom tooltip displaying country GDP, life expectancy, and population.
+ *
+ * @component
+ */
 const ScatterTooltip = ({ active, payload }: ScatterTooltipProps) => {
   const t = useTranslations("singleCharts.scatter");
 
   if (!active || !payload || payload.length === 0) return null;
 
   const data = payload[0].payload;
+  const color = data.color;
 
   return (
     <BaseTooltip title={data.country}>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("gdp")}: </span>
+        <span>{t("gdp")}:</span>
         <span className="pl-[0.7rem]">${(data.gdp / 1000).toFixed(1)}K</span>
       </p>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("lifeExpectancy")}: </span>
+        <span>{t("lifeExpectancy")}:</span>
         <span className="pl-[0.7rem]">
           {data.lifeExpectancy} {t("yrs")}
         </span>
       </p>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("population")}: </span>
+        <span>{t("population")}:</span>
         <span className="pl-[0.7rem]">
           {(data.population / 1000000).toFixed(1)}M
         </span>
@@ -63,6 +72,12 @@ const ScatterTooltip = ({ active, payload }: ScatterTooltipProps) => {
   );
 };
 
+/**
+ * Scatter chart showing GDP vs life expectancy by country.
+ * Point size represents population, with color variation.
+ *
+ * @component
+ */
 export const ScatterChartComponent = () => {
   const tCharts = useTranslations("charts");
   const { theme } = useTheme();
@@ -180,7 +195,15 @@ export const ScatterChartComponent = () => {
       gdp: 21345.678,
       population: 10473455,
     },
-  ];
+  ].map((item, index) => ({
+    ...item,
+    color:
+      index % 3 === 0
+        ? chartColors.primary.fill
+        : index % 3 === 1
+          ? chartColors.secondary.fill
+          : "rgb(168, 162, 255)",
+  }));
 
   return (
     <Card
@@ -233,7 +256,7 @@ export const ScatterChartComponent = () => {
             />
             <Tooltip
               content={<ScatterTooltip />}
-              cursor={{ strokeDasharray: "3 3" }}
+              cursor={{ strokeDasharray: "3 3", stroke: "var(--color-chartVerticalLine)" }}
               isAnimationActive={false}
             />
             <Scatter
@@ -246,16 +269,7 @@ export const ScatterChartComponent = () => {
               animationEasing="ease-out"
             >
               {chartdata.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={
-                    index % 3 === 0
-                      ? chartColors.primary.fill
-                      : index % 3 === 1
-                        ? chartColors.secondary.fill
-                        : "rgb(168, 162, 255)"
-                  }
-                />
+                <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Scatter>
           </ScatterChart>

@@ -15,12 +15,14 @@ import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartColors } from "../../../hooks/useChartColors";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for radial bar chart. */
 interface DataPoint {
   name: string;
   value: number;
   fill: string;
 }
 
+/** Props for radial bar chart tooltip component. */
 interface RadialTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -28,6 +30,11 @@ interface RadialTooltipProps {
   }>;
 }
 
+/**
+ * Custom tooltip displaying performance percentage.
+ *
+ * @component
+ */
 const RadialTooltip = ({ active, payload }: RadialTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
@@ -36,13 +43,25 @@ const RadialTooltip = ({ active, payload }: RadialTooltipProps) => {
   return (
     <BaseTooltip title={data.name}>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>Performance: </span>
+        <span>
+          <span
+            className="w-2 h-2 mr-2 rounded inline-block"
+            style={{ backgroundColor: data.fill }}
+          />
+          Performance:
+        </span>
         <span className="pl-[0.7rem]">{data.value}%</span>
       </p>
     </BaseTooltip>
   );
 };
 
+/**
+ * Radial bar chart showing quarterly sales performance.
+ * Uses concentric circular bars with labels.
+ *
+ * @component
+ */
 export const RadialBarChartComponent = () => {
   const t = useTranslations("charts");
   const { theme } = useTheme();
@@ -52,22 +71,22 @@ export const RadialBarChartComponent = () => {
   const chartdata: DataPoint[] = [
     {
       name: "Q1 Sales",
-      value: 78,
+      value: 35,
       fill: chartColors.primary.fill,
     },
     {
       name: "Q2 Sales",
-      value: 85,
+      value: 52,
       fill: chartColors.secondary.fill,
     },
     {
       name: "Q3 Sales",
-      value: 92,
+      value: 68,
       fill: "rgb(168, 162, 255)",
     },
     {
       name: "Q4 Sales",
-      value: 88,
+      value: 45,
       fill: "rgb(100, 200, 180)",
     },
   ];

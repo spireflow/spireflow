@@ -19,6 +19,7 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for mixed line chart. */
 interface DataPoint {
   month: string;
   organic: number;
@@ -26,6 +27,7 @@ interface DataPoint {
   referral: number;
 }
 
+/** Props for mixed line chart tooltip component. */
 interface MixedLineTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -37,6 +39,11 @@ interface MixedLineTooltipProps {
   label?: string;
 }
 
+/**
+ * Custom tooltip displaying traffic source breakdown.
+ *
+ * @component
+ */
 const MixedLineTooltip = ({
   active,
   payload,
@@ -67,6 +74,7 @@ const MixedLineTooltip = ({
   );
 };
 
+/** Props for mixed line chart legend component. */
 interface MixedLineLegendProps {
   payload?: Array<{
     value: string;
@@ -74,6 +82,11 @@ interface MixedLineLegendProps {
   }>;
 }
 
+/**
+ * Custom legend with line-style indicators.
+ *
+ * @component
+ */
 const MixedLineCustomLegend = ({ payload }: MixedLineLegendProps) => {
   return (
     <div
@@ -95,6 +108,12 @@ const MixedLineCustomLegend = ({ payload }: MixedLineLegendProps) => {
   );
 };
 
+/**
+ * Multi-line chart showing traffic sources over time.
+ * Displays organic, paid, and referral traffic trends.
+ *
+ * @component
+ */
 export const MixedLineChartComponent = () => {
   const t = useTranslations("charts");
   const { theme } = useTheme();
@@ -148,7 +167,7 @@ export const MixedLineChartComponent = () => {
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
             />
-            <Tooltip content={<MixedLineTooltip />} isAnimationActive={false} />
+            <Tooltip content={<MixedLineTooltip />} cursor={{ stroke: "var(--color-chartVerticalLine)" }} isAnimationActive={false} />
             <Legend
               iconType="line"
               wrapperStyle={{ paddingTop: "2rem" }}

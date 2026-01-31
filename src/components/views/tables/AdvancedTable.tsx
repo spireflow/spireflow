@@ -21,7 +21,7 @@ import { Checkbox } from "../../common/shadcn/checkbox";
 import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 
-// Types for Search Table
+/** Transaction data structure for the advanced table. */
 type Transaction = {
   id: string;
   customer: string;
@@ -126,7 +126,13 @@ const advancedTableData: Transaction[] = [
   },
 ];
 
-// Status Badge Component
+/**
+ * Displays a colored badge based on status value.
+ * Supports completed/in stock, pending/low stock, and failed/out of stock states.
+ *
+ * @component
+ * @param {string} status - Status text to display and determine color
+ */
 const StatusBadge = ({ status }: { status: string }) => {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -155,6 +161,12 @@ const StatusBadge = ({ status }: { status: string }) => {
   );
 };
 
+/**
+ * Displays sort direction indicator arrow.
+ *
+ * @component
+ * @param {false | 'asc' | 'desc'} isSorted - Current sort state
+ */
 const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   if (!isSorted)
     return <div className="inline-flex w-4 h-4 ml-1 flex-shrink-0" />;
@@ -169,6 +181,12 @@ const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
   );
 };
 
+/**
+ * Advanced table with search, row selection, sorting, and filtering.
+ * Uses TanStack Table for advanced table functionality.
+ *
+ * @component
+ */
 export const AdvancedTable = () => {
   const t = useTranslations("tables.cardTitles");
 

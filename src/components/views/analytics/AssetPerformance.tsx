@@ -11,13 +11,16 @@ import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartColors } from "../../../hooks/useChartColors";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+interface AssetDataWithColor {
+  name: string;
+  sales: number;
+  color: string;
+}
+
 interface AssetTooltipProps {
   active?: boolean;
   payload?: Array<{
-    payload: {
-      name: string;
-      sales: number;
-    };
+    payload: AssetDataWithColor;
   }>;
 }
 
@@ -25,11 +28,18 @@ const AssetTooltip = ({ active, payload }: AssetTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
   const data = payload[0].payload;
+  const color = data.color;
 
   return (
     <BaseTooltip title={data.name}>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>Sales: </span>
+        <span>
+          <span
+            className="w-2 h-2 mr-2 rounded inline-block"
+            style={{ backgroundColor: color }}
+          />
+          Sales:
+        </span>
         <span className="pl-[0.7rem]">
           {Intl.NumberFormat("us").format(data.sales)} $
         </span>
@@ -69,6 +79,13 @@ export const AssetPerformance = ({
     "rgb(200, 100, 255)",
   ];
 
+  const dataWithColors: AssetDataWithColor[] = assetPerformanceData.map(
+    (item, index) => ({
+      ...item,
+      color: COLORS[index % COLORS.length],
+    })
+  );
+
   const totalSales = assetPerformanceData.reduce(
     (sum, asset) => sum + asset.sales,
     0
@@ -106,7 +123,7 @@ export const AssetPerformance = ({
             >
               <PieChart tabIndex={-1}>
                 <Pie
-                  data={assetPerformanceData}
+                  data={dataWithColors}
                   cx="50%"
                   cy="50%"
                   innerRadius="60%"
@@ -120,10 +137,10 @@ export const AssetPerformance = ({
                   animationDuration={800}
                   animationEasing="ease-out"
                 >
-                  {assetPerformanceData.map((entry, index) => (
+                  {dataWithColors.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
+                      fill={entry.color}
                       stroke="none"
                     />
                   ))}

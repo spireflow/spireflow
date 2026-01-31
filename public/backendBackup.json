@@ -2,7 +2,7 @@
   "analytics": {
     "assets": [
       {
-        "name": "Nexora Systems Inc.",
+        "name": "Quantum Edge Systems",
         "industry": "tech",
         "sales": 984888,
         "delta": 61.3,
@@ -10,7 +10,7 @@
         "status": "emerald"
       },
       {
-        "name": "Velora Holding",
+        "name": "Ferron Steel AG",
         "industry": "health",
         "sales": 456700,
         "delta": 32.8,
@@ -18,7 +18,7 @@
         "status": "emerald"
       },
       {
-        "name": "Quantumleap Inc.",
+        "name": "Nexora Analytics Inc.",
         "industry": "Tech",
         "sales": 390800,
         "delta": -18.3,
@@ -26,7 +26,7 @@
         "status": "rose"
       },
       {
-        "name": "Ferron Steel AG",
+        "name": "Velora Holding",
         "industry": "manufacturing",
         "sales": 240000,
         "delta": 19.4,
@@ -42,7 +42,7 @@
         "status": "rose"
       },
       {
-        "name": "Zyphr Logic Inc.",
+        "name": "Syntera Technologies Ltd.",
         "industry": "tech",
         "sales": 164400,
         "delta": -32.8,

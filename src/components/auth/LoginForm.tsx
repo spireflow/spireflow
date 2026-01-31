@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { useTranslations } from "next-intl";
 
@@ -6,11 +6,14 @@ import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 import { useHandleLogin } from "../../hooks/auth/useHandleLogin";
 import { MailIcon } from "../../assets/icons/MailIcon";
 import { PasswordIcon } from "../../assets/icons/PasswordIcon";
+import { EyeIcon } from "../../assets/icons/EyeIcon";
+import { EyeOffIcon } from "../../assets/icons/EyeOffIcon";
 import { ContainedButton } from "../common/ContainedButton";
 import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon,
+  InputGroupButton,
 } from "../common/shadcn/input-group";
 import { useAppStore } from "../../store/appStore";
 
@@ -39,6 +42,7 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
   const t = useTranslations("navbar");
 
   const isLoggingIn = useAppStore((state) => state.isLoggingIn);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="w-full md:w-[18.5rem] 1xl:w-[20rem] flex flex-col items-center mb-2">
@@ -84,17 +88,26 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
             name="password"
             control={control}
             render={({ field }) => (
-              <InputGroup className="h-full">
+              <InputGroup className="h-full group">
                 <InputGroupInput
                   {...field}
                   autoComplete="new-password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder={t("yourPassword")}
                   onInput={() => setShowEmailError(false)}
                   maxLength={20}
                 />
                 <InputGroupAddon>
                   <PasswordIcon />
+                </InputGroupAddon>
+                <InputGroupAddon align="inline-end" className={`pr-1 transition-opacity ${showPassword ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"}`}>
+                  <InputGroupButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-pressed={showPassword}
+                  >
+                    {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+                  </InputGroupButton>
                 </InputGroupAddon>
               </InputGroup>
             )}

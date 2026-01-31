@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Cell,
 } from "recharts";
@@ -20,11 +19,14 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+/** Data point structure for vertical bar chart. */
 interface DataPoint {
   category: string;
   sales: number;
+  color: string;
 }
 
+/** Props for vertical bar chart tooltip component. */
 interface VerticalBarTooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -35,6 +37,11 @@ interface VerticalBarTooltipProps {
   label?: string;
 }
 
+/**
+ * Custom tooltip displaying sales value.
+ *
+ * @component
+ */
 const VerticalBarTooltip = ({
   active,
   payload,
@@ -42,10 +49,18 @@ const VerticalBarTooltip = ({
 }: VerticalBarTooltipProps) => {
   if (!active || !payload || payload.length === 0) return null;
 
+  const color = payload[0].payload.color;
+
   return (
     <BaseTooltip title={label || ""}>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>Sales: </span>
+        <span>
+          <span
+            className="w-2 h-2 mr-2 rounded inline-block"
+            style={{ backgroundColor: color }}
+          />
+          Sales:
+        </span>
         <span className="pl-[0.7rem]">
           ${Intl.NumberFormat("us").format(payload[0].value)}
         </span>
@@ -54,31 +69,12 @@ const VerticalBarTooltip = ({
   );
 };
 
-interface BarLegendProps {
-  payload?: Array<{
-    value: string;
-    color?: string;
-  }>;
-}
-
-const BarCustomLegend = ({ payload }: BarLegendProps) => {
-  return (
-    <div className="flex flex-row justify-center gap-8 text-white w-full">
-      {payload?.map((entry, index) => (
-        <div key={`legend-${index}`} className="flex items-center">
-          <div
-            className="w-3 h-3 mr-2"
-            style={{ backgroundColor: entry.color }}
-          />
-          <span className="text-xs 1xl:text-sm text-primaryText">
-            {entry.value}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-};
-
+/**
+ * Vertical bar chart showing sales by product category.
+ * Uses Recharts with alternating bar colors.
+ *
+ * @component
+ */
 export const VerticalBarChartComponent = () => {
   const t = useTranslations("charts");
   const { theme } = useTheme();
@@ -87,12 +83,12 @@ export const VerticalBarChartComponent = () => {
   const { shouldAnimate, animationBegin } = useChartAnimation("charts");
 
   const chartdata: DataPoint[] = [
-    { category: "Fashion", sales: 45000 },
-    { category: "Tech", sales: 62000 },
-    { category: "Home", sales: 38000 },
-    { category: "Beauty", sales: 29000 },
-    { category: "Sports", sales: 41000 },
-    { category: "Books", sales: 22000 },
+    { category: "Fashion", sales: 45000, color: chartColors.primary.fill },
+    { category: "Tech", sales: 62000, color: chartColors.secondary.fill },
+    { category: "Home", sales: 38000, color: chartColors.primary.fill },
+    { category: "Beauty", sales: 29000, color: chartColors.secondary.fill },
+    { category: "Sports", sales: 41000, color: chartColors.primary.fill },
+    { category: "Books", sales: 22000, color: chartColors.secondary.fill },
   ];
 
   return (
@@ -133,7 +129,6 @@ export const VerticalBarChartComponent = () => {
               tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
             />
             <Tooltip content={<VerticalBarTooltip />} cursor={{ fill: "rgba(255, 255, 255, 0.02)", stroke: "var(--color-chartVerticalLine)" }} isAnimationActive={false} />
-            <Legend wrapperStyle={{ paddingTop: '2rem' }} content={<BarCustomLegend />} />
             <Bar
               dataKey="sales"
               name="Sales"
@@ -145,14 +140,7 @@ export const VerticalBarChartComponent = () => {
               animationEasing="ease-out"
             >
               {chartdata.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={
-                    index % 2 === 0
-                      ? chartColors.primary.fill
-                      : chartColors.secondary.fill
-                  }
-                />
+                <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Bar>
           </BarChart>

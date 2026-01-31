@@ -8,6 +8,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { PieChartTooltip } from "./ChartTooltip";
+
 interface DonutChartDemoProps {
   data: Array<{ name: string; value: number }>;
   colors?: string[];
@@ -65,13 +67,8 @@ const DonutChartDemo = ({
             ))}
           </Pie>
           <Tooltip
-            contentStyle={{
-              backgroundColor: "var(--color-tooltipBg)",
-              border: "1px solid var(--color-mainBorder)",
-              borderRadius: "6px",
-              color: "var(--color-primaryText)",
-            }}
-            formatter={(value: number, name: string) => [`${value}%`, name]}
+            content={<PieChartTooltip valueFormatter={(value) => `${value}%`} />}
+            isAnimationActive={false}
           />
           {showLegend && (
             <Legend

@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { ChartTooltip } from "./ChartTooltip";
+
 interface RadarChartDemoProps {
   data: Array<Record<string, string | number>>;
   dataKeys: string[];
@@ -59,12 +61,8 @@ const RadarChartDemo = ({
             axisLine={false}
           />
           <Tooltip
-            contentStyle={{
-              backgroundColor: "var(--color-tooltipBg)",
-              border: "1px solid var(--color-mainBorder)",
-              borderRadius: "6px",
-              color: "var(--color-primaryText)",
-            }}
+            content={<ChartTooltip />}
+            isAnimationActive={false}
           />
           {showLegend && (
             <Legend wrapperStyle={{ color: "var(--color-primaryText)" }} />

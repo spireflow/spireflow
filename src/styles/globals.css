@@ -11,11 +11,13 @@ body {
   margin: 0;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
+  background-color: var(--color-secondaryBg);
 }
 
 /* Font switching via class toggle */
 body {
   font-family: var(--font-outfit), sans-serif;
+  color: var(--color-primaryText);
 }
 
 body.font-alternative {
@@ -179,6 +181,10 @@ button {
   height: 1.7rem;
   padding-top: 0.1rem;
   padding-left: 0.2rem;
+}
+
+.fc .fc-event:focus {
+  background-color: rgb(255, 255, 255, 0.1) !important;
 }
 .fc-daygrid-day-events .fc-event-main * {
   color: white;
@@ -375,7 +381,9 @@ input:-webkit-autofill {
   transform: rotate(0deg);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar
+   Scoped to #__next (Next.js app) and #storybook-root (Storybook component preview)
+   to prevent dark scrollbars from bleeding into Storybook documentation UI */
 :root {
   --scrollbar-thumb: var(--color-scrollbarThumb);
   --scrollbar-bg: var(--color-scrollbarBg);
@@ -386,7 +394,10 @@ input:-webkit-autofill {
   --scrollbar-bg: var(--color-scrollbarBg);
 }
 
-* {
+#__next,
+#__next *,
+#storybook-root,
+#storybook-root * {
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg) !important;
   scrollbar-width: thin !important;
 }
@@ -424,3 +435,4 @@ input:-webkit-autofill {
   --breakpoint-3xl: 109.375rem; /* 1750px */
   --breakpoint-5xl: 125rem; /* 2000px */
 }
+
