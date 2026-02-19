@@ -8,6 +8,10 @@ styles in more reliable way for some of the external libraries used in this proj
 /* Override Tailwind v4 transition utilities to exclude outline-color.
    Tailwind v4 includes outline-color in transition/transition-colors by default,
    which causes focus-visible outline to fade-in instead of appearing instantly. */
+.transition-transform-forced {
+  transition: transform 200ms ease !important;
+}
+
 @layer utilities {
   .transition {
     transition-property:

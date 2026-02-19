@@ -19,10 +19,18 @@ export const ThemeButton = ({
 }: Omit<ThemeButtonProps, "themeTooltip">) => {
   const [isMounted, setIsMounted] = useState(false);
   const currentTheme = theme || "light";
+  const [sliderDark, setSliderDark] = useState(currentTheme === "dark");
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSliderDark(currentTheme === "dark");
+    }, 10);
+    return () => clearTimeout(timeout);
+  }, [currentTheme]);
 
   const toggleTheme = () => {
     const newTheme = currentTheme === "dark" ? "light" : "dark";
@@ -41,7 +49,7 @@ export const ThemeButton = ({
     <Tooltip delayDuration={200}>
       <TooltipTrigger asChild>
         <div
-          className="group relative flex items-center bg-themeToggleBg border border-mainBorder rounded-full p-0.5 cursor-pointer"
+          className="group relative flex items-center bg-themeToggleBg border border-mainBorder rounded-full py-0.5 pr-0.5 pl-0 cursor-pointer"
           onClick={toggleTheme}
           role="button"
           aria-label={t("changeTheme")}
@@ -54,12 +62,11 @@ export const ThemeButton = ({
         >
           {isMounted && (
             <div
-              className="absolute left-0.5 top-0.5 w-[42px] h-[2.1825rem] rounded-full shadow-sm border border-themeToggleActiveBorder bg-themeToggleActiveBg"
+              className="absolute left-[2px] top-0.5 w-[38px] h-[2.1825rem] rounded-full shadow-sm border border-themeToggleActiveBorder bg-themeToggleActiveBg transition-transform-forced"
               style={{
-                transform:
-                  currentTheme === "dark"
-                    ? "translateX(42px)"
-                    : "translateX(0px)",
+                transform: sliderDark
+                  ? "translateX(42px)"
+                  : "translateX(0px)",
               }}
             />
           )}
