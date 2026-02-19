@@ -27,7 +27,7 @@ export const DialogsUI = () => {
           <DialogTrigger asChild>
             <Button>Open Dialog</Button>
           </DialogTrigger>
-          <DialogContent className="sm:w-[25rem] sm:h-auto sm:max-w-[25rem] !p-8">
+          <DialogContent className="flex flex-col sm:w-[25rem] sm:h-auto md:w-[25rem] sm:max-w-[25rem] border-0 sm:border sm:border-inputBorder sm:rounded-2xl sm:p-8">
             <DialogHeader>
               <DialogTitle>Dialog Title</DialogTitle>
               <DialogDescription>
@@ -36,12 +36,12 @@ export const DialogsUI = () => {
               </DialogDescription>
             </DialogHeader>
             <div className="pb-4">
-              <p className="text-base text-primaryText">
+              <p className="text-base text-primaryText text-center sm:text-left">
                 This is the main content area of the dialog. You can place any
                 content here.
               </p>
             </div>
-            <DialogFooter>
+            <DialogFooter className="!flex-row gap-4 sm:gap-0 justify-center">
               <Button variant="outline" onClick={() => setDialogOpen(false)}>
                 Cancel
               </Button>
@@ -54,7 +54,7 @@ export const DialogsUI = () => {
           <DialogTrigger asChild>
             <Button variant="destructive">Delete Dialog</Button>
           </DialogTrigger>
-          <DialogContent className="sm:w-[25rem] sm:h-auto sm:max-w-[25rem] !p-8">
+          <DialogContent className="flex flex-col sm:w-[25rem] sm:h-auto md:w-[25rem] sm:max-w-[25rem] border-0 sm:border sm:border-inputBorder sm:rounded-2xl sm:p-8">
             <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
               <DialogDescription>
@@ -62,7 +62,7 @@ export const DialogsUI = () => {
                 account and remove your data from our servers.
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter>
+            <DialogFooter className="!flex-row gap-4 sm:gap-0 justify-center">
               <Button
                 variant="outline"
                 onClick={() => setDeleteDialogOpen(false)}

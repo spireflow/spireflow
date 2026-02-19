@@ -29,6 +29,8 @@ export const NotificationsButton = ({
     useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const notificationsBtnRef = useRef<HTMLButtonElement>(null);
+  const suppressTooltipRef = useRef(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
   // Load notifications - always use fresh data on page load, ignore localStorage
   useEffect(() => {
@@ -107,14 +109,27 @@ export const NotificationsButton = ({
 
   return (
     <div className="relative" ref={notificationsDropdown.ref}>
-      <Tooltip delayDuration={200}>
+      <Tooltip
+        delayDuration={200}
+        open={tooltipOpen}
+        onOpenChange={(open) => {
+          if (open && suppressTooltipRef.current) {
+            suppressTooltipRef.current = false;
+            return;
+          }
+          if (open && isAnyDropdownOpen) return;
+          setTooltipOpen(open);
+        }}
+      >
         <TooltipTrigger asChild>
           <div className="h-10 w-10">
             <button
               ref={notificationsBtnRef}
-              onClick={() => {
+              onClick={(e) => {
+                setTooltipOpen(false);
                 // On mobile (<xl), open modal directly
                 if (window.innerWidth < 1280) {
+                  if (e.detail > 0) suppressTooltipRef.current = true;
                   setIsAllNotificationsModalOpen(true);
                 } else {
                   notificationsDropdown.toggle();
@@ -213,6 +228,7 @@ export const NotificationsButton = ({
           {/* Footer button */}
           <div className="p-3 border-t border-mainBorder bg-notificationHeaderBg">
             <button
+              onPointerDown={() => { suppressTooltipRef.current = true; }}
               onClick={() => {
                 setIsAllNotificationsModalOpen(true);
                 notificationsDropdown.close();

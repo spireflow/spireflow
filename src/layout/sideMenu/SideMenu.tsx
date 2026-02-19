@@ -38,7 +38,7 @@ export const SideMenu = () => {
       >
         <div
           className={`flex shrink-0 h-[4.5rem] 3xl:h-20 items-center pr-2 pl-[1.4rem] 3xl:pl-[2.4rem] xl:translate-y-[0.7rem] transition-all duration-200 ${
-            !isSideMenuOpen && "xl:!w-[4.5rem] 3xl:pr-2 !pl-[1.3rem]"
+            !isSideMenuOpen && "xl:!w-[4.5rem] 3xl:pr-2 !pl-[1.2rem]"
           }`}
         >
           <Logo />

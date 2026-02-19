@@ -11,8 +11,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./shadcn/breadcrumb";
-import { DownloadIcon } from "../../assets/icons/DownloadIcon";
-import { exportToCSV } from "../../utils/exportToCSV";
+import { DateRangeSelector } from "../../layout/dateRangeSelect/DateRangeSelector";
 
 type LayoutType = "dashboard" | "content" | "table";
 type BreadcrumbCategory = "ecommerce" | "components" | "default";
@@ -73,29 +72,27 @@ interface PageWrapperProps {
 }
 
 /**
- * Main page layout wrapper with breadcrumbs.
+ * Main page layout wrapper with breadcrumbs and global date range selector.
  * Layout and breadcrumb category are auto-resolved from pageName via PAGE_CONFIG.
  *
  * @param props.children - Main page content
  * @param props.pageName - Page identifier (must match PAGE_CONFIG key)
- * @param props.dataForExport - Data to enable CSV export button
  * @param props.enableBreadcrumbLink - Enable clickable breadcrumb link
  *
  * @example
- * <PageWrapper pageName="Orders" dataForExport={ordersData}>
+ * <PageWrapper pageName="Orders">
  *   <OrdersTable />
  * </PageWrapper>
  */
 export const PageWrapper = ({
   children,
   pageName,
-  dataForExport,
   enableBreadcrumbLink = false,
 }: PageWrapperProps) => {
   const t = useTranslations("breadcrumbs");
 
   const pageConfig = pageName
-    ? PAGE_CONFIG[pageName] ?? DEFAULT_PAGE_CONFIG
+    ? (PAGE_CONFIG[pageName] ?? DEFAULT_PAGE_CONFIG)
     : DEFAULT_PAGE_CONFIG;
   const styles = LAYOUT_STYLES[pageConfig.layoutType];
 
@@ -104,13 +101,6 @@ export const PageWrapper = ({
     if (breadcrumbCategory === "ecommerce") return t("ecommerce");
     if (breadcrumbCategory === "components") return t("components");
     return t("firstPart");
-  };
-
-  const handleExportToCSV = () => {
-    if (dataForExport) {
-      const exportName = pageName?.toLowerCase() || "export";
-      exportToCSV(dataForExport, exportName, pageName);
-    }
   };
 
   const topBar = (
@@ -130,15 +120,7 @@ export const PageWrapper = ({
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="w-[6rem] h-[2.4rem] relative">
-        <button
-          className="-mt-[0.1rem] text-xs xsm:text-sm 3xl:text-base cursor-pointer flex rounded-md justify-center items-center gap-2 w-full h-full p-2 px-4 border border-mainBorder hover:border-mainBorderHover text-primaryText stroke-grayIcon fill-grayIcon"
-          onClick={handleExportToCSV}
-          disabled={!dataForExport}
-        >
-          <DownloadIcon /> CSV
-        </button>
-      </div>
+      <DateRangeSelector />
     </div>
   );
 

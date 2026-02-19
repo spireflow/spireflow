@@ -18,8 +18,8 @@ const buttonVariants = cva(
           "bg-containedButtonBg text-white hover:bg-containedButtonBgHover",
         destructive: "bg-errorBg text-white hover:bg-errorBg/85",
         outline:
-          "border border-outlinedButtonBorder bg-outlinedButtonBg text-primaryText hover:bg-outlinedButtonBgHover",
-        secondary: "bg-secondaryBg text-primaryText hover:brightness-95",
+          "border border-outlinedButtonBorder bg-outlinedButtonBg text-primaryText hover:bg-outlinedButtonBgHover hover:border-outlinedButtonBorderHover",
+        secondary: "bg-secondaryButtonBg text-primaryText hover:bg-secondaryButtonBgHover",
         ghost: "text-primaryText hover:bg-navItemBgHover",
         link: "text-coloredText underline-offset-4 hover:underline",
       },

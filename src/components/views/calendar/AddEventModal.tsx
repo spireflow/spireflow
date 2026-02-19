@@ -53,7 +53,7 @@ export const AddEventModal = ({
     <div>
       <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
         <DialogContent
-          className="max-w-[90vw] sm:max-w-[28rem] px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem]"
+          className="flex flex-col sm:w-[28rem] sm:h-auto md:w-[28rem] sm:max-w-[28rem] border-0 sm:border sm:border-inputBorder sm:rounded-2xl"
           onCloseAutoFocus={(e) => {
             if (returnFocusRef?.current) {
               e.preventDefault();
@@ -115,7 +115,7 @@ export const AddEventModal = ({
               </div>
             </div>
             {error && <div className="text-red-500 text-base">{error}</div>}
-            <DialogFooter footerVariant="centered" className="mt-5 !flex-row">
+            <DialogFooter footerVariant="centered" className="mt-5 !flex-row gap-3 sm:gap-0 justify-center">
               <Button
                 variant="outline"
                 onClick={closeModal}

@@ -65,6 +65,8 @@
   --color-buttonActiveBg: rgb(35, 42, 49);
   --color-outlinedButtonBg: rgb(255, 255, 255, 0.05);
   --color-outlinedButtonBgHover: rgb(255, 255, 255, 0.07);
+  --color-secondaryButtonBg: rgb(255, 255, 255, 0.05);
+  --color-secondaryButtonBgHover: rgb(255, 255, 255, 0.07);
   --color-containedButtonBg: rgb(61, 142, 108);
   --color-containedButtonBgHover: rgb(61, 185, 133);
   --color-dropdownBg: rgb(36, 39, 43);
@@ -128,6 +130,7 @@
   --color-mainBorder: rgb(255, 255, 255, 0.05);
   --color-mainBorderHover: rgb(255, 255, 255, 0.2);
   --color-outlinedButtonBorder: rgb(255, 255, 255, 0.11);
+  --color-outlinedButtonBorderHover: rgb(255, 255, 255, 0.11);
   --color-inputBorder: rgba(255, 255, 255, 0.11);
   --color-inputBorderHover: rgba(255, 255, 255, 0.2);
   --color-inputBorderFocus: rgba(255, 255, 255, 0.35);

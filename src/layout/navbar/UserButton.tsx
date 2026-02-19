@@ -45,6 +45,8 @@ export const UserButton = ({
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const [isSettingsDrawerOpen, setIsSettingsDrawerOpen] = useState(false);
   const currentTheme = theme || "light";
+  const suppressTooltipRef = useRef(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const isAnyDropdownOpen =
     userDropdown.isOpen ||
@@ -126,12 +128,24 @@ export const UserButton = ({
 
   return (
     <div className="relative ml-3 xl:ml-0" ref={userDropdown.ref}>
-      <Tooltip delayDuration={200}>
+      <Tooltip
+        delayDuration={200}
+        open={tooltipOpen}
+        onOpenChange={(open) => {
+          if (open && suppressTooltipRef.current) {
+            suppressTooltipRef.current = false;
+            return;
+          }
+          if (open && isAnyDropdownOpen) return;
+          setTooltipOpen(open);
+        }}
+      >
         <TooltipTrigger asChild>
           <div className={isLoggedIn ? "h-10 w-auto sm:w-auto" : "h-10 w-10"}>
             <button
               ref={userIconBtnRef}
               onClick={() => {
+                setTooltipOpen(false);
                 closeMobileMenu();
                 userDropdown.toggle();
                 themeDropdown.close();
@@ -169,7 +183,7 @@ export const UserButton = ({
           <TooltipContent
             side="bottom"
             align="start"
-            alignOffset={0}
+            alignOffset={-85}
             className="hidden xl:block"
           >
             {t("openUserMenu")}
@@ -196,6 +210,7 @@ export const UserButton = ({
               tabIndex={-1}
               role="menuitem"
               className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm focus-visible:bg-dropdownBgHover"
+              onPointerDown={() => { suppressTooltipRef.current = true; }}
               onClick={() => {
                 userDropdown.close();
                 handleLoginButton();
@@ -214,6 +229,7 @@ export const UserButton = ({
               tabIndex={-1}
               role="menuitem"
               className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm focus-visible:bg-dropdownBgHover"
+              onPointerDown={() => { suppressTooltipRef.current = true; }}
               onClick={() => {
                 userDropdown.close();
                 showSignUpModal();
@@ -232,6 +248,7 @@ export const UserButton = ({
               tabIndex={-1}
               role="menuitem"
               className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer text-sm focus-visible:bg-dropdownBgHover"
+              onPointerDown={() => { suppressTooltipRef.current = true; }}
               onClick={() => {
                 userDropdown.close();
                 showLogoutModal();
@@ -351,6 +368,7 @@ export const UserButton = ({
             tabIndex={-1}
             role="menuitem"
             className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
+            onPointerDown={() => { suppressTooltipRef.current = true; }}
             onClick={() => {
               userDropdown.close();
               showChangelogModal();
@@ -374,6 +392,7 @@ export const UserButton = ({
             tabIndex={-1}
             role="menuitem"
             className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
+            onPointerDown={() => { suppressTooltipRef.current = true; }}
             onClick={() => {
               userDropdown.close();
               showAboutModal();

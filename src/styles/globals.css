@@ -10,13 +10,37 @@ styles in more reliable way for some of the external libraries used in this proj
    which causes focus-visible outline to fade-in instead of appearing instantly. */
 @layer utilities {
   .transition {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      --tw-gradient-from,
+      --tw-gradient-via,
+      --tw-gradient-to,
+      opacity,
+      box-shadow,
+      transform,
+      translate,
+      scale,
+      rotate,
+      filter,
+      -webkit-backdrop-filter,
+      backdrop-filter,
+      display,
+      content-visibility,
+      overlay,
+      pointer-events;
     transition-timing-function: var(--default-transition-timing-function);
     transition-duration: var(--default-transition-duration);
   }
 
   .transition-colors {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-property:
+      color, background-color, border-color, text-decoration-color, fill,
+      stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
     transition-timing-function: var(--default-transition-timing-function);
     transition-duration: var(--default-transition-duration);
   }
@@ -396,6 +420,11 @@ input:-webkit-autofill {
 .react-datepicker__day--keyboard-selected:hover {
   @apply !bg-mainColor !text-white;
 }
+/* .datepicker-full-width .react-datepicker-wrapper,
+.datepicker-full-width .react-datepicker__input-container {
+  display: block;
+  width: 100%;
+} */
 
 /* Class needed to display different colors for the content spinner on multiple themes and backgrounds (button/pageContainer) */
 .contentSpinner {
@@ -407,7 +436,7 @@ input:-webkit-autofill {
 }
 
 .menuItemLogo svg {
-  @apply w-[30px] h-[30px] 1xl:w-[30px] 1xl:h-[30px] 3xl:w-[32px] 3xl:h-[32px];
+  @apply w-[30px] h-[30px] lg:w-[33px] lg:h-[33px] 1xl:w-[33px] 1xl:h-[33px] 3xl:w-[35px] 3xl:h-[35px];
   transform: rotate(0deg);
 }
 

@@ -55,7 +55,7 @@
   --color-progressIndicator: rgb(118, 167, 247);
   --color-navigationBg: white;
   --color-navItemBg: rgb(0, 0, 0, 0);
-  --color-navItemBgHover: rgb(101, 150, 231, 0.08);
+  --color-navItemBgHover: rgb(101, 150, 231, 0.10);
   --color-navItemActiveBg: rgb(101, 150, 231, 0.1);
   --color-navItemActiveBgHover: rgb(101, 150, 231, 0.2);
   --color-inputBg: rgb(240, 240, 245, 0.1);
@@ -65,10 +65,12 @@
   --color-buttonActiveBg: rgb(0, 0, 0, 0.1);
   --color-outlinedButtonBg: white;
   --color-outlinedButtonBgHover: rgb(249, 250, 251);
+  --color-secondaryButtonBg: rgb(235, 235, 235);
+  --color-secondaryButtonBgHover: rgb(223, 223, 223);
   --color-containedButtonBg: rgb(79, 142, 247);
   --color-containedButtonBgHover: rgb(118, 167, 247);
   --color-dropdownBg: rgb(255, 255, 255);
-  --color-dropdownBgHover: rgb(249, 250, 251);
+  --color-dropdownBgHover: rgb(244, 245, 247);
   --color-calendarTodayBg: rgb(222, 194, 242, 0.15);
   --color-calendarListDayHeaderBg: rgb(0, 0, 0, 0.03);
   --color-chartPrimaryBg: rgb(118, 167, 247);
@@ -129,6 +131,7 @@
   --color-mainBorder: rgb(0, 0, 0, 0.12);
   --color-mainBorderHover: rgb(0, 0, 0, 0.2);
   --color-outlinedButtonBorder: rgb(0, 0, 0, 0.18);
+  --color-outlinedButtonBorderHover: rgb(0, 0, 0, 0.30);
   --color-inputBorder: rgb(0, 0, 0, 0.15);
   --color-inputBorderHover: rgb(0, 0, 0, 0.3);
   --color-inputBorderFocus: rgb(0, 0, 0, 0.4);

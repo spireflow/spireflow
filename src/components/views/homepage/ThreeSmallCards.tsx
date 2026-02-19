@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
@@ -21,7 +22,17 @@ export const ThreeSmallCards = ({
   const chartColors = useChartColors(theme as "dark" | "light");
   const { shouldAnimate, animationBegin } = useChartAnimation("homepage");
 
-  const hoverScaleClass = "transition-transform duration-200 group-hover:scale-110";
+  const [isBelow1280, setIsBelow1280] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsBelow1280(window.innerWidth < 1280);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const hoverScaleClass =
+    "transition-transform duration-200 group-hover:scale-110";
 
   const translations = {
     Sales: t("sales"),
@@ -62,7 +73,9 @@ export const ThreeSmallCards = ({
       theme === "light" ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)";
 
     return (
-      <div className={`w-[6.5rem] h-[6.5rem] sm:w-[6.25rem] sm:h-[6.25rem] md:w-[4.75rem] md:h-[4.75rem] lg:w-[4.5rem] lg:h-[4.5rem] xl:w-20 xl:h-20 3xl:w-24 3xl:h-24 ${hoverScaleClass}`}>
+      <div
+        className={`w-[6.5rem] h-[6.5rem] sm:w-[6.25rem] sm:h-[6.25rem] md:w-[4.75rem] md:h-[4.75rem] lg:w-[4.5rem] lg:h-[4.5rem] xl:w-20 xl:h-20 3xl:w-24 3xl:h-24 ${hoverScaleClass}`}
+      >
         <ResponsiveContainer
           width="100%"
           height="100%"
@@ -100,7 +113,7 @@ export const ThreeSmallCards = ({
         {metricsData.map((metric, index) => (
           <div
             key={metric.title}
-            className="border light:shadow-lg border-cardBorder rounded-[12px] bg-primaryBg relative w-full text-left py-6 px-8"
+            className="border light:shadow-lg border-cardBorder rounded-[12px] bg-primaryBg relative w-full text-left py-6 pl-8 pr-5 min-[25rem]:pr-8"
           >
             <div className="flex items-center justify-between gap-5 w-full">
               <div className="flex flex-col justify-center gap-1.5">
@@ -124,24 +137,22 @@ export const ThreeSmallCards = ({
                   </span>
                 </p>
               </div>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer" tabIndex={-1}>
-                    <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}>
-                      <span className="text-primaryText text-sm font-bold">
-                        {hardcodedPercentages[index]}%
-                      </span>
-                    </div>
-                    {renderCircularChart(
-                      hardcodedPercentages[index],
-                      getChartColor(index)
-                    )}
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side="right" align="start" alignOffset={-10} sideOffset={-4}>
-                  <p>{t("monthlyTarget")}</p>
-                </TooltipContent>
-              </Tooltip>
+              <div
+                className="relative flex items-center justify-center flex-shrink-0 group"
+                tabIndex={-1}
+              >
+                <div
+                  className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}
+                >
+                  <span className="text-primaryText text-sm font-bold">
+                    {hardcodedPercentages[index]}%
+                  </span>
+                </div>
+                {renderCircularChart(
+                  hardcodedPercentages[index],
+                  getChartColor(index)
+                )}
+              </div>
             </div>
           </div>
         ))}
@@ -176,24 +187,22 @@ export const ThreeSmallCards = ({
                   </span>
                 </p>
               </div>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer" tabIndex={-1}>
-                    <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}>
-                      <span className="text-primaryText text-sm font-bold">
-                        {hardcodedPercentages[index]}%
-                      </span>
-                    </div>
-                    {renderCircularChart(
-                      hardcodedPercentages[index],
-                      getChartColor(index)
-                    )}
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side="right" align="start" alignOffset={-10} sideOffset={-4}>
-                  <p>{t("monthlyTarget")}</p>
-                </TooltipContent>
-              </Tooltip>
+              <div
+                className="relative flex items-center justify-center flex-shrink-0 group"
+                tabIndex={-1}
+              >
+                <div
+                  className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}
+                >
+                  <span className="text-primaryText text-sm font-bold">
+                    {hardcodedPercentages[index]}%
+                  </span>
+                </div>
+                {renderCircularChart(
+                  hardcodedPercentages[index],
+                  getChartColor(index)
+                )}
+              </div>
             </div>
           </div>
         ))}
@@ -228,10 +237,15 @@ export const ThreeSmallCards = ({
                   </span>
                 </p>
               </div>
-              <Tooltip>
+              <Tooltip {...(isBelow1280 ? { open: false } : {})}>
                 <TooltipTrigger asChild>
-                  <div className="relative flex items-center justify-center flex-shrink-0 group cursor-pointer" tabIndex={-1}>
-                    <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}>
+                  <div
+                    className={`relative flex items-center justify-center flex-shrink-0 group ${isBelow1280 ? "" : "cursor-pointer"}`}
+                    tabIndex={-1}
+                  >
+                    <div
+                      className={`absolute inset-0 flex items-center justify-center pointer-events-none z-10 ${hoverScaleClass}`}
+                    >
                       <span className="text-primaryText text-xs 3xl:text-base font-bold">
                         {hardcodedPercentages[index]}%
                       </span>
@@ -242,7 +256,12 @@ export const ThreeSmallCards = ({
                     )}
                   </div>
                 </TooltipTrigger>
-                <TooltipContent side="right" align="start" alignOffset={-30} sideOffset={-4}>
+                <TooltipContent
+                  side="right"
+                  align="start"
+                  alignOffset={-30}
+                  sideOffset={-4}
+                >
                   <p>{t("monthlyTarget")}</p>
                 </TooltipContent>
               </Tooltip>

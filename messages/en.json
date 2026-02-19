@@ -568,7 +568,7 @@
     }
   },
   "breadcrumbs": {
-    "firstPart": "Home",
+    "firstPart": "Pages",
     "dashboard": "Dashboard",
     "orders": "Orders",
     "customers": "Customers",
@@ -645,6 +645,20 @@
       "filters": "Table with filters",
       "pagination": "Table with pagination"
     }
+  },
+  "dateRange": {
+    "today": "Today",
+    "last7days": "Last 7 days",
+    "last30days": "Last 30 days",
+    "thisMonth": "This month",
+    "lastQuarter": "Last quarter",
+    "thisYear": "This year",
+    "customRange": "Custom range",
+    "from": "From",
+    "to": "To",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "dialogTitle": "Select global date range"
   },
   "settings": {
     "title": "Settings",

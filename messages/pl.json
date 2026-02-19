@@ -645,6 +645,20 @@
       "pagination": "Tabela z paginacją"
     }
   },
+  "dateRange": {
+    "today": "Dziś",
+    "last7days": "Ostatnie 7 dni",
+    "last30days": "Ostatnie 30 dni",
+    "thisMonth": "Ten miesiąc",
+    "lastQuarter": "Ostatni kwartał",
+    "thisYear": "Ten rok",
+    "customRange": "Własny zakres",
+    "from": "Od",
+    "to": "Do",
+    "apply": "Zastosuj",
+    "cancel": "Anuluj",
+    "dialogTitle": "Wybierz zakres dat"
+  },
   "settings": {
     "title": "Ustawienia",
     "theme": "Motyw",

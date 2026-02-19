@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/nextjs-vite";
+import { createElement } from "react";
 
 import "./fonts.css";
 import "../src/styles/globals.css";
@@ -28,8 +29,8 @@ const preview: Preview = {
     (Story, context) => {
       const theme = context.globals.theme || "light";
       document.documentElement.classList.remove("dark", "light");
-      document.documentElement.classList.add(theme);
-      return Story();
+      document.documentElement.classList.add("light");
+      return createElement("div", { className: theme }, createElement(Story));
     },
   ],
   globalTypes: {
