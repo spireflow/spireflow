@@ -10,8 +10,8 @@ import { AboutModalProps } from "./types";
 export const ContributingModal = ({ closeModal }: AboutModalProps) => {
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent className="max-w-[90vw] sm:max-w-[38rem] pt-12 sm:pt-12">
-        <div className="w-full max-h-[60vh] overflow-y-auto pr-4">
+      <DialogContent className="max-w-[90vw] sm:max-w-[38rem] pt-0 sm:pt-0 md:pt-12 pb-0 md:pb-12">
+        <div className="w-full h-full max-h-none md:max-h-[60vh] overflow-y-auto pr-4 pt-12 md:pt-0">
           <DialogHeader>
             <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
               Contributing guide

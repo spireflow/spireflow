@@ -43,65 +43,71 @@ export const useHandleLogin = () => {
   const lastSubmitTimeRef = useRef(0);
 
   // Map Better Auth error messages to translation keys
-  const mapBetterAuthError = useCallback((errorMessage: string): string => {
-    const lowerError = errorMessage.toLowerCase();
+  const mapBetterAuthError = useCallback(
+    (errorMessage: string): string => {
+      const lowerError = errorMessage.toLowerCase();
 
-    // Better Auth returns INVALID_EMAIL_OR_PASSWORD for both wrong email and wrong password
-    if (
-      lowerError.includes("invalid email or password") ||
-      lowerError.includes("invalid_email_or_password")
-    ) {
-      return t("authErrors.form_password_incorrect");
-    }
-    if (lowerError.includes("locked") || lowerError.includes("blocked")) {
-      return t("authErrors.user_locked");
-    }
-    if (lowerError.includes("session")) {
-      return t("authErrors.session_exists");
-    }
+      // Better Auth returns INVALID_EMAIL_OR_PASSWORD for both wrong email and wrong password
+      if (
+        lowerError.includes("invalid email or password") ||
+        lowerError.includes("invalid_email_or_password")
+      ) {
+        return t("authErrors.form_password_incorrect");
+      }
+      if (lowerError.includes("locked") || lowerError.includes("blocked")) {
+        return t("authErrors.user_locked");
+      }
+      if (lowerError.includes("session")) {
+        return t("authErrors.session_exists");
+      }
 
-    return t("authErrors.defaultError");
-  }, [t]);
+      return t("authErrors.defaultError");
+    },
+    [t]
+  );
 
-  const handleLogin = useCallback(async (data: LoginData) => {
-    // Check if running in presentation mode (no backend)
-    if (isPresentationModeClient()) {
-      alert(
-        "Authentication is disabled in the demo version on Vercel. Check README.md to find information on how to connect the backend to make it work."
-      );
-      return;
-    }
-
-    setIsLoggingIn(true);
-    setAuthError("");
-
-    const { email, password } = data;
-
-    try {
-      const { error } = await signIn.email({ email, password });
-
-      if (error) {
-        setIsLoggingIn(false);
-        const errorMessage = error.message || error.code || "UNKNOWN_ERROR";
-        const translatedError = mapBetterAuthError(errorMessage);
-        setAuthError(translatedError);
+  const handleLogin = useCallback(
+    async (data: LoginData) => {
+      // Check if running in presentation mode (no backend)
+      if (isPresentationModeClient()) {
+        alert(
+          "Authentication is disabled in the demo version. Check README.md to find information on how to connect the backend to make it work."
+        );
         return;
       }
 
-      // Success - redirect
-      if (currentPathname === "/pl/login") {
-        router.push("/pl");
-      } else if (currentPathname === "/login") {
-        router.push("/");
-      } else {
-        location.reload();
+      setIsLoggingIn(true);
+      setAuthError("");
+
+      const { email, password } = data;
+
+      try {
+        const { error } = await signIn.email({ email, password });
+
+        if (error) {
+          setIsLoggingIn(false);
+          const errorMessage = error.message || error.code || "UNKNOWN_ERROR";
+          const translatedError = mapBetterAuthError(errorMessage);
+          setAuthError(translatedError);
+          return;
+        }
+
+        // Success - redirect
+        if (currentPathname === "/pl/login") {
+          router.push("/pl");
+        } else if (currentPathname === "/login") {
+          router.push("/");
+        } else {
+          location.reload();
+        }
+      } catch (error: unknown) {
+        setIsLoggingIn(false);
+        console.error("Network error during login:", error);
+        setAuthError(t("authErrors.networkError"));
       }
-    } catch (error: unknown) {
-      setIsLoggingIn(false);
-      console.error("Network error during login:", error);
-      setAuthError(t("authErrors.networkError"));
-    }
-  }, [currentPathname, mapBetterAuthError, router, setIsLoggingIn, t]);
+    },
+    [currentPathname, mapBetterAuthError, router, setIsLoggingIn, t]
+  );
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -165,31 +171,34 @@ export const useHandleLogin = () => {
     }
   }, [authError]);
 
-  const onSubmit: SubmitHandler<LoginData> = useCallback(async (data) => {
-    const now = Date.now();
+  const onSubmit: SubmitHandler<LoginData> = useCallback(
+    async (data) => {
+      const now = Date.now();
 
-    // Prevent rapid-fire submissions (e.g., user holding Enter key)
-    if (isSubmittingRef.current) {
-      return;
-    }
+      // Prevent rapid-fire submissions (e.g., user holding Enter key)
+      if (isSubmittingRef.current) {
+        return;
+      }
 
-    // Enforce cooldown between submissions to prevent spam
-    if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
-      return;
-    }
+      // Enforce cooldown between submissions to prevent spam
+      if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
+        return;
+      }
 
-    isSubmittingRef.current = true;
-    lastSubmitTimeRef.current = now;
+      isSubmittingRef.current = true;
+      lastSubmitTimeRef.current = now;
 
-    try {
-      await handleLogin(data);
-    } catch (error: unknown) {
-      console.error("Login process error:", error);
-      setIsLoggingIn(false);
-    } finally {
-      isSubmittingRef.current = false;
-    }
-  }, [handleLogin, setIsLoggingIn]);
+      try {
+        await handleLogin(data);
+      } catch (error: unknown) {
+        console.error("Login process error:", error);
+        setIsLoggingIn(false);
+      } finally {
+        isSubmittingRef.current = false;
+      }
+    },
+    [handleLogin, setIsLoggingIn]
+  );
 
   return {
     handleLogin,

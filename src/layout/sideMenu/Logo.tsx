@@ -12,7 +12,7 @@ export const Logo = () => {
   return (
     <Link
       href="/"
-      className="h-[4.2rem] 1xl:h-20 3xl:h-20 flex items-center text-[1.3rem] xl:text-[1.1rem] 3xl:text-[1.4rem] font-medium"
+      className="flex items-center text-[1.3rem] xl:text-[1.1rem] 1xl:text-[1.25rem] 3xl:text-[1.4rem] font-medium"
     >
       <div className="menuItemLogo text-logoBg flex-shrink-0 transition-all duration-200">
         <LogoIcon />

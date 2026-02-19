@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Children } from "react";
 import { ArrowDownSimpleIcon } from "../../assets/icons/ArrowDownSimpleIcon";
 
 interface ExpandableDropdownSectionProps {
@@ -8,13 +8,29 @@ interface ExpandableDropdownSectionProps {
 const ExpandableDropdownSection = ({
   children,
 }: ExpandableDropdownSectionProps) => {
+  const childArray = Children.toArray(children);
+  const lastIndex = childArray.length - 1;
+
   return (
     <div className="bg-dropdownBg relative" role="menu">
-      <div
-        className="absolute left-[1.6rem] top-0 bottom-0 w-[2px] bg-mainBorder"
-        style={{ height: "calc(100% - 1rem)" }}
-      ></div>
-      <div className="ml-[2.4rem] pl-[0.8rem]">{children}</div>
+      <div className="ml-[2.4rem] pl-[0.8rem]">
+        {childArray.map((child, index) => {
+          const isLast = index === lastIndex;
+          return (
+            <div key={index} className="relative">
+              {isLast ? (
+                <div className="absolute left-[-1.6rem] top-0 h-1/2 w-[calc(0.75rem+2px)] border-l-2 border-b-2 border-mainBorder rounded-bl-[5px] z-10 pointer-events-none" />
+              ) : (
+                <>
+                  <div className="absolute left-[-1.6rem] top-0 bottom-0 w-[2px] bg-mainBorder z-10 pointer-events-none" />
+                  <div className="absolute left-[calc(-1.6rem+2px)] top-1/2 w-[0.75rem] h-[2px] bg-mainBorder z-10 pointer-events-none" />
+                </>
+              )}
+              {child}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

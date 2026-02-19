@@ -70,7 +70,7 @@ const CustomLegend = ({
   payload?: Array<{ value: string; color?: string }>;
 }) => {
   return (
-    <div className="flex flex-row justify-end gap-8 text-white w-full mt-0 1xl:mt-3">
+    <div className="flex flex-row justify-end gap-8 text-white w-full mt-2 1xl:mt-3">
       {payload?.map((entry, index) => (
         <div key={`legend-${index}`} className="flex items-center">
           <div
@@ -107,7 +107,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
         $ 2276
       </div>
       <Tabs defaultValue="yesterday">
-        <TabsList variant="line" className="mt-1 1xl:mt-2 3xl:mt-6">
+        <TabsList variant="line" className="flex lg:hidden 1xl:flex mt-1 2xl:mt-2 3xl:mt-6">
           <TabsTrigger
             variant="line"
             value="yesterday"
@@ -124,7 +124,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="yesterday">
-          <div className="mt-6 3xl:mt-6 h-52 lg:h-36 1xl:h-[11.5rem] 3xl:h-[16rem]">
+          <div className="mt-7 lg:mt-6 1xl:mt-4 2xl:mt-8 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-44 1xl:h-[12.5rem] 3xl:h-[16rem]">
             <ResponsiveContainer
               width="100%"
               height="100%"
@@ -193,7 +193,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
           </div>
         </TabsContent>
         <TabsContent value="average">
-          <div className="mt-6 3xl:mt-6 h-52 lg:h-36 1xl:h-[11.5rem] 3xl:h-[16rem]">
+          <div className="mt-7 lg:mt-6 1xl:mt-4 2xl:mt-8 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-44 1xl:h-[12.5rem] 3xl:h-[16rem]">
             <ResponsiveContainer
               width="100%"
               height="100%"

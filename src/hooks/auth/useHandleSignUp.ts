@@ -38,60 +38,66 @@ export const useHandleSignUp = () => {
   const lastSubmitTimeRef = useRef(0);
 
   // Map Better Auth error messages to translation keys
-  const mapSignUpError = useCallback((errorMessage: string): string => {
-    if (
-      errorMessage.includes("already exists") ||
-      errorMessage.includes("User already exists")
-    ) {
-      return t("authErrors.emailAlreadyExists");
-    }
-    if (errorMessage.includes("Invalid email")) {
-      return t("authErrors.invalidEmail");
-    }
-    if (errorMessage.includes("Password")) {
-      return t("authErrors.passwordError");
-    }
-    return t("authErrors.defaultError");
-  }, [t]);
+  const mapSignUpError = useCallback(
+    (errorMessage: string): string => {
+      if (
+        errorMessage.includes("already exists") ||
+        errorMessage.includes("User already exists")
+      ) {
+        return t("authErrors.emailAlreadyExists");
+      }
+      if (errorMessage.includes("Invalid email")) {
+        return t("authErrors.invalidEmail");
+      }
+      if (errorMessage.includes("Password")) {
+        return t("authErrors.passwordError");
+      }
+      return t("authErrors.defaultError");
+    },
+    [t]
+  );
 
-  const handleSignUp = useCallback(async (data: SignUpData) => {
-    // Check if running in presentation mode (no backend)
-    if (isPresentationModeClient()) {
-      alert(
-        "Authentication is disabled in the demo version on Vercel. Check README.md to find information on how to connect the backend to make it work."
-      );
-      return;
-    }
-
-    setLoading(true);
-    setSignUpError("");
-
-    try {
-      const { error } = await signUp.email({
-        email: data.email,
-        password: data.password,
-        name: data.email,
-      });
-
-      if (error) {
-        setLoading(false);
-        // Map Better Auth errors to user-friendly messages
-        const errorMessage = mapSignUpError(
-          error.message || error.code || "UNKNOWN_ERROR"
+  const handleSignUp = useCallback(
+    async (data: SignUpData) => {
+      // Check if running in presentation mode (no backend)
+      if (isPresentationModeClient()) {
+        alert(
+          "Authentication is disabled in the demo version. Check README.md to find information on how to connect the backend to make it work."
         );
-        setSignUpError(errorMessage);
         return;
       }
 
-      // Success - DON'T remove spinner, let it stay until page reloads
-      router.push("/");
-      location.reload();
-    } catch (error: unknown) {
-      setLoading(false);
-      console.error("Sign up error:", error);
-      setSignUpError(t("authErrors.networkError"));
-    }
-  }, [mapSignUpError, router, t]);
+      setLoading(true);
+      setSignUpError("");
+
+      try {
+        const { error } = await signUp.email({
+          email: data.email,
+          password: data.password,
+          name: data.email,
+        });
+
+        if (error) {
+          setLoading(false);
+          // Map Better Auth errors to user-friendly messages
+          const errorMessage = mapSignUpError(
+            error.message || error.code || "UNKNOWN_ERROR"
+          );
+          setSignUpError(errorMessage);
+          return;
+        }
+
+        // Success - DON'T remove spinner, let it stay until page reloads
+        router.push("/");
+        location.reload();
+      } catch (error: unknown) {
+        setLoading(false);
+        console.error("Sign up error:", error);
+        setSignUpError(t("authErrors.networkError"));
+      }
+    },
+    [mapSignUpError, router, t]
+  );
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -111,28 +117,31 @@ export const useHandleSignUp = () => {
     mode: "onSubmit",
   });
 
-  const onSubmit = useCallback(async (data: SignUpData) => {
-    const now = Date.now();
+  const onSubmit = useCallback(
+    async (data: SignUpData) => {
+      const now = Date.now();
 
-    // Prevent rapid-fire submissions (e.g., user holding Enter key)
-    if (isSubmittingRef.current) {
-      return;
-    }
+      // Prevent rapid-fire submissions (e.g., user holding Enter key)
+      if (isSubmittingRef.current) {
+        return;
+      }
 
-    // Enforce cooldown between submissions to prevent spam
-    if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
-      return;
-    }
+      // Enforce cooldown between submissions to prevent spam
+      if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
+        return;
+      }
 
-    isSubmittingRef.current = true;
-    lastSubmitTimeRef.current = now;
+      isSubmittingRef.current = true;
+      lastSubmitTimeRef.current = now;
 
-    try {
-      await handleSignUp(data);
-    } finally {
-      isSubmittingRef.current = false;
-    }
-  }, [handleSignUp]);
+      try {
+        await handleSignUp(data);
+      } finally {
+        isSubmittingRef.current = false;
+      }
+    },
+    [handleSignUp]
+  );
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {

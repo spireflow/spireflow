@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "../../common/shadcn/button";
-import { ContainedButton } from "../../common/ContainedButton";
 import { PhoneIcon } from "../../../assets/icons/PhoneIcon";
 import { OrderModalIcon } from "../../../assets/icons/OrderModalIcon";
 import { OrderModalProps } from "./types";
@@ -31,9 +30,9 @@ export const OrderModal = ({ closeModal, orderData }: OrderModalProps) => {
   ];
 
   return (
-    <div className="hidden md:flex">
+    <div className="flex">
       <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-        <DialogContent className="max-w-[90vw] sm:max-w-[32rem] px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem]">
+        <DialogContent className="sm:w-[32rem] sm:h-auto md:w-[32rem] border-0 sm:border sm:border-inputBorder sm:rounded-2xl px-6 xsm:px-8 sm:px-12 pt-8 sm:pt-[3rem] overflow-y-auto sm:overflow-y-visible">
           <div className="flex items-center justify-center w-full flex-col gap-2">
             <div className="rounded-full border border-mainBorder p-4 w-18 flex justify-center items-center mr-[0rem] text-secondaryText -mt-1">
               <OrderModalIcon width={30} height={30} />
@@ -45,7 +44,7 @@ export const OrderModal = ({ closeModal, orderData }: OrderModalProps) => {
               {orderDetails.map((detail) => (
                 <p
                   key={detail.label}
-                  className="border-b border-mainBorder w-[47%] my-2 pb-2 flex text-nowrap"
+                  className="border-b border-mainBorder w-full xsm:w-[47%] my-2 pb-2 flex"
                 >
                   <div className="text-secondaryText mr-1">{detail.label}:</div>
                   {detail.value}
@@ -53,11 +52,11 @@ export const OrderModal = ({ closeModal, orderData }: OrderModalProps) => {
               ))}
             </div>
           </div>
-          <DialogFooter className="mt-12 !flex-row [&>*]:flex-1 [&>*]:h-[2.9rem]">
+          <DialogFooter className="mt-8 sm:mt-12 !flex-row gap-3 sm:space-x-0 [&>*]:flex-1 [&>*]:h-[2.9rem]">
             <Button variant="outline">
               {t("cancelButton")}
             </Button>
-            <ContainedButton text={t("callButton")} icon={<PhoneIcon />} />
+            <Button icon={<PhoneIcon />}>{t("callButton")}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

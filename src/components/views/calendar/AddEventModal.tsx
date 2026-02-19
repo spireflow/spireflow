@@ -3,8 +3,6 @@ import { useTranslations } from "next-intl";
 
 import { DeleteIcon } from "../../../assets/icons/DeleteIcon";
 import { Button } from "../../common/shadcn/button";
-import { ContainedButton } from "../../common/ContainedButton";
-import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { Input } from "../../common/shadcn/input";
 import {
   Select,
@@ -125,19 +123,12 @@ export const AddEventModal = ({
               >
                 {t("cancel")}
               </Button>
-              <ContainedButton
-                handleClick={handleConfirmClick}
-                disabled={loading}
-                fullWidth={false}
+              <Button
+                onClick={handleConfirmClick}
+                loading={loading}
               >
-                {loading ? (
-                  <div className="pt-[0.3rem]">
-                    <SpinnerIcon width={45} height={45} />
-                  </div>
-                ) : (
-                  t("addEventConfirmButton")
-                )}
-              </ContainedButton>
+                {t("addEventConfirmButton")}
+              </Button>
             </DialogFooter>
           </div>
         </DialogContent>

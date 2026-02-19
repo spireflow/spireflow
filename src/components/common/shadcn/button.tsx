@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../../lib/utils";
+import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 
 /**
  * Style variants configuration for the Button component.
@@ -41,6 +42,8 @@ export interface ButtonProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  loading?: boolean;
+  icon?: React.ReactNode;
 }
 
 /**
@@ -52,6 +55,8 @@ export interface ButtonProps
  * @param {('default'|'destructive'|'outline'|'secondary'|'ghost'|'link')} [variant='default'] - Style variant
  * @param {('default'|'sm'|'lg'|'icon')} [size='default'] - Size variant
  * @param {boolean} [asChild=false] - Render as Radix Slot for composition
+ * @param {boolean} [loading=false] - Loading state with spinner
+ * @param {React.ReactNode} [icon] - Optional icon rendered before children
  * @param {React.Ref} ref - Forwarded ref to the button element
  *
  * @example
@@ -59,17 +64,34 @@ export interface ButtonProps
  * <Button variant="default">Click me</Button>
  * <Button variant="destructive" size="sm">Delete</Button>
  * <Button variant="ghost" size="icon"><Icon /></Button>
+ * <Button loading={isLoading}>Submit</Button>
+ * <Button icon={<PhoneIcon />}>Call</Button>
  * ```
  */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, loading = false, icon, children, disabled, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+        disabled={disabled || loading}
+        aria-busy={loading || undefined}
+      >
+        {asChild ? (
+          children
+        ) : loading ? (
+          <div className="flex items-center justify-center">
+            <SpinnerIcon width={36} height={36} />
+          </div>
+        ) : (
+          <>
+            {icon && <div className="mr-2">{icon}</div>}
+            {children}
+          </>
+        )}
+      </Comp>
     );
   }
 );

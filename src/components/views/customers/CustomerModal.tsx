@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "../../common/shadcn/button";
-import { ContainedButton } from "../../common/ContainedButton";
 import { PhoneIcon } from "../../../assets/icons/PhoneIcon";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { CustomerModalProps } from "./types";
@@ -32,9 +31,9 @@ export const CustomerModal = ({
   ];
 
   return (
-    <div className="hidden md:flex">
+    <div className="flex">
       <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
-        <DialogContent className="max-w-[90vw] sm:max-w-[38rem] px-[6vw] xsm:px-[18vw] sm:px-12 pt-24 sm:pt-[3rem]">
+        <DialogContent className="sm:w-[38rem] sm:h-auto md:w-[38rem] border-0 sm:border sm:border-inputBorder sm:rounded-2xl px-6 xsm:px-8 sm:px-12 pt-8 sm:pt-[3rem] overflow-y-auto sm:overflow-y-visible">
           <div className="flex items-center justify-center w-full flex-col gap-2">
             <div className="flex w-full gap-6">
               <div className="flex min-h-[6rem] min-w-[6rem]">
@@ -63,7 +62,7 @@ export const CustomerModal = ({
               {customerDetails.map((customer) => (
                 <div
                   key={customer?.label}
-                  className="border-b border-mainBorder w-[47%] my-[0.6rem] pb-2 flex min-w-0"
+                  className="border-b border-mainBorder w-full xsm:w-[47%] my-[0.6rem] pb-2 flex min-w-0"
                 >
                   <div className="text-secondaryText mr-1 flex-shrink-0">
                     {customer?.label}:
@@ -73,11 +72,11 @@ export const CustomerModal = ({
               ))}
             </div>
           </div>
-          <DialogFooter className="mt-12 !flex-row justify-end gap-1 [&>*]:h-[2.9rem] [&>*]:w-[9.5rem]">
+          <DialogFooter className="mt-8 sm:mt-12 !flex-row gap-3 sm:space-x-0 [&>*]:h-[2.9rem] [&>*]:flex-1 md:[&>*]:flex-initial md:justify-end md:[&>*]:w-[9.5rem] md:gap-3">
             <Button variant="outline">
               {t("orderHistory")}
             </Button>
-            <ContainedButton text={t("callButton")} icon={<PhoneIcon />} />
+            <Button icon={<PhoneIcon />}>{t("callButton")}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

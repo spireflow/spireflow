@@ -26,7 +26,9 @@ import { GithubIcon } from "../assets/icons/GithubIcon";
 import { useAppStore } from "../store/appStore";
 
 interface SettingsDrawerProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 const LayoutPreview = ({ type }: { type: "three-cards" | "four-cards" }) => {
@@ -285,7 +287,7 @@ const SidebarPreview = ({ type }: { type: "expanded" | "collapsed" }) => {
   );
 };
 
-export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
+export const SettingsDrawer = ({ children, open: externalOpen, onOpenChange: externalOnOpenChange }: SettingsDrawerProps) => {
   const t = useTranslations("settings");
   const { theme, setTheme } = useTheme();
   const homepageLayout = useAppStore((state) => state.homepageLayout);
@@ -304,12 +306,16 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
   );
   const fixedNavbar = useAppStore((state) => state.fixedNavbar);
   const setFixedNavbar = useAppStore((state) => state.setFixedNavbar);
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+
+  const isControlled = externalOpen !== undefined;
+  const open = isControlled ? externalOpen : internalOpen;
+  const setOpen = isControlled ? (externalOnOpenChange ?? (() => {})) : setInternalOpen;
 
   return (
     <Drawer direction="right" open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>{children}</DrawerTrigger>
-      <DrawerContent className="!bg-primaryBg">
+      {children && <DrawerTrigger asChild>{children}</DrawerTrigger>}
+      <DrawerContent className="!bg-primaryBg max-xsm:!w-full">
         <DrawerHeader className="bg-settingsDrawerHeaderBg border-b border-settingsDrawerDivider relative">
           <DrawerTitle className="text-primaryText text-2xl font-semibold">
             {t("title")}
@@ -334,8 +340,8 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
           </DrawerClose>
         </DrawerHeader>
 
-        <div className="flex flex-col h-full">
-          <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 min-h-0 overflow-y-auto">
+          <div className="flex flex-col min-h-full">
             {/* Theme Section */}
             <div className="px-6 py-5 border-b border-settingsDrawerDivider">
               <div className="mb-1">
@@ -437,8 +443,8 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
               </div>
             </div>
 
-            {/* Sidebar Mode Section */}
-            <div className="px-6 py-5 border-b border-settingsDrawerDivider">
+            {/* Sidebar Mode Section - desktop only */}
+            <div className="hidden xl:block px-6 py-5 border-b border-settingsDrawerDivider">
               <div className="mb-1">
                 <Label className="text-xs font-medium tracking-wide uppercase text-settingsDrawerSectionTitle">
                   {t("sidebarMode")}
@@ -559,22 +565,22 @@ export const SettingsDrawer = ({ children }: SettingsDrawerProps) => {
                 />
               </div>
             </div>
-          </div>
 
-          {/* GitHub Section - Fixed at Bottom */}
-          <div className="border-t border-settingsDrawerDivider bg-settingsDrawerHeaderBg">
-            <Link
-              href="https://github.com/matt765/spireflow"
-              target="_blank"
-              className="flex items-center justify-center gap-2 py-4 hover:bg-selectBgHover transition-colors"
-            >
-              <div className="w-5 h-5 text-grayIcon">
-                <GithubIcon />
-              </div>
-              <span className="text-lg font-medium text-settingsDrawerLabelText">
-                {t("githubRepository")}
-              </span>
-            </Link>
+            {/* GitHub Section */}
+            <div className="mt-auto border-t border-settingsDrawerDivider bg-settingsDrawerHeaderBg">
+              <Link
+                href="https://github.com/matt765/spireflow"
+                target="_blank"
+                className="flex items-center justify-center gap-2 py-4 hover:bg-selectBgHover transition-colors"
+              >
+                <div className="w-5 h-5 text-grayIcon">
+                  <GithubIcon />
+                </div>
+                <span className="text-lg font-medium text-settingsDrawerLabelText">
+                  {t("githubRepository")}
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </DrawerContent>

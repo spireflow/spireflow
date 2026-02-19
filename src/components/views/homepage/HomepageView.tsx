@@ -17,7 +17,7 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
     <>
       {/* Four Cards Layout Only */}
       {homepageLayout === "four-cards" && (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {homepageData?.fourSmallCards && (
             <FourSmallCards fourSmallCardsData={homepageData.fourSmallCards} />
           )}
@@ -25,8 +25,8 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
       )}
 
       {/* First and Second row combined */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 1xl:gap-x-6 gap-y-6">
-        <div className="lg:col-span-2 flex flex-col gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 1xl:gap-x-6 gap-y-4 1xl:gap-y-6">
+        <div className="lg:col-span-2 flex flex-col gap-4 1xl:gap-6">
           {/* Top Metrics Cards - Three Cards Layout Only */}
           {homepageLayout === "three-cards" &&
             homepageData?.threeSmallCards && (
@@ -46,25 +46,22 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
           {homepageData?.weeklyPerformance && (
             <WeeklyPerformance
               weeklyPerformanceData={homepageData.weeklyPerformance}
-              weeklyActivities={
-                homepageLayout === "three-cards"
-                  ? homepageData.weeklyActivities
-                  : []
-              }
+              weeklyActivities={homepageData.weeklyActivities}
+              isFourCardsMode={homepageLayout === "four-cards"}
             />
           )}
         </div>
       </div>
       {/* Third row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 1xl:gap-x-6 gap-y-6">
-        <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 1xl:gap-x-6 gap-y-4 1xl:gap-y-6">
+        <div className="hidden lg:block">
           {homepageData?.bestSellingProducts && (
             <BestSellingProducts
               bestSellingProductsData={homepageData.bestSellingProducts}
             />
           )}
         </div>
-        <div className="lg:col-span-2">
+        <div className="col-span-full lg:col-span-2">
           {homepageData?.customerSatisfaction && (
             <CustomerSatisfaction
               customerSatisfactionData={homepageData.customerSatisfaction}
@@ -73,7 +70,7 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
         </div>
       </div>
       {/* Fourth row */}
-      <div className="hidden lg:flex w-full 1xl:w-full">
+      <div className="hidden md:flex w-full 1xl:w-full">
         <RevenuePerCountry
           revenuePerCountryData={homepageData.revenuePerCountry}
         />

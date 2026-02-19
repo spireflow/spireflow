@@ -43,6 +43,8 @@ export const MenuItemWithSubmenu = ({
   );
   const submenuRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const triggerRef = useRef<HTMLDivElement>(null);
+  const verticalLineRef = useRef<HTMLDivElement>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const normalizedPathname = currentPathname?.endsWith("/")
@@ -68,6 +70,26 @@ export const MenuItemWithSubmenu = ({
     }
   }, [currentPathname, submenuItems]);
 
+  useEffect(() => {
+    const updateLineHeight = () => {
+      if (!verticalLineRef.current) return;
+      const line = verticalLineRef.current;
+      const container = line.parentElement;
+      if (!container) return;
+      const lastItem = submenuRefs.current[submenuItems.length - 1];
+      if (!lastItem) return;
+      const containerTop = container.getBoundingClientRect().top;
+      const lastItemRect = lastItem.getBoundingClientRect();
+      const height = lastItemRect.top + lastItemRect.height / 2 - containerTop;
+      line.style.height = `${height}px`;
+    };
+
+    if (!isExpanded) return;
+    updateLineHeight();
+    window.addEventListener("resize", updateLineHeight);
+    return () => window.removeEventListener("resize", updateLineHeight);
+  }, [isExpanded, submenuItems.length, isSideMenuOpen]);
+
   const handleMenuItemClick = () => {
     if (window.innerWidth < 1024) {
       toggleMobileMenu();
@@ -81,6 +103,10 @@ export const MenuItemWithSubmenu = ({
   };
 
   const isCollapsed = !isSideMenuOpen && isDesktop;
+
+  useEffect(() => {
+    if (!isCollapsed) setIsDropdownOpen(false);
+  }, [isCollapsed]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -121,8 +147,8 @@ export const MenuItemWithSubmenu = ({
   const isAnySubmenuActive = activeSubmenuPath !== null;
 
   
-  const sharedClassName = `flex relative rounded-[6px] items-center py-[0.5rem] 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-[1px] 1xl:mb-1 3xl:mb-2 cursor-pointer transition-all duration-200 ${
-    isCollapsed ? "ml-[0.75rem] mr-[0.85rem] pl-[0.6rem]" : "w-full pl-4 pr-2"
+  const sharedClassName = `flex relative rounded-[6px] items-center py-[0.5rem] 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-[1px] 1xl:mb-1 3xl:mb-2 cursor-pointer transition-[background-color,border-color,padding,margin,width] duration-200 ${
+    isCollapsed ? "mx-3 pl-[0.65rem]" : "w-full pl-4 pr-2"
   } ${
     isAnySubmenuActive
       ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover border-l-2 border-transparent"
@@ -131,7 +157,7 @@ export const MenuItemWithSubmenu = ({
 
   const iconContent = (
     <div
-      className={`menuItemIcon pr-3 ${
+      className={`menuItemIcon ${isCollapsed ? "" : "pr-3"} ${
         isAnySubmenuActive
           ? "stroke-mainColor fill-mainColor text-mainColor"
           : "stroke-grayIcon fill-grayIcon text-grayIcon"
@@ -149,11 +175,11 @@ export const MenuItemWithSubmenu = ({
       tabIndex={0}
       role={!isCollapsed ? "button" : undefined}
       aria-expanded={!isCollapsed ? isExpanded : undefined}
-      className={`${sharedClassName} focus-visible:outline-offset-[-1px] focus-visible:transition-none`}
+      className={`${sharedClassName} focus-visible:outline-offset-[-2px]`}
     >
       {iconContent}
       <div
-        className={`text-xs xl:text-[12px] 3xl:text-[0.88rem] font-medium tracking-wide whitespace-nowrap overflow-hidden transition-all duration-200 ${
+        className={`text-xs xl:text-[12px] 3xl:text-[0.88rem] font-medium tracking-wide whitespace-nowrap overflow-hidden transition-[width,opacity] duration-200 ${
           isCollapsed ? "w-0 opacity-0" : "w-auto opacity-100"
         } ${
           isAnySubmenuActive ? "text-navItemTextActive" : "text-navItemText"
@@ -162,7 +188,7 @@ export const MenuItemWithSubmenu = ({
         {title}
       </div>
       <div
-        className={`ml-auto transition-all duration-200 ${
+        className={`ml-auto transition-[transform,opacity,width] duration-200 ${
           isExpanded ? "rotate-180" : "rotate-0"
         } ${
           isCollapsed ? "w-0 opacity-0 overflow-hidden" : "opacity-100"
@@ -175,32 +201,47 @@ export const MenuItemWithSubmenu = ({
 
   return (
     <div className={isCollapsed ? "" : "w-full"}>
-      <DropdownMenu>
+      <DropdownMenu open={isCollapsed && isDropdownOpen} onOpenChange={setIsDropdownOpen}>
         <DropdownMenuTrigger asChild disabled={!isCollapsed}>
           <div>{mainContent}</div>
         </DropdownMenuTrigger>
         {isCollapsed && (
-          <DropdownMenuContent side="right" align="start" sideOffset={-4} className="min-w-[140px]" onCloseAutoFocus={() => triggerRef.current?.focus()}>
-            {submenuItems.map((item) => (
-              <DropdownMenuItem key={item.path} asChild>
-                <Link
-                  href={item.path}
-                  target={item.newTab ? "_blank" : undefined}
-                  onClick={handleMenuItemClick}
-                  className="w-full"
-                >
-                  {item.title}
-                </Link>
-              </DropdownMenuItem>
-            ))}
+          <DropdownMenuContent
+            side="right"
+            align="start"
+            sideOffset={-4}
+            className="min-w-[140px]"
+            onPointerDownOutside={(e) => {
+              e.preventDefault();
+              setIsDropdownOpen(false);
+            }}
+            onFocusOutside={(e) => e.preventDefault()}
+            onCloseAutoFocus={(e) => e.preventDefault()}
+            onEscapeKeyDown={() => requestAnimationFrame(() => triggerRef.current?.focus())}
+          >
+            {submenuItems.map((item) => {
+              const isItemActive = activeSubmenuPath === item.path;
+              return (
+                <DropdownMenuItem key={item.path} asChild>
+                  <Link
+                    href={item.path}
+                    target={item.newTab ? "_blank" : undefined}
+                    onClick={handleMenuItemClick}
+                    className={`w-full ${isItemActive ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover focus:bg-navItemActiveBgHover text-navItemTextActive focus:text-navItemTextActive" : ""}`}
+                  >
+                    {item.title}
+                  </Link>
+                </DropdownMenuItem>
+              );
+            })}
           </DropdownMenuContent>
         )}
       </DropdownMenu>
       {!isCollapsed && isExpanded && (isSideMenuOpen || !isDesktop) && (
             <div className="ml-[1.6rem] relative">
               <div
-                className="absolute left-0 top-0 w-[2px] bg-cardBorder"
-                style={{ height: "calc(100% - 0.8rem)" }}
+                ref={verticalLineRef}
+                className="absolute left-0 top-0 w-[2px] bg-submenuTreeLine"
               ></div>
               {submenuItems.map((item, index) => {
                 const normalizedPathname = currentPathname?.endsWith("/")
@@ -220,8 +261,11 @@ export const MenuItemWithSubmenu = ({
                     href={item.path}
                     target={item.newTab ? "_blank" : undefined}
                     ref={(el) => { submenuRefs.current[index] = el; }}
-                    className="block mb-[1px] 1xl:mb-1 3xl:mb-2 -ml-[1.6rem] w-[calc(100%+1.6rem)] rounded-md"
+                    className="block mb-[1px] 1xl:mb-1 3xl:mb-2 -ml-[1.6rem] w-[calc(100%+1.6rem)] rounded-md relative focus-visible:outline-offset-[-2px]"
                   >
+                    <div
+                      className="absolute left-[calc(1.6rem+2px)] top-1/2 w-[0.75rem] h-[2px] bg-submenuTreeLine"
+                    ></div>
                     <div
                       onClick={handleMenuItemClick}
                       className={`flex rounded-md items-center py-[0.4rem] 1xl:py-[0.45rem] 3xl:py-[0.6rem] pl-[3.2rem] w-full pr-2 transition ${

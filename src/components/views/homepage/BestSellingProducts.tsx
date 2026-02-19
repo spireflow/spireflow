@@ -109,7 +109,8 @@ export const BestSellingProducts = ({
 
   const getBarSize = () => {
     if (windowWidth > 1400) return 25;
-    if (windowWidth > 1024) return 20;
+    if (windowWidth > 1280) return 20;
+    if (windowWidth >= 1024) return 15;
     if (windowWidth > 720) return 20;
     if (windowWidth > 640) return 15;
     return 25;

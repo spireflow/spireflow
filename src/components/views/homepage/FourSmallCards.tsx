@@ -85,7 +85,7 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
     }
 
     return (
-      <div className={`size-16 lg:size-14 1xl:size-16 3xl:size-20 ${hoverScaleClass}`}>
+      <div className={`size-16 lg:size-14 xl:size-16 3xl:size-20 ${hoverScaleClass}`}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -142,10 +142,10 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
         <Card
           key={`${item.title}-${index}`}
           id={cardIds[index]}
-          className="lg:h-28 1xl:h-28 3xl:h-32 px-5 py-4 2xl:px-6"
+          className="lg:h-28 1xl:h-28 3xl:h-32 px-5 py-0 lg:py-4 lg:pt-[1.45rem] 2xl:px-6"
         >
           <div className="flex items-center justify-between gap-6 lg:gap-5 1xl:gap-6 h-full">
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center whitespace-nowrap 1xl:-translate-y-1 3xl:translate-y-0">
               <div className="text-secondaryText text-sm lg:text-xs 1xl:text-sm tracking-tight">
                 {item.title}
               </div>

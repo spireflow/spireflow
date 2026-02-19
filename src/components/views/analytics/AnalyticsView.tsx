@@ -13,13 +13,13 @@ export const AnalyticsView = ({ analyticsData }: AnalyticsViewProps) => {
   return (
     <>
       {/* First row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 1xl:gap-x-6 gap-y-6">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 3xl:grid-cols-3 gap-x-4 1xl:gap-x-6 gap-y-6">
+        <div className="lg:col-span-3 3xl:col-span-2">
           {analyticsData?.assets && (
             <AssetPerformance assetPerformanceData={analyticsData.assets} />
           )}
         </div>
-        <div>
+        <div className="lg:col-span-2 3xl:col-span-1">
           {analyticsData?.todaySales && (
             <TodaySales todaySalesData={analyticsData.todaySales} />
           )}

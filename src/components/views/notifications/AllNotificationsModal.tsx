@@ -8,7 +8,6 @@ import { DocumentIcon } from "../../../assets/icons/DocumentIcon";
 import { CheckIcon } from "../../../assets/icons/CheckIcon";
 import { BellIcon } from "../../../assets/icons/BellIcon";
 import { Button } from "../../common/shadcn/button";
-import { ContainedButton } from "../../common/ContainedButton";
 import {
   Dialog,
   DialogContent,
@@ -146,7 +145,7 @@ export const AllNotificationsModal = ({
                   key={notification.id}
                   tabIndex={0}
                   role="button"
-                  className={`p-3 rounded-lg border transition-all cursor-pointer focus-visible:-outline-offset-2 ${
+                  className={`p-3 rounded-lg border transition-colors cursor-pointer focus-visible:-outline-offset-2 ${
                     notification.isNew
                       ? "bg-outlinedButtonBg border-mainBorder hover:bg-notificationItemBgHover"
                       : "bg-primaryBg border-mainBorder hover:bg-notificationItemBgHover opacity-75"
@@ -197,13 +196,9 @@ export const AllNotificationsModal = ({
             Close
           </Button>
           {newCount > 0 && (
-            <div className="w-auto">
-              <ContainedButton
-                text={`Mark Read (${newCount})`}
-                handleClick={handleMarkAllAsRead}
-                className="px-6"
-              />
-            </div>
+            <Button onClick={handleMarkAllAsRead} className="px-6">
+              {`Mark Read (${newCount})`}
+            </Button>
           )}
         </div>
       </DialogContent>

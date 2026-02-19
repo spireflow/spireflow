@@ -254,8 +254,8 @@ const inputGroupInputVariants = cva(
   {
     variants: {
       variant: {
-        default: "h-10 py-2 bg-inputBg hover:bg-inputBgHover border-inputBorder hover:border-inputBorderHover focus:border-inputBorderFocus",
-        navbarSearch: "h-[2.2rem] 1xl:h-[2.5rem] py-0 items-center bg-navbarSearchInputBg hover:bg-navbarSearchInputBgHover border-navbarSearchInputBorder hover:border-navbarSearchInputBorderHover focus:border-inputBorderFocus",
+        default: "h-[2.3rem] 3xl:h-[2.6rem] py-2 bg-inputBg hover:bg-inputBgHover border-inputBorder hover:border-inputBorderHover focus:border-inputBorderFocus",
+        navbarSearch: "h-[2.2rem] 3xl:h-[2.5rem] py-0 items-center bg-navbarSearchInputBg hover:bg-navbarSearchInputBgHover border-navbarSearchInputBorder hover:border-navbarSearchInputBorderHover focus:border-inputBorderFocus",
       },
     },
     defaultVariants: {
@@ -266,7 +266,9 @@ const inputGroupInputVariants = cva(
 
 interface InputGroupInputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputGroupInputVariants> {}
+    VariantProps<typeof inputGroupInputVariants> {
+  fixedHeight?: boolean;
+}
 
 /**
  * Input element designed for use within InputGroup.
@@ -289,7 +291,7 @@ interface InputGroupInputProps
 const InputGroupInput = React.forwardRef<
   HTMLInputElement,
   InputGroupInputProps
->(({ className, type, variant, ...props }, ref) => {
+>(({ className, type, variant, fixedHeight, ...props }, ref) => {
   const { hasLeftAddon, hasRightAddon } = React.useContext(InputGroupContext);
 
   return (
@@ -297,6 +299,7 @@ const InputGroupInput = React.forwardRef<
       type={type}
       className={cn(
         inputGroupInputVariants({ variant }),
+        fixedHeight && (variant === "navbarSearch" ? "h-[2.5rem]" : "h-[2.6rem]"),
         hasLeftAddon && "pl-11",
         hasRightAddon && "pr-11",
         className

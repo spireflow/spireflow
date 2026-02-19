@@ -43,6 +43,7 @@ export const UserButton = ({
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isAuthMenuOpen, setIsAuthMenuOpen] = useState(false);
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+  const [isSettingsDrawerOpen, setIsSettingsDrawerOpen] = useState(false);
   const currentTheme = theme || "light";
 
   const isAnyDropdownOpen =
@@ -182,7 +183,7 @@ export const UserButton = ({
           role="menu"
           aria-label={t("openUserMenu")}
           onKeyDown={handleMenuKeyDown}
-          className="absolute right-[0.5rem] text-sm 1xl:text-sm 2xl:text-base xl:right-0 top-10 xl:top-11 mt-2 w-[13.5rem] border border-inputBorder bg-dropdownBg text-primaryText placeholder-secondaryText rounded-md shadow"
+          className="absolute right-[0.5rem] text-sm 1xl:text-sm 3xl:text-base xl:right-0 top-10 xl:top-11 mt-2 w-[13.5rem] border border-inputBorder bg-dropdownBg text-primaryText placeholder-secondaryText rounded-md shadow"
         >
           {/* Auth Section - Expandable */}
           <DropdownMenuItem
@@ -393,18 +394,27 @@ export const UserButton = ({
 
           {/* Settings - Mobile Only */}
           <div className="xl:hidden">
-            <SettingsDrawer>
-              <div
-                tabIndex={-1}
-                role="menuitem"
-                className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
-              >
-                <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
-                  <SettingsIcon />
-                </div>
-                <span>Settings</span>
+            <div
+              tabIndex={-1}
+              role="menuitem"
+              className="px-4 py-2 pr-5 pl-[1rem] flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
+              onClick={() => {
+                userDropdown.close();
+                setIsSettingsDrawerOpen(true);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  userDropdown.close();
+                  setIsSettingsDrawerOpen(true);
+                }
+              }}
+            >
+              <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
+                <SettingsIcon />
               </div>
-            </SettingsDrawer>
+              <span>Settings</span>
+            </div>
           </div>
 
           {/* Divider */}
@@ -425,6 +435,7 @@ export const UserButton = ({
           </Link>
         </div>
       )}
+      <SettingsDrawer open={isSettingsDrawerOpen} onOpenChange={setIsSettingsDrawerOpen} />
     </div>
   );
 };

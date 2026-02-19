@@ -108,12 +108,12 @@ export const AssetPerformance = ({
       id="assetPerformance"
       title={t("title")}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 mt-4 1xl:mt-6 3xl:mt-8 gap-x-10 gap-y-10">
-        <div className="flex justify-center items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-5 3xl:grid-cols-3 mt-4 1xl:mt-6 3xl:mt-8 gap-x-10 gap-y-10">
+        <div className="flex justify-center items-center lg:col-span-2 3xl:col-span-1">
           <div
             ref={chartContainerRef}
             onMouseMove={handleMouseMove}
-            className="h-52 1xl:h-56 3xl:h-64 w-full relative"
+            className="h-44 1xl:h-56 3xl:h-64 w-full relative"
             tabIndex={-1}
           >
             <ResponsiveContainer
@@ -162,9 +162,9 @@ export const AssetPerformance = ({
             </div>
           </div>
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-3 3xl:col-span-2">
           <div className="block md:hidden lg:block">
-            <p className="text-secondaryText font-bold">
+            <p className="text-secondaryText font-bold text-xs 2xl:text-sm 3xl:text-base">
               +/-% {t("sinceTransaction")}
             </p>
           </div>
@@ -173,23 +173,25 @@ export const AssetPerformance = ({
               {assetPerformanceData.map((asset, index) => (
                 <li
                   key={asset.name}
-                  className={`flex items-center justify-between border-b border-inputBorder
+                  className={`flex items-center justify-between
                   ${index === 7 ? "hidden 3xl:flex" : ""}
-                  ${index === 6 ? "hidden 1xl:flex" : ""}
+                  ${index === 6 ? "hidden 1xl:flex 3xl:border-b 3xl:border-inputBorder" : ""}
+                  ${index === 5 ? "1xl:border-b 1xl:border-inputBorder" : ""}
+                  ${index <= 4 ? "border-b border-inputBorder" : ""}
                   pb-2 pt-2 1xl:py-2`}
                 >
-                  <div className="text-xs 1xl:text-sm 3xl:text-base text-secondaryText">
+                  <div className="text-xs 2xl:text-sm 3xl:text-base text-secondaryText whitespace-nowrap">
                     {asset.name}
                   </div>
                   <div>
                     <div className="flex items-center justify-end space-x-4">
                       <p
-                        className="ml-2 text-sm"
+                        className="ml-2 text-xs 2xl:text-sm"
                         style={{ color: getDeltaColor(asset.status) }}
                       >
                         {asset.delta}%
                       </p>
-                      <div className="hidden lg:block w-44">
+                      <div className="hidden lg:block w-16 xl:w-28 3xl:w-44">
                         <div className="relative h-2 w-full bg-assetPerformanceBarBg rounded-full overflow-hidden">
                           <div
                             className="absolute h-full rounded-full transition-all"

@@ -91,7 +91,7 @@ export const RevenueDistribution = ({
 
   return (
     <Card className="h-full" id="revenueDistribution" title={t("title")}>
-      <div className="w-full h-[19.5rem] 3xl:h-[22rem] mt-4 1xl:mt-4 -ml-4">
+      <div className="w-full h-[18rem] 3xl:h-[24rem] mt-4 1xl:mt-4 -ml-4">
         <ResponsiveContainer
           width="100%"
           height="100%"

@@ -109,7 +109,7 @@ export const RevenueTrends = ({ revenueTrendsData }: RevenueTrendsProps) => {
   const { shouldAnimate, animationBegin } = useChartAnimation("analytics");
 
   const getBarSize = () => {
-    if (windowWidth > 1180) return 24;
+    if (windowWidth > 1400) return 24;
     if (windowWidth > 720) return 18;
     if (windowWidth > 600) return 15;
     return 10;

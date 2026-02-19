@@ -14,6 +14,10 @@ export const useClickOutside = <T extends HTMLElement = HTMLElement>(
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
+        const target = event.target as HTMLElement;
+        if (target.closest?.('[role="dialog"], [data-slot="drawer-overlay"]')) {
+          return;
+        }
         onClickOutside();
       }
     };

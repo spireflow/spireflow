@@ -52,7 +52,7 @@ export const SearchInput = forwardRef<HTMLDivElement, SearchInputProps>(
           ref={ref}
         >
           <div className="relative w-full">
-            <InputGroup className="h-[2.2rem] 1xl:h-[2.5rem]">
+            <InputGroup className="h-[2.2rem] 1xl:h-[2.5rem] 1xl:translate-y-[0.2rem] 3xl:translate-y-0">
               <InputGroupInput
                 variant="navbarSearch"
                 type="text"

@@ -63,12 +63,16 @@ export const useAppStore = create<AppStore>()(
         }));
       },
       toggleSideMenu: () => {
-        set((state: AppStore) => ({
-          ...state,
-          isSideMenuOpen: state.isSideMenuOpen
+        set((state: AppStore) => {
+          const newIsOpen = state.isSideMenuOpen
             ? false
-            : determineInitialState().isSideMenuOpen,
-        }));
+            : determineInitialState().isSideMenuOpen;
+          return {
+            ...state,
+            isSideMenuOpen: newIsOpen,
+            sidebarDefaultState: newIsOpen ? "expanded" : "collapsed",
+          };
+        });
       },
       isLoggingOut: false,
       setIsLoggingOut: (isLoggingOut) => set(() => ({ isLoggingOut })),
@@ -109,6 +113,13 @@ export const useAppStore = create<AppStore>()(
         chartAnimationsEnabled: state.chartAnimationsEnabled,
         fixedNavbar: state.fixedNavbar,
       }),
+      onRehydrateStorage: () => (state) => {
+        if (!state) return;
+        const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1280;
+        state.setIsSideMenuOpen(
+          isDesktop && state.sidebarDefaultState === "expanded"
+        );
+      },
     }
   )
 );

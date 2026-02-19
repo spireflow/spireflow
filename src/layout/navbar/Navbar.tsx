@@ -42,8 +42,14 @@ export const Navbar = () => {
       navbarRef.current.style.transform = `translateY(-${window.scrollY}px)`;
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (navbarRef.current) {
+        navbarRef.current.style.transform = "";
+      }
+    };
   }, [fixedNavbar]);
 
   const {
@@ -97,7 +103,7 @@ export const Navbar = () => {
           }`}
         ></div>
         <div
-          className={`px-6 pr-4 md:px-6 xl:pl-3 2xl:px-4 z-40 w-full flex justify-between xl:mx-auto items-center gap-4 xl:gap-7 xl:max-w-[82%] 1xl:max-w-[82%] 2xl:max-w-[83vw] 3xl:max-w-[82vw] 5xl:max-w-[102rem]`}
+          className={`px-6 xsm:pr-8 md:px-6 md:pr-8 xl:pl-3 xl:pr-2 2xl:px-4 z-40 w-full flex justify-between xl:mx-auto items-center gap-4 xl:gap-7 xl:max-w-[82%] 1xl:max-w-[82%] 2xl:max-w-[83vw] 3xl:max-w-[82vw] 5xl:max-w-[102rem]`}
         >
           <div className="flex items-center gap-10">
             <div className="flex xsm:pl-2  xl:hidden">
@@ -169,24 +175,24 @@ export const Navbar = () => {
               </div>
             </div>
         </div>
-        <SideMenuMobile
-          isMobileMenuOpen={isMobileMenuOpen}
-          onLoginButtonClick={handleLoginButton}
-        />
-        <FloatingMenuButton
-          isMobileMenuOpen={isMobileMenuOpen}
-          toggleMobileMenu={() => {
-            searchDropdown.close();
-            toggleMobileMenu();
-          }}
-        />
-        {isMobileMenuOpen && (
-          <div
-            className="fixed top-[4.5rem] w-full h-full bg-[rgb(0,0,0,0.35)] z-10"
-            onClick={toggleMobileMenu}
-          />
-        )}
       </div>
+      <SideMenuMobile
+        isMobileMenuOpen={isMobileMenuOpen}
+        onLoginButtonClick={handleLoginButton}
+      />
+      <FloatingMenuButton
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={() => {
+          searchDropdown.close();
+          toggleMobileMenu();
+        }}
+      />
+      {isMobileMenuOpen && (
+        <div
+          className="fixed top-[4.5rem] w-full h-full bg-[rgb(0,0,0,0.35)] z-10"
+          onClick={toggleMobileMenu}
+        />
+      )}
       {isLogoutModalOpen && <LogoutModal closeModal={closeLogoutModal} returnFocusRef={userIconBtnRef} />}
       {isAboutModalOpen && <AboutModal closeModal={closeAboutModal} returnFocusRef={userIconBtnRef} />}
       {isChangelogModalOpen && (

@@ -40,7 +40,7 @@ export const useChangelogModal = () => {
 
       // Handle headings
       if (line.startsWith("# ")) {
-        formattedContent += `<h2 class="text-primaryText text-primaryText text-3xl w-full text-left mt-2 mb-4">${line.substring(
+        formattedContent += `<h2 class="text-primaryText text-primaryText text-3xl w-full text-left mb-4">${line.substring(
           2
         )}</h2>`;
       } else if (line.startsWith("## ")) {

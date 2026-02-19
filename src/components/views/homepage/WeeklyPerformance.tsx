@@ -85,10 +85,15 @@ const WeeklyPerformanceTooltip = ({
 const WeeklyPerformanceChart = ({
   data,
   isExpanded,
+  isFourCardsMode = false,
 }: {
   data: WeeklyPerformanceProps["weeklyPerformanceData"];
   isExpanded?: boolean;
+  isFourCardsMode?: boolean;
 }) => {
+  const chartHeightWhenNoActivities = isFourCardsMode
+    ? "h-[17rem] lg:h-[16rem] xl:h-[16rem] 2xl:h-[17rem] 3xl:h-[21rem]"
+    : "h-[17rem] 3xl:h-[21rem]";
   const { width: windowWidth } = useWindowDimensions();
   const { theme, systemTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
@@ -96,13 +101,18 @@ const WeeklyPerformanceChart = ({
 
   // Limit data to 5 bars in specific ranges
   const getDisplayData = () => {
-    if (windowWidth < 500 || (windowWidth >= 1000 && windowWidth <= 1500)) {
+    if (windowWidth < 500 || (windowWidth >= 1024 && windowWidth <= 1500)) {
       return data.slice(0, 5);
     }
     return data;
   };
 
   const displayData = getDisplayData();
+
+  const getBarSize = () => {
+    if (windowWidth >= 1024 && windowWidth <= 1280) return 18;
+    return 25;
+  };
 
   // Adjust margins based on screen size
   const getChartMargins = () => {
@@ -121,8 +131,8 @@ const WeeklyPerformanceChart = ({
   };
 
   return (
-    <div className="px-4 pt-8 pb-4">
-      <div className={`w-full ${isExpanded ? "h-[21rem]" : "h-[17rem]"}`}>
+    <div className={`px-4 pt-8 pb-4 ${isFourCardsMode ? "lg:pt-10" : ""}`}>
+      <div className={`w-full ${isExpanded ? chartHeightWhenNoActivities : "h-[14rem] 3xl:h-[17rem]"}`}>
         <ResponsiveContainer
           width="100%"
           height="100%"
@@ -150,6 +160,7 @@ const WeeklyPerformanceChart = ({
             />
             <Tooltip
               content={<WeeklyPerformanceTooltip />}
+              isAnimationActive={false}
               cursor={{ fill: "rgba(255,255,255,0.05)", stroke: "var(--color-chartVerticalLine)" }}
             />
             <Bar
@@ -161,7 +172,7 @@ const WeeklyPerformanceChart = ({
                   : "rgb(61, 185, 133)"
               }
               radius={[0, 0, 0, 0]}
-              barSize={25}
+              barSize={getBarSize()}
               isAnimationActive={shouldAnimate}
               animationBegin={animationBegin}
               animationDuration={800}
@@ -172,7 +183,7 @@ const WeeklyPerformanceChart = ({
               stackId="a"
               fill="rgb(83, 133, 198)"
               radius={[4, 4, 0, 0]}
-              barSize={25}
+              barSize={getBarSize()}
               isAnimationActive={shouldAnimate}
               animationBegin={animationBegin}
               animationDuration={800}
@@ -283,9 +294,9 @@ const ActivityItem = ({ activity }: { activity: WeeklyActivity }) => {
   };
 
   return (
-    <div className="flex items-start gap-3 py-2.5 lg:py-2 1xl:py-5 border-b border-mainBorder last:border-b-0 hover:bg-navItemBgHover transition-colors px-3 1xl:px-4 rounded-lg">
+    <div className="flex items-start gap-3 py-2.5 lg:py-2 1xl:py-2.5 3xl:py-5 border-b border-mainBorder last:border-b-0 hover:bg-navItemBgHover transition-colors px-3 1xl:px-4 rounded-lg">
       <div
-        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+        className="w-8 h-8 1xl:w-10 1xl:h-10 rounded-full flex items-center justify-center flex-shrink-0"
         style={{
           display: "flex",
           alignItems: "center",
@@ -296,7 +307,7 @@ const ActivityItem = ({ activity }: { activity: WeeklyActivity }) => {
         {getIcon(activity.icon)}
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm text-primaryText leading-relaxed">
+        <p className="text-xs 2xl:text-sm text-primaryText leading-relaxed whitespace-nowrap overflow-hidden text-ellipsis">
           {activity.user && (
             <span className="font-semibold">{activity.user} </span>
           )}
@@ -313,8 +324,14 @@ const ActivityItem = ({ activity }: { activity: WeeklyActivity }) => {
 export const WeeklyPerformance = ({
   weeklyPerformanceData,
   weeklyActivities,
-}: WeeklyPerformanceProps & { weeklyActivities: WeeklyActivity[] }) => {
+  isFourCardsMode = false,
+}: WeeklyPerformanceProps & { weeklyActivities: WeeklyActivity[]; isFourCardsMode?: boolean }) => {
   const t = useTranslations("homepage.weeklyPerformance");
+  const { width: windowWidth } = useWindowDimensions();
+
+  const hasActivities = weeklyActivities && weeklyActivities.length > 0;
+  const isMidRange = windowWidth >= 640 && windowWidth < 1024;
+  const showActivities = hasActivities && (!isFourCardsMode || isMidRange);
 
   return (
     <Card
@@ -322,17 +339,20 @@ export const WeeklyPerformance = ({
       id="weekly-performance"
       title={t("title")}
     >
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col sm:flex-row lg:flex-col">
         {/* Weekly Performance Chart Section */}
-        <WeeklyPerformanceChart
-          data={weeklyPerformanceData}
-          isExpanded={!weeklyActivities || weeklyActivities.length === 0}
-        />
+        <div className="sm:w-2/3 lg:w-full">
+          <WeeklyPerformanceChart
+            data={weeklyPerformanceData}
+            isExpanded={!showActivities}
+            isFourCardsMode={isFourCardsMode}
+          />
+        </div>
 
         {/* Activity Section */}
-        {weeklyActivities && weeklyActivities.length > 0 && (
-          <div className="mt-1 2xl:mt-3">
-            <div className="px-4 mb-2 1xl:mb-0 2xl:mb-1">
+        {showActivities && (
+          <div className="sm:w-1/3 lg:w-full mt-1 sm:mt-0 lg:mt-1 2xl:mt-1 3xl:mt-3 sm:overflow-y-auto lg:overflow-y-visible">
+            <div className="px-4 mb-2 3xl:mb-1">
               <h3 className="text-sm font-semibold text-primaryText">
                 {t("activity")}
               </h3>

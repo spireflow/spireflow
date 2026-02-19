@@ -14,7 +14,7 @@ export const ChangelogModal = ({ closeModal, returnFocusRef }: ChangelogModalPro
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
       <DialogContent
-        className="max-w-[90vw] sm:max-w-[42rem] pt-12 sm:pt-12"
+        className="md:max-w-[42rem] px-5 xsm:px-5 sm:px-6 md:px-12 pr-0 xsm:pr-0 sm:pr-0 pt-0 sm:pt-0 md:pt-12 pb-0 md:pb-12"
         onCloseAutoFocus={(e) => {
           if (returnFocusRef?.current) {
             e.preventDefault();
@@ -25,7 +25,7 @@ export const ChangelogModal = ({ closeModal, returnFocusRef }: ChangelogModalPro
         <DialogTitle className="sr-only">Changelog</DialogTitle>
         <div
           tabIndex={0}
-          className="w-full min-w-0 md:min-w-[32rem] h-full max-h-[65vh] overflow-y-auto pr-4 -mt-4 focus:outline-none"
+          className="w-full min-w-0 md:min-w-[32rem] h-full max-h-none md:max-h-[65vh] overflow-y-auto pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none"
         >
           <div className="text-primaryText text-base w-full h-full text-left">
             {isLoading ? (

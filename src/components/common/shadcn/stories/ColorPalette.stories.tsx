@@ -167,7 +167,7 @@ const colorGroups = {
     { name: "Theme Toggle Border Hover", cssVar: "themeToggleBorderHover" },
     { name: "Theme Toggle Active Bg Hover", cssVar: "themeToggleActiveBgHover" },
     { name: "Map Country Border", cssVar: "mapCountryBorder" },
-    { name: "Ring Border", cssVar: "ringBorder" },
+    { name: "Focus Visible Border", cssVar: "focusVisibleBorder" },
     { name: "Checkbox Border", cssVar: "checkboxBorder" },
     { name: "Checkbox Border Disabled", cssVar: "checkboxBorderDisabled" },
     { name: "Navbar Search Input Border", cssVar: "navbarSearchInputBorder" },

@@ -27,7 +27,7 @@ export const DialogsUI = () => {
           <DialogTrigger asChild>
             <Button>Open Dialog</Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[25rem] !p-8">
+          <DialogContent className="sm:w-[25rem] sm:h-auto sm:max-w-[25rem] !p-8">
             <DialogHeader>
               <DialogTitle>Dialog Title</DialogTitle>
               <DialogDescription>
@@ -54,7 +54,7 @@ export const DialogsUI = () => {
           <DialogTrigger asChild>
             <Button variant="destructive">Delete Dialog</Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[25rem] !p-8">
+          <DialogContent className="sm:w-[25rem] sm:h-auto sm:max-w-[25rem] !p-8">
             <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
               <DialogDescription>

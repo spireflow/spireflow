@@ -206,11 +206,11 @@ export const RevenueOverTime = ({
       customHeader={customHeader}
       hasSubtitle={true}
     >
-      <div className="w-full h-[17rem] lg:h-[19rem] 1xl:h-[18rem] 2xl:h-[19rem] 3xl:h-[20rem]">
+      <div className="w-full overflow-hidden h-[14.5rem] lg:h-[15.5rem] 1xl:h-[15rem] 2xl:h-[15.5rem] 3xl:h-[20rem]">
         <ResponsiveContainer
           width="100%"
           height="100%"
-          minWidth={320}
+          minWidth={0}
           minHeight={200}
           initialDimension={{ width: 320, height: 200 }}
         >
@@ -218,8 +218,8 @@ export const RevenueOverTime = ({
             data={shouldStartChartAnimations ? displayData : []}
             margin={{
               top: 10,
-              right: windowWidth > 700 ? 30 : 10,
-              left: windowWidth > 700 ? 20 : 5,
+              right: windowWidth > 700 ? 30 : windowWidth > 400 ? 10 : 5,
+              left: windowWidth > 700 ? 20 : windowWidth > 400 ? 5 : -10,
               bottom: 5,
             }}
             tabIndex={-1}

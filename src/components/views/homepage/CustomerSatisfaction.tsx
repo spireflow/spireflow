@@ -86,6 +86,9 @@ export const CustomerSatisfaction = ({
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("homepage");
 
+  const bubbleRange: [number, number] =
+    windowWidth < 1024 ? [56, 1250] : [111, 2500];
+
   return (
     <Card
       className="max-w-full h-full max-h-full flex flex-col"
@@ -131,7 +134,7 @@ export const CustomerSatisfaction = ({
             <ZAxis
               type="number"
               dataKey={t("numberOfOrders")}
-              range={[111, 2500]}
+              range={bubbleRange}
               name={t("numberOfOrders")}
             />
             <Tooltip

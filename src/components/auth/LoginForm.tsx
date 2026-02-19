@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { useTranslations } from "next-intl";
 
-import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 import { useHandleLogin } from "../../hooks/auth/useHandleLogin";
 import { MailIcon } from "../../assets/icons/MailIcon";
 import { PasswordIcon } from "../../assets/icons/PasswordIcon";
 import { EyeIcon } from "../../assets/icons/EyeIcon";
 import { EyeOffIcon } from "../../assets/icons/EyeOffIcon";
-import { ContainedButton } from "../common/ContainedButton";
+import { Button } from "../common/shadcn/button";
 import {
   InputGroup,
   InputGroupInput,
@@ -45,7 +44,7 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-full md:w-[18.5rem] 1xl:w-[20rem] flex flex-col items-center mb-2">
+    <div className="w-full sm:max-w-[20rem] md:w-[18.5rem] 1xl:w-[20rem] flex flex-col items-center">
       <h1 className="text-3xl 1xl:text-4xl font-bold mb-12 1xl:mb-16 mt-2 1xl:mt-4 text-primaryText">
         {t("signIn")}
       </h1>
@@ -66,6 +65,7 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
                   placeholder={t("yourEmail")}
                   onInput={() => setShowPasswordError(false)}
                   maxLength={20}
+                  fixedHeight
                 />
                 <InputGroupAddon>
                   <MailIcon />
@@ -96,6 +96,7 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
                   placeholder={t("yourPassword")}
                   onInput={() => setShowEmailError(false)}
                   maxLength={20}
+                  fixedHeight
                 />
                 <InputGroupAddon>
                   <PasswordIcon />
@@ -138,21 +139,15 @@ export const LoginForm = ({ switchToSignUp }: LoginFormProps) => {
         )}
         <div className="flex flex-col items-center w-full mt-4 1xl:mt-6">
           <div className="w-4/5 h-[2.5rem]">
-            <ContainedButton
-              disabled={isLoggingIn}
+            <Button
+              loading={isLoggingIn}
               type="submit"
-              className="ignore-error-hide"
+              className="w-full h-full ignore-error-hide"
             >
-              {isLoggingIn ? (
-                <div className="pt-[0.3rem]">
-                  <SpinnerIcon width={45} height={45} />
-                </div>
-              ) : (
-                "Login"
-              )}
-            </ContainedButton>
+              Login
+            </Button>
           </div>
-          <div className="w-full text-xs 1xl:text-sm flex justify-center gap-2 mt-4 1xl:mt-6">
+          <div className="w-full text-xs 1xl:text-sm flex justify-center gap-2 mt-6 1xl:mt-8">
             <div className="text-primaryText">{t("noAccount")}</div>
             <button
               type="button"

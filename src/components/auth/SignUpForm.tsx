@@ -12,8 +12,7 @@ import {
   InputGroupAddon,
   InputGroupButton,
 } from "../common/shadcn/input-group";
-import { ContainedButton } from "../common/ContainedButton";
-import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
+import { Button } from "../common/shadcn/button";
 import { useHandleSignUp } from "../../hooks/auth/useHandleSignUp";
 
 export interface SignUpData {
@@ -43,7 +42,7 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-full md:w-[18.5rem] 1xl:w-[20rem] flex flex-col items-center mb-2">
+    <div className="w-full sm:max-w-[20rem] md:w-[18.5rem] 1xl:w-[20rem] flex flex-col items-center">
       <h1 className="text-3xl 1xl:text-4xl font-bold mb-12 1xl:mb-16 mt-2 1xl:mt-4 text-primaryText">
         {t("signUp")}
       </h1>
@@ -63,6 +62,7 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
                   placeholder={t("yourEmail")}
                   onInput={() => setShowPasswordError(false)}
                   maxLength={20}
+                  fixedHeight
                 />
                 <InputGroupAddon>
                   <MailIcon />
@@ -92,6 +92,7 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
                   placeholder={t("yourPassword")}
                   onInput={() => setShowEmailError(false)}
                   maxLength={20}
+                  fixedHeight
                 />
                 <InputGroupAddon>
                   <PasswordIcon />
@@ -136,21 +137,15 @@ export const SignUpForm = ({ switchToSignIn }: SignUpFormProps) => {
         )}
         <div className="flex flex-col items-center w-full mt-4 1xl:mt-6">
           <div className="w-4/5 h-[2.5rem]">
-            <ContainedButton
-              disabled={loading}
+            <Button
+              loading={loading}
               type="submit"
-              className="ignore-error-hide"
+              className="w-full h-full ignore-error-hide"
             >
-              {loading ? (
-                <div className="pt-[0.3rem]">
-                  <SpinnerIcon width={45} height={45} />
-                </div>
-              ) : (
-                t("createAccount")
-              )}
-            </ContainedButton>
+              {t("createAccount")}
+            </Button>
           </div>
-          <div className="w-full text-xs 1xl:text-sm flex justify-center gap-2 mt-4 1xl:mt-6">
+          <div className="w-full text-xs 1xl:text-sm flex justify-center gap-2 mt-6 1xl:mt-8">
             <div className="text-primaryText">{t("alreadyHaveAccount")}</div>
             <button
               type="button"

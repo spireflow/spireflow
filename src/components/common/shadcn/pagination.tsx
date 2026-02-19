@@ -110,6 +110,7 @@ function PaginationLink({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
+        "transition-none",
         className
       )}
       {...props}

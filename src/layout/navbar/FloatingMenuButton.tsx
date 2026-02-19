@@ -7,7 +7,7 @@ export const FloatingMenuButton = ({
   toggleMobileMenu,
 }: HamburgerButtonProps) => (
   <button
-    className="fixed bottom-6 right-6 z-[60] flex items-center justify-center w-14 h-14 rounded-full bg-floatingMenuButtonBg hover:bg-floatingMenuButtonBgHover border border-mainBorder shadow-lg transition-all duration-200 xl:hidden"
+    className="fixed bottom-6 right-6 z-[45] flex items-center justify-center w-14 h-14 rounded-full bg-floatingMenuButtonBg hover:bg-floatingMenuButtonBgHover border border-mainBorder shadow-lg transition-colors duration-200 xl:hidden"
     onClick={toggleMobileMenu}
     aria-label="Toggle menu"
   >

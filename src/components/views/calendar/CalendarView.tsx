@@ -13,8 +13,8 @@ import { useCalendar } from "./useCalendar";
 import { CalendarViewProps } from "./types";
 import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
 import { useTranslateData } from "../../../hooks/useTranslateData";
-import { ConfirmModal } from "../../common/ConfirmModal";
 import { AddEventModal } from "./AddEventModal";
+import { RemoveEventModal } from "./RemoveEventModal";
 
 export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
   const t = useTranslations("calendar");
@@ -69,17 +69,13 @@ export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
         locale={locale === "pl" ? plLocale : "en"}
       />
       {modalOpen && (
-        <ConfirmModal
+        <RemoveEventModal
           closeModal={handleModalClose}
           onConfirm={handleConfirmAction}
           loading={false}
-          title={t("deleteEventModalTitle")}
           subtitle={`${t("deleteEventModalSubtitle")} ${
             currentAction === "delete" ? t("delete") : t("move")
           } ${t("theEvent")} '${selectedEvent ? selectedEvent.title : ""}'`}
-          confirmButtonText={t("yes")}
-          cancelButtonText={t("cancel")}
-          type="delete"
           returnFocusRef={lastFocusedElementRef}
         />
       )}

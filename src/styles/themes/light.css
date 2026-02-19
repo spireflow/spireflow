@@ -134,11 +134,12 @@
   --color-inputBorderFocus: rgb(0, 0, 0, 0.4);
   --color-calendarBorder: rgb(0, 0, 0, 0.1);
   --color-cardBorder: rgb(0, 0, 0, 0.06);
+  --color-submenuTreeLine: rgb(0, 0, 0, 0.10);
   --color-themeToggleActiveBorder: rgb(0, 0, 0, 0.1);
   --color-themeToggleBorderHover: rgb(0, 0, 0, 0.2);
   --color-themeToggleActiveBgHover: rgb(235, 235, 240);
   --color-mapCountryBorder: rgb(0, 0, 0, 0.18);
-  --color-ringBorder: rgb(59, 130, 246);
+  --color-focusVisibleBorder: rgb(59, 130, 246);
   --color-checkboxBorder: rgb(0, 0, 0, 0.28);
   --color-checkboxBorderDisabled: rgb(0, 0, 0, 0.18);
   --color-navbarSearchInputBorder: rgb(0, 0, 0, 0.12);

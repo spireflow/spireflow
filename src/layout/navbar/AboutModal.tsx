@@ -18,7 +18,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
       <DialogContent
-        className="max-w-[90vw] sm:max-w-[38rem] pt-12 sm:pt-12"
+        className="md:w-[38rem] px-5 xsm:px-5 sm:px-6 md:px-12 pr-0 xsm:pr-0 sm:pr-0 pt-0 sm:pt-0 md:pt-12 pb-0 md:pb-12"
         onCloseAutoFocus={(e) => {
           if (returnFocusRef?.current) {
             e.preventDefault();
@@ -27,7 +27,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
         }}
       >
         {!isContributingModalOpen ? (
-          <div className="w-full h-full max-h-[65vh] overflow-y-auto pl-1 pr-4">
+          <div className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0">
             <DialogHeader>
               <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
                 About
@@ -115,7 +115,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
             </div>
           </div>
         ) : (
-          <div className="w-full h-full max-h-[65vh] overflow-y-auto pl-1 pr-4">
+          <div className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0">
             <DialogHeader>
               <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
                 Contributing guide

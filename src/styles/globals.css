@@ -5,6 +5,23 @@ styles in more reliable way for some of the external libraries used in this proj
 @import "./themes/light.css";
 @import "./themes/dark.css";
 
+/* Override Tailwind v4 transition utilities to exclude outline-color.
+   Tailwind v4 includes outline-color in transition/transition-colors by default,
+   which causes focus-visible outline to fade-in instead of appearing instantly. */
+@layer utilities {
+  .transition {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--default-transition-timing-function);
+    transition-duration: var(--default-transition-duration);
+  }
+
+  .transition-colors {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--default-transition-timing-function);
+    transition-duration: var(--default-transition-duration);
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -37,9 +54,11 @@ html {
 #__next {
   min-height: 100vh;
 }
-a {
-  color: inherit;
-  text-decoration: none;
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 * {
@@ -88,7 +107,7 @@ button {
   @apply border border-inputBorder text-primaryText placeholder-secondaryText placeholder-secondaryText text-primaryText hover:!border-inputBorderHover hover:!border-inputBorderHover transition hover:bg-inputBgHover hover:!bg-outlinedButtonBgHover !bg-inputBg !bg-inputBg !border-inputBorder !border-inputBorder;
 }
 .fc-button:focus-visible {
-  outline: 2px solid var(--color-ringBorder);
+  outline: 2px solid var(--color-focusVisibleBorder);
   outline-offset: 0;
 }
 .fc-button-primary {
@@ -191,7 +210,7 @@ button {
   background-color: rgb(255, 255, 255, 0.1) !important;
 }
 .fc .fc-event:focus-visible {
-  outline: 2px solid var(--color-ringBorder);
+  outline: 2px solid var(--color-focusVisibleBorder);
   outline-offset: 0;
 }
 .fc-daygrid-day-events .fc-event-main * {
@@ -268,14 +287,17 @@ button {
   @apply fill-secondaryText;
 }
 
-/* Global accessible focus styles */
-*:focus {
-  outline: none;
-}
+/* Global accessible focus styles - in @layer base so Tailwind utilities
+   (e.g. focus-visible:outline-offset-[-1px]) can override outline-offset per element */
+@layer base {
+  *:focus {
+    outline: none;
+  }
 
-*:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--color-ringBorder);
+  *:focus-visible {
+    outline: 2px solid var(--color-focusVisibleBorder);
+    outline-offset: 2px;
+  }
 }
 
 /* Disable focus ring inside dropdowns/menus - use background highlight instead (higher specificity) */
@@ -283,13 +305,16 @@ button {
 [role="listbox"] :focus-visible,
 [data-radix-collection-item]:focus-visible {
   outline: none;
-  box-shadow: none;
 }
 
-/* Inputs - subtle border focus instead of green ring (consistent with Material, Chakra UI) */
+/* Inputs - subtle border focus instead of colored ring (consistent with Material, Chakra UI) */
 input:focus-visible,
 textarea:focus-visible {
   outline: none;
+}
+
+input:focus,
+textarea:focus {
   border-color: var(--color-inputBorderFocus);
 }
 
@@ -382,13 +407,11 @@ input:-webkit-autofill {
 }
 
 .menuItemLogo svg {
-  @apply w-[22px] h-[22px] 3xl:w-[32px] 3xl:h-[32px];
+  @apply w-[30px] h-[30px] 1xl:w-[30px] 1xl:h-[30px] 3xl:w-[32px] 3xl:h-[32px];
   transform: rotate(0deg);
 }
 
-/* Custom Scrollbar
-   Scoped to #__next (Next.js app) and #storybook-root (Storybook component preview)
-   to prevent dark scrollbars from bleeding into Storybook documentation UI */
+/* Custom Scrollbar */
 :root {
   --scrollbar-thumb: var(--color-scrollbarThumb);
   --scrollbar-bg: var(--color-scrollbarBg);
@@ -399,17 +422,30 @@ input:-webkit-autofill {
   --scrollbar-bg: var(--color-scrollbarBg);
 }
 
-#__next,
-#__next *,
-#storybook-root,
-#storybook-root * {
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg) !important;
-  scrollbar-width: thin !important;
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+  scrollbar-width: thin;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+/* Fallback for older WebKit browsers without standard scrollbar-width support */
+@supports not (scrollbar-width: thin) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
 }
 
 .alternativeScrollbar {
@@ -440,4 +476,3 @@ input:-webkit-autofill {
   --breakpoint-3xl: 109.375rem; /* 1750px */
   --breakpoint-5xl: 125rem; /* 2000px */
 }
-

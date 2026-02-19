@@ -18,7 +18,7 @@
   </a>
 </div>
 
-<h4 align="center">Open source and free dashboard starter written in NextJS and TypeScript</h2>
+<h4 align="center">A modern full-stack dashboard starter built with Next.js and TypeScript</h4>
 <br />
 
 <div align="center">
@@ -27,7 +27,7 @@
 
 ## :gear: Tech stack
 
-React 19, NextJS 15, TypeScript, Tailwind, Shadcn, Zustand, Apollo Client, Recharts, Better Auth, Jest
+React 19, Next.js 15, TypeScript, Tailwind, Shadcn, Zustand, Apollo Client, Recharts, Better Auth, Jest
 
 ## :sparkles: Features
 
@@ -45,7 +45,7 @@ React 19, NextJS 15, TypeScript, Tailwind, Shadcn, Zustand, Apollo Client, Recha
 ## ✨ Features
 
 - 🎨 **90+ Components** - Shadcn UI + custom components
-- 📊 **25 Chart Types** - Production-ready with Recharts
+- 📊 **25 Chart Types** - with Recharts
 - 🗄️ **Full Backend** - GraphQL + Prisma + PostgreSQL
 - 📋 **Advanced Tables** - TanStack Table v8 with filtering/sorting/export
 - 📅 **Calendar** - FullCalendar with CRUD operations
@@ -137,6 +137,32 @@ The app works with mock data from `public/backendBackup.json` on default and has
 | `npm run format`       | Formats code with Prettier            |
 | `npm run format:check` | Checks if code is properly formatted  |
 
+## 🚀 Why Spireflow?
+
+- 90+ reusable components built on Radix UI primitives and Shadcn patterns
+- Focus on accessibility and consistent UI behavior (keyboard-friendly interactions, ARIA where needed)
+- Modular structure designed for long-term extension (not a one-off demo)
+- Standalone mode with mock data (works without backend)
+- Optional full-stack path: connect an external backend when you need real data/auth
+- Data-driven UI out of the box: charts, tables, analytics-style pages
+- Advanced tables patterns included (filtering, sorting, search, pagination, CSV export)
+- Multiple chart types and ready-made chart pages for common dashboard use cases
+- Internationalization built-in (next-intl) with English + Polish support
+- Dark/light mode support with theme variables (easy to extend with more themes)
+- Page structure already scaffolded (dashboard, e-commerce area, analytics, profile, calendar, auth pages)
+- Navigation and layout patterns ready (sidebar with collapse/expand, categories, nested routes)
+- State management with Zustand (simple, predictable, easy to extend)
+- Form patterns included (React Hook Form + Yup validation flow)
+- Authentication integration included (Better Auth) with login/register pages
+- Calendar with CRUD interactions (move/add/delete events)
+- Product/gallery patterns included (lightbox + PDF export)
+- Project-level quality tools: ESLint + Prettier + Husky hooks
+- CI pipeline for linting/testing via GitHub Actions
+- Testing setup included (Jest + React Testing Library)
+- Clear project structure (components/views/layout/hooks/services/utils separated)
+- Designed for internal tools and admin panels (not just a marketing UI template)
+- Easy local start: clone → install → dev, with sensible defaults
+
 ## ⚙️ Configuration (optional)
 
 ### Connect to backend & enable authentication
@@ -196,19 +222,21 @@ You can deploy your own instance of Spireflow on Vercel using the link below. Th
 
 ## 🧾 Pages
 
-| Path         | Description                                        |
-| ------------ | -------------------------------------------------- |
-| `/`          | Homepage with key metrics and widgets              |
-| `/orders`    | View, track, and manage all orders                 |
-| `/customers` | Browse customer information                        |
-| `/analytics` | Sales and performance charts                       |
-| `/calendar`  | Interactive calendar for events and scheduling     |
-| `/products`  | Product management with gallery and export options |
-| `/login`     | Sign in to your account                            |
-| `/register`  | Create a new account                               |
-| `/profile`   | User profile page                                  |
-
-There are also four filler pages with single charts: `/area`, `/bars`, `/scatter` and `/line`
+| Path           | Description                                        |
+| -------------- | -------------------------------------------------- |
+| `/`            | Homepage with key metrics and widgets              |
+| `/orders`      | View, track, and manage all orders                 |
+| `/customers`   | Browse customer information                        |
+| `/analytics`   | Sales and performance charts                       |
+| `/calendar`    | Interactive calendar for events and scheduling     |
+| `/products`    | Product management with gallery and export options |
+| `/login`       | Sign in to your account                            |
+| `/register`    | Create a new account                               |
+| `/profile`     | User profile page                                  |
+| `/ui-elements` | Collection of shadcn                               |
+| `/forms`       | Collection of shadcn part 2                        |
+| `/tables`      | 4 tanstack tables                                  |
+| `/charts`      | 10 charts                                          |
 
 ## 🤝 Community and contributions
 
@@ -218,4 +246,4 @@ All forms of project support are valued and appreciated, including code contribu
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [license](https://github.com/matt765/spireflow/blob/main/license) file for more information.
+This project is open source and available under the MIT License. Feel free to use it to build any personal or commercial applications (SaaS, internal tools etc.). Although the license allows redistribution, I would greatly appreciate it if you did not repackage or resell this project as a standalone UI kit or template.

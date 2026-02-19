@@ -8,7 +8,7 @@ interface BaseTooltipProps {
 /**
  * Base tooltip component with title header and content body.
  * Provides a styled container with border, shadow, and rounded corners.
- * Used as foundation for custom tooltip implementations.
+ * Used as foundation for custom tooltip implementations in charts.
  *
  * @component
  * @param {BaseTooltipProps} props - Component props
