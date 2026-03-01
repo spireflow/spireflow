@@ -1,82 +1,25 @@
 {
   "homepage": {
     "revenueOverTime": {
-      "title": "Dochód miesięczny",
-      "subtitle": "Zestawienie przychodów w czasie",
-      "monthly": "Miesięcznie",
-      "quarterly": "Kwartalnie",
-      "websiteSales": "Strona internetowa",
-      "inStoreSales": "Sklepy stacjonarne",
-      "jan": "Sty",
-      "feb": "Lut",
-      "mar": "Mar",
-      "apr": "Kwi",
-      "may": "Maj",
-      "jun": "Cze",
-      "jul": "Lip",
-      "aug": "Sie",
-      "sep": "Wrz",
-      "oct": "Paź",
-      "nov": "Lis",
-      "dec": "Gru"
+      "title": "Dochód miesięczny"
     },
     "threeSmallCards": {
-      "sales": "Obrót",
-      "profit": "Zysk",
-      "traffic": "Ruch",
-      "customers": "Klienci",
-      "Last 3 weeks": "3 tygodnie",
-      "Last month": "30 dni",
-      "Yesterday": "Wczoraj",
-      "Last week": "7 dni",
       "monthlyTarget": "Miesięczny cel"
     },
     "fourSmallCards": {
-      "sales": "Obrót",
-      "profit": "Zysk",
-      "traffic": "Ruch",
-      "customers": "Klienci",
-      "Last 3 weeks": "3 tygodnie",
-      "Last month": "30 dni",
-      "Yesterday": "Wczoraj",
-      "Last week": "7 dni",
       "monthlyTarget": "Miesięczny cel"
     },
     "bestSellingProducts": {
-      "title": "Bestsellery",
-      "profitFromLastWeek": "Zysk",
-      "salesFromLastWeek": "Sprzedaż"
+      "title": "Bestsellery"
     },
     "customerSatisfaction": {
-      "title": "Zadowolenie klientów",
-      "totalSales": "Całkowita sprzedaż",
-      "customerSatisfaction": "Zadowolenie klientów",
-      "numberOfOrders": "Liczba zamówień"
+      "title": "Zadowolenie klientów"
     },
     "revenuePerCountry": {
-      "title": "Przychód według kraju",
-      "country": "Kraj",
-      "sales": "Sprzedaż",
-      "unitedStates": "Stany Zjednoczone",
-      "france": "Francja",
-      "unitedKingdom": "Wielka Brytania",
-      "norway": "Norwegia",
-      "australia": "Australia",
-      "poland": "Polska"
+      "title": "Przychód według kraju"
     },
     "weeklyPerformance": {
-      "title": "Wydajność tygodniowa",
-      "activity": "Aktywność",
-      "revenue": "Przychód",
-      "profit": "Zysk",
-      "activities": {
-        "henryUploadedReport": "Nowy raport kwartalny",
-        "newTradersFirstPurchase": "Nowi klienci dokonali pierwszego zakupu"
-      },
-      "time": {
-        "dayAgo": "1 dzień temu",
-        "daysAgo": "{count} dni temu"
-      }
+      "title": "Wydajność tygodniowa"
     }
   },
   "pagination": {
@@ -131,9 +74,7 @@
       "date": "Data",
       "status": "Status",
       "priority": "Priorytet",
-      "normal": "Normalny",
-      "cancelButton": "Anuluj zamówienie",
-      "callButton": "Dział logistyki"
+      "normal": "Normalny"
     }
   },
   "customers": {
@@ -182,9 +123,7 @@
       "phone": "Telefon",
       "email": "E-mail",
       "returns": "Zwroty",
-      "loyaltyPoints": "Punkty lojalnościowe",
-      "orderHistory": "Historia zamówień",
-      "callButton": "Zadzwoń do klienta"
+      "loyaltyPoints": "Punkty lojalnościowe"
     }
   },
   "products": {
@@ -193,46 +132,6 @@
       "price": "Cena",
       "markup": "Marża",
       "profit": "Zysk"
-    },
-    "parameterName": {
-      "screenSize": "Ekran",
-      "processor": "Procesor",
-      "memory": "Pamięć wewnętrzna",
-      "storage": "Pamięć masowa",
-      "batteryLife": "Bateria",
-      "operatingSystem": "System operacyjny",
-      "cameraResolution": "Aparat",
-      "portTypes": "Porty",
-      "graphics": "Grafika",
-      "displayResolution": "Rozdzielczość ekranu",
-      "dimensionsAndWeight": "Wymiary i waga",
-      "colorOptions": "Motywy"
-    },
-    "parameterContent": {
-      "inches": "cali",
-      "upTo": "Do",
-      "hoursTalkTime": "godzin rozmowy",
-      "lightningConnector": "Lightning",
-      "graphics": "",
-      "pixels": "pikseli",
-      "blue": "Niebieski",
-      "black": "Czarny",
-      "pink": "Różowy",
-      "red": "Czerwony",
-      "type": "Typ",
-      "moonlight": "Księżycowy",
-      "basedOn": "&",
-      "tripleCamera": "Potrójna kamera",
-      "hoursVideoPlayback": "godzin wyświetlania video",
-      "main": "główny",
-      "rearFacing": "tylny",
-      "frontFacing": "przedni",
-      "hourseOfMixedUsage": "godzin pracy"
-    },
-    "productList": {
-      "phone": "Telefon",
-      "tablet": "Tablet",
-      "laptop": "Laptop"
     },
     "metrics": {
       "inventoryStatus": "Stan magazynu",
@@ -252,112 +151,28 @@
   },
   "analytics": {
     "assetPerformance": {
-      "title": "Wydajność aktywów",
-      "sinceTransaction": "od momentu transakcji"
+      "title": "Wydajność aktywów"
     },
     "todaySales": {
-      "title": "Dzisiejsza sprzedaż",
-      "todayVsAverage": "Dzisiaj vs. Średnia",
-      "todayVsYesterday": "Dzisiaj vs. Wczoraj",
-      "today": "Dzisiaj",
-      "yesterday": "Wczoraj",
-      "average": "Średnia"
+      "title": "Dzisiejsza sprzedaż"
     },
     "totalProfit": {
-      "title": "Całkowity zysk",
-      "thisYear": "w tym roku",
-      "jan": "Sty",
-      "feb": "Lut",
-      "mar": "Mar",
-      "apr": "Kwi",
-      "may": "Maj",
-      "jun": "Cze",
-      "jul": "Lip",
-      "aug": "Sie",
-      "sep": "Wrz",
-      "oct": "Paź",
-      "nov": "Lis",
-      "dec": "Gru",
-      "sales": "Sprzedaż"
+      "title": "Całkowity zysk"
     },
     "revenueTrends": {
-      "title": "Trendy przychodów",
-      "subtitle": "Porównanie między sprzedażą, a zyskiem",
-      "sales": "Sprzedaż",
-      "profit": "Zysk",
-      "jan": "Sty",
-      "feb": "Lut",
-      "mar": "Mar",
-      "apr": "Kwi",
-      "may": "Maj",
-      "jun": "Cze",
-      "jul": "Lip",
-      "aug": "Sie",
-      "sep": "Wrz",
-      "oct": "Paź",
-      "nov": "Lis",
-      "dec": "Gru"
+      "title": "Trendy przychodów"
     },
     "yearOverview": {
-      "title": "Przegląd roczny",
-      "month": "Miesiąc",
-      "phones": "Telefony",
-      "tablets": "Tablety",
-      "laptops": "Laptopy",
-      "sales": "Sprzedaż",
-      "revenue": "Przychód",
-      "unitsSold": "Sprzedane sztuki",
-      "returns": "Zwroty",
-      "jan": "Sty",
-      "feb": "Lut",
-      "mar": "Mar",
-      "apr": "Kwi",
-      "may": "Maj",
-      "jun": "Cze",
-      "jul": "Lip",
-      "aug": "Sie",
-      "sep": "Wrz",
-      "oct": "Paź",
-      "nov": "Lis",
-      "dec": "Gru"
+      "title": "Przegląd roczny"
     },
     "marketMetrics": {
-      "title": "Wskażniki rynkowe",
-      "metrics": {
-        "salesVolume": "Wolumen sprzedaży",
-        "revenue": "Przychód",
-        "growthRate": "Wskaźnik wzrostu",
-        "marketShare": "Udział w rynku",
-        "customerRating": "Ocena klientów",
-        "profitMargin": "Marża"
-      }
+      "title": "Wskażniki rynkowe"
     },
     "revenueDistribution": {
-      "title": "Rozkład przychodów",
-      "inStore": "Przychody stacjonarne",
-      "online": "Przychody online",
-      "laptops": "Laptopy",
-      "phones": "Telefony",
-      "chargers": "Ładowarki",
-      "headphones": "Słuchawki",
-      "tablets": "Tablety",
-      "accessories": "Akcesoria"
+      "title": "Rozkład przychodów"
     }
   },
   "calendar": {
-    "marketStrategy": "Strategia rynkowa",
-    "teamSync": "Synchronizacja zespołu",
-    "productReview": "Recenzja produktu",
-    "supplierMeeting": "Spotkanie z dostawcą",
-    "dailyInventoryCheck": "Audyt magazynu",
-    "marketingStrategyReview": "Strategia marketingowa",
-    "seoStrategyMeeting": "Strategii SEO",
-    "clientMeeting": "Spotkanie z klientem",
-    "salesPromotionPlanning": "Planowanie promocji",
-    "oneOnOneMeeting": "Spotkanie 1 na 1",
-    "salesReview": "Przegląd sprzedaży",
-    "productLaunchWebinar": "Webinar - nowy produkt",
-    "eCommercePlatformTraining": "Szkolenie e-commerce",
     "deleteEventModalTitle": "Czy na pewno?",
     "deleteEventModalSubtitle": "Naciśnij tak, jeśli chcesz",
     "delete": "usunąć",
@@ -374,71 +189,8 @@
     "addEventIncorrectTime": "Nieprawidłowy przedział czasu"
   },
   "singleCharts": {
-    "area": {
-      "title": "Ruch w sklepie internetowym",
-      "views": "Wyświetlenia",
-      "uniqueVisitors": "Unikalni odwiedzający",
-      "jan": "Sty",
-      "feb": "Lut",
-      "mar": "Mar",
-      "apr": "Kwi",
-      "may": "Maj",
-      "jun": "Cze",
-      "jul": "Lip",
-      "aug": "Sie",
-      "sep": "Wrz",
-      "oct": "Paź",
-      "nov": "Lis",
-      "dec": "Gru"
-    },
     "bars": {
-      "title": "Sprzedaż produktów (USD)",
-      "widgets": "Widgety",
-      "gadgets": "Gadżety",
-      "modules": "Moduły",
-      "components": "Komponenty",
-      "kits": "Zestawy",
-      "accessories": "Akcesoria"
-    },
-    "scatter": {
-      "title": "Oczekiwana długość życia vs PKB per capita",
-      "subtitle": "Stan na rok 2015. Źródło: Our World in Data",
-      "country": "Kraj",
-      "gdp": "PKB",
-      "lifeExpectancy": "Długość życia",
-      "population": "Populacja",
-      "yrs": "lat",
-      "countries": {
-        "Argentina": "Argentyna",
-        "Australia": "Australia",
-        "Austria": "Austria",
-        "Brazil": "Brazylia",
-        "Canada": "Kanada",
-        "China": "Chiny",
-        "Denmark": "Dania",
-        "Egypt": "Egipt",
-        "Finland": "Finlandia",
-        "Germany": "Niemcy",
-        "India": "Indie",
-        "Japan": "Japonia",
-        "Mexico": "Meksyk",
-        "Netherlands": "Holandia",
-        "Russia": "Rosja",
-        "Poland": "Polska",
-        "Spain": "Hiszpania",
-        "Greece": "Grecja"
-      }
-    },
-    "line": {
-      "title": "Populacja smoków w Westeros",
-      "houseTargaryen": "Ród Targaryen",
-      "houseVelaryon": "Ród Velaryon",
-      "aegonsConquest": "Podbój Aegona",
-      "theLongReignOfJaehaerysI": "Panowanie Jaehaerysa I",
-      "houseOfTheDragonSeries": "Seria Dom Smoka",
-      "theConquestOfDorne": "Podbój Dorne",
-      "theBlackfyreRebellions": "Powstania Blackfyre",
-      "timeOfTheShowBooksStart": "Start serialu/książek"
+      "title": "Sprzedaż produktów (USD)"
     }
   },
   "sideMenu": {
@@ -474,64 +226,24 @@
   },
   "navbar": {
     "auth": "Autoryzacja",
-    "register": "Rejestracja",
-    "signIn": "Zaloguj się",
-    "signOut": "Wyloguj się",
-    "signUp": "Zarejestruj się",
     "userProfile": "Profil użytkownika",
     "about": "O aplikacji",
     "changelog": "Lista zmian",
-    "yourEmail": "Twój e-mail",
-    "yourPassword": "Twoje hasło",
-    "noAccount": "Nie masz jeszcze konta?",
-    "registerHere": "Zarejestruj się...",
-    "logIn": "Zaloguj się",
-    "sampleAccount": "Konto gościa",
-    "createAccount": "Utwórz konto",
-    "alreadyHaveAccount": "Masz już konto?",
-    "signInHere": "Zaloguj się tutaj...",
     "english": "Angielski",
     "polish": "Polski",
-    "pleaseEnterAValidEmail": "Wprowadź prawidłowy adres e-mail",
-    "emailFieldIsRequired": "E-mail jest wymagany",
-    "pleaseEnterAValidPassword": "Wprowadź prawidłowe hasło",
-    "passwordFieldIsRequired": "Hasło jest wymagane",
-    "eitherEmailOrPasswordIsIncorrect": "Adres e-mail lub hasło jest nieprawidłowe",
-    "passwordMinimumLength": "Hasło musi mieć co najmniej 6 znaków",
     "changeTheme": "Zmień motyw",
     "theme": "Motyw",
     "light": "Jasny",
     "dark": "Ciemny",
-    "changeLanguage": "Przełącz język",
     "language": "Język",
+    "settings": "Ustawienia",
+    "githubRepository": "GitHub",
+    "error": "Błąd",
+    "tryAgain": "Spróbuj ponownie",
+    "pageNotFound": "Ups! Nie znaleziono strony",
+    "goToHomepage": "Przejdź do strony głównej",
     "openUserMenu": "Otwórz menu",
     "notifications": "Powiadomienia",
-    "notificationUpdateTitle": "Aktualizacja zakończona",
-    "notificationUpdateDesc": "Uruchom ponownie serwer aby zakończyć aktualizację.",
-    "notificationConnectionTitle": "Nowe połączenie",
-    "notificationConnectionDesc": "Anna zaakceptowała Twoje zaproszenie.",
-    "notificationTaskTitle": "Zadanie zakończone",
-    "notificationTaskDesc": "Twój eksport został wygenerowany pomyślnie.",
-    "notificationReportTitle": "Raport miesięczny",
-    "notificationReportDesc": "Twój miesięczny raport analityczny jest gotowy do obejrzenia.",
-    "notificationTimeToday": "Dzisiaj",
-    "notificationTimeYesterday": "Wczoraj",
-    "notificationTime2Days": "2 dni temu",
-    "logoutModalTitle": "Jesteś pewien?",
-    "logoutModalDesc": "Kliknij \"tak\" aby wylogować się z aplikacji",
-    "logoutModalCancelButton": "Anuluj",
-    "logoutModalConfirmButton": "Tak",
-    "authErrors": {
-      "session_exists": "Jesteś już zalogowany",
-      "form_identifier_not_found": "Email nie znaleziony",
-      "form_password_incorrect": "Nieprawidłowy email lub hasło",
-      "user_locked": "Konto czasowo zablokowane. Spróbuj później",
-      "defaultError": "Błąd logowania",
-      "emailAlreadyExists": "Użytkownik już istnieje. Użyj innego emaila.",
-      "invalidEmail": "Nieprawidłowy format emaila",
-      "passwordError": "Błąd hasła",
-      "networkError": "Nie można połączyć się z serwerem. Spróbuj ponownie."
-    },
     "search": {
       "placeholder": "Szukaj...",
       "noResults": "Nie znaleziono wyników",
@@ -569,6 +281,8 @@
   "auth": {
     "signIn": "Zaloguj się",
     "signUp": "Zarejestruj się",
+    "signOut": "Wyloguj się",
+    "register": "Rejestracja",
     "yourEmail": "Twój e-mail",
     "yourPassword": "Twoje hasło",
     "noAccount": "Nie masz jeszcze konta?",
@@ -713,6 +427,15 @@
     "fixedNavbar": "Przypięty navbar",
     "githubRepository": "Repozytorium GitHub"
   },
+  "notificationsUI": {
+    "title": "Powiadomienia",
+    "new": "Nowe",
+    "all": "Wszystkie",
+    "readAll": "PRZECZYTAJ WSZYSTKIE",
+    "close": "Zamknij",
+    "markRead": "Oznacz jako przeczytane",
+    "noNotifications": "Brak powiadomień do wyświetlenia"
+  },
   "charts": {
     "areaChart": "Wykres obszarowy",
     "scatterChart": "Wykres punktowy",
@@ -726,6 +449,7 @@
     "verticalBarChart": "Wykres słupkowy pionowy",
     "lineChart": "Wykres liniowy",
     "areaFillByValueChart": "Wykres obszarowy wg wartości",
-    "gradientPieChart": "Wykres kołowy z gradientem"
+    "gradientPieChart": "Wykres kołowy z gradientem",
+    "lineAreaChart": "Trend zamówień i zwrotów"
   }
 }

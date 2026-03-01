@@ -1,82 +1,25 @@
 {
   "homepage": {
     "revenueOverTime": {
-      "title": "Revenue over time",
-      "subtitle": "Historical performance",
-      "monthly": "Monthly",
-      "quarterly": "Quarterly",
-      "websiteSales": "Website sales",
-      "inStoreSales": "In store sales",
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
+      "title": "Revenue over time"
     },
     "threeSmallCards": {
-      "sales": "Sales",
-      "profit": "Profit",
-      "traffic": "Traffic",
-      "customers": "Customers",
-      "Last 3 weeks": "Last 3 weeks",
-      "Last month": "Last month",
-      "Yesterday": "Yesterday",
-      "Last week": "Last week",
       "monthlyTarget": "Monthly target"
     },
     "fourSmallCards": {
-      "sales": "Sales",
-      "profit": "Profit",
-      "traffic": "Traffic",
-      "customers": "Customers",
-      "Last 3 weeks": "Last 3 weeks",
-      "Last month": "Last month",
-      "Yesterday": "Yesterday",
-      "Last week": "Last week",
       "monthlyTarget": "Monthly target"
     },
     "bestSellingProducts": {
-      "title": "Bestselling products",
-      "profitFromLastWeek": "Profit from last week",
-      "salesFromLastWeek": "Sales from last week"
+      "title": "Bestselling products"
     },
     "customerSatisfaction": {
-      "title": "Customer satisfaction",
-      "totalSales": "Total sales",
-      "customerSatisfaction": "Customer satisfaction",
-      "numberOfOrders": "Number of orders"
+      "title": "Customer satisfaction"
     },
     "revenuePerCountry": {
-      "title": "Revenue per country",
-      "country": "Country",
-      "sales": "Sales",
-      "unitedStates": "United States",
-      "france": "France",
-      "unitedKingdom": "United Kingdom",
-      "norway": "Norway",
-      "australia": "Australia",
-      "poland": "Poland"
+      "title": "Revenue per country"
     },
     "weeklyPerformance": {
-      "title": "Weekly Performance",
-      "activity": "Activity",
-      "revenue": "Revenue",
-      "profit": "Profit",
-      "activities": {
-        "henryUploadedReport": "Uploaded quarterly report",
-        "newTradersFirstPurchase": "New traders completed first purchase"
-      },
-      "time": {
-        "dayAgo": "1 day ago",
-        "daysAgo": "{count} days ago"
-      }
+      "title": "Weekly Performance"
     }
   },
   "pagination": {
@@ -131,9 +74,7 @@
       "date": "Date",
       "status": "Status",
       "priority": "Priority",
-      "normal": "Normal",
-      "cancelButton": "Cancel order",
-      "callButton": "Call logistics"
+      "normal": "Normal"
     }
   },
   "customers": {
@@ -182,9 +123,7 @@
       "phone": "Phone",
       "email": "E-mail",
       "returns": "Returns",
-      "loyaltyPoints": "Loyalty points",
-      "orderHistory": "Order history",
-      "callButton": "Call customer"
+      "loyaltyPoints": "Loyalty points"
     }
   },
   "products": {
@@ -193,46 +132,6 @@
       "price": "Price",
       "markup": "Markup",
       "profit": "Profit"
-    },
-    "parameterName": {
-      "screenSize": "Screen Size",
-      "processor": "Processor",
-      "memory": "Memory",
-      "storage": "Storage",
-      "batteryLife": "Battery Life",
-      "operatingSystem": "Operating System",
-      "cameraResolution": "Camera Resolution",
-      "portTypes": "Port Types",
-      "graphics": "Graphics",
-      "displayResolution": "Display Resolution",
-      "dimensionsAndWeight": "Dimensions and Weight",
-      "colorOptions": "Color Options"
-    },
-    "parameterContent": {
-      "inches": "inches",
-      "upTo": "Up to",
-      "hoursTalkTime": "hours talk time",
-      "lightningConnector": "Lightning connector",
-      "graphics": "graphics",
-      "pixels": "pixels",
-      "blue": "Blue",
-      "black": "Black",
-      "pink": "Pink",
-      "red": "Red",
-      "type": "Type",
-      "moonlight": "Moonlight",
-      "basedOn": "based on",
-      "tripleCamera": "Triple Camera",
-      "hoursVideoPlayback": "hours video playback",
-      "main": "main",
-      "rearFacing": "rear-facing",
-      "frontFacing": "front-facing",
-      "hourseOfMixedUsage": "hours of mixed usage"
-    },
-    "productList": {
-      "phone": "Phone",
-      "tablet": "Tablet",
-      "laptop": "Laptop"
     },
     "metrics": {
       "inventoryStatus": "Inventory status",
@@ -252,112 +151,28 @@
   },
   "analytics": {
     "assetPerformance": {
-      "title": "Asset performance",
-      "sinceTransaction": "since transaction"
+      "title": "Asset performance"
     },
     "todaySales": {
-      "title": "Today's sales",
-      "todayVsAverage": "Today vs. Average",
-      "todayVsYesterday": "Today vs. Yesterday",
-      "today": "Today",
-      "yesterday": "Yesterday",
-      "average": "Average"
+      "title": "Today's sales"
     },
     "totalProfit": {
-      "title": "Total profit",
-      "thisYear": "this year",
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec",
-      "sales": "Sales"
+      "title": "Total profit"
     },
     "revenueTrends": {
-      "title": "Revenue trends",
-      "subtitle": "Comparison between sales and profit",
-      "sales": "Sales",
-      "profit": "Profit",
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
+      "title": "Revenue trends"
     },
     "yearOverview": {
-      "title": "Year overview",
-      "month": "Month",
-      "phones": "Phones",
-      "tablets": "Tablets",
-      "laptops": "Laptops",
-      "sales": "Sales",
-      "revenue": "Revenue",
-      "unitsSold": "Units sold",
-      "returns": "Returns",
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
+      "title": "Year overview"
     },
     "marketMetrics": {
-      "title": "Market metrics",
-      "metrics": {
-        "salesVolume": "Sales Volume",
-        "revenue": "Revenue",
-        "growthRate": "Growth Rate",
-        "marketShare": "Market Share",
-        "customerRating": "Customer Rating",
-        "profitMargin": "Profit Margin"
-      }
+      "title": "Market metrics"
     },
     "revenueDistribution": {
-      "title": "Revenue distribution",
-      "inStore": "In-store revenue",
-      "online": "Online revenue",
-      "laptops": "Laptops",
-      "phones": "Phones",
-      "chargers": "Chargers",
-      "headphones": "Headphones",
-      "tablets": "Tablets",
-      "accessories": "Accessories"
+      "title": "Revenue distribution"
     }
   },
   "calendar": {
-    "marketStrategy": "Market strategy",
-    "teamSync": "Team Sync",
-    "productReview": "Product review",
-    "supplierMeeting": "Supplier Meeting",
-    "dailyInventoryCheck": "Daily Inventory Check",
-    "marketingStrategyReview": "Marketing Strategy Review",
-    "seoStrategyMeeting": "SEO Strategy Meeting",
-    "clientMeeting": "Client Meeting",
-    "salesPromotionPlanning": "Sales Promotion Planning",
-    "oneOnOneMeeting": "1-on-1 Meeting",
-    "salesReview": "Sales Review",
-    "productLaunchWebinar": "Product Launch Webinar",
-    "eCommercePlatformTraining": "E-commerce Platform Training",
     "deleteEventModalTitle": "Are you sure?",
     "deleteEventModalSubtitle": "Press yes if you want to",
     "delete": "delete",
@@ -375,71 +190,8 @@
   },
 
   "singleCharts": {
-    "area": {
-      "title": "Online store traffic",
-      "views": "Views",
-      "uniqueVisitors": "Unique visitors",
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    },
     "bars": {
-      "title": "Product sales over time (USD)",
-      "widgets": "Widgets",
-      "gadgets": "Gadgets",
-      "modules": "Modules",
-      "components": "Components",
-      "kits": "Kits",
-      "accessories": "Accessories"
-    },
-    "scatter": {
-      "title": "Life expectancy vs GDP per capita",
-      "subtitle": "As of 2015. Source: Our World in Data",
-      "country": "country",
-      "gdp": "GDP",
-      "lifeExpectancy": "Life expectancy",
-      "population": "Population",
-      "yrs": "yrs",
-      "countries": {
-        "Argentina": "Argentina",
-        "Australia": "Australia",
-        "Austria": "Austria",
-        "Brazil": "Brazil",
-        "Canada": "Canada",
-        "China": "China",
-        "Denmark": "Denmark",
-        "Egypt": "Egypt",
-        "Finland": "Finland",
-        "Germany": "Germany",
-        "India": "India",
-        "Japan": "Japan",
-        "Mexico": "Mexico",
-        "Netherlands": "Netherlands",
-        "Russia": "Russia",
-        "Poland": "Poland",
-        "Spain": "Spain",
-        "Greece": "Greece"
-      }
-    },
-    "line": {
-      "title": "Population of dragons in Westeros",
-      "houseTargaryen": "House Targaryen",
-      "houseVelaryon": "House Velaryon",
-      "aegonsConquest": "Aegon's Conquest",
-      "theLongReignOfJaehaerysI": "The long reign of Jaehaerys I",
-      "houseOfTheDragonSeries": "House of the Dragon series",
-      "theConquestOfDorne": "The conquest of Dorne",
-      "theBlackfyreRebellions": "The Blackfyre Rebellions",
-      "timeOfTheShowBooksStart": "Time of the show/books start"
+      "title": "Product sales over time (USD)"
     }
   },
   "sideMenu": {
@@ -475,64 +227,24 @@
   },
   "navbar": {
     "auth": "Auth",
-    "register": "Register",
-    "signIn": "Sign in",
-    "signOut": "Sign out",
-    "signUp": "Sign up",
     "userProfile": "User Profile",
     "about": "About",
     "changelog": "Changelog",
-    "yourEmail": "Your e-mail",
-    "yourPassword": "Your password",
-    "noAccount": "Don't have an account yet?",
-    "registerHere": "Register here...",
-    "logIn": "Log in",
-    "sampleAccount": "Sample account",
-    "createAccount": "Create account",
-    "alreadyHaveAccount": "Already have an account?",
-    "signInHere": "Sign in here...",
     "english": "English",
     "polish": "Polish",
-    "pleaseEnterAValidEmail": "Please enter a valid email",
-    "emailFieldIsRequired": "Email field is required",
-    "pleaseEnterAValidPassword": "Please enter a valid password",
-    "passwordFieldIsRequired": "Password field is required",
-    "eitherEmailOrPasswordIsIncorrect": "Either email or password is incorrect",
-    "passwordMinimumLength": "Password must be at least 6 characters long",
     "changeTheme": "Change theme",
     "theme": "Theme",
     "light": "Light",
     "dark": "Dark",
-    "changeLanguage": "Change language",
     "language": "Language",
+    "settings": "Settings",
+    "githubRepository": "GitHub",
+    "error": "Error",
+    "tryAgain": "Try again",
+    "pageNotFound": "Oops! Page not found",
+    "goToHomepage": "Go to homepage",
     "openUserMenu": "Open user menu",
     "notifications": "Notifications",
-    "notificationUpdateTitle": "Update complete",
-    "notificationUpdateDesc": "Restart server to complete update.",
-    "notificationConnectionTitle": "New connection",
-    "notificationConnectionDesc": "Anna accepted your request.",
-    "notificationTaskTitle": "Task completed",
-    "notificationTaskDesc": "Your export has been generated successfully.",
-    "notificationReportTitle": "Monthly report",
-    "notificationReportDesc": "Your monthly analytics report is ready to view.",
-    "notificationTimeToday": "Today",
-    "notificationTimeYesterday": "Yesterday",
-    "notificationTime2Days": "2 days ago",
-    "logoutModalTitle": "Are you sure?",
-    "logoutModalDesc": "Click yes to sign out from application",
-    "logoutModalCancelButton": "Cancel",
-    "logoutModalConfirmButton": "Yes",
-    "authErrors": {
-      "session_exists": "Already signed in",
-      "form_identifier_not_found": "Email not found",
-      "form_password_incorrect": "Invalid email or password",
-      "user_locked": "Account locked, try again later",
-      "defaultError": "Sign in error",
-      "emailAlreadyExists": "User already exists. Use another email.",
-      "invalidEmail": "Invalid email format",
-      "passwordError": "Password error",
-      "networkError": "Cannot connect to server. Please try again."
-    },
     "search": {
       "placeholder": "Search...",
       "noResults": "No results found",
@@ -570,6 +282,8 @@
   "auth": {
     "signIn": "Sign in",
     "signUp": "Sign up",
+    "signOut": "Sign out",
+    "register": "Register",
     "yourEmail": "Your e-mail",
     "yourPassword": "Your password",
     "noAccount": "Don't have an account yet?",
@@ -714,6 +428,15 @@
     "fixedNavbar": "Fixed navbar",
     "githubRepository": "GitHub Repository"
   },
+  "notificationsUI": {
+    "title": "Notifications",
+    "new": "New",
+    "all": "All",
+    "readAll": "READ ALL NOTIFICATIONS",
+    "close": "Close",
+    "markRead": "Mark Read",
+    "noNotifications": "No notifications to display"
+  },
   "charts": {
     "areaChart": "Area Chart",
     "scatterChart": "Scatter Chart",
@@ -727,6 +450,7 @@
     "verticalBarChart": "Vertical Bar Chart",
     "lineChart": "Line Chart",
     "areaFillByValueChart": "Area Fill By Value",
-    "gradientPieChart": "Gradient Pie Chart"
+    "gradientPieChart": "Gradient Pie Chart",
+    "lineAreaChart": "Orders & Returns Trend"
   }
 }
