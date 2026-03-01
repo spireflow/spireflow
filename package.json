@@ -8,7 +8,7 @@
     "email": "mateusz.wyrebek@gmail.com",
     "url": "https://matt765-portfolio.vercel.app/"
   },
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",

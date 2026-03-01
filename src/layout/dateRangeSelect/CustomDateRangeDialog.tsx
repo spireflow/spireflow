@@ -79,7 +79,10 @@ export const CustomDateRangeDialog = ({
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
         className="flex flex-col sm:w-[26rem] sm:h-auto md:w-[26rem] sm:max-w-[26rem] border-0 sm:border sm:border-inputBorder sm:rounded-2xl"
-        onOpenAutoFocus={(e) => e.preventDefault()}
+        onOpenAutoFocus={(e) => {
+          e.preventDefault();
+          (e.target as HTMLElement).focus();
+        }}
       >
         <DialogHeader>
           <DialogTitle className="text-center text-xl">

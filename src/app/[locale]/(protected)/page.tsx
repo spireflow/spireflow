@@ -1,8 +1,13 @@
+import { setRequestLocale } from "next-intl/server";
+
 import { PageWrapper } from "../../../components/common/PageWrapper";
 import { getData } from "../../../services/getData";
 import { HomepageView } from "../../../components/views/homepage/HomepageView";
 
-const Home = async () => {
+const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const homepageData = await getData("homepage");
 
   return (

@@ -106,39 +106,39 @@ export const BarChartComponent = () => {
   const barChartData = [
     {
       name: "Q1 2023",
-      [t("widgets")]: 745,
-      [t("gadgets")]: 523,
-      [t("modules")]: 634,
-      [t("components")]: 478,
-      [t("kits")]: 365,
-      [t("accessories")]: 598,
+      widgets: 745,
+      gadgets: 523,
+      modules: 634,
+      components: 478,
+      kits: 365,
+      accessories: 598,
     },
     {
       name: "Q2 2023",
-      [t("widgets")]: 812,
-      [t("gadgets")]: 436,
-      [t("modules")]: 587,
-      [t("components")]: 519,
-      [t("kits")]: 402,
-      [t("accessories")]: 670,
+      widgets: 812,
+      gadgets: 436,
+      modules: 587,
+      components: 519,
+      kits: 402,
+      accessories: 670,
     },
     {
       name: "Q3 2023",
-      [t("widgets")]: 670,
-      [t("gadgets")]: 489,
-      [t("modules")]: 456,
-      [t("components")]: 432,
-      [t("kits")]: 389,
-      [t("accessories")]: 722,
+      widgets: 670,
+      gadgets: 489,
+      modules: 456,
+      components: 432,
+      kits: 389,
+      accessories: 722,
     },
     {
       name: "Q4 2023",
-      [t("widgets")]: 693,
-      [t("gadgets")]: 575,
-      [t("modules")]: 563,
-      [t("components")]: 499,
-      [t("kits")]: 416,
-      [t("accessories")]: 655,
+      widgets: 693,
+      gadgets: 575,
+      modules: 563,
+      components: 499,
+      kits: 416,
+      accessories: 655,
     },
   ];
 
@@ -205,7 +205,8 @@ export const BarChartComponent = () => {
               content={<CustomLegend />}
             />
             <Bar
-              dataKey={t("widgets")}
+              dataKey="widgets"
+              name="Widgets"
               fill={barColors[0]}
               radius={[4, 4, 0, 0]}
               isAnimationActive={shouldAnimate}
@@ -214,7 +215,8 @@ export const BarChartComponent = () => {
               animationEasing="ease-out"
             />
             <Bar
-              dataKey={t("gadgets")}
+              dataKey="gadgets"
+              name="Gadgets"
               fill={barColors[1]}
               radius={[4, 4, 0, 0]}
               isAnimationActive={shouldAnimate}
@@ -223,7 +225,8 @@ export const BarChartComponent = () => {
               animationEasing="ease-out"
             />
             <Bar
-              dataKey={t("modules")}
+              dataKey="modules"
+              name="Modules"
               fill={barColors[2]}
               radius={[4, 4, 0, 0]}
               isAnimationActive={shouldAnimate}
@@ -232,7 +235,8 @@ export const BarChartComponent = () => {
               animationEasing="ease-out"
             />
             <Bar
-              dataKey={t("components")}
+              dataKey="components"
+              name="Components"
               fill={barColors[3]}
               radius={[4, 4, 0, 0]}
               isAnimationActive={shouldAnimate}
@@ -241,7 +245,8 @@ export const BarChartComponent = () => {
               animationEasing="ease-out"
             />
             <Bar
-              dataKey={t("kits")}
+              dataKey="kits"
+              name="Kits"
               fill={barColors[4]}
               radius={[4, 4, 0, 0]}
               isAnimationActive={shouldAnimate}
@@ -250,7 +255,8 @@ export const BarChartComponent = () => {
               animationEasing="ease-out"
             />
             <Bar
-              dataKey={t("accessories")}
+              dataKey="accessories"
+              name="Accessories"
               fill={barColors[5]}
               radius={[4, 4, 0, 0]}
               isAnimationActive={shouldAnimate}

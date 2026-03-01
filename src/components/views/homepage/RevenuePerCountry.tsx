@@ -14,8 +14,6 @@ import { UnitedStatesIcon } from "../../../assets/icons/UnitedStatesIcon";
 import { FranceIcon } from "../../../assets/icons/FranceIcon";
 import { NorwayIcon } from "../../../assets/icons/NorwayIcon";
 import { AustraliaIcon } from "../../../assets/icons/AustraliaIcon";
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { Card } from "../../common/Card";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { RevenuePerCountryProps } from "./types";
@@ -31,26 +29,19 @@ export const RevenuePerCountry = ({
   revenuePerCountryData,
 }: RevenuePerCountryProps) => {
   const t = useTranslations("homepage.revenuePerCountry");
-  const backendTranslations = useBackendTranslations(
-    "homepage.revenuePerCountry",
-  );
-  const translatedData = useTranslateData(
-    revenuePerCountryData,
-    backendTranslations,
-  );
 
   const countryIconMap: {
     [key: string]: React.FC<React.SVGProps<SVGSVGElement>> | undefined;
   } = {
-    [t("unitedStates")]: UnitedStatesIcon,
-    [t("france")]: FranceIcon,
-    [t("unitedKingdom")]: EnglishIcon,
-    [t("norway")]: NorwayIcon,
-    [t("australia")]: AustraliaIcon,
-    [t("poland")]: PolishIcon,
+    "United States of America": UnitedStatesIcon,
+    France: FranceIcon,
+    "United Kingdom": EnglishIcon,
+    Norway: NorwayIcon,
+    Australia: AustraliaIcon,
+    Poland: PolishIcon,
   };
 
-  const dataWithIcons = translatedData
+  const dataWithIcons = revenuePerCountryData
     .filter((country) => countryIconMap[country.name])
     .map((country) => ({
       ...country,
@@ -152,8 +143,8 @@ export const RevenuePerCountry = ({
             className={`flex flex-col w-full ${isCompact ? "pl-[5%] pr-[5%]" : "pl-[10%] md:pr-[10%] lg:pr-[20%]"}`}
           >
             <div className="w-full flex justify-between mb-[0.5rem] text-[12px] lg:text-[14px] 3xl:text-[16px]">
-              <h3 className="font-semibold text-primaryText">{t("country")}</h3>
-              <h3 className="font-semibold text-primaryText">{t("sales")}</h3>
+              <h3 className="font-semibold text-primaryText">Country</h3>
+              <h3 className="font-semibold text-primaryText">Sales</h3>
             </div>
             {dataWithIcons.map((data, index) => (
               <div

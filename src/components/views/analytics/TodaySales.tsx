@@ -12,8 +12,6 @@ import {
 } from "recharts";
 import { useTranslations } from "next-intl";
 
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { TodaySalesProps } from "./types";
 import { Card } from "../../common/Card";
 import {
@@ -86,8 +84,6 @@ const CustomLegend = ({
 
 export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
   const t = useTranslations("analytics.todaySales");
-  const backendTranslations = useBackendTranslations("analytics.todaySales");
-  const translatedData = useTranslateData(todaySalesData, backendTranslations);
 
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("analytics");
@@ -112,14 +108,14 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
             value="yesterday"
             className="text-xs 1xl:text-sm"
           >
-            {t("todayVsYesterday")}
+            Today vs. Yesterday
           </TabsTrigger>
           <TabsTrigger
             variant="line"
             value="average"
             className="text-xs 1xl:text-sm"
           >
-            {t("todayVsAverage")}
+            Today vs. Average
           </TabsTrigger>
         </TabsList>
         <TabsContent value="yesterday">
@@ -134,7 +130,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
               initialDimension={{ width: 320, height: 200 }}
             >
               <LineChart
-                data={translatedData}
+                data={todaySalesData}
                 margin={{
                   top: 5,
                   right: windowWidth > 700 ? 30 : 10,
@@ -174,7 +170,8 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 />
                 <Line
                   type="monotone"
-                  dataKey={t("today")}
+                  dataKey="today"
+                  name="Today"
                   stroke={"var(--color-chartPrimaryFill)"}
                   strokeWidth={2}
                   dot={false}
@@ -185,7 +182,8 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 />
                 <Line
                   type="monotone"
-                  dataKey={t("yesterday")}
+                  dataKey="yesterday"
+                  name="Yesterday"
                   stroke={"var(--color-chartSecondaryFill)"}
                   strokeWidth={2}
                   dot={false}
@@ -210,7 +208,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
               initialDimension={{ width: 320, height: 200 }}
             >
               <LineChart
-                data={translatedData}
+                data={todaySalesData}
                 margin={{
                   top: 5,
                   right: windowWidth > 700 ? 30 : 10,
@@ -250,7 +248,8 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 />
                 <Line
                   type="monotone"
-                  dataKey={t("today")}
+                  dataKey="today"
+                  name="Today"
                   stroke={"var(--color-chartPrimaryFill)"}
                   strokeWidth={2}
                   dot={false}
@@ -261,7 +260,8 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 />
                 <Line
                   type="monotone"
-                  dataKey={t("average")}
+                  dataKey="average"
+                  name="Average"
                   stroke={"var(--color-chartSecondaryFill)"}
                   strokeWidth={2}
                   dot={false}

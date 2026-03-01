@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 
 import { getSession } from "../../../lib/auth-server";
 import { isPresentationMode } from "../../../utils/presentationMode";
@@ -16,6 +17,8 @@ export default async function ProtectedLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+
+  setRequestLocale(locale);
 
   // Skip auth check if running in presentation mode
   if (isPresentationMode()) {

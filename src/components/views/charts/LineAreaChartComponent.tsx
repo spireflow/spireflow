@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
   AreaChart,
 } from "recharts";
+import { useTranslations } from "next-intl";
+
 import { Card } from "../../common/Card";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
@@ -72,6 +74,7 @@ const LineAreaTooltip = ({ active, payload, label }: LineAreaTooltipProps) => {
  * @component
  */
 export const LineAreaChartComponent = () => {
+  const t = useTranslations("charts");
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("charts");
 
@@ -87,7 +90,7 @@ export const LineAreaChartComponent = () => {
   return (
     <Card
       className="w-full h-full"
-      title="Orders & Returns Trend"
+      title={t("lineAreaChart")}
       padding="px-9"
       isHeaderDividerVisible
       addTitleMargin

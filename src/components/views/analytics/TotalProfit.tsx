@@ -11,8 +11,6 @@ import {
 } from "recharts";
 import { useTranslations } from "next-intl";
 
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import {
   ProductProfit,
   TotalProfitProps,
@@ -61,11 +59,6 @@ export const TotalProfit = ({
   totalProfitSales,
 }: TotalProfitProps) => {
   const t = useTranslations("analytics.totalProfit");
-  const backendTranslations = useBackendTranslations("analytics.totalProfit");
-  const translatedData = useTranslateData(
-    totalProfitSales,
-    backendTranslations,
-  );
 
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("analytics");
@@ -89,7 +82,7 @@ export const TotalProfit = ({
         <div className="text-2xl 3xl:text-3xl font-bold text-primaryText">
           $ 442,276
         </div>
-        <p className="text-sm text-primaryText">{t("thisYear")}</p>
+        <p className="text-sm text-primaryText">this year</p>
       </div>
       <div
         role="img"
@@ -102,7 +95,7 @@ export const TotalProfit = ({
           initialDimension={{ width: 320, height: 200 }}
         >
           <AreaChart
-            data={shouldStartChartAnimations ? translatedData : []}
+            data={shouldStartChartAnimations ? totalProfitSales : []}
             margin={{
               top: 10,
               right: windowWidth > 700 ? 30 : 10,
@@ -134,8 +127,8 @@ export const TotalProfit = ({
               stroke="rgba(255,255,255,0.1)"
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               ticks={[
-                translatedData[0]?.month,
-                translatedData[translatedData.length - 1]?.month,
+                totalProfitSales[0]?.month,
+                totalProfitSales[totalProfitSales.length - 1]?.month,
               ]}
             />
             <YAxis hide />
@@ -149,7 +142,8 @@ export const TotalProfit = ({
             />
             <Area
               type="monotone"
-              dataKey={t("sales")}
+              dataKey="sales"
+              name="Sales"
               stroke={"var(--color-chartPrimaryFill)"}
               strokeWidth={2}
               fillOpacity={1}

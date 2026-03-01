@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { getSessionCookie } from "better-auth/cookies";
 
-import { locales, localePrefix, defaultLocale } from "./i18n/navigation";
+import { routing } from "./i18n/routing";
 
 /**
  * Route protection modes:
@@ -11,12 +11,7 @@ import { locales, localePrefix, defaultLocale } from "./i18n/navigation";
  * - Env vars configured → route protection enabled (redirects to /login)
  */
 
-const handleI18nRouting = createMiddleware({
-  locales,
-  defaultLocale,
-  localePrefix,
-  localeDetection: false,
-});
+const handleI18nRouting = createMiddleware(routing);
 
 const publicPaths = ["/login", "/register"];
 
@@ -54,7 +49,7 @@ const proxy = (request: NextRequest) => {
   // No session - redirect to login
   const locale = pathname.match(/^\/([a-z]{2})\//)?.at(1) || "";
   return NextResponse.redirect(
-    new URL(`/${locale ? locale + "/" : ""}login`, request.url)
+    new URL(`/${locale ? locale + "/" : ""}login`, request.url),
   );
 };
 

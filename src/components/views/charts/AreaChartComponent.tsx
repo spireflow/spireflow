@@ -117,49 +117,23 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
  * @component
  */
 export const AreaChartComponent = () => {
-  const tCharts = useTranslations("charts");
+  const t = useTranslations("charts");
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("charts");
 
-  const t = useTranslations("singleCharts.area");
-
   const chartdata = [
-    {
-      date: t("jan"),
-      views: 1983,
-      uniqueVisitors: 1654,
-    },
-    {
-      date: t("feb"),
-      views: 2543,
-      uniqueVisitors: 1320,
-    },
-    {
-      date: t("mar"),
-      views: 3221,
-      uniqueVisitors: 1845,
-    },
-    {
-      date: t("apr"),
-      views: 2896,
-      uniqueVisitors: 1990,
-    },
-    {
-      date: t("may"),
-      views: 3577,
-      uniqueVisitors: 1530,
-    },
-    {
-      date: t("jun"),
-      views: 3188,
-      uniqueVisitors: 2421,
-    },
+    { date: "Jan", views: 1983, uniqueVisitors: 1654 },
+    { date: "Feb", views: 2543, uniqueVisitors: 1320 },
+    { date: "Mar", views: 3221, uniqueVisitors: 1845 },
+    { date: "Apr", views: 2896, uniqueVisitors: 1990 },
+    { date: "May", views: 3577, uniqueVisitors: 1530 },
+    { date: "Jun", views: 3188, uniqueVisitors: 2421 },
   ];
 
   return (
     <Card
       className="w-full h-full"
-      title={tCharts("areaChart")}
+      title={t("areaChart")}
       padding="px-9"
       isHeaderDividerVisible
       addTitleMargin
@@ -241,7 +215,7 @@ export const AreaChartComponent = () => {
             <Area
               type="linear"
               dataKey="views"
-              name={t("views")}
+              name="Views"
               stroke={"var(--color-chartPrimaryDisabled)"}
               strokeWidth={2}
               fillOpacity={1}
@@ -254,7 +228,7 @@ export const AreaChartComponent = () => {
             <Area
               type="linear"
               dataKey="uniqueVisitors"
-              name={t("uniqueVisitors")}
+              name="Unique visitors"
               stroke={"var(--color-chartPrimaryFill)"}
               strokeWidth={2}
               fillOpacity={1}

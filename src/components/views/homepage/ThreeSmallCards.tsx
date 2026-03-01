@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { ThreeSmallCardsProps } from "./types";
 import {
   Tooltip,
@@ -32,21 +31,8 @@ export const ThreeSmallCards = ({
   const hoverScaleClass =
     "transition-transform duration-200 group-hover:scale-110";
 
-  const translations = {
-    Sales: t("sales"),
-    Profit: t("profit"),
-    Traffic: t("traffic"),
-    Customers: t("customers"),
-    "Last 3 weeks": t("Last 3 weeks"),
-    "Last month": t("Last month"),
-    Yesterday: t("Yesterday"),
-    "Last week": t("Last week"),
-  };
-
-  const translatedData = useTranslateData(threeSmallCardsData, translations);
-
   // Take first 3 cards
-  const metricsData = translatedData.slice(0, 3);
+  const metricsData = threeSmallCardsData.slice(0, 3);
 
   // Hardcoded percentages for visual representation
   const hardcodedPercentages = [37, 28, 64];

@@ -14,26 +14,31 @@ import { BaseTooltip } from "../../common/BaseTooltip";
 import { MarketMetricsProps, MarketMetricsTooltipProps } from "./types";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
+const METRIC_LABELS: Record<string, string> = {
+  salesVolume: "Sales Volume",
+  revenue: "Revenue",
+  growthRate: "Growth Rate",
+  marketShare: "Market Share",
+  customerRating: "Customer Rating",
+  profitMargin: "Profit Margin",
+};
+
+const formatMetricLabel = (key: string): string => {
+  const cleanKey = key.replace("analytics.marketMetrics.metrics.", "");
+  return METRIC_LABELS[cleanKey] ?? cleanKey;
+};
+
 const MarketMetricsTooltip = ({
   active,
   payload,
   label,
 }: MarketMetricsTooltipProps) => {
-  const tMetrics = useTranslations("analytics.marketMetrics.metrics");
-
-  const translateMetric = (key: string): string => {
-    const cleanKey = key.replace("analytics.marketMetrics.metrics.", "");
-    return tMetrics(cleanKey);
-  };
-
   if (!active || !payload || !payload.length || !label) return null;
 
-  const tooltipTitle = translateMetric(label);
-
   return (
-    <BaseTooltip title={tooltipTitle}>
+    <BaseTooltip title={formatMetricLabel(label)}>
       {payload.map((entry, index) => {
-        const entryName = entry.name ? translateMetric(entry.name) : "";
+        const entryName = entry.name ? formatMetricLabel(entry.name) : "";
         const formattedValue = `${entry.value}%`;
         return (
           <p
@@ -64,12 +69,6 @@ interface LegendProps {
 
 const CustomLegend = (props: LegendProps) => {
   const { payload } = props;
-  const tMetrics = useTranslations("analytics.marketMetrics.metrics");
-
-  const translateMetric = (key: string) => {
-    const cleanKey = key.replace("analytics.marketMetrics.metrics.", "");
-    return tMetrics(cleanKey);
-  };
 
   return (
     <div className="flex flex-row justify-end gap-8 text-white w-full mt-[0rem] lg:mt-0 mb-12 3xl:mb-6">
@@ -80,7 +79,7 @@ const CustomLegend = (props: LegendProps) => {
             style={{ backgroundColor: entry.color }}
           />
           <span className="text-sm text-primaryText">
-            {translateMetric(entry.value)}
+            {formatMetricLabel(entry.value)}
           </span>
         </div>
       ))}
@@ -90,12 +89,6 @@ const CustomLegend = (props: LegendProps) => {
 
 export const MarketMetrics = ({ marketMetricsData }: MarketMetricsProps) => {
   const t = useTranslations("analytics.marketMetrics");
-  const tMetrics = useTranslations("analytics.marketMetrics.metrics");
-
-  const translateMetric = (key: string) => {
-    const cleanKey = key.replace("analytics.marketMetrics.metrics.", "");
-    return tMetrics(cleanKey);
-  };
 
   const { shouldAnimate, animationBegin } = useChartAnimation("analytics");
 
@@ -127,7 +120,7 @@ export const MarketMetrics = ({ marketMetricsData }: MarketMetricsProps) => {
             <PolarAngleAxis
               dataKey="metric"
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
-              tickFormatter={translateMetric}
+              tickFormatter={formatMetricLabel}
             />
             <Tooltip
               content={<MarketMetricsTooltip />}

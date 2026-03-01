@@ -128,8 +128,8 @@ export const useOrders = ({ orders }: useOrdersProps) => {
       const lowercasedQuery = searchQuery.toLowerCase();
       result = result.filter((order) =>
         Object.values(order).some((value) =>
-          String(value).toLowerCase().includes(lowercasedQuery)
-        )
+          String(value).toLowerCase().includes(lowercasedQuery),
+        ),
       );
     }
 
@@ -147,7 +147,7 @@ export const useOrders = ({ orders }: useOrdersProps) => {
     // Filtering data based on product name
     if (getFilter("productName")) {
       result = result.filter(
-        (order) => order.col2 === getFilter("productName")
+        (order) => order.col2 === getFilter("productName"),
       );
     }
 
@@ -164,14 +164,14 @@ export const useOrders = ({ orders }: useOrdersProps) => {
       (priceRange.min || priceRange.max)
     ) {
       result = result.filter(
-        (order) => order.col4 >= priceRange.min && order.col4 <= priceRange.max
+        (order) => order.col4 >= priceRange.min && order.col4 <= priceRange.max,
       );
     }
 
     // Filtering data based on delivery type
     if (getFilter("deliveryType")) {
       result = result.filter(
-        (order) => order.col5 === getFilter("deliveryType")
+        (order) => order.col5 === getFilter("deliveryType"),
       );
     }
 
@@ -192,7 +192,7 @@ export const useOrders = ({ orders }: useOrdersProps) => {
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    debugTable: true,
+    debugTable: false,
   });
 
   return {

@@ -13,8 +13,6 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 
 import { RevenueOverTimeProps, RevenueOverTimeTooltipProps } from "./types";
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { BaseTooltip } from "../../common/BaseTooltip";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
@@ -70,14 +68,6 @@ export const RevenueOverTime = ({
   revenueOverTimeData,
 }: RevenueOverTimeProps) => {
   const t = useTranslations("homepage.revenueOverTime");
-  const backendTranslations = useBackendTranslations(
-    "homepage.revenueOverTime",
-  );
-
-  const translatedData = useTranslateData(
-    revenueOverTimeData,
-    backendTranslations,
-  );
 
   const { width: windowWidth } = useWindowDimensions();
 
@@ -109,7 +99,7 @@ export const RevenueOverTime = ({
 
   // Function to group monthly data into quarterly data
   // Returns same number of points for smooth animation
-  const processDataByTimeRange = (data: typeof translatedData) => {
+  const processDataByTimeRange = (data: typeof revenueOverTimeData) => {
     if (timeRange === "monthly") {
       return data;
     }
@@ -154,7 +144,7 @@ export const RevenueOverTime = ({
     });
   };
 
-  const displayData = processDataByTimeRange(translatedData);
+  const displayData = processDataByTimeRange(revenueOverTimeData);
 
   const customHeader = (
     <div className="flex items-center justify-between">
@@ -163,7 +153,7 @@ export const RevenueOverTime = ({
           {t("title")}
         </span>
         <span style={{ fontSize: "0.85rem", color: "rgb(140, 145, 150)" }}>
-          {t("subtitle")}
+          Historical performance
         </span>
       </div>
       <div className="hidden xsm:flex h-10 items-center rounded-md bg-tabsBg px-1">
@@ -177,7 +167,7 @@ export const RevenueOverTime = ({
               : "text-secondaryText"
           }`}
         >
-          {t("monthly")}
+          Monthly
         </button>
         <button
           type="button"
@@ -189,7 +179,7 @@ export const RevenueOverTime = ({
               : "text-secondaryText"
           }`}
         >
-          {t("quarterly")}
+          Quarterly
         </button>
       </div>
     </div>
@@ -277,7 +267,7 @@ export const RevenueOverTime = ({
             <Area
               type="linear"
               dataKey="websiteSales"
-              name={t("websiteSales")}
+              name="Website sales"
               stroke="var(--color-chartPrimaryDisabled)"
               strokeWidth={2}
               fillOpacity={1}
@@ -290,7 +280,7 @@ export const RevenueOverTime = ({
             <Area
               type="linear"
               dataKey="inStoreSales"
-              name={t("inStoreSales")}
+              name="In store sales"
               stroke="var(--color-chartPrimaryFill)"
               strokeWidth={2}
               fillOpacity={1}

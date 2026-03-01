@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
 
 import { useAppStore } from "../../store/appStore";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { Link } from "../../i18n/navigation";
+import { Link, usePathname } from "../../i18n/navigation";
 import {
   Tooltip,
   TooltipTrigger,
@@ -35,15 +34,8 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
       ? currentPathname.slice(0, -1)
       : currentPathname;
     const normalizedPath = path.endsWith("/") ? path.slice(0, -1) : path;
-    const plPath = `/pl${normalizedPath}`;
 
-    if (normalizedPath === "/") {
-      setIsActive(normalizedPathname === "/" || normalizedPathname === "/pl");
-    } else {
-      setIsActive(
-        normalizedPathname === normalizedPath || normalizedPathname === plPath,
-      );
-    }
+    setIsActive(normalizedPathname === normalizedPath);
   }, [currentPathname, path]);
 
   // First render check needed to prevent hydration mismatch errors

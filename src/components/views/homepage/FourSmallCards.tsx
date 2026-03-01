@@ -9,7 +9,6 @@ import {
   Bar,
 } from "recharts";
 
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { FourSmallCardsProps } from "./types";
 import { Card } from "../../common/Card";
 import {
@@ -31,18 +30,6 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
   const hoverScaleClass =
     "transition-transform duration-200 group-hover:scale-110";
 
-  const translations = {
-    Sales: t("sales"),
-    Profit: t("profit"),
-    Traffic: t("traffic"),
-    Customers: t("customers"),
-    "Last 3 weeks": t("Last 3 weeks"),
-    "Last month": t("Last month"),
-    Yesterday: t("Yesterday"),
-    "Last week": t("Last week"),
-  };
-
-  const translatedData = useTranslateData(fourSmallCardsData, translations);
   const cardIds = ["salesCard", "profitCard", "trafficCard", "customersCard"];
 
   const hardcodedPercentages = [37, 28, 64, 45];
@@ -145,7 +132,7 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
 
   return (
     <>
-      {translatedData.map((item, index) => (
+      {fourSmallCardsData.map((item, index) => (
         <Card
           key={`${item.title}-${index}`}
           id={cardIds[index]}

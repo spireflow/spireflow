@@ -1,25 +1,16 @@
-import { notFound } from "next/navigation";
+import { hasLocale } from "next-intl";
 import { getRequestConfig } from "next-intl/server";
 
-import { locales } from "./navigation";
-import type { Locale } from "./navigation";
+import { routing } from "./routing";
 
-type RequestConfig = {
-  locale: string;
-  messages: Record<string, string>;
-};
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale;
+  const locale = hasLocale(routing.locales, requested)
+    ? requested
+    : routing.defaultLocale;
 
-export default getRequestConfig(
-  async ({ requestLocale }): Promise<RequestConfig> => {
-    const locale = await requestLocale;
-
-    if (!locale || !locales.includes(locale as Locale)) {
-      notFound();
-    }
-
-    return {
-      locale: locale,
-      messages: (await import(`../../messages/${locale}.json`)).default,
-    };
-  }
-);
+  return {
+    locale,
+    messages: (await import(`../../messages/${locale}.json`)).default,
+  };
+});

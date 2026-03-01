@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { flexRender } from "@tanstack/react-table";
 
 import { OrderType, OrdersTableProps } from "./types";
@@ -36,7 +36,14 @@ export const OrdersTable = ({
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<OrderType | null>(null);
 
-  const closeOrderModal = () => setIsOrderModalOpen(false);
+  const triggerRef = useRef<HTMLTableRowElement | null>(null);
+
+  const closeOrderModal = () => {
+    setIsOrderModalOpen(false);
+    requestAnimationFrame(() => {
+      triggerRef.current?.focus();
+    });
+  };
 
   return (
     <>
@@ -50,6 +57,7 @@ export const OrdersTable = ({
                   key={header.id}
                   colSpan={header.colSpan}
                   scope="col"
+                  tabIndex={header.column.getCanSort() ? 0 : undefined}
                   aria-sort={
                     header.column.getIsSorted() === "asc"
                       ? "ascending"
@@ -59,10 +67,20 @@ export const OrdersTable = ({
                   }
                   className={
                     header.column.getCanSort()
-                      ? `text-secondaryText font-normal text-left text-sm 3xl:text-base pl-4 py-2 3xl:py-3 border-t border-b border-inputBorder cursor-pointer select-none bg-tableHeaderBg hover:bg-tableHeaderBgHover ${index === 0 ? "border-l" : ""} ${index === headerGroup.headers.length - 1 ? "border-r" : ""}`
+                      ? `text-secondaryText font-normal text-left text-sm 3xl:text-base pl-4 py-2 3xl:py-3 border-t border-b border-inputBorder cursor-pointer select-none bg-tableHeaderBg hover:bg-tableHeaderBgHover focus-visible:outline-offset-[-2px] ${index === 0 ? "border-l" : ""} ${index === headerGroup.headers.length - 1 ? "border-r" : ""}`
                       : `text-secondaryText font-medium text-left text-sm 3xl:text-base pl-4 py-2 3xl:py-3 border-t border-b border-inputBorder bg-tableHeaderBg ${index === 0 ? "border-l" : ""} ${index === headerGroup.headers.length - 1 ? "border-r" : ""}`
                   }
                   onClick={header.column.getToggleSortingHandler()}
+                  onKeyDown={
+                    header.column.getCanSort()
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            header.column.getToggleSortingHandler()?.(e);
+                          }
+                        }
+                      : undefined
+                  }
                   style={{
                     width: columnWidths[header.id as keyof typeof columnWidths],
                     maxWidth:
@@ -102,18 +120,20 @@ export const OrdersTable = ({
                 role="button"
                 tabIndex={0}
                 aria-label={`View order ${(row.original as OrderType).orderId} details`}
-                onClick={() => {
+                onClick={(e) => {
+                  triggerRef.current = e.currentTarget;
                   setSelectedOrder(row.original as OrderType);
                   setIsOrderModalOpen(true);
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
+                    triggerRef.current = e.currentTarget;
                     setSelectedOrder(row.original as OrderType);
                     setIsOrderModalOpen(true);
                   }
                 }}
-                className="hover:bg-tableRowBgHover cursor-pointer"
+                className="hover:bg-tableRowBgHover cursor-pointer focus-visible:outline-offset-[-2px]"
               >
                 {row.getVisibleCells().map((cell, cellIndex) => (
                   <td

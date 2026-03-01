@@ -166,7 +166,7 @@ export const AssetPerformance = ({
         <div className="lg:col-span-3 3xl:col-span-2">
           <div className="block md:hidden lg:block">
             <p className="text-secondaryText font-bold text-xs 2xl:text-sm 3xl:text-base">
-              +/-% {t("sinceTransaction")}
+              +/-% since transaction
             </p>
           </div>
           <div className="sm:max-h-32 lg:max-h-full overflow-auto pr-2">

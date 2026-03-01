@@ -13,7 +13,6 @@ import {
 } from "recharts";
 import { useTranslations } from "next-intl";
 
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { CustomerSatisfactionProps } from "./types";
 import { Card } from "../../common/Card";
 import { BaseTooltip } from "../../common/BaseTooltip";
@@ -34,8 +33,6 @@ const CustomerScatterTooltip = ({
   active,
   payload,
 }: CustomerScatterTooltipProps) => {
-  const t = useTranslations("homepage.customerSatisfaction");
-
   if (!active || !payload || payload.length === 0) return null;
 
   const data = payload[0].payload;
@@ -44,21 +41,19 @@ const CustomerScatterTooltip = ({
   return (
     <BaseTooltip title={data.brandName}>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("totalSales")}: </span>
+        <span>Total sales: </span>
         <span className="pl-[0.7rem]">
-          ${(Number(data[t("totalSales")]) / 1000).toFixed(1)}K
+          ${(Number(data.totalSales) / 1000).toFixed(1)}K
         </span>
       </p>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("customerSatisfaction")}: </span>
-        <span className="pl-[0.7rem]">{data[t("customerSatisfaction")]}%</span>
+        <span>Satisfaction: </span>
+        <span className="pl-[0.7rem]">{data.customerSatisfaction}%</span>
       </p>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("numberOfOrders")}: </span>
+        <span>Orders: </span>
         <span className="pl-[0.7rem]">
-          {Math.round(
-            Number(data[t("numberOfOrders")]) / numberOfOrdersScaleFactor,
-          )}
+          {Math.round(Number(data.numberOfOrders) / numberOfOrdersScaleFactor)}
         </span>
       </p>
     </BaseTooltip>
@@ -69,17 +64,6 @@ export const CustomerSatisfaction = ({
   customerSatisfactionData,
 }: CustomerSatisfactionProps) => {
   const t = useTranslations("homepage.customerSatisfaction");
-
-  const translations = {
-    totalSales: t("totalSales"),
-    customerSatisfaction: t("customerSatisfaction"),
-    numberOfOrders: t("numberOfOrders"),
-  };
-
-  const translatedData = useTranslateData(
-    customerSatisfactionData,
-    translations,
-  );
 
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("homepage");
@@ -118,16 +102,16 @@ export const CustomerSatisfaction = ({
             />
             <XAxis
               type="number"
-              dataKey={t("totalSales")}
-              name={t("totalSales")}
+              dataKey="totalSales"
+              name="Total sales"
               stroke="rgba(255,255,255,0.1)"
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               tickFormatter={(value) => `$${(value / 1000).toFixed(1)}K`}
             />
             <YAxis
               type="number"
-              dataKey={t("customerSatisfaction")}
-              name={t("customerSatisfaction")}
+              dataKey="customerSatisfaction"
+              name="Customer satisfaction"
               stroke="rgba(255,255,255,0.1)"
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               domain={[60, 100]}
@@ -135,9 +119,9 @@ export const CustomerSatisfaction = ({
             />
             <ZAxis
               type="number"
-              dataKey={t("numberOfOrders")}
+              dataKey="numberOfOrders"
               range={bubbleRange}
-              name={t("numberOfOrders")}
+              name="Number of orders"
             />
             <Tooltip
               content={<CustomerScatterTooltip />}
@@ -145,7 +129,7 @@ export const CustomerSatisfaction = ({
               isAnimationActive={false}
             />
             <Scatter
-              data={translatedData}
+              data={customerSatisfactionData}
               fill="var(--color-chartPrimaryFill)"
               fillOpacity={0.8}
               isAnimationActive={shouldAnimate}
@@ -153,7 +137,7 @@ export const CustomerSatisfaction = ({
               animationDuration={800}
               animationEasing="ease-out"
             >
-              {translatedData.map((_entry, index) => (
+              {customerSatisfactionData.map((_entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={

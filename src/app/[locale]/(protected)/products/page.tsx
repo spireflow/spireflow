@@ -1,8 +1,17 @@
+import { setRequestLocale } from "next-intl/server";
+
 import { PageWrapper } from "../../../../components/common/PageWrapper";
 import { ProductsView } from "../../../../components/views/products/ProductsView";
 import { getData } from "../../../../services/getData";
 
-const Products = async () => {
+const Products = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const productsData = await getData("products");
 
   return (

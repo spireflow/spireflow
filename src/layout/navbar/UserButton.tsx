@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import {
   Tooltip,
@@ -15,7 +16,7 @@ import { LanguageIcon } from "../../assets/icons/LanguageIcon";
 import { CheckIcon } from "../../assets/icons/CheckIcon";
 import { PaletteIcon } from "../../assets/icons/PaletteIcon";
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
-import { Link as NavigationLink } from "../../i18n/navigation";
+import { Link as NavigationLink, usePathname } from "../../i18n/navigation";
 import { ArrowDownSimpleIcon } from "../../assets/icons/ArrowDownSimpleIcon";
 import { DropdownMenuItem } from "./DropdownMenuItem";
 import { SettingsDrawer } from "../settings/SettingsDrawer";
@@ -39,7 +40,9 @@ export const UserButton = ({
   theme,
   selectTheme,
 }: Omit<UserButtonProps, "userTooltip">) => {
+  const tAuth = useTranslations("auth");
   const isLoggedIn = session?.isLoggedIn || false;
+  const pathname = usePathname();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isAuthMenuOpen, setIsAuthMenuOpen] = useState(false);
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
@@ -270,7 +273,7 @@ export const UserButton = ({
                 }
               }}
             >
-              <span>{t("signIn")}</span>
+              <span>{tAuth("signIn")}</span>
             </div>
             <div
               tabIndex={-1}
@@ -291,7 +294,7 @@ export const UserButton = ({
                 }
               }}
             >
-              <span>{t("register")}</span>
+              <span>{tAuth("register")}</span>
             </div>
             <div
               tabIndex={-1}
@@ -312,7 +315,7 @@ export const UserButton = ({
                 }
               }}
             >
-              <span>{t("signOut")}</span>
+              <span>{tAuth("signOut")}</span>
             </div>
             <NavigationLink
               href="/profile"
@@ -333,7 +336,7 @@ export const UserButton = ({
             onToggle={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
           >
             <NavigationLink
-              href="/"
+              href={pathname}
               locale="en"
               className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm focus-visible:bg-dropdownBgHover"
               role="menuitem"
@@ -347,7 +350,7 @@ export const UserButton = ({
               )}
             </NavigationLink>
             <NavigationLink
-              href="/"
+              href={pathname}
               locale="pl"
               className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm focus-visible:bg-dropdownBgHover"
               role="menuitem"
@@ -487,7 +490,7 @@ export const UserButton = ({
               <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem]">
                 <SettingsIcon />
               </div>
-              <span>Settings</span>
+              <span>{t("settings")}</span>
             </div>
           </div>
 
@@ -505,7 +508,7 @@ export const UserButton = ({
             <div className="w-5 flex justify-center items-center text-grayIcon mr-[0.8rem] stroke-grayIcon fill-grayIcon">
               <GithubIcon />
             </div>
-            <span>GitHub</span>
+            <span>{t("githubRepository")}</span>
           </Link>
         </div>
       )}

@@ -12,7 +12,7 @@ import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 export const DatePickerForm = () => {
   const t = useTranslations("forms");
   const [date, setDate] = React.useState<Date>(new Date(2025, 3, 23)); // 23.04.2025
-  const datePickerRef = React.useRef(null);
+  const datePickerRef = React.useRef<DatePicker>(null);
 
   return (
     <Card isHeaderDividerVisible addTitleMargin title={t("datePicker")}>
@@ -27,8 +27,7 @@ export const DatePickerForm = () => {
             placeholderText="Pick a date"
           />
           <div
-            // @ts-ignore
-            onClick={() => datePickerRef.current.setOpen(true)}
+            onClick={() => datePickerRef.current?.setOpen(true)}
             className="absolute right-2 top-[0.5rem] stroke-gray-400 fill-gray-400 text-gray-400 hover:stroke-calendarIconHover hover:fill-calendarIconHover cursor-pointer transition"
           >
             <CalendarIcon />

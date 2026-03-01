@@ -68,11 +68,6 @@ export const RevenueDistribution = ({
 }: RevenueDistributionProps) => {
   const t = useTranslations("analytics.revenueDistribution");
 
-  const translatedData = revenueDistributionData.map((item) => ({
-    ...item,
-    category: t(item.category.toLowerCase()),
-  }));
-
   const { width: windowWidth } = useWindowDimensions();
 
   const { theme } = useTheme();
@@ -99,7 +94,7 @@ export const RevenueDistribution = ({
           initialDimension={{ width: 320, height: 200 }}
         >
           <BarChart
-            data={translatedData}
+            data={revenueDistributionData}
             layout="vertical"
             margin={{
               top: 20,
@@ -136,7 +131,7 @@ export const RevenueDistribution = ({
             />
             <Bar
               dataKey="inStore"
-              name={t("inStore")}
+              name="In-store"
               stackId="a"
               fill={inStoreColor}
               radius={[0, 4, 4, 0]}
@@ -148,7 +143,7 @@ export const RevenueDistribution = ({
             />
             <Bar
               dataKey="online"
-              name={t("online")}
+              name="Online"
               stackId="a"
               fill={onlineColor}
               radius={[0, 4, 4, 0]}

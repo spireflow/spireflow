@@ -42,8 +42,6 @@ const WeeklyPerformanceTooltip = ({
   payload,
   label,
 }: WeeklyPerformanceTooltipProps) => {
-  const t = useTranslations("homepage.weeklyPerformance");
-
   if (!active || !payload || payload.length === 0 || !label) return null;
 
   const revenueEntry = payload.find((p) => p.dataKey === "revenue");
@@ -58,7 +56,7 @@ const WeeklyPerformanceTooltip = ({
               className="w-2 h-2 mr-2 rounded inline-block"
               style={{ backgroundColor: revenueEntry.color }}
             />
-            {`${t("revenue")}:   `}
+            {`Revenue:   `}
           </span>
           <span className="pl-[0.7rem]">
             ${Intl.NumberFormat("us").format(revenueEntry.value ?? 0)}
@@ -72,7 +70,7 @@ const WeeklyPerformanceTooltip = ({
               className="w-2 h-2 mr-2 rounded inline-block"
               style={{ backgroundColor: profitEntry.color }}
             />
-            {`${t("profit")}:   `}
+            {`Profit:   `}
           </span>
           <span className="pl-[0.7rem]">
             ${Intl.NumberFormat("us").format(profitEntry.value ?? 0)}
@@ -114,7 +112,6 @@ const WeeklyPerformanceChart = ({
   isExpanded?: boolean;
   isFourCardsMode?: boolean;
 }) => {
-  const t = useTranslations("homepage.weeklyPerformance");
   const chartHeightWhenNoActivities = isFourCardsMode
     ? "h-[15rem] lg:h-[18rem] xl:h-[18rem] 2xl:h-[19rem] 3xl:h-[23rem]"
     : "h-[15rem] 3xl:h-[19rem]";
@@ -204,7 +201,7 @@ const WeeklyPerformanceChart = ({
             />
             <Bar
               dataKey="revenue"
-              name={t("revenue")}
+              name="Revenue"
               stackId="a"
               fill={
                 currentTheme === "light"
@@ -220,7 +217,7 @@ const WeeklyPerformanceChart = ({
             />
             <Bar
               dataKey="profit"
-              name={t("profit")}
+              name="Profit"
               stackId="a"
               fill="rgb(83, 133, 198)"
               radius={[4, 4, 0, 0]}
@@ -240,34 +237,12 @@ const WeeklyPerformanceChart = ({
 const ActivityItem = ({ activity }: { activity: WeeklyActivity }) => {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const t = useTranslations("homepage.weeklyPerformance");
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const currentTheme = theme === "system" ? systemTheme : theme;
-
-  const getTranslatedAction = (action: string): string => {
-    if (action.includes("uploaded quarterly report")) {
-      return t("activities.henryUploadedReport");
-    }
-    if (action.includes("completed first purchase")) {
-      return t("activities.newTradersFirstPurchase");
-    }
-    return action;
-  };
-
-  const getTranslatedTime = (time: string): string => {
-    if (time === "1 day ago") {
-      return t("time.dayAgo");
-    }
-    const daysMatch = time.match(/^(\d+) days? ago$/);
-    if (daysMatch) {
-      return t("time.daysAgo", { count: daysMatch[1] });
-    }
-    return time;
-  };
 
   const getAvatarBgColor = (color: "green" | "blue") => {
     // If not mounted yet, return transparent to avoid flash
@@ -352,11 +327,9 @@ const ActivityItem = ({ activity }: { activity: WeeklyActivity }) => {
           {activity.user && (
             <span className="font-semibold">{activity.user} </span>
           )}
-          {getTranslatedAction(activity.action)}
+          {activity.action}
         </p>
-        <p className="text-xs text-subtitleText mt-1.5">
-          {getTranslatedTime(activity.time)}
-        </p>
+        <p className="text-xs text-subtitleText mt-1.5">{activity.time}</p>
       </div>
     </div>
   );
@@ -398,7 +371,7 @@ export const WeeklyPerformance = ({
           <div className="sm:w-1/3 lg:w-full mt-1 sm:mt-0 lg:mt-1 2xl:mt-1 3xl:mt-3 sm:overflow-y-auto lg:overflow-y-visible">
             <div className="px-3 1xl:px-4 mb-2 3xl:mb-1">
               <h3 className="text-sm font-semibold text-primaryText">
-                {t("activity")}
+                Activity
               </h3>
             </div>
             <div className="flex flex-col">

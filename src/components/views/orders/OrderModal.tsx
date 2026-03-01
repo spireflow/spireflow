@@ -1,4 +1,3 @@
-import React from "react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "../../common/shadcn/button";
@@ -59,8 +58,8 @@ export const OrderModal = ({ closeModal, orderData }: OrderModalProps) => {
             </div>
           </div>
           <DialogFooter className="mt-8 sm:mt-12 !flex-row gap-3 sm:space-x-0 [&>*]:flex-1 [&>*]:h-[2.9rem]">
-            <Button variant="outline">{t("cancelButton")}</Button>
-            <Button icon={<PhoneIcon />}>{t("callButton")}</Button>
+            <Button variant="outline">Cancel order</Button>
+            <Button icon={<PhoneIcon />}>Call logistics</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

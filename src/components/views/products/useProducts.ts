@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 
 import { useModal } from "../../../hooks/useModal";
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { useTooltip } from "../../../hooks/useTooltip";
 import { Product, ProductCategory } from "./types";
 
@@ -18,12 +16,10 @@ export const useProducts = (products: Product[]) => {
     metrics: [],
   });
   const [productCategories, setProductCategories] = useState<ProductCategory[]>(
-    []
+    [],
   );
   const { isOpen, toggle, ref } = useModal();
   const t = useTranslations("products");
-  const backendTranslations = useBackendTranslations("products");
-  const translatedData = useTranslateData(products, backendTranslations);
   const [isPhotoOpen, setIsPhotoOpen] = useState(false);
   const { isTooltipVisible, showTooltip } = useTooltip();
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -51,8 +47,8 @@ export const useProducts = (products: Product[]) => {
 
   useEffect(() => {
     if (products.length > 0) {
-      setActiveProduct(translatedData[0]);
-      setProductCategories(categorizeProducts(translatedData));
+      setActiveProduct(products[0]);
+      setProductCategories(categorizeProducts(products));
     }
   }, [products]);
 

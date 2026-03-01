@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, RefObject } from "react";
+import { useTranslations } from "next-intl";
 
 import { UpdateIcon } from "../../../assets/icons/UpdateIcon";
 import { UsersIcon } from "../../../assets/icons/UsersIcon";
@@ -32,6 +33,7 @@ export const AllNotificationsModal = ({
   onNotificationsUpdate,
   returnFocusRef,
 }: AllNotificationsModalProps) => {
+  const t = useTranslations("notificationsUI");
   const [filter, setFilter] = useState<FilterType>("all");
   const [localNotifications, setLocalNotifications] =
     useState<Notification[]>(notifications);
@@ -89,19 +91,19 @@ export const AllNotificationsModal = ({
         }}
       >
         <DialogHeader className="sr-only">
-          <DialogTitle>Notifications</DialogTitle>
-          <DialogDescription>Notifications</DialogDescription>
+          <DialogTitle>{t("title")}</DialogTitle>
+          <DialogDescription>{t("title")}</DialogDescription>
         </DialogHeader>
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-4">
             <h2 className="text-2xl md:text-3xl font-semibold text-primaryText">
-              Notifications
+              {t("title")}
             </h2>
             {newCount > 0 && (
               <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-notificationBadgeBg text-white">
-                {newCount} New
+                {newCount} {t("new")}
               </span>
             )}
           </div>
@@ -117,7 +119,7 @@ export const AllNotificationsModal = ({
                   : "bg-outlinedButtonBg text-secondaryText hover:bg-outlinedButtonBgHover border border-outlinedButtonBorder"
               }`}
             >
-              All
+              {t("all")}
             </button>
             <button
               onClick={() => setFilter("new")}
@@ -128,7 +130,7 @@ export const AllNotificationsModal = ({
                   : "bg-outlinedButtonBg text-secondaryText hover:bg-outlinedButtonBgHover border border-outlinedButtonBorder"
               }`}
             >
-              New
+              {t("new")}
             </button>
           </div>
         </div>
@@ -141,7 +143,7 @@ export const AllNotificationsModal = ({
                 <div className="flex justify-center mb-4">
                   <BellIcon />
                 </div>
-                <p className="text-lg">No notifications to display</p>
+                <p className="text-lg">{t("noNotifications")}</p>
               </div>
             ) : (
               filteredNotifications.map((notification) => (
@@ -197,11 +199,11 @@ export const AllNotificationsModal = ({
         {/* Footer actions */}
         <div className="flex justify-end gap-3 pt-4 border-t border-mainBorder mt-auto md:mt-0">
           <Button variant="outline" onClick={closeModal}>
-            Close
+            {t("close")}
           </Button>
           {newCount > 0 && (
             <Button onClick={handleMarkAllAsRead} className="px-6">
-              {`Mark Read (${newCount})`}
+              {`${t("markRead")} (${newCount})`}
             </Button>
           )}
         </div>

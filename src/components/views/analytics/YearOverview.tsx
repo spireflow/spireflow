@@ -26,8 +26,6 @@ const YearOverviewTooltip = ({
   payload,
   label,
 }: YearOverviewCustomTooltipProps) => {
-  const t = useTranslations("analytics.yearOverview");
-
   if (!active || !payload || !payload.length || !label) return null;
 
   return (
@@ -42,7 +40,7 @@ const YearOverviewTooltip = ({
               className="w-2 h-2 mr-2 rounded inline-block"
               style={{ backgroundColor: entry.color }}
             />
-            {`${t(entry.name.toLowerCase())}:   `}
+            {`${entry.name}:   `}
           </span>
           <span className="pl-[0.7rem]">
             ${Intl.NumberFormat("us").format(entry.value)}
@@ -54,8 +52,6 @@ const YearOverviewTooltip = ({
 };
 
 const CustomLegend = ({ payload }: YearOverviewCustomLegendProps) => {
-  const tDevices = useTranslations("analytics.yearOverview");
-
   return (
     <div className="flex flex-row justify-end gap-8 text-white w-full mb-6">
       {payload?.map((entry, index) => (
@@ -64,9 +60,7 @@ const CustomLegend = ({ payload }: YearOverviewCustomLegendProps) => {
             className="w-3 h-3 mr-2"
             style={{ backgroundColor: entry.color }}
           />
-          <span className="text-sm text-primaryText">
-            {tDevices(entry.value)}
-          </span>
+          <span className="text-sm text-primaryText">{entry.value}</span>
         </div>
       ))}
     </div>
@@ -74,7 +68,6 @@ const CustomLegend = ({ payload }: YearOverviewCustomLegendProps) => {
 };
 
 const DataTable = ({ data }: { data: OverviewMonthData[] }) => {
-  const t = useTranslations("analytics.yearOverview");
   const lastSixMonths = data.slice(-8);
 
   return (
@@ -87,19 +80,19 @@ const DataTable = ({ data }: { data: OverviewMonthData[] }) => {
               scope="col"
               className="text-secondaryText text-xs text-left text-base pl-4 py-2 3xl:py-3 border-b border-inputBorder"
             >
-              {t("month")}
+              Month
             </th>
             <th
               scope="col"
               className="text-secondaryText text-xs text-left text-base pl-4  py-2 3xl:py-3 border-b border-inputBorder"
             >
-              {t("phones")}
+              Phones
             </th>
             <th
               scope="col"
               className="text-secondaryText text-xs text-left text-base pl-4  py-2 3xl:py-3 border-b border-inputBorder"
             >
-              {t("laptops")}
+              Laptops
             </th>
           </tr>
         </thead>
@@ -126,11 +119,6 @@ const DataTable = ({ data }: { data: OverviewMonthData[] }) => {
 export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
   const t = useTranslations("analytics.yearOverview");
 
-  const translatedData = yearOverviewData.map((item) => ({
-    ...item,
-    name: t(item.name.toLowerCase()),
-  }));
-
   const { width: windowWidth } = useWindowDimensions();
 
   const { shouldAnimate, animationBegin } = useChartAnimation("analytics");
@@ -152,7 +140,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <AreaChart
-              data={shouldStartChartAnimations ? translatedData : []}
+              data={shouldStartChartAnimations ? yearOverviewData : []}
               margin={{
                 top: 20,
                 right: windowWidth > 500 ? 30 : 15,
@@ -221,7 +209,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
                 content={<CustomLegend />}
               />
               <Area
-                name="phones"
+                name="Phones"
                 type="monotone"
                 dataKey="phones"
                 stroke={"var(--color-chartSecondaryInverted)"}
@@ -234,7 +222,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
                 animationEasing="ease-out"
               />
               <Area
-                name="laptops"
+                name="Laptops"
                 type="monotone"
                 dataKey="laptops"
                 stroke={"var(--color-chartPrimaryInverted)"}
@@ -250,7 +238,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
           </ResponsiveContainer>
         </div>
         <div className="hidden lg:inline lg:w-1/4">
-          <DataTable data={translatedData} />
+          <DataTable data={yearOverviewData} />
         </div>
       </div>
     </Card>

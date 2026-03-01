@@ -1,13 +1,13 @@
 import "dotenv/config";
 import { Metadata, Viewport } from "next";
-import { setRequestLocale, getMessages } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 
 import "../../styles/globals.css";
 import { outfit, openSans } from "../../styles/fonts";
 import { Providers } from "../../services/providers";
-import { Locale, locales } from "../../i18n/navigation";
+import { routing } from "../../i18n/routing";
 
 export default async function RootLayout({
   children,
@@ -18,13 +18,11 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
 
-  if (!locales.includes(locale as Locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   setRequestLocale(locale);
-
-  const messages = await getMessages();
 
   return (
     <html
@@ -36,7 +34,7 @@ export default async function RootLayout({
         className={`${outfit.variable} ${openSans.variable}`}
         suppressHydrationWarning={true}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
@@ -55,5 +53,5 @@ export const viewport: Viewport = {
 };
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }

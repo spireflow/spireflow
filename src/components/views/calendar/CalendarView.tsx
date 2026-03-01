@@ -11,15 +11,11 @@ import { useLocale, useTranslations } from "next-intl";
 
 import { useCalendar } from "./useCalendar";
 import { CalendarViewProps } from "./types";
-import { useBackendTranslations } from "../../../hooks/useBackendTranslations";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import { AddEventModal } from "./AddEventModal";
 import { RemoveEventModal } from "./RemoveEventModal";
 
 export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
   const t = useTranslations("calendar");
-  const backendTranslations = useBackendTranslations("calendar");
-  const translatedData = useTranslateData(calendarEvents, backendTranslations);
 
   const {
     currentEvents,
@@ -43,7 +39,7 @@ export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
     setEventEnd,
     addEventError,
     lastFocusedElementRef,
-  } = useCalendar({ calendarEvents: translatedData });
+  } = useCalendar({ calendarEvents });
 
   const locale = useLocale();
 

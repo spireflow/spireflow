@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useTranslations } from "next-intl";
 
 import {
   Tooltip,
@@ -24,6 +25,7 @@ export const NotificationsButton = ({
   closeMobileMenu,
   t,
 }: Omit<NotificationsButtonProps, "notificationsTooltip">) => {
+  const tNotifications = useTranslations("notificationsUI");
   const { notifications: initialNotifications } = useNotificationsData();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isAllNotificationsModalOpen, setIsAllNotificationsModalOpen] =
@@ -207,10 +209,12 @@ export const NotificationsButton = ({
         >
           {/* Header */}
           <div className="px-5 py-3 border-b border-mainBorder flex justify-between items-center bg-notificationHeaderBg">
-            <h3 className="font-semibold text-base">Notifications</h3>
+            <h3 className="font-semibold text-base">
+              {tNotifications("title")}
+            </h3>
             {newNotificationsCount > 0 && (
               <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-notificationBadgeBg text-white">
-                {newNotificationsCount} New
+                {newNotificationsCount} {tNotifications("new")}
               </span>
             )}
           </div>
@@ -276,7 +280,7 @@ export const NotificationsButton = ({
               }}
               className="w-full py-2.5 px-4 rounded-lg bg-notificationBadgeBg hover:bg-notificationBadgeBgHover text-white font-medium text-sm transition-colors"
             >
-              READ ALL NOTIFICATIONS
+              {tNotifications("readAll")}
             </button>
           </div>
         </div>

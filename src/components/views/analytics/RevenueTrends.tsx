@@ -25,14 +25,10 @@ const RevenueTrendsTooltip = ({
   payload,
   label,
 }: RevenueTrendsTooltipProps) => {
-  const t = useTranslations("analytics.revenueTrends");
-
   if (!active || !payload || !payload.length || !label) return null;
 
-  const translatedLabel = t(label.toLowerCase());
-
   return (
-    <BaseTooltip title={translatedLabel}>
+    <BaseTooltip title={label}>
       {payload.map((entry, index) => (
         <p
           key={`revenue-trends-tooltip-${index}`}
@@ -75,11 +71,6 @@ const CustomXAxisTick = ({
   y,
   payload,
 }: RevenueTrendsCustomXAxisTickProps) => {
-  const t = useTranslations("analytics.revenueTrends");
-
-  const originalMonth = payload?.value || "";
-  const translatedMonth = t(originalMonth.toLowerCase());
-
   return (
     <text
       x={x}
@@ -89,7 +80,7 @@ const CustomXAxisTick = ({
       fill="var(--color-chartAxisText)"
       fontSize="0.8rem"
     >
-      {translatedMonth}
+      {payload?.value || ""}
     </text>
   );
 };
@@ -169,7 +160,7 @@ export const RevenueTrends = ({ revenueTrendsData }: RevenueTrendsProps) => {
             />
             <Bar
               dataKey="sales"
-              name={t("sales")}
+              name="Sales"
               fill="var(--color-chartSecondaryInverted)"
               radius={[4, 4, 0, 0]}
               barSize={getBarSize()}
@@ -181,7 +172,7 @@ export const RevenueTrends = ({ revenueTrendsData }: RevenueTrendsProps) => {
             />
             <Bar
               dataKey="profit"
-              name={t("profit")}
+              name="Profit"
               fill="var(--color-chartPrimaryInverted)"
               radius={[4, 4, 0, 0]}
               barSize={getBarSize()}

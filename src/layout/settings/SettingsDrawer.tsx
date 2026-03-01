@@ -163,7 +163,7 @@ export const SettingsDrawer = ({
               <Link
                 href="https://github.com/matt765/spireflow"
                 target="_blank"
-                className="flex items-center justify-center gap-2 py-4 hover:bg-selectBgHover transition-colors"
+                className="flex items-center justify-center gap-2 py-4 hover:bg-selectBgHover transition-colors focus-visible:outline-offset-[-2px]"
               >
                 <div className="w-5 h-5 text-grayIcon">
                   <GithubIcon />

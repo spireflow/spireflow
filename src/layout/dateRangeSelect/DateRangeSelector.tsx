@@ -5,11 +5,12 @@ import { useTranslations, useLocale } from "next-intl";
 import { Check } from "lucide-react";
 
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../components/common/shadcn/popover";
-import { Separator } from "../../components/common/shadcn/separator";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../../components/common/shadcn/dropdown-menu";
 import { CustomDateRangeDialog } from "./CustomDateRangeDialog";
 import { CalendarIcon } from "../../assets/icons/CalendarIcon";
 import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
@@ -33,7 +34,7 @@ const formatCustomLabel = (range: CustomDateRange, locale: string): string => {
 };
 
 export const DateRangeSelector = () => {
-  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const t = useTranslations("dateRange");
   const locale = useLocale();
@@ -45,11 +46,11 @@ export const DateRangeSelector = () => {
 
   const handlePresetSelect = (preset: Exclude<DateRangePreset, "custom">) => {
     setSelectedPreset(preset);
-    setPopoverOpen(false);
+    setMenuOpen(false);
   };
 
   const handleCustomRangeClick = () => {
-    setPopoverOpen(false);
+    setMenuOpen(false);
     setDialogOpen(true);
   };
 
@@ -67,8 +68,8 @@ export const DateRangeSelector = () => {
 
   return (
     <>
-      <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
-        <PopoverTrigger asChild>
+      <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
+        <DropdownMenuTrigger asChild>
           <button
             className="-mt-[0.1rem] text-sm cursor-pointer flex rounded-md justify-center items-center gap-2 h-[2.4rem] px-3 xsm:px-4 border border-mainBorder hover:border-mainBorderHover text-primaryText stroke-grayIcon fill-grayIcon"
             type="button"
@@ -80,40 +81,35 @@ export const DateRangeSelector = () => {
             </span>
             <ChevronDownIcon />
           </button>
-        </PopoverTrigger>
-        <PopoverContent align="end" sideOffset={6} className="w-[13rem] p-1">
-          <ul role="listbox">
-            {DATE_RANGE_PRESETS.map((preset) => {
-              const isActive = preset === selectedPreset;
-              return (
-                <li
-                  key={preset}
-                  role="option"
-                  aria-selected={isActive}
-                  onClick={() => handlePresetSelect(preset)}
-                  className={`relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-2 pr-2 text-sm outline-none transition-colors text-primaryText hover:bg-dropdownBgHover`}
-                >
-                  <span className="flex h-3.5 w-3.5 items-center justify-center mr-2 shrink-0">
-                    {isActive && <Check className="h-4 w-4" />}
-                  </span>
-                  <span>{t(preset)}</span>
-                </li>
-              );
-            })}
-          </ul>
-          <Separator className="my-1" />
-          <button
-            type="button"
-            onClick={handleCustomRangeClick}
-            className="relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-2 pr-2 text-sm outline-none transition-colors text-primaryText hover:bg-dropdownBgHover"
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" sideOffset={6} className="w-[13rem]">
+          {DATE_RANGE_PRESETS.map((preset) => {
+            const isActive = preset === selectedPreset;
+            return (
+              <DropdownMenuItem
+                key={preset}
+                onSelect={() => handlePresetSelect(preset)}
+                className="pl-2 pr-2"
+              >
+                <span className="flex h-3.5 w-3.5 items-center justify-center shrink-0">
+                  {isActive && <Check className="h-4 w-4" />}
+                </span>
+                <span>{t(preset)}</span>
+              </DropdownMenuItem>
+            );
+          })}
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onSelect={handleCustomRangeClick}
+            className="pl-2 pr-2"
           >
-            <span className="flex h-3.5 w-3.5 items-center justify-center mr-2 shrink-0">
+            <span className="flex h-3.5 w-3.5 items-center justify-center shrink-0">
               {selectedPreset === "custom" && <Check className="h-4 w-4" />}
             </span>
             <span>{t("customRange")}</span>
-          </button>
-        </PopoverContent>
-      </Popover>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <CustomDateRangeDialog
         open={dialogOpen}

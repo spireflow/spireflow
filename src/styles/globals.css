@@ -336,6 +336,11 @@ button {
   outline: none;
 }
 
+/* Dialog container should never show focus ring (focus trap fallback target) */
+[role="dialog"]:focus-visible {
+  outline: none;
+}
+
 /* Inputs - subtle border focus instead of colored ring (consistent with Material, Chakra UI) */
 input:focus-visible,
 textarea:focus-visible {

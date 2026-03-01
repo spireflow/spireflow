@@ -11,23 +11,32 @@ import {
   DialogTitle,
   DialogDescription,
 } from "../../components/common/shadcn/dialog";
+import { useModalKeyboardScroll } from "./hooks/useModalKeyboardScroll";
 
 export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
   const [isContributingModalOpen, setIsContributingModalOpen] = useState(false);
+  const { scrollRef, handleKeyDown, handleOpenAutoFocus } =
+    useModalKeyboardScroll();
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
       <DialogContent
         className="md:w-[38rem] px-5 xsm:px-5 sm:px-6 md:px-12 pr-0 xsm:pr-0 sm:pr-0 pt-0 sm:pt-0 md:pt-12 pb-0 md:pb-12"
+        onOpenAutoFocus={handleOpenAutoFocus}
         onCloseAutoFocus={(e) => {
           if (returnFocusRef?.current) {
             e.preventDefault();
             returnFocusRef.current.focus();
           }
         }}
+        onKeyDown={handleKeyDown}
       >
         {!isContributingModalOpen ? (
-          <div className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0">
+          <div
+            ref={scrollRef}
+            tabIndex={-1}
+            className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none"
+          >
             <DialogHeader>
               <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
                 About
@@ -36,10 +45,10 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
             <DialogDescription asChild>
               <div className="text-primaryText text-base w-full text-left">
                 <p className="mb-4 text-base">
-                  Spireflow is an open source and free dashboard starter template,
-                  written in NextJS and TypeScript. It is connected to NodeJS
-                  backend with PostgreSQL database containing data for a fictional
-                  electronic store.
+                  Spireflow is an open source and free dashboard starter
+                  template, written in NextJS and TypeScript. It is connected to
+                  NodeJS backend with PostgreSQL database containing data for a
+                  fictional electronic store.
                 </p>
                 <p className="mb-4 text-base">
                   If you&apos;d like to contribute, check out the{" "}
@@ -115,7 +124,11 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
             </div>
           </div>
         ) : (
-          <div className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0">
+          <div
+            ref={scrollRef}
+            tabIndex={-1}
+            className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none"
+          >
             <DialogHeader>
               <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
                 Contributing guide
@@ -126,8 +139,8 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                 <p className="mb-4">
                   Hi there! 👋 Thanks for checking out this project.
                   <br />
-                  Every form of contribution is valuable. Below are the main ways to
-                  get involved:
+                  Every form of contribution is valuable. Below are the main
+                  ways to get involved:
                 </p>
 
                 <h3 className="text-xl font-semibold mt-6 mb-3">
@@ -166,8 +179,8 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                   2. Support Development 🔥
                 </h3>
                 <p className="mb-4">
-                  If you&apos;d like to support continued work on the project, you
-                  can do so through{" "}
+                  If you&apos;d like to support continued work on the project,
+                  you can do so through{" "}
                   <a
                     href="https://github.com/sponsors/matt765"
                     target="_blank"
@@ -183,17 +196,17 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                   3. Contribute code
                 </h3>
                 <p className="mb-4">
-                  Feel free to fork the repository and submit a merge requests. If
-                  you&apos;ve spotted something that can be improved or fixed, your
-                  input is more than welcome.
+                  Feel free to fork the repository and submit a merge requests.
+                  If you&apos;ve spotted something that can be improved or
+                  fixed, your input is more than welcome.
                 </p>
 
                 <h3 className="text-xl font-semibold mt-6 mb-3">
                   License Information for Contributors
                 </h3>
                 <p className="mb-4">
-                  By submitting a contribution to this project, you agree that your
-                  contributions are licensed under the MIT License.
+                  By submitting a contribution to this project, you agree that
+                  your contributions are licensed under the MIT License.
                 </p>
               </div>
             </DialogDescription>

@@ -93,47 +93,46 @@ const CustomLegend = ({
  * @component
  */
 export const LineChartComponent = () => {
-  const tCharts = useTranslations("charts");
-  const t = useTranslations("singleCharts.line");
+  const t = useTranslations("charts");
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("charts");
 
   const dragonPopulationInWesteros = [
     {
       year: windowWidth > 600 ? "0 AC" : "0 AC",
-      title: t("aegonsConquest"),
-      [t("houseTargaryen")]: 3,
-      [t("houseVelaryon")]: 0,
+      title: "Aegon's Conquest",
+      houseTargaryen: 3,
+      houseVelaryon: 0,
     },
     {
       year: windowWidth > 600 ? "60 AC" : "60",
-      title: t("theLongReignOfJaehaerysI"),
-      [t("houseTargaryen")]: 19,
-      [t("houseVelaryon")]: 2,
+      title: "The long reign of Jaehaerys I",
+      houseTargaryen: 19,
+      houseVelaryon: 2,
     },
     {
       year: windowWidth > 600 ? "120 AC" : "120",
-      title: t("houseOfTheDragonSeries"),
-      [t("houseTargaryen")]: 15,
-      [t("houseVelaryon")]: 3,
+      title: "House of the Dragon series",
+      houseTargaryen: 15,
+      houseVelaryon: 3,
     },
     {
       year: windowWidth > 600 ? "180 AC" : "180",
-      title: t("theConquestOfDorne"),
-      [t("houseTargaryen")]: 4,
-      [t("houseVelaryon")]: 0,
+      title: "The conquest of Dorne",
+      houseTargaryen: 4,
+      houseVelaryon: 0,
     },
     {
       year: windowWidth > 600 ? "240 AC" : "240",
-      title: t("theBlackfyreRebellions"),
-      [t("houseTargaryen")]: 0,
-      [t("houseVelaryon")]: 0,
+      title: "The Blackfyre Rebellions",
+      houseTargaryen: 0,
+      houseVelaryon: 0,
     },
     {
       year: windowWidth > 600 ? "300 AC" : "300",
-      title: t("timeOfTheShowBooksStart"),
-      [t("houseTargaryen")]: 3,
-      [t("houseVelaryon")]: 0,
+      title: "Time of the show/books start",
+      houseTargaryen: 3,
+      houseVelaryon: 0,
     },
   ];
 
@@ -142,7 +141,7 @@ export const LineChartComponent = () => {
       className="w-full !pt-8 !pb-8"
       customHeader={
         <div className="-mx-6 md:-mx-20 px-6 md:px-20 text-[0.9rem] 1xl:text-[1rem] 3xl:text-[1.2rem] font-semibold text-primaryText pb-6 mb-14 border-b border-cardBorder">
-          {tCharts("lineChart")}
+          {t("lineChart")}
         </div>
       }
       padding="px-6 md:px-20"
@@ -192,7 +191,8 @@ export const LineChartComponent = () => {
             />
             <Line
               type="monotone"
-              dataKey={t("houseTargaryen")}
+              dataKey="houseTargaryen"
+              name="House Targaryen"
               stroke={"var(--color-chartPrimaryFill)"}
               strokeWidth={2}
               dot={true}
@@ -203,7 +203,8 @@ export const LineChartComponent = () => {
             />
             <Line
               type="monotone"
-              dataKey={t("houseVelaryon")}
+              dataKey="houseVelaryon"
+              name="House Velaryon"
               stroke="rgb(148, 163, 184)"
               strokeWidth={2}
               dot={true}

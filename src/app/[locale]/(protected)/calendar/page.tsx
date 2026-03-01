@@ -1,8 +1,17 @@
+import { setRequestLocale } from "next-intl/server";
+
 import { PageWrapper } from "../../../../components/common/PageWrapper";
 import { CalendarView } from "../../../../components/views/calendar/CalendarView";
 import { getData } from "../../../../services/getData";
 
-export const Calendar = async () => {
+export const Calendar = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const eventsData = await getData("events");
 
   return (

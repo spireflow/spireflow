@@ -180,7 +180,7 @@ export const useSearchInput = ({
   const handleSectionClick = (section: Section) => {
     close();
 
-    const baseUrl = `/${currentLanguage}`;
+    const baseUrl = currentLanguage === "en" ? "" : `/${currentLanguage}`;
     const normalizedPath = window.location.pathname.replace(/\/$/, "");
 
     if (section.page === "Homepage") {

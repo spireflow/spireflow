@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "../../i18n/navigation";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -36,7 +36,6 @@ export const useHandleLogin = () => {
 
   const setIsLoggingIn = useAppStore((state) => state.setIsLoggingIn);
   const clearAuthError = () => setAuthError("");
-  const currentPathname = usePathname();
 
   // Refs for preventing rapid-fire form submissions (e.g., holding Enter key)
   const isSubmittingRef = useRef(false);
@@ -92,21 +91,15 @@ export const useHandleLogin = () => {
           return;
         }
 
-        // Success - redirect
-        if (currentPathname === "/pl/login") {
-          router.push("/pl");
-        } else if (currentPathname === "/login") {
-          router.push("/");
-        } else {
-          location.reload();
-        }
+        // Success - redirect to homepage (i18n router preserves locale automatically)
+        router.push("/");
       } catch (error: unknown) {
         setIsLoggingIn(false);
         console.error("Network error during login:", error);
         setAuthError(t("authErrors.networkError"));
       }
     },
-    [currentPathname, mapBetterAuthError, router, setIsLoggingIn, t],
+    [mapBetterAuthError, router, setIsLoggingIn, t],
   );
 
   const validationSchema = useMemo(

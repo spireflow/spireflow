@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { Button } from "../../common/shadcn/button";
@@ -85,8 +85,8 @@ export const CustomerModal = ({
             </div>
           </div>
           <DialogFooter className="mt-8 sm:mt-12 !flex-row gap-3 sm:space-x-0 [&>*]:h-[2.9rem] [&>*]:flex-1 md:[&>*]:flex-initial md:justify-end md:[&>*]:w-[9.5rem] md:gap-3">
-            <Button variant="outline">{t("orderHistory")}</Button>
-            <Button icon={<PhoneIcon />}>{t("callButton")}</Button>
+            <Button variant="outline">Order history</Button>
+            <Button icon={<PhoneIcon />}>Call customer</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

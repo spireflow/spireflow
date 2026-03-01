@@ -41,8 +41,6 @@ interface ScatterTooltipProps {
  * @component
  */
 const ScatterTooltip = ({ active, payload }: ScatterTooltipProps) => {
-  const t = useTranslations("singleCharts.scatter");
-
   if (!active || !payload || payload.length === 0) return null;
 
   const data = payload[0].payload;
@@ -50,17 +48,15 @@ const ScatterTooltip = ({ active, payload }: ScatterTooltipProps) => {
   return (
     <BaseTooltip title={data.country}>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("gdp")}:</span>
+        <span>GDP:</span>
         <span className="pl-[0.7rem]">${(data.gdp / 1000).toFixed(1)}K</span>
       </p>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("lifeExpectancy")}:</span>
-        <span className="pl-[0.7rem]">
-          {data.lifeExpectancy} {t("yrs")}
-        </span>
+        <span>Life expectancy:</span>
+        <span className="pl-[0.7rem]">{data.lifeExpectancy} yrs</span>
       </p>
       <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>{t("population")}:</span>
+        <span>Population:</span>
         <span className="pl-[0.7rem]">
           {(data.population / 1000000).toFixed(1)}M
         </span>
@@ -76,116 +72,115 @@ const ScatterTooltip = ({ active, payload }: ScatterTooltipProps) => {
  * @component
  */
 export const ScatterChartComponent = () => {
-  const tCharts = useTranslations("charts");
+  const t = useTranslations("charts");
   const { width: windowWidth } = useWindowDimensions();
-  const t = useTranslations("singleCharts.scatter");
   const { shouldAnimate, animationBegin } = useChartAnimation("charts");
 
   const chartdata = [
     {
-      country: t("countries.Argentina"),
+      country: "Argentina",
       lifeExpectancy: 76.3,
       gdp: 13467.1236,
       population: 43417765,
     },
     {
-      country: t("countries.Australia"),
+      country: "Australia",
       lifeExpectancy: 82.8,
       gdp: 56554.3876,
       population: 23789338,
     },
     {
-      country: t("countries.Austria"),
+      country: "Austria",
       lifeExpectancy: 81.5,
       gdp: 43665.947,
       population: 8633169,
     },
     {
-      country: t("countries.Brazil"),
+      country: "Brazil",
       lifeExpectancy: 75.4,
       gdp: 11024.0342,
       population: 211049527,
     },
     {
-      country: t("countries.Canada"),
+      country: "Canada",
       lifeExpectancy: 82.3,
       gdp: 44974.243,
       population: 37058856,
     },
     {
-      country: t("countries.China"),
+      country: "China",
       lifeExpectancy: 76.9,
       gdp: 10746.782,
       population: 13715000,
     },
     {
-      country: t("countries.Denmark"),
+      country: "Denmark",
       lifeExpectancy: 80.7,
       gdp: 55675.003,
       population: 5754356,
     },
     {
-      country: t("countries.Egypt"),
+      country: "Egypt",
       lifeExpectancy: 71.8,
       gdp: 5744.787,
       population: 98423595,
     },
     {
-      country: t("countries.Finland"),
+      country: "Finland",
       lifeExpectancy: 81.1,
       gdp: 42032.056,
       population: 552529,
     },
     {
-      country: t("countries.Germany"),
+      country: "Germany",
       lifeExpectancy: 81.0,
       gdp: 44680.009,
       population: 82792351,
     },
     {
-      country: t("countries.India"),
+      country: "India",
       lifeExpectancy: 69.4,
       gdp: 5191.054,
       population: 16417754,
     },
     {
-      country: t("countries.Japan"),
+      country: "Japan",
       lifeExpectancy: 84.1,
       gdp: 40551.553,
       population: 126530000,
     },
     {
-      country: t("countries.Mexico"),
+      country: "Mexico",
       lifeExpectancy: 74.9,
       gdp: 17924.041,
       population: 127575529,
     },
     {
-      country: t("countries.Netherlands"),
+      country: "Netherlands",
       lifeExpectancy: 81.5,
       gdp: 49088.289,
       population: 17134872,
     },
     {
-      country: t("countries.Russia"),
+      country: "Russia",
       lifeExpectancy: 72.6,
       gdp: 11288.872,
       population: 144478050,
     },
     {
-      country: t("countries.Poland"),
+      country: "Poland",
       lifeExpectancy: 77.5,
       gdp: 29582.345,
       population: 37887768,
     },
     {
-      country: t("countries.Spain"),
+      country: "Spain",
       lifeExpectancy: 83.4,
       gdp: 32290.175,
       population: 46736776,
     },
     {
-      country: t("countries.Greece"),
+      country: "Greece",
       lifeExpectancy: 81.1,
       gdp: 21345.678,
       population: 10473455,
@@ -203,7 +198,7 @@ export const ScatterChartComponent = () => {
   return (
     <Card
       className="w-full h-full"
-      title={tCharts("scatterChart")}
+      title={t("scatterChart")}
       padding="px-9"
       isHeaderDividerVisible
       addTitleMargin
@@ -229,7 +224,7 @@ export const ScatterChartComponent = () => {
             <XAxis
               type="number"
               dataKey="gdp"
-              name={t("gdp")}
+              name="GDP"
               stroke="rgba(255,255,255,0.1)"
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
@@ -237,7 +232,7 @@ export const ScatterChartComponent = () => {
             <YAxis
               type="number"
               dataKey="lifeExpectancy"
-              name={t("lifeExpectancy")}
+              name="Life expectancy"
               stroke="rgba(255,255,255,0.1)"
               tick={{ fill: "rgba(255,255,255,0.65)", fontSize: 12 }}
               domain={[60, 90]}
@@ -247,7 +242,7 @@ export const ScatterChartComponent = () => {
               type="number"
               dataKey="population"
               range={[50, 1000]}
-              name={t("population")}
+              name="Population"
             />
             <Tooltip
               content={<ScatterTooltip />}

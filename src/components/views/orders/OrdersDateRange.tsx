@@ -12,8 +12,8 @@ export const OrdersDateRange = ({
   endDate,
   setEndDate,
 }: OrdersDateRangeProps) => {
-  const startDatePickerRef = useRef(null);
-  const endDatePickerRef = useRef(null);
+  const startDatePickerRef = useRef<DatePicker>(null);
+  const endDatePickerRef = useRef<DatePicker>(null);
 
   useEffect(() => {
     if (!startDate) {
@@ -54,8 +54,7 @@ export const OrdersDateRange = ({
           className="pl-3 md:max-w-[10rem] md:min-w-[10rem] p-2 text-sm 3xl:text-base bg-inputBg hover:bg-inputBgHover hover:bg-InputBgHover w-full  h-[2.3rem] 3xl:h-[2.6rem]  border rounded-md border-inputBorder text-primaryText placeholder-secondaryText hover:border-inputBorderHover transition"
         />
         <div
-          // @ts-ignore
-          onClick={() => startDatePickerRef.current.setOpen(true)}
+          onClick={() => startDatePickerRef.current?.setOpen(true)}
           className="absolute right-2 top-[0.5rem] 3xl:top-[0.6rem] stroke-gray-400 fill-gray-400 text-gray-400 hover:stroke-calendarIconHover hover:fill-calendarIconHover cursor-pointer transition"
         >
           <CalendarIcon />
@@ -70,8 +69,7 @@ export const OrdersDateRange = ({
           className="pl-3 md:max-w-[10rem] md:min-w-[10rem] p-2 text-sm 3xl:text-base bg-inputBg hover:bg-inputBgHover w-full  h-[2.3rem] 3xl:h-[2.6rem] border rounded-md border-inputBorder text-primaryText placeholder-secondaryText hover:border-inputBorderHover transition"
         />
         <div
-          // @ts-ignore
-          onClick={() => endDatePickerRef.current.setOpen(true)}
+          onClick={() => endDatePickerRef.current?.setOpen(true)}
           className="absolute right-2 top-[0.5rem] 3xl:top-[0.6rem] stroke-gray-400 fill-gray-400 text-gray-400 hover:stroke-calendarIconHover hover:fill-calendarIconHover cursor-pointer transition"
         >
           <CalendarIcon />

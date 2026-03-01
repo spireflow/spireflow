@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as Yup from "yup";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter } from "../../i18n/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { SignUpData } from "../../components/auth/SignUpForm";

@@ -12,7 +12,6 @@ import {
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";
-import { useTranslateData } from "../../../hooks/useTranslateData";
 import {
   BestSellingCustomTooltipProps,
   BestSellingProductsProps,
@@ -79,21 +78,13 @@ export const BestSellingProducts = ({
 }: BestSellingProductsProps) => {
   const t = useTranslations("homepage.bestSellingProducts");
 
-  const translations = {
-    "Sales from last week": t("salesFromLastWeek"),
-    "Profit from last week": t("profitFromLastWeek"),
-  };
-
-  const translatedData = useTranslateData(
-    bestSellingProductsData,
-    translations,
+  const chartData = bestSellingProductsData.map(
+    (product: TranslatedProduct) => ({
+      name: product.name,
+      Sales: product.sales,
+      Profit: product.profit,
+    }),
   );
-
-  const chartData = translatedData.map((product: TranslatedProduct) => ({
-    name: product.name,
-    [t("salesFromLastWeek")]: product.sales,
-    [t("profitFromLastWeek")]: product.profit,
-  }));
 
   const { width: windowWidth } = useWindowDimensions();
 
@@ -162,7 +153,7 @@ export const BestSellingProducts = ({
               }}
             />
             <Bar
-              dataKey={t("salesFromLastWeek")}
+              dataKey="Sales"
               fill="var(--color-chartSecondaryFill)"
               radius={[4, 4, 0, 0]}
               barSize={getBarSize()}
@@ -172,7 +163,7 @@ export const BestSellingProducts = ({
               animationEasing="ease-out"
             />
             <Bar
-              dataKey={t("profitFromLastWeek")}
+              dataKey="Profit"
               fill="var(--color-chartPrimaryFill)"
               radius={[4, 4, 0, 0]}
               barSize={getBarSize()}

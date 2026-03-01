@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect, ReactElement, useRef, useCallback } from "react";
-import { usePathname } from "next/navigation";
 
 import { useAppStore } from "../../store/appStore";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { Link } from "../../i18n/navigation";
+import { Link, usePathname } from "../../i18n/navigation";
 import { useIsFirstRender } from "../../hooks/useIsFirstRender";
 import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
 import {
@@ -63,10 +62,7 @@ export const MenuItemWithSubmenu = ({
       const normalizedPath = item.path.endsWith("/")
         ? item.path.slice(0, -1)
         : item.path;
-      const plPath = `/pl${normalizedPath}`;
-      return (
-        normalizedPathname === normalizedPath || normalizedPathname === plPath
-      );
+      return normalizedPathname === normalizedPath;
     });
 
     if (activeItem) {
@@ -286,7 +282,7 @@ export const MenuItemWithSubmenu = ({
         )}
       </Tooltip>
       {!isCollapsed && isExpanded && (isSideMenuOpen || !isDesktop) && (
-        <div className="ml-[1.6rem] relative">
+        <div className="ml-[1.6rem] relative -mt-[0.1rem] 1xl:-mt-[0.2rem] 3xl:-mt-[0.3rem]">
           <div
             ref={verticalLineRef}
             className="absolute left-0 top-0 w-[2px] bg-submenuTreeLine"
@@ -298,10 +294,7 @@ export const MenuItemWithSubmenu = ({
             const normalizedPath = item.path.endsWith("/")
               ? item.path.slice(0, -1)
               : item.path;
-            const plPath = `/pl${normalizedPath}`;
-            const isActive =
-              normalizedPathname === normalizedPath ||
-              normalizedPathname === plPath;
+            const isActive = normalizedPathname === normalizedPath;
 
             return (
               <Link
