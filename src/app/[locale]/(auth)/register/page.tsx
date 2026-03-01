@@ -1,4 +1,4 @@
-"use client";
+import { Metadata } from "next";
 
 import { SignUpForm } from "../../../../components/auth/SignUpForm";
 import { AuthLogo } from "../../../../components/auth/AuthLogo";
@@ -24,5 +24,7 @@ const Register = () => {
     </>
   );
 };
+
+export const metadata: Metadata = { title: "Register" };
 
 export default Register;

@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 
 import { PageWrapper } from "../../../../components/common/PageWrapper";
@@ -20,5 +21,7 @@ const Analytics = async ({
     </PageWrapper>
   );
 };
+
+export const metadata: Metadata = { title: "Analytics" };
 
 export default Analytics;

@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 
 import { PageWrapper } from "../../../components/common/PageWrapper";
@@ -21,5 +22,9 @@ const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
 // Uncomment those exports to enable dynamic rendering on this page
 // export const dynamic = 'force-dynamic'
 // export const revalidate = 0
+
+export const metadata: Metadata = {
+  title: { absolute: "Spireflow" },
+};
 
 export default Home;

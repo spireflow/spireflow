@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 
 import { PageWrapper } from "../../../../components/common/PageWrapper";
@@ -18,3 +19,4 @@ const Orders = async ({ params }: { params: Promise<{ locale: string }> }) => {
 };
 
 export default Orders;
+export const metadata: Metadata = { title: "Orders" };

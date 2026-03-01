@@ -1,12 +1,16 @@
-"use client";
+import { Metadata } from "next";
 
 import { PageWrapper } from "../../../../components/common/PageWrapper";
 import { FormsView } from "../../../../components/views/forms/FormsView";
 
-export default function FormsPage() {
+const FormsPage = () => {
   return (
     <PageWrapper pageName="Forms">
       <FormsView />
     </PageWrapper>
   );
-}
+};
+
+export const metadata: Metadata = { title: "Forms" };
+
+export default FormsPage;

@@ -1,4 +1,4 @@
-"use client";
+import { Metadata } from "next";
 
 import { PageWrapper } from "../../../../components/common/PageWrapper";
 import { UIElementsView } from "../../../../components/views/uiElements/UIElementsView";
@@ -10,5 +10,7 @@ const UIElementsPage = () => {
     </PageWrapper>
   );
 };
+
+export const metadata: Metadata = { title: "UI Elements" };
 
 export default UIElementsPage;

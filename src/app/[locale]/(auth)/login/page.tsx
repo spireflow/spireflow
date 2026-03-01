@@ -1,4 +1,4 @@
-"use client";
+import { Metadata } from "next";
 
 import { LoginForm } from "../../../../components/auth/LoginForm";
 import { AuthLogo } from "../../../../components/auth/AuthLogo";
@@ -24,5 +24,7 @@ const Login = () => {
     </>
   );
 };
+
+export const metadata: Metadata = { title: "Login" };
 
 export default Login;

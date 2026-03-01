@@ -43,9 +43,52 @@ export default async function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Spireflow",
+  metadataBase: new URL("https://spireflow.app"),
+  title: {
+    default: "Spireflow",
+    template: "%s | Spireflow",
+  },
   description:
-    "Open source and free dashboard template, written in NextJS and Tailwind",
+    "Open source dashboard starter with auth, i18n, dark/light mode, 26 charts and 80+ reusable UI components",
+  keywords: [
+    "nextjs dashboard",
+    "react dashboard",
+    "admin template",
+    "shadcn dashboard",
+    "open source dashboard",
+    "nextjs 15",
+    "typescript dashboard",
+    "tailwind dashboard",
+    "recharts",
+    "better auth",
+    "dashboard starter",
+  ],
+  authors: [{ name: "matt765", url: "https://github.com/matt765" }],
+  creator: "matt765",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://spireflow.app",
+    siteName: "Spireflow",
+    title: "Spireflow | Open Source Next.js Dashboard Starter",
+    description:
+      "Open source dashboard starter with auth, i18n, dark/light mode, 26 charts and 80+ reusable UI components",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Spireflow Dashboard Preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spireflow | Open Source Next.js Dashboard Starter",
+    description:
+      "Open source dashboard starter with auth, i18n, dark/light mode, 26 charts and 80+ reusable UI components",
+    images: ["/og-image.png"],
+  },
 };
 
 export const viewport: Viewport = {
