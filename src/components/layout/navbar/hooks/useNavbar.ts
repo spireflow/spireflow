@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
 import { useDropdown } from "../../../../hooks/useDropdown";
-import { useSession } from "../../../../lib/auth-client";
+import { useSession } from "../../../../services/auth/auth-client";
 import { useAppStore } from "../../../../store/appStore";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 

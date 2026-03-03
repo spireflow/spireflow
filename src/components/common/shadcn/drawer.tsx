@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 
-import { cn } from "../../../lib/utils";
+import { cn } from "../../../utils/classNames";
 
 /**
  * Root drawer component that manages drawer state and behavior.

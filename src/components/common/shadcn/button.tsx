@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
-import { cn } from "../../../lib/utils";
+import { cn } from "../../../utils/classNames";
 
 /**
  * Style variants configuration for the Button component.

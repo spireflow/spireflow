@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 import { LoginData } from "../../components/auth/LoginForm";
 import { useRouter } from "../../i18n/navigation";
-import { signIn } from "../../lib/auth-client";
+import { signIn } from "../../services/auth/auth-client";
 import { useAppStore } from "../../store/appStore";
 import { isPresentationModeClient } from "../../utils/presentationMode";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { signOut } from "../../lib/auth-client";
+import { signOut } from "../../services/auth/auth-client";
 import { useAppStore } from "../../store/appStore";
 import { isPresentationModeClient } from "../../utils/presentationMode";
 

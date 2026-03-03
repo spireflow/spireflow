@@ -1,8 +1,21 @@
+/**
+ * XLSX Export Utility
+ * Converts generic data arrays into auto-sized Excel spreadsheets
+ */
+
 import * as XLSX from "xlsx";
 
+/**
+ * Converts camelCase object keys to human-readable "Title Case" headers
+ */
 const formatHeader = (key: string): string =>
   key.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^./, (c) => c.toUpperCase());
 
+/**
+ * Exports a typed array of objects to an .xlsx file with auto-sized columns.
+ * Uses object keys as column headers and values as row data.
+ * Silently skips export when the data array is empty.
+ */
 export const exportToXLSX = <T extends object>(
   data: T[],
   filename: string,

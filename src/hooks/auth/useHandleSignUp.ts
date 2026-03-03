@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 import { SignUpData } from "../../components/auth/SignUpForm";
 import { useRouter } from "../../i18n/navigation";
-import { signUp } from "../../lib/auth-client";
+import { signUp } from "../../services/auth/auth-client";
 import { isPresentationModeClient } from "../../utils/presentationMode";
 
 const SUBMIT_COOLDOWN_MS = 2000;

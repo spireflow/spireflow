@@ -4,7 +4,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
 
-import { cn } from "../../../lib/utils";
+import { cn } from "../../../utils/classNames";
 import { Card } from "../../common/Card";
 import { Button } from "../../common/shadcn/button";
 import {

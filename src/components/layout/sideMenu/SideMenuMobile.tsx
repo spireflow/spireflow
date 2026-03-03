@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 
 import { UserIcon } from "../../../assets/icons/UserIcon";
 import { useIsFirstRender } from "../../../hooks/useIsFirstRender";
-import { useSession } from "../../../lib/auth-client";
+import { useSession } from "../../../services/auth/auth-client";
 import { useAppStore } from "../../../store/appStore";
 import { MenuCategory } from "./parts/MenuCategory";
 import { MenuItem } from "./parts/MenuItem";
