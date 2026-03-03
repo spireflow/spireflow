@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, User, Settings } from "lucide-react";
+import { Mail, Settings, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";

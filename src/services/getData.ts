@@ -1,21 +1,21 @@
-import { DocumentNode } from "graphql";
 import fs from "fs";
+import { DocumentNode } from "graphql";
 import path from "path";
 
-import { client } from "./apolloClient";
-import { ORDERS_QUERY } from "../queries/OrdersQuery";
-import { ANALYTICS_QUERY } from "../queries/AnalyticsQuery";
-import { EVENTS_QUERY } from "../queries/EventsQuery";
-import { CUSTOMERS_QUERY } from "../queries/CustomersQuery";
-import { PRODUCTS_QUERY } from "../queries/ProductsQuery";
-import { HOMEPAGE_QUERY } from "../queries/HomepageQuery";
-import { hasValidBackendUrl } from "../utils/presentationMode";
-import type { OrderType } from "../components/views/orders/types";
-import type { Customer } from "../components/views/customers/types";
-import type { Product } from "../components/views/products/types";
-import type { CalendarEvent } from "../components/views/calendar/types";
 import type { AnalyticsViewProps } from "../components/views/analytics/types";
+import type { CalendarEvent } from "../components/views/calendar/types";
+import type { Customer } from "../components/views/customers/types";
 import type { HomepageViewProps } from "../components/views/homepage/types";
+import type { OrderType } from "../components/views/orders/types";
+import type { Product } from "../components/views/products/types";
+import { ANALYTICS_QUERY } from "../queries/AnalyticsQuery";
+import { CUSTOMERS_QUERY } from "../queries/CustomersQuery";
+import { EVENTS_QUERY } from "../queries/EventsQuery";
+import { HOMEPAGE_QUERY } from "../queries/HomepageQuery";
+import { ORDERS_QUERY } from "../queries/OrdersQuery";
+import { PRODUCTS_QUERY } from "../queries/ProductsQuery";
+import { hasValidBackendUrl } from "../utils/presentationMode";
+import { client } from "./apolloClient";
 
 /**
  * Mapping of page names to GraphQL query documents.

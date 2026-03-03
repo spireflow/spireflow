@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
-import FullCalendar from "@fullcalendar/react";
+import plLocale from "@fullcalendar/core/locales/pl";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import plLocale from "@fullcalendar/core/locales/pl";
+import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useLocale, useTranslations } from "next-intl";
+import React from "react";
 
-import { useCalendar } from "./useCalendar";
-import { CalendarViewProps } from "./types";
 import { AddEventModal } from "./AddEventModal";
 import { RemoveEventModal } from "./RemoveEventModal";
+import { CalendarViewProps } from "./types";
+import { useCalendar } from "./useCalendar";
 
 export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
   const t = useTranslations("calendar");

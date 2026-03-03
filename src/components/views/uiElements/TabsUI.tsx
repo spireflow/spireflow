@@ -4,8 +4,8 @@ import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";
-import { Button } from "../../common/shadcn/button";
 import { Badge } from "../../common/shadcn/badge";
+import { Button } from "../../common/shadcn/button";
 import {
   Tabs,
   TabsContent,

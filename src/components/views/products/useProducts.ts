@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 import { useModal } from "../../../hooks/useModal";
 import { useTooltip } from "../../../hooks/useTooltip";

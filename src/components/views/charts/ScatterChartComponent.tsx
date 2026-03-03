@@ -1,23 +1,23 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
-  ScatterChart,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
   Scatter,
+  ScatterChart,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
   ZAxis,
-  Cell,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { BaseTooltip } from "../../common/BaseTooltip";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { Card } from "../../common/Card";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 
 /** Data point structure for scatter chart. */
 interface DataPoint {

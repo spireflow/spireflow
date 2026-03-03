@@ -1,31 +1,32 @@
-import { useRef } from "react";
-import { useTranslations } from "next-intl";
-import Lightbox, { ThumbnailsRef } from "yet-another-react-lightbox";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
+import { useTranslations } from "next-intl";
+import { useRef } from "react";
+import Lightbox, { ThumbnailsRef } from "yet-another-react-lightbox";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+
+import { CameraIcon } from "../../../assets/icons/CameraIcon";
+import { CopyIcon } from "../../../assets/icons/CopyIcon";
+import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { Button } from "../../common/shadcn/button";
 import {
   InputGroup,
-  InputGroupInput,
   InputGroupAddon,
   InputGroupButton,
+  InputGroupInput,
 } from "../../common/shadcn/input-group";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "../../common/shadcn/tooltip";
-import { CopyIcon } from "../../../assets/icons/CopyIcon";
-import { ProgressCircles } from "./ProgressCircles";
-import { CameraIcon } from "../../../assets/icons/CameraIcon";
-import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { ProductParameter } from "./ProductParameter";
 import { ProductPDF } from "./ProductPDF";
+import { ProgressCircles } from "./ProgressCircles";
 import { ProductDetailsProps } from "./types";
 
 export const ProductDetails = ({

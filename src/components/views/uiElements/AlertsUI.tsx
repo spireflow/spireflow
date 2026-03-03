@@ -1,6 +1,6 @@
 "use client";
 
-import { Info, AlertCircle } from "lucide-react";
+import { AlertCircle, Info } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";

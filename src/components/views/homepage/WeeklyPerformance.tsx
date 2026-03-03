@@ -1,26 +1,26 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
-import { UpdateIcon } from "../../../assets/icons/UpdateIcon";
-import { UsersIcon } from "../../../assets/icons/UsersIcon";
 import { CheckIcon } from "../../../assets/icons/CheckIcon";
 import { DocumentIcon } from "../../../assets/icons/DocumentIcon";
-import { BaseTooltip } from "../../common/BaseTooltip";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { WeeklyPerformanceProps, WeeklyActivity } from "./types";
+import { UpdateIcon } from "../../../assets/icons/UpdateIcon";
+import { UsersIcon } from "../../../assets/icons/UsersIcon";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
+import { WeeklyActivity, WeeklyPerformanceProps } from "./types";
 
 interface TooltipPayload {
   dataKey: string;

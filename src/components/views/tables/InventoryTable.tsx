@@ -1,31 +1,31 @@
 "use client";
 
-import * as React from "react";
 import {
-  useReactTable,
-  getCoreRowModel,
-  getSortedRowModel,
-  getPaginationRowModel,
-  flexRender,
   ColumnDef,
-  SortingState,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
   PaginationState,
+  SortingState,
+  useReactTable,
 } from "@tanstack/react-table";
-import { Search, Edit } from "lucide-react";
+import { Edit, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
+import * as React from "react";
 
+import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
+import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { Card } from "../../common/Card";
 import { Button } from "../../common/shadcn/button";
-import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
-import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationPrevious,
   PaginationNext,
-  PaginationEllipsis,
+  PaginationPrevious,
 } from "../../common/shadcn/pagination";
 
 /** Inventory item data structure for the inventory table. */

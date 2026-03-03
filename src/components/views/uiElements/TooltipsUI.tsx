@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Bell, HelpCircle } from "lucide-react";
+import { Bell, HelpCircle, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";

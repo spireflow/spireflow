@@ -1,17 +1,17 @@
-import { RefObject } from "react";
 import { useTranslations } from "next-intl";
+import { RefObject } from "react";
 
+import { LogoutIcon } from "../../assets/icons/LogoutIcon";
+import { useHandleLogout } from "../../hooks/auth/useHandleLogout";
 import { Button } from "../common/shadcn/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "../common/shadcn/dialog";
-import { useHandleLogout } from "../../hooks/auth/useHandleLogout";
-import { LogoutIcon } from "../../assets/icons/LogoutIcon";
 
 interface LogoutModalProps {
   closeModal: () => void;

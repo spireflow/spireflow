@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, ChevronRight } from "lucide-react";
+import { ChevronRight, Home } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";

@@ -1,12 +1,12 @@
 import { RefObject } from "react";
 
-import { LoginForm } from "./LoginForm";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "../common/shadcn/dialog";
+import { LoginForm } from "./LoginForm";
 
 interface LoginModalProps {
   closeModal: () => void;

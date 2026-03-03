@@ -1,34 +1,34 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
-  User,
-  Settings,
+  Cloud,
+  CreditCard,
+  Keyboard,
   LogOut,
   Mail,
   MessageSquare,
   PlusCircle,
-  Cloud,
-  CreditCard,
-  Keyboard,
+  Settings,
+  User,
 } from "lucide-react";
+import React from "react";
 
+import { Button } from "../button";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuGroup,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
+  DropdownMenuTrigger,
 } from "../dropdown-menu";
-import { Button } from "../button";
 
 const meta: Meta<typeof DropdownMenu> = {
   title: "UI Elements/DropdownMenu",

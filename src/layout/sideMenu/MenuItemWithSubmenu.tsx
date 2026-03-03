@@ -1,24 +1,24 @@
 "use client";
 
-import { useState, useEffect, ReactElement, useRef, useCallback } from "react";
+import { ReactElement, useCallback, useEffect, useRef, useState } from "react";
 
-import { useAppStore } from "../../store/appStore";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { Link, usePathname } from "../../i18n/navigation";
-import { BREAKPOINTS } from "../../styles/breakpoints";
-import { useIsFirstRender } from "../../hooks/useIsFirstRender";
 import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "../../components/common/shadcn/dropdown-menu";
 import {
   Tooltip,
-  TooltipTrigger,
   TooltipContent,
+  TooltipTrigger,
 } from "../../components/common/shadcn/tooltip";
+import { useIsFirstRender } from "../../hooks/useIsFirstRender";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { Link, usePathname } from "../../i18n/navigation";
+import { useAppStore } from "../../store/appStore";
+import { BREAKPOINTS } from "../../styles/breakpoints";
 
 interface SubmenuItem {
   title: string;

@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
 import { flexRender } from "@tanstack/react-table";
+import React, { useRef, useState } from "react";
 
 import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";

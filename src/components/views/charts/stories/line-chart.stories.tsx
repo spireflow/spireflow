@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
-  LineChart,
+  CartesianGrid,
+  Legend,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
 } from "recharts";
 
 import { ChartTooltip } from "./ChartTooltip";
@@ -56,7 +56,10 @@ const LineChartDemo = ({
   return (
     <div style={{ width: "100%", height }} className="text-primaryText">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <LineChart
+          data={data}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
           {showGrid && (
             <CartesianGrid
               strokeDasharray="3 3"
@@ -76,16 +79,13 @@ const LineChartDemo = ({
             tick={{ fill: "currentColor", fontSize: 12 }}
             stroke="currentColor"
             opacity={0.5}
-            tickFormatter={(value: number) => Intl.NumberFormat("en").format(value)}
+            tickFormatter={(value: number) =>
+              Intl.NumberFormat("en").format(value)
+            }
           />
-          <Tooltip
-            content={<ChartTooltip />}
-            isAnimationActive={false}
-          />
+          <Tooltip content={<ChartTooltip />} isAnimationActive={false} />
           {showLegend && (
-            <Legend
-              wrapperStyle={{ color: "var(--color-primaryText)" }}
-            />
+            <Legend wrapperStyle={{ color: "var(--color-primaryText)" }} />
           )}
           {dataKeys.map((key, index) => (
             <Line

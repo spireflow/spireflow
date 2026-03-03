@@ -4,8 +4,8 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
-import { Product } from "./types";
 import { ProductDetails } from "./ProductDetails";
+import { Product } from "./types";
 import { useProducts } from "./useProducts";
 
 export const ProductsView = ({ products }: { products: Product[] }) => {

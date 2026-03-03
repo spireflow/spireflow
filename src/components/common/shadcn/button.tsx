@@ -1,9 +1,9 @@
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-import { cn } from "../../../lib/utils";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
+import { cn } from "../../../lib/utils";
 
 /**
  * Style variants configuration for the Button component.
@@ -19,7 +19,8 @@ const buttonVariants = cva(
         destructive: "bg-errorBg text-white hover:bg-errorBg/85",
         outline:
           "border border-outlinedButtonBorder bg-outlinedButtonBg text-primaryText hover:bg-outlinedButtonBgHover hover:border-outlinedButtonBorderHover",
-        secondary: "bg-secondaryButtonBg text-primaryText hover:bg-secondaryButtonBgHover",
+        secondary:
+          "bg-secondaryButtonBg text-primaryText hover:bg-secondaryButtonBgHover",
         ghost: "text-primaryText hover:bg-navItemBgHover",
         link: "text-coloredText underline-offset-4 hover:underline",
       },
@@ -34,7 +35,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface ButtonProps
@@ -69,7 +70,20 @@ export interface ButtonProps
  * ```
  */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, loading = false, icon, children, disabled, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      loading = false,
+      icon,
+      children,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
@@ -93,7 +107,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       </Comp>
     );
-  }
+  },
 );
 Button.displayName = "Button";
 

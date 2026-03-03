@@ -1,9 +1,8 @@
 import { useTranslations } from "next-intl";
 
-import { Button } from "../../common/shadcn/button";
-import { PhoneIcon } from "../../../assets/icons/PhoneIcon";
 import { OrderModalIcon } from "../../../assets/icons/OrderModalIcon";
-import { OrderModalProps } from "./types";
+import { PhoneIcon } from "../../../assets/icons/PhoneIcon";
+import { Button } from "../../common/shadcn/button";
 import {
   Dialog,
   DialogContent,
@@ -11,6 +10,7 @@ import {
   DialogFooter,
   DialogTitle,
 } from "../../common/shadcn/dialog";
+import { OrderModalProps } from "./types";
 
 export const OrderModal = ({ closeModal, orderData }: OrderModalProps) => {
   const t = useTranslations("orders.orderModal");

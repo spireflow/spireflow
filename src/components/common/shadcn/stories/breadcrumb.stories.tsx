@@ -3,12 +3,12 @@ import { Slash } from "lucide-react";
 
 import {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
 } from "../breadcrumb";
 
 const meta: Meta<typeof Breadcrumb> = {

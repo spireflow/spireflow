@@ -1,11 +1,11 @@
 "use client";
 
-import { ThemeProvider } from "next-themes";
 import { ApolloProvider } from "@apollo/client/react";
+import { ThemeProvider } from "next-themes";
 
+import { TooltipProvider } from "../components/common/shadcn/tooltip";
 import { Layout } from "../layout/Layout";
 import { client } from "./apolloClient";
-import { TooltipProvider } from "../components/common/shadcn/tooltip";
 
 export const THEMES_ARRAY = ["light", "dark"];
 

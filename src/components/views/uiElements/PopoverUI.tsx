@@ -4,6 +4,7 @@ import { User } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";
+import { Avatar, AvatarFallback } from "../../common/shadcn/avatar";
 import { Button } from "../../common/shadcn/button";
 import { Input } from "../../common/shadcn/input";
 import { Label } from "../../common/shadcn/label";
@@ -12,7 +13,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../common/shadcn/popover";
-import { Avatar, AvatarFallback } from "../../common/shadcn/avatar";
 
 export const PopoverUI = () => {
   const t = useTranslations("uiElements");

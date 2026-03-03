@@ -1,21 +1,21 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
-  RadarChart,
-  Radar,
-  PolarGrid,
   PolarAngleAxis,
+  PolarGrid,
   PolarRadiusAxis,
+  Radar,
+  RadarChart,
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
-import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 
 /** Data point structure for radar chart. */
 interface DataPoint {

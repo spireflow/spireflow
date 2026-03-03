@@ -1,21 +1,21 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from "../../components/common/shadcn/tooltip";
-import { NotificationsButtonProps } from "./types";
-import { BREAKPOINTS } from "../../styles/breakpoints";
 import { BellIcon } from "../../assets/icons/BellIcon";
+import { CheckIcon } from "../../assets/icons/CheckIcon";
+import { DocumentIcon } from "../../assets/icons/DocumentIcon";
 import { UpdateIcon } from "../../assets/icons/UpdateIcon";
 import { UsersIcon } from "../../assets/icons/UsersIcon";
-import { DocumentIcon } from "../../assets/icons/DocumentIcon";
-import { CheckIcon } from "../../assets/icons/CheckIcon";
-import { useNotificationsData } from "./hooks/useNotificationsData";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../../components/common/shadcn/tooltip";
 import { AllNotificationsModal } from "../../components/views/notifications/AllNotificationsModal";
+import { BREAKPOINTS } from "../../styles/breakpoints";
 import type { Notification } from "./hooks/useNotificationsData";
+import { useNotificationsData } from "./hooks/useNotificationsData";
+import { NotificationsButtonProps } from "./types";
 
 export const NotificationsButton = ({
   notificationsDropdown,

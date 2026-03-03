@@ -1,8 +1,8 @@
-import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as React from "react";
 
-import { cn } from "../../../lib/utils";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
+import { cn } from "../../../lib/utils";
 
 /**
  * Root dialog component that manages modal state.
@@ -200,13 +200,13 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
   DialogClose,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
 };

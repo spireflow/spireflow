@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { OrdersDateRangeProps } from "./types";
+import React, { useEffect, useRef } from "react";
+import DatePicker from "react-datepicker";
+
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { OrdersDateRangeProps } from "./types";
 
 export const OrdersDateRange = ({
   startDate,

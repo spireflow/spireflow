@@ -1,25 +1,25 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { BaseTooltip } from "../../common/BaseTooltip";
 import { Card } from "../../common/Card";
 import {
   BestSellingCustomTooltipProps,
   BestSellingProductsProps,
   TranslatedProduct,
 } from "./types";
-import { BaseTooltip } from "../../common/BaseTooltip";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
 const BestSellingCustomLegend = ({
   payload,

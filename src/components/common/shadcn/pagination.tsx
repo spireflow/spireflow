@@ -1,8 +1,8 @@
-import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import * as React from "react";
 
 import { cn } from "../../../lib/utils";
-import { buttonVariants, type ButtonProps } from "./button";
+import { type ButtonProps, buttonVariants } from "./button";
 
 /**
  * Root pagination navigation component.
@@ -222,9 +222,9 @@ const PaginationEllipsis = ({
 export {
   Pagination,
   PaginationContent,
-  PaginationLink,
-  PaginationItem,
-  PaginationPrevious,
-  PaginationNext,
   PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 };

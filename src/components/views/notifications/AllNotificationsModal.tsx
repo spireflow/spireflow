@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, RefObject } from "react";
 import { useTranslations } from "next-intl";
+import { RefObject, useState } from "react";
 
+import { BellIcon } from "../../../assets/icons/BellIcon";
+import { CheckIcon } from "../../../assets/icons/CheckIcon";
+import { DocumentIcon } from "../../../assets/icons/DocumentIcon";
 import { UpdateIcon } from "../../../assets/icons/UpdateIcon";
 import { UsersIcon } from "../../../assets/icons/UsersIcon";
-import { DocumentIcon } from "../../../assets/icons/DocumentIcon";
-import { CheckIcon } from "../../../assets/icons/CheckIcon";
-import { BellIcon } from "../../../assets/icons/BellIcon";
+import type { Notification } from "../../../layout/navbar/hooks/useNotificationsData";
 import { Button } from "../../common/shadcn/button";
 import {
   Dialog,
@@ -16,7 +17,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../common/shadcn/dialog";
-import type { Notification } from "../../../layout/navbar/hooks/useNotificationsData";
 
 interface AllNotificationsModalProps {
   closeModal: () => void;

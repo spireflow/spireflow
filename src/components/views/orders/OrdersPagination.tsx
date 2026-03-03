@@ -1,7 +1,15 @@
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
-import { OrdersPaginationProps } from "./types";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../../common/shadcn/pagination";
 import {
   Select,
   SelectContent,
@@ -9,15 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../common/shadcn/select";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationEllipsis,
-} from "../../common/shadcn/pagination";
+import { OrdersPaginationProps } from "./types";
 
 export const OrdersPagination = ({
   itemsPerPage,

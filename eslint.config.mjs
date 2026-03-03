@@ -1,4 +1,5 @@
 import storybook from "eslint-plugin-storybook";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
@@ -16,7 +17,12 @@ const eslintConfig = defineConfig([...nextVitals, ...nextTs, globalIgnores([
   '*.config.js',
   '*.config.mjs',
 ]), {
+  plugins: {
+    'simple-import-sort': simpleImportSort,
+  },
   rules: {
+    'simple-import-sort/imports': 'warn',
+    'simple-import-sort/exports': 'warn',
     'react/display-name': 'off',
     '@next/next/no-img-element': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',

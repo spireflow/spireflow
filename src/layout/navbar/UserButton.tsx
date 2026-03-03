@@ -1,25 +1,25 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from "../../components/common/shadcn/tooltip";
-import { UserButtonProps } from "./types";
-import { UserIcon } from "../../assets/icons/UserIcon";
+import { ArrowDownSimpleIcon } from "../../assets/icons/ArrowDownSimpleIcon";
+import { CheckIcon } from "../../assets/icons/CheckIcon";
+import { GithubIcon } from "../../assets/icons/GithubIcon";
 import { HistoryIcon } from "../../assets/icons/HistoryIcon";
 import { InfoIcon } from "../../assets/icons/InfoIcon";
-import { GithubIcon } from "../../assets/icons/GithubIcon";
 import { LanguageIcon } from "../../assets/icons/LanguageIcon";
-import { CheckIcon } from "../../assets/icons/CheckIcon";
 import { PaletteIcon } from "../../assets/icons/PaletteIcon";
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
+import { UserIcon } from "../../assets/icons/UserIcon";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../../components/common/shadcn/tooltip";
 import { Link as NavigationLink, usePathname } from "../../i18n/navigation";
-import { ArrowDownSimpleIcon } from "../../assets/icons/ArrowDownSimpleIcon";
-import { DropdownMenuItem } from "./DropdownMenuItem";
 import { SettingsDrawer } from "../settings/SettingsDrawer";
+import { DropdownMenuItem } from "./DropdownMenuItem";
+import { UserButtonProps } from "./types";
 
 export const UserButton = ({
   userIconBtnRef,

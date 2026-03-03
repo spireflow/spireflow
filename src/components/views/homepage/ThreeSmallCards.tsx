@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { useEffect, useState } from "react";
+import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
-import { ThreeSmallCardsProps } from "./types";
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "../../common/shadcn/tooltip";
-
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { ThreeSmallCardsProps } from "./types";
 
 export const ThreeSmallCards = ({
   threeSmallCardsData,

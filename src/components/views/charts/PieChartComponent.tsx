@@ -1,20 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
-  PieChart,
-  Pie,
   Cell,
+  Legend,
+  Pie,
+  PieChart,
   ResponsiveContainer,
   Tooltip,
-  Legend,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
-import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 
 /** Data point structure for pie chart segments. */
 interface DataPoint {

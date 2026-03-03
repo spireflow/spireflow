@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
-import { useAppStore, type ChartPageId } from "../store/appStore";
 import { CHART_ANIMATION_DELAY_MS } from "../layout/FullScreenLoader";
+import { type ChartPageId, useAppStore } from "../store/appStore";
 
 interface ChartAnimationOptions {
   earlyStartMs?: number;
@@ -25,14 +25,14 @@ interface ChartAnimationResult {
  */
 export const useChartAnimation = (
   pageId: ChartPageId,
-  options?: ChartAnimationOptions
+  options?: ChartAnimationOptions,
 ): ChartAnimationResult => {
   const chartAnimationsEnabled = useAppStore(
-    (state) => state.chartAnimationsEnabled
+    (state) => state.chartAnimationsEnabled,
   );
   const visitedChartPages = useAppStore((state) => state.visitedChartPages);
   const markChartPageAsVisited = useAppStore(
-    (state) => state.markChartPageAsVisited
+    (state) => state.markChartPageAsVisited,
   );
   const isInitialLoad = useAppStore((state) => state.isInitialLoad);
 
@@ -53,7 +53,10 @@ export const useChartAnimation = (
   const baseDelay = isInitialLoad ? CHART_ANIMATION_DELAY_MS : 0;
   const maxEarlyStart = baseDelay * 0.8;
   const clampedEarlyStart = Math.min(earlyStartMs, maxEarlyStart);
-  const animationBegin = Math.max(MIN_ANIMATION_BEGIN_MS, baseDelay - clampedEarlyStart);
+  const animationBegin = Math.max(
+    MIN_ANIMATION_BEGIN_MS,
+    baseDelay - clampedEarlyStart,
+  );
 
   return { shouldAnimate, animationBegin };
 };

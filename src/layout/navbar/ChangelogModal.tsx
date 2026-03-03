@@ -1,13 +1,13 @@
 import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
-import { useChangelogModal } from "./hooks/useChangelogModal";
-import { useModalKeyboardScroll } from "./hooks/useModalKeyboardScroll";
-import { ChangelogModalProps } from "./types";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "../../components/common/shadcn/dialog";
+import { useChangelogModal } from "./hooks/useChangelogModal";
+import { useModalKeyboardScroll } from "./hooks/useModalKeyboardScroll";
+import { ChangelogModalProps } from "./types";
 
 export const ChangelogModal = ({
   closeModal,

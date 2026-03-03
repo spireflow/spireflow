@@ -1,12 +1,12 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "../../components/common/shadcn/dialog";
-import { AboutModalProps } from "./types";
 import { useModalKeyboardScroll } from "./hooks/useModalKeyboardScroll";
+import { AboutModalProps } from "./types";
 
 export const ContributingModal = ({ closeModal }: AboutModalProps) => {
   const { scrollRef, handleKeyDown, handleOpenAutoFocus } =

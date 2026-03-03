@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { Search, Eye, EyeOff, Mail, DollarSign } from "lucide-react";
+import { DollarSign, Eye, EyeOff, Mail, Search } from "lucide-react";
 import React from "react";
 
 import {

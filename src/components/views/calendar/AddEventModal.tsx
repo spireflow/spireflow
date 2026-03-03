@@ -1,8 +1,16 @@
-import React, { useEffect } from "react";
 import { useTranslations } from "next-intl";
+import React, { useEffect } from "react";
 
 import { DeleteIcon } from "../../../assets/icons/DeleteIcon";
+import { OrderModalIcon } from "../../../assets/icons/OrderModalIcon";
 import { Button } from "../../common/shadcn/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+} from "../../common/shadcn/dialog";
 import { Input } from "../../common/shadcn/input";
 import {
   Select,
@@ -11,15 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../common/shadcn/select";
-import { OrderModalIcon } from "../../../assets/icons/OrderModalIcon";
 import { AddEventModalProps } from "./types";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogTitle,
-} from "../../common/shadcn/dialog";
 
 export const AddEventModal = ({
   closeModal,

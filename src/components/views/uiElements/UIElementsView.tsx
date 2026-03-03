@@ -1,18 +1,18 @@
 "use client";
 
-import { ButtonsUI } from "./ButtonsUI";
 import { AlertsUI } from "./AlertsUI";
-import { CommandUI } from "./CommandUI";
 import { AvatarsUI } from "./AvatarsUI";
-import { TabsUI } from "./TabsUI";
-import { SkeletonsUI } from "./SkeletonsUI";
-import { DialogsUI } from "./DialogsUI";
 import { BadgesUI } from "./BadgesUI";
+import { BreadcrumbsUI } from "./BreadcrumbsUI";
+import { ButtonsUI } from "./ButtonsUI";
+import { CommandUI } from "./CommandUI";
+import { DialogsUI } from "./DialogsUI";
 import { PopoverUI } from "./PopoverUI";
 import { ProgressUI } from "./ProgressUI";
-import { TooltipsUI } from "./TooltipsUI";
-import { BreadcrumbsUI } from "./BreadcrumbsUI";
 import { SeparatorsUI } from "./SeparatorsUI";
+import { SkeletonsUI } from "./SkeletonsUI";
+import { TabsUI } from "./TabsUI";
+import { TooltipsUI } from "./TooltipsUI";
 
 export const UIElementsView = () => {
   return (

@@ -1,21 +1,21 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   Area,
-  XAxis,
-  YAxis,
+  AreaChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
-  AreaChart,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { Card } from "../../common/Card";
 
 /** Data point structure for orders and returns chart. */
 interface DataPoint {

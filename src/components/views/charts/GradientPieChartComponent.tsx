@@ -1,22 +1,22 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import type { PieSectorShapeProps } from "recharts";
 import {
-  PieChart,
+  Cell,
+  Legend,
   Pie,
+  PieChart,
+  ResponsiveContainer,
   Sector,
   Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Cell,
 } from "recharts";
-import type { PieSectorShapeProps } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
-import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 
 /** Data point structure for gradient pie chart. */
 interface DataPoint {

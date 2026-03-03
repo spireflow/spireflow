@@ -1,13 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import * as React from "react";
 import { HexColorPicker } from "react-colorful";
-import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";
-import { Label } from "../../common/shadcn/label";
 import { Button } from "../../common/shadcn/button";
 import { Input } from "../../common/shadcn/input";
+import { Label } from "../../common/shadcn/label";
 import {
   Popover,
   PopoverContent,

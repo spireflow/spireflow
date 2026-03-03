@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { ThemeButtonProps } from "./types";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
 import { SunIcon } from "../../assets/icons/SunIcon";
 import {
   Tooltip,
-  TooltipTrigger,
   TooltipContent,
+  TooltipTrigger,
 } from "../../components/common/shadcn/tooltip";
+import { ThemeButtonProps } from "./types";
 
 export const ThemeButton = ({
   theme,

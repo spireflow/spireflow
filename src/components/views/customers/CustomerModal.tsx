@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
-import { Button } from "../../common/shadcn/button";
 import { PhoneIcon } from "../../../assets/icons/PhoneIcon";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
-import { CustomerModalProps } from "./types";
+import { Button } from "../../common/shadcn/button";
 import {
   Dialog,
   DialogContent,
@@ -12,6 +11,7 @@ import {
   DialogFooter,
   DialogTitle,
 } from "../../common/shadcn/dialog";
+import { CustomerModalProps } from "./types";
 
 export const CustomerModal = ({
   closeModal,

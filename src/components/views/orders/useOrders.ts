@@ -1,15 +1,16 @@
-import { useCallback, useMemo, useState, useEffect } from "react";
 import {
+  createColumnHelper,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
-  createColumnHelper,
 } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
+import { useTable } from "../../../hooks/useTable";
 import {
-  FilterValues,
   Filters,
+  FilterValues,
   Order,
   OrderColumns,
   OrderType,
@@ -17,7 +18,6 @@ import {
   SelectFilters,
   useOrdersProps,
 } from "./types";
-import { useTable } from "../../../hooks/useTable";
 
 export const useOrders = ({ orders }: useOrdersProps) => {
   const t = useTranslations("orders");

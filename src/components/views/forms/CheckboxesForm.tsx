@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";
-import { Label } from "../../common/shadcn/label";
 import { Checkbox } from "../../common/shadcn/checkbox";
+import { Label } from "../../common/shadcn/label";
 
 export const CheckboxesForm = () => {
   const t = useTranslations("forms");

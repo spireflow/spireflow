@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { useAppStore } from "../../store/appStore";
 import { signOut } from "../../lib/auth-client";
+import { useAppStore } from "../../store/appStore";
 import { isPresentationModeClient } from "../../utils/presentationMode";
 
 /**
@@ -22,7 +22,7 @@ export const useHandleLogout = () => {
     // Check if running in presentation mode (no backend)
     if (isPresentationModeClient()) {
       alert(
-        "Authentication is disabled in the demo version. Check README.md to find information on how to connect the backend to make it work."
+        "Authentication is disabled in the demo version. Check README.md to find information on how to connect the backend to make it work.",
       );
       return;
     }

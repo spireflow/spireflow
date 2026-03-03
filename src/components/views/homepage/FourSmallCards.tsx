@@ -1,23 +1,23 @@
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  BarChart,
   Bar,
+  BarChart,
+  Cell,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
 } from "recharts";
 
-import { FourSmallCardsProps } from "./types";
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { Card } from "../../common/Card";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "../../common/shadcn/tooltip";
-import { useMediaQuery } from "../../../hooks/useMediaQuery";
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { FourSmallCardsProps } from "./types";
 
 export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
   const t = useTranslations("homepage.fourSmallCards");

@@ -1,12 +1,12 @@
-import { forwardRef, useRef, useEffect } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 
 import { SearchIcon } from "../../assets/icons/SearchIcon";
-import { useSearchInput } from "./hooks/useSearchInput";
 import {
   InputGroup,
-  InputGroupInput,
   InputGroupAddon,
+  InputGroupInput,
 } from "../../components/common/shadcn/input-group";
+import { useSearchInput } from "./hooks/useSearchInput";
 
 interface SearchInputProps {
   closeOthers?: () => void;

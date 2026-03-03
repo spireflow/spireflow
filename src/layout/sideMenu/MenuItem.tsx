@@ -2,16 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { useAppStore } from "../../store/appStore";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { Link, usePathname } from "../../i18n/navigation";
-import { BREAKPOINTS } from "../../styles/breakpoints";
 import {
   Tooltip,
-  TooltipTrigger,
   TooltipContent,
+  TooltipTrigger,
 } from "../../components/common/shadcn/tooltip";
 import { useIsFirstRender } from "../../hooks/useIsFirstRender";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { Link, usePathname } from "../../i18n/navigation";
+import { useAppStore } from "../../store/appStore";
+import { BREAKPOINTS } from "../../styles/breakpoints";
 import { MenuItemProps } from "./types";
 
 export const MenuItem = ({ title, icon, path }: MenuItemProps) => {

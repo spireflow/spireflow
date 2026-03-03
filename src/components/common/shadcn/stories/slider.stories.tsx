@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Slider } from "../slider";
 import { Label } from "../label";
+import { Slider } from "../slider";
 
 const meta: Meta<typeof Slider> = {
   title: "Forms/Slider",

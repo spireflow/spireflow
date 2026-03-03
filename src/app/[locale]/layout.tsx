@@ -1,13 +1,14 @@
 import "dotenv/config";
-import { Metadata, Viewport } from "next";
-import { setRequestLocale } from "next-intl/server";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { notFound } from "next/navigation";
-
 import "../../styles/globals.css";
-import { outfit, openSans } from "../../styles/fonts";
-import { Providers } from "../../services/providers";
+
+import { Metadata, Viewport } from "next";
+import { notFound } from "next/navigation";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+
 import { routing } from "../../i18n/routing";
+import { Providers } from "../../services/providers";
+import { openSans, outfit } from "../../styles/fonts";
 
 export default async function RootLayout({
   children,

@@ -1,22 +1,22 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
-  LineChart,
+  CartesianGrid,
+  Legend,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { Card } from "../../common/Card";
-import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 
 /** Props for line chart tooltip component. */
 interface LineChartTooltipProps {

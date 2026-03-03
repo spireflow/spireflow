@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import { AssetPerformanceProps } from "./types";
-import { Card } from "../../common/Card";
-import { BaseTooltip } from "../../common/BaseTooltip";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
+import { AssetPerformanceProps } from "./types";
 
 interface AssetDataWithColor {
   name: string;

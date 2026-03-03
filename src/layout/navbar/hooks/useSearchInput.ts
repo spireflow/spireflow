@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
-import { useNavbar } from "./useNavbar";
 import { useAppStore } from "../../../store/appStore";
+import { useNavbar } from "./useNavbar";
 
 interface Section {
   section: string;

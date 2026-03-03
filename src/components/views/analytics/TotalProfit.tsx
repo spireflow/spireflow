@@ -1,28 +1,28 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
-  AreaChart,
   Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { useAppStore } from "../../../store/appStore";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
+import { Badge } from "../../common/shadcn/badge";
+import { Progress } from "../../common/shadcn/progress";
 import {
   ProductProfit,
   TotalProfitProps,
   TotalProfitTooltipProps,
 } from "./types";
-import { Card } from "../../common/Card";
-import { Badge } from "../../common/shadcn/badge";
-import { Progress } from "../../common/shadcn/progress";
-import { BaseTooltip } from "../../common/BaseTooltip";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
-import { useAppStore } from "../../../store/appStore";
 
 const TotalProfitTooltip = ({
   active,

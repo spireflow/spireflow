@@ -1,24 +1,25 @@
 import { useTranslations } from "next-intl";
 import {
-  ResponsiveContainer,
-  BarChart,
   Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
 } from "recharts";
-import { Card } from "../../common/Card";
+
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 import {
   RevenueTrendsCustomLegendProps,
   RevenueTrendsCustomXAxisTickProps,
   RevenueTrendsProps,
   RevenueTrendsTooltipProps,
 } from "./types";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
 const RevenueTrendsTooltip = ({
   active,

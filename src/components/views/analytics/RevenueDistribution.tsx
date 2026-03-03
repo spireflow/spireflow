@@ -1,23 +1,23 @@
+import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
 import {
-  BarChart,
   Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 import {
   RevenueDistributionProps,
   RevenueDistributionTooltipProps,
 } from "./types";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { useTheme } from "next-themes";
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
 
 const RevenueDistributionTooltip = ({
   active,

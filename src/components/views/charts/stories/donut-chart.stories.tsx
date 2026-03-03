@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
-  PieChart,
-  Pie,
   Cell,
-  Tooltip,
   Legend,
+  Pie,
+  PieChart,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts";
 
 import { PieChartTooltip } from "./ChartTooltip";
@@ -67,7 +67,9 @@ const DonutChartDemo = ({
             ))}
           </Pie>
           <Tooltip
-            content={<PieChartTooltip valueFormatter={(value) => `${value}%`} />}
+            content={
+              <PieChartTooltip valueFormatter={(value) => `${value}%`} />
+            }
             isAnimationActive={false}
           />
           {showLegend && (

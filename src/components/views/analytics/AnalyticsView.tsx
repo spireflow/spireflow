@@ -1,13 +1,13 @@
 "use client";
 
 import { AssetPerformance } from "./AssetPerformance";
-import { TodaySales } from "./TodaySales";
-import { TotalProfit } from "./TotalProfit";
-import { RevenueTrends } from "./RevenueTrends";
-import { YearOverview } from "./YearOverview";
-import { AnalyticsViewProps } from "./types";
 import { MarketMetrics } from "./MarketMetrics";
 import { RevenueDistribution } from "./RevenueDistribution";
+import { RevenueTrends } from "./RevenueTrends";
+import { TodaySales } from "./TodaySales";
+import { TotalProfit } from "./TotalProfit";
+import { AnalyticsViewProps } from "./types";
+import { YearOverview } from "./YearOverview";
 
 export const AnalyticsView = ({ analyticsData }: AnalyticsViewProps) => {
   return (

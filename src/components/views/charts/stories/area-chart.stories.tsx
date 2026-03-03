@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
-  AreaChart,
   Area,
-  XAxis,
-  YAxis,
+  AreaChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
 import { ChartTooltip } from "./ChartTooltip";
@@ -56,7 +56,10 @@ const AreaChartDemo = ({
   return (
     <div style={{ width: "100%", height }} className="text-primaryText">
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <AreaChart
+          data={data}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
           {showGrid && (
             <CartesianGrid
               strokeDasharray="3 3"
@@ -76,12 +79,11 @@ const AreaChartDemo = ({
             tick={{ fill: "currentColor", fontSize: 12 }}
             stroke="currentColor"
             opacity={0.5}
-            tickFormatter={(value: number) => Intl.NumberFormat("en").format(value)}
+            tickFormatter={(value: number) =>
+              Intl.NumberFormat("en").format(value)
+            }
           />
-          <Tooltip
-            content={<ChartTooltip />}
-            isAnimationActive={false}
-          />
+          <Tooltip content={<ChartTooltip />} isAnimationActive={false} />
           {showLegend && (
             <Legend wrapperStyle={{ color: "var(--color-primaryText)" }} />
           )}

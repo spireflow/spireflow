@@ -1,5 +1,5 @@
-import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
+import * as React from "react";
 
 import { cn } from "../../../lib/utils";
 
@@ -51,7 +51,7 @@ const TabsList = React.forwardRef<
         "rounded-md bg-tabListBg text-secondaryText px-1",
       variant === "line" &&
         "border-b border-mainBorder w-full justify-start gap-0 px-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -88,7 +88,7 @@ const TabsTrigger = React.forwardRef<
         "rounded-md data-[state=active]:bg-tabActiveBg data-[state=active]:text-primaryText",
       variant === "line" &&
         "cursor-pointer rounded-none border-b-2 border-transparent text-tabLineInactiveText hover:text-tabLineInactiveTextHover data-[state=active]:border-tabLineActiveBorder data-[state=active]:text-tabLineActiveText data-[state=active]:hover:text-tabLineActiveTextHover",
-      className
+      className,
     )}
     {...props}
   />
@@ -116,13 +116,10 @@ const TabsContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
     ref={ref}
-    className={cn(
-      "mt-2",
-      className
-    )}
+    className={cn("mt-2", className)}
     {...props}
   />
 ));
 TabsContent.displayName = TabsPrimitive.Content.displayName;
 
-export { Tabs, TabsList, TabsTrigger, TabsContent };
+export { Tabs, TabsContent, TabsList, TabsTrigger };

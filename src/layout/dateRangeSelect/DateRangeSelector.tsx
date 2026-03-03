@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { useTranslations, useLocale } from "next-intl";
 import { Check } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 
+import { CalendarIcon } from "../../assets/icons/CalendarIcon";
+import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,17 +13,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../components/common/shadcn/dropdown-menu";
-import { CustomDateRangeDialog } from "./CustomDateRangeDialog";
-import { CalendarIcon } from "../../assets/icons/CalendarIcon";
-import { ChevronDownIcon } from "../../assets/icons/ChevronDownIcon";
-import {
-  useDateRangeStore,
-  DATE_RANGE_PRESETS,
-} from "../../store/dateRangeStore";
 import type {
-  DateRangePreset,
   CustomDateRange,
+  DateRangePreset,
 } from "../../store/dateRangeStore";
+import {
+  DATE_RANGE_PRESETS,
+  useDateRangeStore,
+} from "../../store/dateRangeStore";
+import { CustomDateRangeDialog } from "./CustomDateRangeDialog";
 
 const formatCustomLabel = (range: CustomDateRange, locale: string): string => {
   const fmt = new Intl.DateTimeFormat(locale, {

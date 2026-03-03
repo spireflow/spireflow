@@ -1,22 +1,21 @@
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import {
-  AreaChart,
   Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
-
-import { RevenueOverTimeProps, RevenueOverTimeTooltipProps } from "./types";
-import { BaseTooltip } from "../../common/BaseTooltip";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { useAppStore } from "../../../store/appStore";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
+import { RevenueOverTimeProps, RevenueOverTimeTooltipProps } from "./types";
 
 const RevenueOverTimeTooltip = ({
   active,

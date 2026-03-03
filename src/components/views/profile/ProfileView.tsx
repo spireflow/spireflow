@@ -3,12 +3,12 @@
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-import { Card } from "../../common/Card";
-import { Switch } from "../../common/shadcn/switch";
-import { PhoneIcon } from "../../../assets/icons/PhoneIcon";
 import { GithubIcon } from "../../../assets/icons/GithubIcon";
 import { LinkedinIcon } from "../../../assets/icons/LinkedinIcon";
+import { PhoneIcon } from "../../../assets/icons/PhoneIcon";
 import { TwitterIcon } from "../../../assets/icons/TwitterIcon";
+import { Card } from "../../common/Card";
+import { Switch } from "../../common/shadcn/switch";
 
 export const ProfileView = () => {
   const t = useTranslations("profile");

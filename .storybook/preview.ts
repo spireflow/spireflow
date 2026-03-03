@@ -1,8 +1,8 @@
-import type { Preview } from "@storybook/nextjs-vite";
-import { createElement } from "react";
-
 import "./fonts.css";
 import "../src/styles/globals.css";
+
+import type { Preview } from "@storybook/nextjs-vite";
+import { createElement } from "react";
 
 const preview: Preview = {
   parameters: {

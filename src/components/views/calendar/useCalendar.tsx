@@ -1,8 +1,8 @@
-import { useEffect, useState, useCallback, useRef } from "react";
 import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
-import { EventResizeDoneArg } from "@fullcalendar/interaction";
 import { EventImpl } from "@fullcalendar/core/internal";
+import { EventResizeDoneArg } from "@fullcalendar/interaction";
 import { useTranslations } from "next-intl";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { CalendarAction, CalendarEvent, CalendarViewProps } from "./types";
 

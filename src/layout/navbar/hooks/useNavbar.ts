@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 
-import { useAppStore } from "../../../store/appStore";
 import { useDropdown } from "../../../hooks/useDropdown";
-import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { useSession } from "../../../lib/auth-client";
+import { useAppStore } from "../../../store/appStore";
+import { BREAKPOINTS } from "../../../styles/breakpoints";
 
 export const useNavbar = () => {
   const { theme, setTheme } = useTheme();

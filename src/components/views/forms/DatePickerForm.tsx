@@ -1,13 +1,14 @@
 "use client";
 
+import "react-datepicker/dist/react-datepicker.css";
+
+import { useTranslations } from "next-intl";
 import * as React from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useTranslations } from "next-intl";
 
+import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { Card } from "../../common/Card";
 import { Label } from "../../common/shadcn/label";
-import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 
 export const DatePickerForm = () => {
   const t = useTranslations("forms");

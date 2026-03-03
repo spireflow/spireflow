@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import { useState } from "react";
 
+import { GithubIcon } from "../../assets/icons/GithubIcon";
 import {
   Drawer,
   DrawerClose,
@@ -14,6 +15,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../../components/common/shadcn/drawer";
+import { Label } from "../../components/common/shadcn/label";
 import {
   Select,
   SelectContent,
@@ -21,9 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/common/shadcn/select";
-import { Label } from "../../components/common/shadcn/label";
 import { Switch } from "../../components/common/shadcn/switch";
-import { GithubIcon } from "../../assets/icons/GithubIcon";
 import { useAppStore } from "../../store/appStore";
 import { HomepageLayoutSection } from "./HomepageLayoutSection";
 import { SidebarModeSection } from "./SidebarModeSection";

@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
-  ComposedChart,
-  Line,
-  Bar,
   Area,
+  Bar,
+  CartesianGrid,
+  ComposedChart,
+  Legend,
+  Line,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
 } from "recharts";
 
 import { ChartTooltip } from "./ChartTooltip";
@@ -84,11 +84,16 @@ const ComposedChartDemo = ({
             tick={{ fill: "currentColor", fontSize: 12 }}
             stroke="currentColor"
             opacity={0.5}
-            tickFormatter={(value: number) => Intl.NumberFormat("en").format(value)}
+            tickFormatter={(value: number) =>
+              Intl.NumberFormat("en").format(value)
+            }
           />
           <Tooltip
             content={<ChartTooltip />}
-            cursor={{ fill: "var(--color-chartCursorBg)", stroke: "var(--color-chartVerticalLine)" }}
+            cursor={{
+              fill: "var(--color-chartCursorBg)",
+              stroke: "var(--color-chartVerticalLine)",
+            }}
             isAnimationActive={false}
           />
           {showLegend && (

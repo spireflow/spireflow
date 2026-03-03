@@ -1,18 +1,18 @@
+import { useTranslations } from "next-intl";
 import {
+  Legend,
+  PolarAngleAxis,
+  PolarGrid,
   Radar,
   RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
   ResponsiveContainer,
-  Legend,
   Tooltip,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
-import { BaseTooltip } from "../../common/BaseTooltip";
-import { MarketMetricsProps, MarketMetricsTooltipProps } from "./types";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
+import { MarketMetricsProps, MarketMetricsTooltipProps } from "./types";
 
 const METRIC_LABELS: Record<string, string> = {
   salesVolume: "Sales Volume",

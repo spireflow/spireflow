@@ -1,9 +1,9 @@
 "use client";
 
-import { BasicTable } from "./BasicTable";
 import { AdvancedTable } from "./AdvancedTable";
-import { UserTable } from "./UserTable";
+import { BasicTable } from "./BasicTable";
 import { InventoryTable } from "./InventoryTable";
+import { UserTable } from "./UserTable";
 
 /**
  * Layout container for the tables demo page.

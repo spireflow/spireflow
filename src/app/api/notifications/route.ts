@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
 import fs from "fs";
+import { NextResponse } from "next/server";
 import path from "path";
 
-import { client } from "../../../services/apolloClient";
-import { NOTIFICATIONS_QUERY } from "../../../queries/NotificationsQuery";
-import { hasValidBackendUrl } from "../../../utils/presentationMode";
 import type { Notification } from "../../../layout/navbar/hooks/useNotificationsData";
+import { NOTIFICATIONS_QUERY } from "../../../queries/NotificationsQuery";
+import { client } from "../../../services/apolloClient";
+import { hasValidBackendUrl } from "../../../utils/presentationMode";
 
 export async function GET() {
   try {

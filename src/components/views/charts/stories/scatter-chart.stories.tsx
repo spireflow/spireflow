@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import type { TooltipContentProps } from "recharts";
 import {
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Scatter,
+  ScatterChart,
+  Tooltip,
+  XAxis,
+  YAxis,
   ZAxis,
 } from "recharts";
-import type { TooltipContentProps } from "recharts";
 
 const ScatterTooltipContent = ({
   active,

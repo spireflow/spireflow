@@ -1,15 +1,15 @@
-import { RefObject } from "react";
 import { useTranslations } from "next-intl";
+import { RefObject } from "react";
 
-import { Button } from "../../common/shadcn/button";
 import { DeleteIcon } from "../../../assets/icons/DeleteIcon";
+import { Button } from "../../common/shadcn/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "../../common/shadcn/dialog";
 
 interface RemoveEventModalProps {

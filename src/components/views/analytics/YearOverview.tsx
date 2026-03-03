@@ -1,25 +1,26 @@
 import { useTranslations } from "next-intl";
 import {
-  AreaChart,
   Area,
-  XAxis,
-  YAxis,
+  AreaChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
-import { Card } from "../../common/Card";
+
+import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { useAppStore } from "../../../store/appStore";
 import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
 import {
   OverviewMonthData,
   YearOverviewCustomLegendProps,
   YearOverviewCustomTooltipProps,
   YearOverviewProps,
 } from "./types";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
-import { useChartAnimation } from "../../../hooks/useChartAnimation";
-import { useAppStore } from "../../../store/appStore";
 
 const YearOverviewTooltip = ({
   active,

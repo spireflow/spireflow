@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, MessageSquare, Loader2 } from "lucide-react";
+import { Loader2, MessageSquare, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Card } from "../../common/Card";

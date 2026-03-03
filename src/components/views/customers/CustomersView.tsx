@@ -2,26 +2,26 @@
 
 import { useTranslations } from "next-intl";
 
+import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
 import { SearchIcon } from "../../../assets/icons/SearchIcon";
 import { Button } from "../../common/shadcn/button";
-import { Chip } from "../../forms/Chip";
 import {
   InputGroup,
-  InputGroupInput,
   InputGroupAddon,
+  InputGroupInput,
 } from "../../common/shadcn/input-group";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../../common/shadcn/tooltip";
+import { Chip } from "../../forms/Chip";
 import { CustomersCountryDropdown } from "./CustomersCountryDropdown";
 import { CustomersPagination } from "./CustomersPagination";
 import { CustomersSortDropdown } from "./CustomersSortDropdown";
 import { CustomersTable } from "./CustomersTable";
-import { useCustomers } from "./useCustomers";
-import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from "../../common/shadcn/tooltip";
 import { Customer } from "./types";
+import { useCustomers } from "./useCustomers";
 
 interface CustomersViewProps {
   customers: Customer[];

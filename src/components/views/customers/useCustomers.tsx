@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -6,11 +5,12 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { useTable } from "../../../hooks/useTable";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
-import { Customer, CustomerColumns, CustomerFilters } from "./types";
+import { useTable } from "../../../hooks/useTable";
 import { exportToXLSX } from "../../../utils/exportToXLSX";
+import { Customer, CustomerColumns, CustomerFilters } from "./types";
 
 const columnHelper = createColumnHelper<CustomerColumns>();
 

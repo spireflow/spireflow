@@ -1,20 +1,21 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useTranslations } from "next-intl";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
+import DatePicker from "react-datepicker";
+
+import { CalendarIcon } from "../../assets/icons/CalendarIcon";
+import { Button } from "../../components/common/shadcn/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "../../components/common/shadcn/dialog";
-import { Button } from "../../components/common/shadcn/button";
-import { CalendarIcon } from "../../assets/icons/CalendarIcon";
 import type { CustomDateRange } from "../../store/dateRangeStore";
 
 const toISODate = (date: Date): string => date.toISOString().split("T")[0];

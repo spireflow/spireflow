@@ -1,13 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { Eye, EyeOff, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
+import * as React from "react";
 
 import { Card } from "../../common/Card";
+import { Button } from "../../common/shadcn/button";
 import { Input } from "../../common/shadcn/input";
 import { Label } from "../../common/shadcn/label";
-import { Button } from "../../common/shadcn/button";
 
 export const InputFieldsForm = () => {
   const t = useTranslations("forms");

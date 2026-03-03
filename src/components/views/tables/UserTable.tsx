@@ -1,31 +1,26 @@
 "use client";
 
-import * as React from "react";
 import {
-  useReactTable,
+  ColumnDef,
+  flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  flexRender,
-  ColumnDef,
   SortingState,
+  useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
-import { Edit, Eye, Columns } from "lucide-react";
+import { Columns, Edit, Eye } from "lucide-react";
 import { useTranslations } from "next-intl";
+import * as React from "react";
 
-import { Card } from "../../common/Card";
-import { Button } from "../../common/shadcn/button";
-import { Checkbox } from "../../common/shadcn/checkbox";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../common/shadcn/popover";
-import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
+import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { FilterIcon } from "../../../assets/icons/FilterIcon";
 import { SortIcon } from "../../../assets/icons/SortIcon";
+import { Card } from "../../common/Card";
 import { Badge } from "../../common/shadcn/badge";
+import { Button } from "../../common/shadcn/button";
+import { Checkbox } from "../../common/shadcn/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,6 +30,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../common/shadcn/dropdown-menu";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../common/shadcn/popover";
 
 /** User data structure for the user management table. */
 type User = {

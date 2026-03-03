@@ -1,19 +1,19 @@
 "use client";
 
-import * as React from "react";
 import {
-  useReactTable,
+  ColumnDef,
+  flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  flexRender,
-  ColumnDef,
   SortingState,
+  useReactTable,
 } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
+import * as React from "react";
 
-import { Card } from "../../common/Card";
-import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
+import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
+import { Card } from "../../common/Card";
 
 /** Product data structure for the basic table. */
 type Product = {

@@ -1,7 +1,7 @@
 import { LogoIcon } from "../../assets/icons/LogoIcon";
-import { useAppStore } from "../../store/appStore";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { Link } from "../../i18n/navigation";
+import { useAppStore } from "../../store/appStore";
 
 export const Logo = () => {
   const { isSideMenuOpen } = useAppStore();

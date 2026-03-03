@@ -1,18 +1,18 @@
 "use client";
 
 import { AreaChartComponent } from "./AreaChartComponent";
-import { ScatterChartComponent } from "./ScatterChartComponent";
+import { AreaFillByValueChartComponent } from "./AreaFillByValueChartComponent";
+import { ComposedChartComponent } from "./ComposedChartComponent";
+import { GradientPieChartComponent } from "./GradientPieChartComponent";
 import { LineChartComponent } from "./LineChartComponent";
+import { MixedLineChartComponent } from "./MixedLineChartComponent";
 import { PieChartComponent } from "./PieChartComponent";
 import { RadarChartComponent } from "./RadarChartComponent";
-import { ComposedChartComponent } from "./ComposedChartComponent";
-import { StackedBarChartComponent } from "./StackedBarChartComponent";
 import { RadialBarChartComponent } from "./RadialBarChartComponent";
+import { ScatterChartComponent } from "./ScatterChartComponent";
+import { StackedBarChartComponent } from "./StackedBarChartComponent";
 import { TwoAxisLineChartComponent } from "./TwoAxisLineChartComponent";
-import { MixedLineChartComponent } from "./MixedLineChartComponent";
 import { VerticalBarChartComponent } from "./VerticalBarChartComponent";
-import { AreaFillByValueChartComponent } from "./AreaFillByValueChartComponent";
-import { GradientPieChartComponent } from "./GradientPieChartComponent";
 
 /**
  * Layout container for the charts demo page.

@@ -1,16 +1,16 @@
 "use client";
 
-import { InputFieldsForm } from "./InputFieldsForm";
-import { SelectInputsForm } from "./SelectInputsForm";
-import { TextareaForm } from "./TextareaForm";
-import { ColorPickerForm } from "./ColorPickerForm";
-import { FormValidationForm } from "./FormValidationForm";
-import { FileUploadForm } from "./FileUploadForm";
 import { CheckboxesForm } from "./CheckboxesForm";
-import { RadioButtonsForm } from "./RadioButtonsForm";
-import { ToggleSwitchForm } from "./ToggleSwitchForm";
+import { ColorPickerForm } from "./ColorPickerForm";
 import { DatePickerForm } from "./DatePickerForm";
+import { FileUploadForm } from "./FileUploadForm";
+import { FormValidationForm } from "./FormValidationForm";
+import { InputFieldsForm } from "./InputFieldsForm";
+import { RadioButtonsForm } from "./RadioButtonsForm";
+import { SelectInputsForm } from "./SelectInputsForm";
 import { SlidersForm } from "./SlidersForm";
+import { TextareaForm } from "./TextareaForm";
+import { ToggleSwitchForm } from "./ToggleSwitchForm";
 
 export const FormsView = () => {
   return (

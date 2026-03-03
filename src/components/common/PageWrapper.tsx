@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { ReactNode } from "react";
 
+import { DateRangeSelector } from "../../layout/dateRangeSelect/DateRangeSelector";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,7 +12,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./shadcn/breadcrumb";
-import { DateRangeSelector } from "../../layout/dateRangeSelect/DateRangeSelector";
 
 type LayoutType = "dashboard" | "content" | "table";
 type BreadcrumbCategory = "ecommerce" | "components" | "default";

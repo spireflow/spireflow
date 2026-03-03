@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
+import { Label } from "../label";
 import {
   Select,
   SelectContent,
@@ -9,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../select";
-import { Label } from "../label";
 
 const meta: Meta<typeof Select> = {
   title: "Forms/Select",

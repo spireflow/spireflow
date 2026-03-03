@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
+import { Button } from "../button";
 import {
   Dialog,
   DialogClose,
@@ -10,7 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../dialog";
-import { Button } from "../button";
 import { Input } from "../input";
 import { Label } from "../label";
 
@@ -49,7 +49,8 @@ Built on Radix UI Dialog primitive with accessibility support.
     },
     modal: {
       control: "boolean",
-      description: "Whether dialog is modal (blocks interaction with rest of page)",
+      description:
+        "Whether dialog is modal (blocks interaction with rest of page)",
     },
   },
   decorators: [
@@ -136,7 +137,8 @@ export const Destructive: Story = {
         <DialogHeader>
           <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your data.
+            This action cannot be undone. This will permanently delete your
+            data.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

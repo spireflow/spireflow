@@ -1,14 +1,14 @@
 import { useTranslations } from "next-intl";
 
-import { useSession } from "../../lib/auth-client";
 import { UserIcon } from "../../assets/icons/UserIcon";
+import { useIsFirstRender } from "../../hooks/useIsFirstRender";
+import { useSession } from "../../lib/auth-client";
 import { useAppStore } from "../../store/appStore";
 import { MenuCategory } from "./MenuCategory";
 import { MenuItem } from "./MenuItem";
 import { MenuItemWithSubmenu } from "./MenuItemWithSubmenu";
-import { useIsFirstRender } from "../../hooks/useIsFirstRender";
-import { SideMenuMobileProps } from "./types";
 import { menuConfig } from "./SideMenu";
+import { SideMenuMobileProps } from "./types";
 
 export const SideMenuMobile = ({
   isMobileMenuOpen,

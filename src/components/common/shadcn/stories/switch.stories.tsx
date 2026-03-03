@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Switch } from "../switch";
 import { Label } from "../label";
+import { Switch } from "../switch";
 
 const meta: Meta<typeof Switch> = {
   title: "Forms/Switch",

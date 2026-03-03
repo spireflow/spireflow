@@ -1,6 +1,5 @@
 import { useTranslations } from "next-intl";
 
-import { OrderType, OrdersSelectsProps } from "./types";
 import {
   Select,
   SelectContent,
@@ -8,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../common/shadcn/select";
+import { OrdersSelectsProps, OrderType } from "./types";
 
 export const OrderSelects = ({
   filters,
@@ -31,7 +31,7 @@ export const OrderSelects = ({
       setFilterKey: "productName",
       placeholder: t("selectPlaceholder.allProducts"),
       options: Array.from(
-        new Set(ordersData.map((item) => (item as OrderType).productName))
+        new Set(ordersData.map((item) => (item as OrderType).productName)),
       ),
     },
     {
@@ -39,7 +39,7 @@ export const OrderSelects = ({
       setFilterKey: "user",
       placeholder: t("selectPlaceholder.allUsers"),
       options: Array.from(
-        new Set(ordersData.map((item) => (item as OrderType).user))
+        new Set(ordersData.map((item) => (item as OrderType).user)),
       ),
     },
     {
@@ -83,7 +83,7 @@ export const OrderSelects = ({
       {selectsConfig.map(
         (
           { value, setFilterKey, placeholder, options, specialHandler },
-          index
+          index,
         ) => (
           <div key={index} className="w-full md:w-1/3 mb-4">
             <Select
@@ -99,10 +99,7 @@ export const OrderSelects = ({
                   if (specialHandler) {
                     specialHandler(newValue);
                   } else {
-                    setFilter(
-                      setFilterKey as keyof typeof filters,
-                      newValue
-                    );
+                    setFilter(setFilterKey as keyof typeof filters, newValue);
                   }
                 }
               }}
@@ -120,7 +117,7 @@ export const OrderSelects = ({
               </SelectContent>
             </Select>
           </div>
-        )
+        ),
       )}
     </div>
   );

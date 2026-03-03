@@ -1,23 +1,23 @@
-import React, { Suspense, lazy } from "react";
+import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import React, { lazy, Suspense } from "react";
 import { Geographies, Geography } from "react-simple-maps";
+
+import { AustraliaIcon } from "../../../assets/icons/AustraliaIcon";
+import { EnglishIcon } from "../../../assets/icons/EnglishIcon";
+import { FranceIcon } from "../../../assets/icons/FranceIcon";
+import { NorwayIcon } from "../../../assets/icons/NorwayIcon";
+import { PolishIcon } from "../../../assets/icons/PolishIcon";
+import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
+import { UnitedStatesIcon } from "../../../assets/icons/UnitedStatesIcon";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { Card } from "../../common/Card";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "../../common/shadcn/tooltip";
-import { useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
-
-import { EnglishIcon } from "../../../assets/icons/EnglishIcon";
-import { PolishIcon } from "../../../assets/icons/PolishIcon";
-import { UnitedStatesIcon } from "../../../assets/icons/UnitedStatesIcon";
-import { FranceIcon } from "../../../assets/icons/FranceIcon";
-import { NorwayIcon } from "../../../assets/icons/NorwayIcon";
-import { AustraliaIcon } from "../../../assets/icons/AustraliaIcon";
-import { Card } from "../../common/Card";
-import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { RevenuePerCountryProps } from "./types";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 
 const ComposableMapLazy = lazy(() =>
   import("react-simple-maps").then((module) => ({

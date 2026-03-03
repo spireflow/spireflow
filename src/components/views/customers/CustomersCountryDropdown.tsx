@@ -2,7 +2,6 @@ import { useTranslations } from "next-intl";
 
 import { FilterIcon } from "../../../assets/icons/FilterIcon";
 import { Button } from "../../common/shadcn/button";
-import { CustomersDropdownProps } from "./types";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../common/shadcn/dropdown-menu";
+import { CustomersDropdownProps } from "./types";
 
 export const CustomersCountryDropdown = ({
   options,

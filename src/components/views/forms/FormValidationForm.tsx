@@ -1,14 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Check } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { useTranslations } from "next-intl";
-import { Check } from "lucide-react";
 
 import { Card } from "../../common/Card";
-import { Input } from "../../common/shadcn/input";
 import { Button } from "../../common/shadcn/button";
 import {
   Form,
@@ -18,6 +17,7 @@ import {
   FormItem,
   FormLabel,
 } from "../../common/shadcn/form";
+import { Input } from "../../common/shadcn/input";
 
 // Form Schema for Validation Example using Yup
 const formSchema = yup.object({

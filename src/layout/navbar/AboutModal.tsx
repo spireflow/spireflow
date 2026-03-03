@@ -1,17 +1,17 @@
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 import { GithubIcon } from "../../assets/icons/GithubIcon";
 import { Button } from "../../components/common/shadcn/button";
-import { AboutModalProps } from "./types";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "../../components/common/shadcn/dialog";
 import { useModalKeyboardScroll } from "./hooks/useModalKeyboardScroll";
+import { AboutModalProps } from "./types";
 
 export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
   const [isContributingModalOpen, setIsContributingModalOpen] = useState(false);

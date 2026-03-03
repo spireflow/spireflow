@@ -2,26 +2,26 @@
 
 import { useTranslations } from "next-intl";
 
-import { useOrders } from "./useOrders";
-import { OrdersDateRange } from "./OrdersDateRange";
-import { OrderSelects } from "./OrdersSelects";
-import { OrdersTable } from "./OrdersTable";
-import { OrdersPagination } from "./OrdersPagination";
+import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
 import { SearchIcon } from "../../../assets/icons/SearchIcon";
+import { exportToXLSX } from "../../../utils/exportToXLSX";
 import { Button } from "../../common/shadcn/button";
 import {
   InputGroup,
-  InputGroupInput,
   InputGroupAddon,
+  InputGroupInput,
 } from "../../common/shadcn/input-group";
-import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
 import {
   Tooltip,
-  TooltipTrigger,
   TooltipContent,
+  TooltipTrigger,
 } from "../../common/shadcn/tooltip";
-import { exportToXLSX } from "../../../utils/exportToXLSX";
+import { OrdersDateRange } from "./OrdersDateRange";
+import { OrdersPagination } from "./OrdersPagination";
+import { OrderSelects } from "./OrdersSelects";
+import { OrdersTable } from "./OrdersTable";
 import { OrdersViewProps } from "./types";
+import { useOrders } from "./useOrders";
 
 export const OrdersView = ({ ordersData }: OrdersViewProps) => {
   const t = useTranslations("orders");

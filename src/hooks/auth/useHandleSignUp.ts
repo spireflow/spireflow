@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import * as Yup from "yup";
-import { useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
-import { useRouter } from "../../i18n/navigation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslations } from "next-intl";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 
 import { SignUpData } from "../../components/auth/SignUpForm";
+import { useRouter } from "../../i18n/navigation";
 import { signUp } from "../../lib/auth-client";
 import { isPresentationModeClient } from "../../utils/presentationMode";
 

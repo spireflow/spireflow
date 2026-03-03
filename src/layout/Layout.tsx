@@ -1,16 +1,16 @@
 "use client";
 
-import React, { ReactNode, useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 
-import { Navbar } from "./navbar/Navbar";
-import { SideMenu } from "./sideMenu/SideMenu";
-import { useAppStore } from "../store/appStore";
-import { FullScreenLoader, LOADER_DURATION_MS } from "./FullScreenLoader";
-import { SettingsDrawer } from "./settings/SettingsDrawer";
 import { SettingsIcon } from "../assets/icons/SettingsIcon";
 import { FontManager } from "../hooks/useFontManager";
+import { useAppStore } from "../store/appStore";
+import { FullScreenLoader, LOADER_DURATION_MS } from "./FullScreenLoader";
+import { Navbar } from "./navbar/Navbar";
+import { SettingsDrawer } from "./settings/SettingsDrawer";
+import { SideMenu } from "./sideMenu/SideMenu";
 
 interface LayoutProps {
   children: ReactNode;

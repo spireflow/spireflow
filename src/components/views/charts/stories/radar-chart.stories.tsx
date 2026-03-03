@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
-  RadarChart,
-  Radar,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Tooltip,
   Legend,
+  PolarAngleAxis,
+  PolarGrid,
+  PolarRadiusAxis,
+  Radar,
+  RadarChart,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts";
 
 import { ChartTooltip } from "./ChartTooltip";
@@ -50,7 +50,9 @@ const RadarChartDemo = ({
     <div className="w-full h-full text-primaryText">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
-          {showGrid && <PolarGrid className="stroke-mainBorder" opacity={0.5} />}
+          {showGrid && (
+            <PolarGrid className="stroke-mainBorder" opacity={0.5} />
+          )}
           <PolarAngleAxis
             dataKey={nameKey}
             tick={{ fill: "var(--color-secondaryText)", fontSize: 11 }}
@@ -60,10 +62,7 @@ const RadarChartDemo = ({
             tick={{ fill: "var(--color-secondaryText)", fontSize: 10 }}
             axisLine={false}
           />
-          <Tooltip
-            content={<ChartTooltip />}
-            isAnimationActive={false}
-          />
+          <Tooltip content={<ChartTooltip />} isAnimationActive={false} />
           {showLegend && (
             <Legend wrapperStyle={{ color: "var(--color-primaryText)" }} />
           )}

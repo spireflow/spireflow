@@ -3,11 +3,11 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationPrevious,
   PaginationNext,
-  PaginationEllipsis,
+  PaginationPrevious,
 } from "../pagination";
 
 const meta: Meta<typeof Pagination> = {

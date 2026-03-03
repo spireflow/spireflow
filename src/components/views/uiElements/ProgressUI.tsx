@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { useTranslations } from "next-intl";
+import * as React from "react";
 
 import { Card } from "../../common/Card";
 import { Progress } from "../../common/shadcn/progress";

@@ -1,6 +1,6 @@
-import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
+import * as React from "react";
 
 import { cn } from "../../../lib/utils";
 
@@ -32,7 +32,7 @@ const Checkbox = React.forwardRef<
     ref={ref}
     className={cn(
       "peer h-4 w-4 shrink-0 rounded-sm border border-checkboxBorder disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50 data-[state=checked]:bg-containedButtonBg data-[state=checked]:text-white data-[state=checked]:border-containedButtonBg",
-      className
+      className,
     )}
     onKeyDown={(e) => {
       if (e.key === "Enter" && !props.disabled) {

@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
 import { ChartTooltip } from "./ChartTooltip";
@@ -79,7 +79,9 @@ const StackedBarChartDemo = ({
                 tick={{ fill: "currentColor", fontSize: 12 }}
                 stroke="currentColor"
                 opacity={0.5}
-                tickFormatter={(value: number) => Intl.NumberFormat("en").format(value)}
+                tickFormatter={(value: number) =>
+                  Intl.NumberFormat("en").format(value)
+                }
               />
             </>
           ) : (
@@ -104,7 +106,10 @@ const StackedBarChartDemo = ({
           )}
           <Tooltip
             content={<ChartTooltip />}
-            cursor={{ fill: "var(--color-chartCursorBg)", stroke: "var(--color-chartVerticalLine)" }}
+            cursor={{
+              fill: "var(--color-chartCursorBg)",
+              stroke: "var(--color-chartVerticalLine)",
+            }}
             isAnimationActive={false}
           />
           {showLegend && (

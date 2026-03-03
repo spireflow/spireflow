@@ -4,22 +4,22 @@ import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 
 import { LoginModal } from "../../components/auth/LoginModal";
-import { SignUpModal } from "../../components/auth/SignUpModal";
-import { SideMenuMobile } from "../sideMenu/SideMenuMobile";
 import { LogoutModal } from "../../components/auth/LogoutModal";
-import { AboutModal } from "./AboutModal";
-import { ChangelogModal } from "./ChangelogModal";
-import { ThemeButton } from "./ThemeButton";
-import { NotificationsButton } from "./NotificationsButton";
-import { UserButton } from "./UserButton";
-import { HamburgerButton } from "./HamburgerButton";
-import { FloatingMenuButton } from "./FloatingMenuButton";
-import { useNavbar } from "./hooks/useNavbar";
-import { useNavbarModals } from "./hooks/useNavbarModals";
-import { SearchInput } from "./SearchInput";
-import { Logo } from "../sideMenu/Logo";
+import { SignUpModal } from "../../components/auth/SignUpModal";
 import { useAppStore } from "../../store/appStore";
 import { BREAKPOINTS } from "../../styles/breakpoints";
+import { Logo } from "../sideMenu/Logo";
+import { SideMenuMobile } from "../sideMenu/SideMenuMobile";
+import { AboutModal } from "./AboutModal";
+import { ChangelogModal } from "./ChangelogModal";
+import { FloatingMenuButton } from "./FloatingMenuButton";
+import { HamburgerButton } from "./HamburgerButton";
+import { useNavbar } from "./hooks/useNavbar";
+import { useNavbarModals } from "./hooks/useNavbarModals";
+import { NotificationsButton } from "./NotificationsButton";
+import { SearchInput } from "./SearchInput";
+import { ThemeButton } from "./ThemeButton";
+import { UserButton } from "./UserButton";
 
 export const Navbar = () => {
   const t = useTranslations("navbar");

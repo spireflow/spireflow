@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
-import { LoginForm } from "../../../../components/auth/LoginForm";
 import { AuthLogo } from "../../../../components/auth/AuthLogo";
+import { LoginForm } from "../../../../components/auth/LoginForm";
 
 const Login = () => {
   return (

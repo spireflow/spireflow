@@ -1,25 +1,25 @@
 "use client";
 
-import * as React from "react";
 import {
-  useReactTable,
-  getCoreRowModel,
-  getSortedRowModel,
-  getFilteredRowModel,
-  flexRender,
   ColumnDef,
-  SortingState,
   ColumnFiltersState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
 } from "@tanstack/react-table";
 import { Edit, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import * as React from "react";
 
+import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
+import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { Card } from "../../common/Card";
-import { Input } from "../../common/shadcn/input";
 import { Button } from "../../common/shadcn/button";
 import { Checkbox } from "../../common/shadcn/checkbox";
-import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
-import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
+import { Input } from "../../common/shadcn/input";
 
 /** Transaction data structure for the advanced table. */
 type Transaction = {

@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import type { FontType } from "../styles/fonts";
 import { BREAKPOINTS } from "../styles/breakpoints";
+import type { FontType } from "../styles/fonts";
 
 export type SidebarDefaultState = "expanded" | "collapsed";
 

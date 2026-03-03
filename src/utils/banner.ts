@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { createRequire } from "node:module";
+import { resolve } from "node:path";
 
 const require = createRequire(import.meta.url);
 const packageJson = require("../../package.json");

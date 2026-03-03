@@ -1,23 +1,23 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
-  ScatterChart,
+  CartesianGrid,
+  Cell,
+  ResponsiveContainer,
   Scatter,
+  ScatterChart,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
   ZAxis,
-  Cell,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
-import { CustomerSatisfactionProps } from "./types";
-import { Card } from "../../common/Card";
-import { BaseTooltip } from "../../common/BaseTooltip";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { BaseTooltip } from "../../common/BaseTooltip";
+import { Card } from "../../common/Card";
+import { CustomerSatisfactionProps } from "./types";
 
 interface CustomerScatterTooltipProps {
   active?: boolean;

@@ -1,23 +1,23 @@
-import { ComponentType } from "react";
 import { useTranslations } from "next-intl";
+import { ComponentType } from "react";
 
 import { AnalyticsIcon } from "../../assets/icons/AnalyticsIcon";
+import { ArrowLeftIcon } from "../../assets/icons/ArrowLeftIcon";
+import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
 import { CalendarIcon } from "../../assets/icons/CalendarIcon";
 import { DashboardIcon } from "../../assets/icons/DashboardIcon";
-import { PasswordIcon } from "../../assets/icons/PasswordIcon";
 import { DonutIcon } from "../../assets/icons/DonutIcon";
 import { EcommerceIcon } from "../../assets/icons/EcommerceIcon";
-import { UserProfileIcon } from "../../assets/icons/UserProfileIcon";
 import { FormsIcon } from "../../assets/icons/FormsIcon";
-import { UIElementsIcon } from "../../assets/icons/UIElementsIcon";
+import { PasswordIcon } from "../../assets/icons/PasswordIcon";
 import { TablesIcon } from "../../assets/icons/TablesIcon";
+import { UIElementsIcon } from "../../assets/icons/UIElementsIcon";
+import { UserProfileIcon } from "../../assets/icons/UserProfileIcon";
 import { useAppStore } from "../../store/appStore";
+import { Logo } from "./Logo";
 import { MenuCategory } from "./MenuCategory";
 import { MenuItem } from "./MenuItem";
 import { MenuItemWithSubmenu } from "./MenuItemWithSubmenu";
-import { Logo } from "./Logo";
-import { ArrowLeftIcon } from "../../assets/icons/ArrowLeftIcon";
-import { ArrowRightIcon } from "../../assets/icons/ArrowRightIcon";
 
 type MenuConfigEntry =
   | { type: "category"; titleKey: string }
