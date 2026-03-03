@@ -30,12 +30,14 @@ export const useNavbar = () => {
   const themes = ["light", "dark"];
   const themesDisplayNames = ["light", "dark"];
 
+  /** Intentionally runs only on mount — closes mobile menu if viewport is desktop-sized on initial load */
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (window.innerWidth < BREAKPOINTS.xl && isMobileMenuOpen) {
         toggleMobileMenu();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const userIconBtnRef = useRef<HTMLButtonElement | null>(null);

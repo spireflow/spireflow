@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useCallback, useMemo, useState, useEffect } from "react";
 import {
   getCoreRowModel,
   getSortedRowModel,
@@ -97,16 +97,19 @@ export const useOrders = ({ orders }: useOrdersProps) => {
     // Reset the currentPage whenever a filter changes
     setCurrentPage(0);
   };
-  const getFilter = (filterType: keyof Filters): FilterValues => {
-    const value = filters[filterType];
+  const getFilter = useCallback(
+    (filterType: keyof Filters): FilterValues => {
+      const value = filters[filterType];
 
-    if (filterType === "startDate" || filterType === "endDate") {
-      // Ensure the returned type for startDate and endDate is always either a string or null
-      return typeof value === "string" || value === null ? value : null;
-    }
+      if (filterType === "startDate" || filterType === "endDate") {
+        // Ensure the returned type for startDate and endDate is always either a string or null
+        return typeof value === "string" || value === null ? value : null;
+      }
 
-    return value;
-  };
+      return value;
+    },
+    [filters],
+  );
 
   const toSelectFilters = (filters: Filters): SelectFilters => {
     return {
@@ -181,7 +184,7 @@ export const useOrders = ({ orders }: useOrdersProps) => {
     }
 
     return result;
-  }, [searchQuery, filters, ordersData]);
+  }, [searchQuery, ordersData, getFilter]);
 
   const table = useReactTable({
     data: filteredData,

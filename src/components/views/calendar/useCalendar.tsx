@@ -148,7 +148,15 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
       setEventTitle("");
       setSelectedDate("");
     }
-  }, [eventTitle, eventStart, eventEnd, selectedDate, currentEvents, t]);
+  }, [
+    eventTitle,
+    eventStart,
+    eventEnd,
+    selectedDate,
+    currentEvents,
+    t,
+    handleAddEventModalClose,
+  ]);
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     handleAddEventModalOpen(selectInfo.startStr);
@@ -187,7 +195,7 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
 
   const handleEventResize = (resizeInfo: EventResizeDoneArg) => {
     window.confirm(
-      `Change '${resizeInfo.event.title}' to end at ${resizeInfo.event.end}?`
+      `Change '${resizeInfo.event.title}' to end at ${resizeInfo.event.end}?`,
     );
   };
 

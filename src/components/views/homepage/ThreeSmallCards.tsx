@@ -247,7 +247,7 @@ export const ThreeSmallCards = ({
                 <TooltipContent
                   side="right"
                   align="start"
-                  alignOffset={-30}
+                  alignOffset={-14}
                   sideOffset={-4}
                 >
                   <p>{t("monthlyTarget")}</p>

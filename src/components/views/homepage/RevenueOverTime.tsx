@@ -149,9 +149,9 @@ export const RevenueOverTime = ({
   const customHeader = (
     <div className="flex items-center justify-between">
       <div className="flex flex-col gap-0.5">
-        <span className="text-sm 1xl:text-base 3xl:text-xl font-semibold text-primaryText">
+        <h3 className="text-sm 1xl:text-base 3xl:text-lg font-semibold text-primaryText">
           {t("title")}
-        </span>
+        </h3>
         <span style={{ fontSize: "0.85rem", color: "rgb(140, 145, 150)" }}>
           Historical performance
         </span>

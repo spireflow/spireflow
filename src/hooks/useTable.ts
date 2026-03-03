@@ -14,14 +14,14 @@ type Filters<T> = {
  * @returns {Object} Table state and control functions
  */
 export const useTable = <T extends Record<string, unknown>>(
-  initialFilters: T
+  initialFilters: T,
 ) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [filters, setFilters] = useState<Filters<T>>(
-    initialFilters as Filters<T>
+    initialFilters as Filters<T>,
   );
 
   const setFilter = useCallback((filterKey: keyof T, value: T[keyof T]) => {
@@ -40,9 +40,12 @@ export const useTable = <T extends Record<string, unknown>>(
     });
   }, []);
 
-  const getFilter = (filterType: keyof T): T[keyof T] | undefined => {
-    return filters[filterType as string];
-  };
+  const getFilter = useCallback(
+    (filterType: keyof T): T[keyof T] | undefined => {
+      return filters[filterType as string];
+    },
+    [filters],
+  );
 
   const resetFilters = () => {
     setFilters(initialFilters);

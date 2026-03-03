@@ -95,7 +95,7 @@ export const Layout = ({ children }: LayoutProps) => {
         clearTimeout(animationTimeoutRef.current);
       }
     };
-  }, [isAuthPage]);
+  }, [isAuthPage, setIsInitialLoad, setShouldStartChartAnimations]);
 
   return (
     <>

@@ -45,10 +45,11 @@ export const Navbar = () => {
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
+    const navbarNode = navbarRef.current;
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (navbarRef.current) {
-        navbarRef.current.style.transform = "";
+      if (navbarNode) {
+        navbarNode.style.transform = "";
       }
     };
   }, [fixedNavbar]);
