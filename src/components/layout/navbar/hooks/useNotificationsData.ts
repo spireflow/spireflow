@@ -9,6 +9,10 @@ export interface Notification {
   isNew: boolean;
 }
 
+/**
+ * Fetches notification data from the `/api/notifications` server-side route on mount.
+ * This route exists so notification data can be fetched server-side (similar to getData).
+ */
 export const useNotificationsData = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,8 +21,6 @@ export const useNotificationsData = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        // Fetch from our Next.js API route (server-side)
-        // I created this route to be able to fetch data serverside like in getData
         const response = await fetch("/api/notifications");
 
         if (!response.ok) {

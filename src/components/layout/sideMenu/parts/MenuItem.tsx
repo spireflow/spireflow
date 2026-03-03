@@ -30,7 +30,7 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
   };
 
   useEffect(() => {
-    // Handling active path is inside useEffect, because otherwise it won't work if it's prerendered as static HTML (SSG)
+    /** Handling active path is inside useEffect because it won't work if prerendered as static HTML (SSG) */
     const normalizedPathname = currentPathname?.endsWith("/")
       ? currentPathname.slice(0, -1)
       : currentPathname;
@@ -39,7 +39,7 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
     setIsActive(normalizedPathname === normalizedPath);
   }, [currentPathname, path]);
 
-  // First render check needed to prevent hydration mismatch errors
+  /** First render check needed to prevent hydration mismatch errors */
   const isFirstRender = useIsFirstRender();
   if (isFirstRender) return null;
 

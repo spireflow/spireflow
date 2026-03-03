@@ -7,6 +7,10 @@ import { useSession } from "../../../../lib/auth-client";
 import { useAppStore } from "../../../../store/appStore";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 
+/**
+ * Core navbar hook — aggregates theme, language, session, mobile menu state,
+ * and all dropdown instances used by navbar sub-components.
+ */
 export const useNavbar = () => {
   const { theme, setTheme } = useTheme();
   const [currentLanguage, setCurrentLanguage] = useState("en");
@@ -14,6 +18,10 @@ export const useNavbar = () => {
   const t = useTranslations("navbar");
   const { data: sessionData, isPending } = useSession();
 
+  /**
+   * Returns `null` while the session is loading to avoid flashing
+   * logged-in UI before auth state is resolved.
+   */
   const session = !isPending
     ? {
         username: sessionData?.user?.email || null,
@@ -47,6 +55,7 @@ export const useNavbar = () => {
   const searchDropdown = useDropdown();
   const notificationsDropdown = useDropdown();
 
+  /** Detects the active locale from the URL path prefix on mount. */
   useEffect(() => {
     const getCurrentLanguage = () => {
       if (typeof window !== "undefined") {
@@ -62,6 +71,10 @@ export const useNavbar = () => {
     setTheme(themeName);
   };
 
+  /**
+   * Cycles to the previous theme in the list.
+   * Uses modular arithmetic so it wraps from the first to the last theme.
+   */
   const cycleThemeUp = () => {
     if (typeof theme === "string") {
       const currentThemeIndex = themes.indexOf(theme);
@@ -71,6 +84,10 @@ export const useNavbar = () => {
     }
   };
 
+  /**
+   * Cycles to the next theme in the list.
+   * Uses modular arithmetic so it wraps from the last to the first theme.
+   */
   const cycleThemeDown = () => {
     if (typeof theme === "string") {
       const currentThemeIndex = themes.indexOf(theme);

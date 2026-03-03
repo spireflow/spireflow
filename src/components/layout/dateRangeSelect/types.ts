@@ -1,0 +1,8 @@
+import type { CustomDateRange } from "../../../store/dateRangeStore";
+
+export interface CustomDateRangeDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onApply: (range: CustomDateRange) => void;
+  initialRange: CustomDateRange | null;
+}

@@ -35,11 +35,11 @@ export const useHandleSignUp = () => {
   const router = useRouter();
   const t = useTranslations("auth");
 
-  // Refs for preventing rapid-fire form submissions (e.g., holding Enter key)
+  /** Refs for preventing rapid-fire form submissions (e.g., holding Enter key) */
   const isSubmittingRef = useRef(false);
   const lastSubmitTimeRef = useRef(0);
 
-  // Map Better Auth error messages to translation keys
+  /** Map Better Auth error messages to translation keys */
   const mapSignUpError = useCallback(
     (errorMessage: string): string => {
       if (
@@ -61,7 +61,7 @@ export const useHandleSignUp = () => {
 
   const handleSignUp = useCallback(
     async (data: SignUpData) => {
-      // Check if running in presentation mode (no backend)
+      /** Check if running in presentation mode (no backend) */
       if (isPresentationModeClient()) {
         alert(
           "Authentication is disabled in the demo version. Check README.md to find information on how to connect the backend to make it work.",
@@ -82,7 +82,7 @@ export const useHandleSignUp = () => {
 
         if (error) {
           setLoading(false);
-          // Map Better Auth errors to user-friendly messages
+          /** Map Better Auth errors to user-friendly messages */
           const errorMessage = mapSignUpError(
             error.message || error.code || "UNKNOWN_ERROR",
           );
@@ -90,7 +90,7 @@ export const useHandleSignUp = () => {
           return;
         }
 
-        // Success - DON'T remove spinner, let it stay until page reloads
+        /** Success — DON'T remove spinner, let it stay until page reloads */
         router.push("/");
         location.reload();
       } catch (error: unknown) {
@@ -136,12 +136,12 @@ export const useHandleSignUp = () => {
     async (data: SignUpData) => {
       const now = Date.now();
 
-      // Prevent rapid-fire submissions (e.g., user holding Enter key)
+      /** Prevent rapid-fire submissions (e.g., user holding Enter key) */
       if (isSubmittingRef.current) {
         return;
       }
 
-      // Enforce cooldown between submissions to prevent spam
+      /** Enforce cooldown between submissions to prevent spam */
       if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
         return;
       }
@@ -160,7 +160,7 @@ export const useHandleSignUp = () => {
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
-      // This "error-hide" logic fixes bug that forces double clicking on login button on mobile when errors are visible
+      /** This "error-hide" logic fixes bug that forces double clicking on login button on mobile when errors are visible */
       const target = event.target as HTMLElement;
       if (target.closest(".ignore-error-hide")) {
         return;
@@ -175,7 +175,7 @@ export const useHandleSignUp = () => {
     };
   }, []);
 
-  // Effects necessary to not show both error messages at the same time if not needed
+  /** Effects necessary to not show both error messages at the same time if not needed */
   useEffect(() => {
     if (errors.email) {
       setShowEmailError(true);

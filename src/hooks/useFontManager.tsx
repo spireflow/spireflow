@@ -5,11 +5,10 @@ import { useEffect } from "react";
 import { useAppStore } from "../store/appStore";
 
 /**
- * Standalone component that handles font switching.
- * Uses class toggle instead of CSS variable for better Firefox compatibility.
+ * Handles font switching via class toggle on document.body.
  * Preloads both fonts on mount to prevent flash when switching.
  */
-export const FontManager = () => {
+export const useFontManager = () => {
   const fontType = useAppStore((state) => state.fontType);
 
   /** Preloads both fonts on mount to prevent flash on Firefox. */
@@ -26,6 +25,4 @@ export const FontManager = () => {
       document.body.classList.remove("font-alternative");
     }
   }, [fontType]);
-
-  return null;
 };

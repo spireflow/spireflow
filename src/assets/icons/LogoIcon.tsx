@@ -24,7 +24,9 @@ export const LogoIcon = () => (
   </svg>
 );
 
-// COLLECTION: Scarlab Solid Oval Interface Icons
-// LICENSE: MIT License
-// AUTHOR: scarlab
-// SOURCE: https://www.svgrepo.com/svg/507212/chart-bar-alt-square
+/**
+ * COLLECTION: Scarlab Solid Oval Interface Icons
+ * LICENSE: MIT License
+ * AUTHOR: scarlab
+ * SOURCE: https://www.svgrepo.com/svg/507212/chart-bar-alt-square
+ */

@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
-import { FontManager } from "../../hooks/useFontManager";
+import { useFontManager } from "../../hooks/useFontManager";
 import { useAppStore } from "../../store/appStore";
 import { FullScreenLoader, LOADER_DURATION_MS } from "./FullScreenLoader";
 import { Navbar } from "./navbar/Navbar";
@@ -17,6 +17,8 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
+  useFontManager();
+
   const {
     isMobileMenuOpen,
     toggleMobileMenu,
@@ -25,7 +27,7 @@ export const Layout = ({ children }: LayoutProps) => {
   } = useAppStore();
 
   const [showLoader, setShowLoader] = useState(() => {
-    // Check pathname synchronously to avoid flash on auth pages
+    /** Check pathname synchronously to avoid flash on auth pages */
     if (typeof window !== "undefined") {
       const pathname = window.location.pathname;
       return !pathname.includes("/login") && !pathname.includes("/register");
@@ -52,7 +54,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
   const { setTheme, themes } = useTheme();
 
-  // Set dark as theme if theme is not recognized
+  /** Set dark as default theme if stored theme is not recognized */
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
 
@@ -61,11 +63,13 @@ export const Layout = ({ children }: LayoutProps) => {
     }
   }, [setTheme, themes]);
 
-  // Show loader screen for 1 second on first render
-  // Start chart animations at 80% of loader duration
-  // Chart animations are difficult to time properly, that's why they're disabled on default
+  /**
+   * Show loader screen for 1 second on first render.
+   * Start chart animations at 80% of loader duration.
+   * Chart animations are disabled by default since timing them precisely is difficult.
+   */
   useEffect(() => {
-    // Skip loader entirely on auth pages
+    /** Skip loader entirely on auth pages */
     if (isAuthPage) {
       setShowLoader(false);
       setIsInitialLoad(false);
@@ -76,7 +80,7 @@ export const Layout = ({ children }: LayoutProps) => {
     if (!loaderInitializedRef.current) {
       loaderInitializedRef.current = true;
 
-      // Start chart animations at 80% of loader duration
+      /** Start chart animations at 80% of loader duration */
       animationTimeoutRef.current = setTimeout(() => {
         setShouldStartChartAnimations(true);
       }, LOADER_DURATION_MS * 0.8);
@@ -99,7 +103,6 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
-      <FontManager />
       {/* Fixed Settings Button - Desktop Only */}
       {!pathsWithNoLayout.includes(currentPathname) && (
         <div className="hidden xl:block fixed bottom-6 right-4 z-50">

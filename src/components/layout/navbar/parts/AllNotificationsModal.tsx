@@ -1,7 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { RefObject, useState } from "react";
+import { RefObject } from "react";
 
 import { BellIcon } from "../../../../assets/icons/BellIcon";
 import { CheckIcon } from "../../../../assets/icons/CheckIcon";
@@ -16,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../../common/shadcn/dialog";
+import { useNotificationsModal } from "../hooks/useNotifications";
 import type { Notification } from "../hooks/useNotificationsData";
 
 interface AllNotificationsModalProps {
@@ -25,18 +25,24 @@ interface AllNotificationsModalProps {
   returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }
 
-type FilterType = "all" | "new" | "read";
-
 export const AllNotificationsModal = ({
   closeModal,
   notifications,
   onNotificationsUpdate,
   returnFocusRef,
 }: AllNotificationsModalProps) => {
-  const t = useTranslations("notificationsUI");
-  const [filter, setFilter] = useState<FilterType>("all");
-  const [localNotifications, setLocalNotifications] =
-    useState<Notification[]>(notifications);
+  const {
+    t,
+    filter,
+    setFilter,
+    filteredNotifications,
+    handleMarkAsRead,
+    handleMarkAllAsRead,
+    newCount,
+  } = useNotificationsModal({
+    notifications,
+    onNotificationsUpdate,
+  });
 
   const getIcon = (iconType: string) => {
     switch (iconType) {
@@ -52,32 +58,6 @@ export const AllNotificationsModal = ({
         return <BellIcon />;
     }
   };
-
-  const filteredNotifications = localNotifications.filter((n) => {
-    if (filter === "new") return n.isNew;
-    if (filter === "read") return !n.isNew;
-    return true;
-  });
-
-  const handleMarkAsRead = (id: string) => {
-    setLocalNotifications((prev) => {
-      const updated = prev.map((n) =>
-        n.id === id ? { ...n, isNew: false } : n,
-      );
-      onNotificationsUpdate?.(updated);
-      return updated;
-    });
-  };
-
-  const handleMarkAllAsRead = () => {
-    setLocalNotifications((prev) => {
-      const updated = prev.map((n) => ({ ...n, isNew: false }));
-      onNotificationsUpdate?.(updated);
-      return updated;
-    });
-  };
-
-  const newCount = localNotifications.filter((n) => n.isNew).length;
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>

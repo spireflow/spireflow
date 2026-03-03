@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+/**
+ * Centralized open/close state for all navbar-triggered modals
+ * (login, sign-up, logout, about, changelog).
+ * Provides switch helpers that close one auth modal before opening the other.
+ */
 export const useNavbarModals = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
@@ -29,11 +34,13 @@ export const useNavbarModals = () => {
     setIsSignUpModalOpen(true);
   };
 
+  /** Closes the login modal and immediately opens sign-up (seamless auth form swap). */
   const switchToSignUp = () => {
     setIsLoginModalOpen(false);
     setIsSignUpModalOpen(true);
   };
 
+  /** Closes the sign-up modal and immediately opens login (seamless auth form swap). */
   const switchToSignIn = () => {
     setIsSignUpModalOpen(false);
     setIsLoginModalOpen(true);

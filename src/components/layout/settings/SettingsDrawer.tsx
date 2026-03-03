@@ -1,12 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
-import { useState } from "react";
 
 import { GithubIcon } from "../../../assets/icons/GithubIcon";
-import { useAppStore } from "../../../store/appStore";
 import {
   Drawer,
   DrawerClose,
@@ -27,6 +23,7 @@ import {
 import { Switch } from "../../common/shadcn/switch";
 import { HomepageLayoutSection } from "./parts/HomepageLayoutSection";
 import { SidebarModeSection } from "./parts/SidebarModeSection";
+import { useSettings } from "./useSettings";
 
 interface SettingsDrawerProps {
   children?: React.ReactNode;
@@ -39,25 +36,19 @@ export const SettingsDrawer = ({
   open: externalOpen,
   onOpenChange: externalOnOpenChange,
 }: SettingsDrawerProps) => {
-  const t = useTranslations("settings");
-  const { theme, setTheme } = useTheme();
-  const fontType = useAppStore((state) => state.fontType);
-  const setFontType = useAppStore((state) => state.setFontType);
-  const chartAnimationsEnabled = useAppStore(
-    (state) => state.chartAnimationsEnabled,
-  );
-  const setChartAnimationsEnabled = useAppStore(
-    (state) => state.setChartAnimationsEnabled,
-  );
-  const fixedNavbar = useAppStore((state) => state.fixedNavbar);
-  const setFixedNavbar = useAppStore((state) => state.setFixedNavbar);
-  const [internalOpen, setInternalOpen] = useState(false);
-
-  const isControlled = externalOpen !== undefined;
-  const open = isControlled ? externalOpen : internalOpen;
-  const setOpen = isControlled
-    ? (externalOnOpenChange ?? (() => {}))
-    : setInternalOpen;
+  const {
+    t,
+    theme,
+    setTheme,
+    fontType,
+    setFontType,
+    chartAnimationsEnabled,
+    setChartAnimationsEnabled,
+    fixedNavbar,
+    setFixedNavbar,
+    open,
+    setOpen,
+  } = useSettings({ open: externalOpen, onOpenChange: externalOnOpenChange });
 
   return (
     <Drawer direction="right" open={open} onOpenChange={setOpen}>

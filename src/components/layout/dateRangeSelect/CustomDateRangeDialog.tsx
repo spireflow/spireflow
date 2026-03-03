@@ -2,12 +2,9 @@
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
-import type { CustomDateRange } from "../../../store/dateRangeStore";
 import { Button } from "../../common/shadcn/button";
 import {
   Dialog,
@@ -17,17 +14,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../common/shadcn/dialog";
-
-const toISODate = (date: Date): string => date.toISOString().split("T")[0];
-
-const parseDate = (str: string): Date => new Date(str + "T00:00:00");
-
-interface CustomDateRangeDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onApply: (range: CustomDateRange) => void;
-  initialRange: CustomDateRange | null;
-}
+import type { CustomDateRangeDialogProps } from "./types";
+import { useCustomDateRangeDialog } from "./useRangeSelect";
 
 export const CustomDateRangeDialog = ({
   open,
@@ -35,46 +23,20 @@ export const CustomDateRangeDialog = ({
   onApply,
   initialRange,
 }: CustomDateRangeDialogProps) => {
-  const t = useTranslations("dateRange");
-  const startPickerRef = useRef<DatePicker>(null);
-  const endPickerRef = useRef<DatePicker>(null);
-
-  const today = new Date();
-  const todayStr = toISODate(today);
-  const fiveYearsAgo = new Date(
-    today.getFullYear() - 5,
-    today.getMonth(),
-    today.getDate(),
-  );
-
-  const [fromDate, setFromDate] = useState<Date>(
-    parseDate(initialRange?.from ?? todayStr),
-  );
-  const [toDate, setToDate] = useState<Date>(
-    parseDate(initialRange?.to ?? todayStr),
-  );
-
-  const handleOpenChange = (nextOpen: boolean) => {
-    if (nextOpen) {
-      setFromDate(parseDate(initialRange?.from ?? todayStr));
-      setToDate(parseDate(initialRange?.to ?? todayStr));
-    }
-    onOpenChange(nextOpen);
-  };
-
-  const handleApply = () => {
-    const fromStr = toISODate(fromDate);
-    const toStr = toISODate(toDate);
-
-    const normalizedFrom = fromStr <= toStr ? fromStr : toStr;
-    const normalizedTo = fromStr <= toStr ? toStr : fromStr;
-
-    onApply({ from: normalizedFrom, to: normalizedTo });
-    onOpenChange(false);
-  };
-
-  const dateInputClasses =
-    "pl-3 p-2 text-sm 3xl:text-base bg-inputBg hover:bg-inputBgHover w-full h-[2.3rem] 3xl:h-[2.6rem] border rounded-md border-inputBorder text-primaryText placeholder-secondaryText hover:border-inputBorderHover transition";
+  const {
+    t,
+    startPickerRef,
+    endPickerRef,
+    fromDate,
+    setFromDate,
+    toDate,
+    setToDate,
+    today,
+    fiveYearsAgo,
+    handleOpenChange,
+    handleApply,
+    dateInputClasses,
+  } = useCustomDateRangeDialog({ initialRange, onApply, onOpenChange });
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>

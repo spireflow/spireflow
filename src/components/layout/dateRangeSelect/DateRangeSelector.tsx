@@ -1,19 +1,10 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useState } from "react";
 
 import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { ChevronDownIcon } from "../../../assets/icons/ChevronDownIcon";
-import type {
-  CustomDateRange,
-  DateRangePreset,
-} from "../../../store/dateRangeStore";
-import {
-  DATE_RANGE_PRESETS,
-  useDateRangeStore,
-} from "../../../store/dateRangeStore";
+import { DATE_RANGE_PRESETS } from "../../../store/dateRangeStore";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,49 +13,22 @@ import {
   DropdownMenuTrigger,
 } from "../../common/shadcn/dropdown-menu";
 import { CustomDateRangeDialog } from "./CustomDateRangeDialog";
-
-const formatCustomLabel = (range: CustomDateRange, locale: string): string => {
-  const fmt = new Intl.DateTimeFormat(locale, {
-    month: "short",
-    day: "numeric",
-  });
-  const from = fmt.format(new Date(range.from + "T00:00:00"));
-  const to = fmt.format(new Date(range.to + "T00:00:00"));
-  return `${from} – ${to}`;
-};
+import { useRangeSelect } from "./useRangeSelect";
 
 export const DateRangeSelector = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const t = useTranslations("dateRange");
-  const locale = useLocale();
-
-  const selectedPreset = useDateRangeStore((s) => s.selectedPreset);
-  const customRange = useDateRangeStore((s) => s.customRange);
-  const setSelectedPreset = useDateRangeStore((s) => s.setSelectedPreset);
-  const setCustomRange = useDateRangeStore((s) => s.setCustomRange);
-
-  const handlePresetSelect = (preset: Exclude<DateRangePreset, "custom">) => {
-    setSelectedPreset(preset);
-    setMenuOpen(false);
-  };
-
-  const handleCustomRangeClick = () => {
-    setMenuOpen(false);
-    setDialogOpen(true);
-  };
-
-  const handleCustomRangeApply = useCallback(
-    (range: CustomDateRange) => {
-      setCustomRange(range);
-    },
-    [setCustomRange],
-  );
-
-  const triggerLabel =
-    selectedPreset === "custom" && customRange
-      ? formatCustomLabel(customRange, locale)
-      : t(selectedPreset);
+  const {
+    menuOpen,
+    setMenuOpen,
+    dialogOpen,
+    setDialogOpen,
+    t,
+    selectedPreset,
+    customRange,
+    handlePresetSelect,
+    handleCustomRangeClick,
+    handleCustomRangeApply,
+    triggerLabel,
+  } = useRangeSelect();
 
   return (
     <>

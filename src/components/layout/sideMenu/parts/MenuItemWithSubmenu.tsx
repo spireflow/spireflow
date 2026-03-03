@@ -62,7 +62,7 @@ export const MenuItemWithSubmenu = ({
       ? currentPathname.slice(0, -1)
       : currentPathname;
 
-    // Check if any submenu item is active
+    /** Check if any submenu item is active */
     const activeItem = submenuItems.find((item) => {
       const normalizedPath = item.path.endsWith("/")
         ? item.path.slice(0, -1)

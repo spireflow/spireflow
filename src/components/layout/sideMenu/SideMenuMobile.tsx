@@ -20,7 +20,7 @@ export const SideMenuMobile = ({
   const isLoaded = !isPending;
   const t = useTranslations("sideMenu");
 
-  // First render check needed to prevent hydration mismatch errors
+  /** First render check needed to prevent hydration mismatch errors */
   const isFirstRender = useIsFirstRender();
   if (isFirstRender) return null;
 

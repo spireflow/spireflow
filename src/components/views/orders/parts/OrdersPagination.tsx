@@ -60,7 +60,7 @@ export const OrdersPagination = ({
             />
           </PaginationItem>
           {Array.from({ length: totalPage }, (_, i) => i).map((pageIndex) => {
-            // Show first page, last page, current page, and pages around current
+            /** Show first page, last page, current page, and pages around current */
             if (
               pageIndex === 0 ||
               pageIndex === totalPage - 1 ||

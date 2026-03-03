@@ -32,7 +32,6 @@ const ColorSection = ({
   </div>
 );
 
-// Grupy kolorów 1:1 z light.css/dark.css
 const colorGroups = {
   texts: [
     { name: "Primary Text", cssVar: "primaryText" },

@@ -17,9 +17,6 @@ import { PRODUCTS_QUERY } from "../queries/ProductsQuery";
 import { hasValidBackendUrl } from "../utils/presentationMode";
 import { client } from "./apolloClient";
 
-/**
- * Mapping of page names to GraphQL query documents.
- */
 const QUERY_MAP: Record<string, DocumentNode> = {
   analytics: ANALYTICS_QUERY,
   events: EVENTS_QUERY,
@@ -29,9 +26,6 @@ const QUERY_MAP: Record<string, DocumentNode> = {
   products: PRODUCTS_QUERY,
 };
 
-/**
- * Type mapping for dashboard page data structures.
- */
 interface PageDataMap {
   orders: OrderType[];
   customers: Customer[];

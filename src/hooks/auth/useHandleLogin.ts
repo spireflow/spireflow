@@ -37,16 +37,16 @@ export const useHandleLogin = () => {
   const setIsLoggingIn = useAppStore((state) => state.setIsLoggingIn);
   const clearAuthError = () => setAuthError("");
 
-  // Refs for preventing rapid-fire form submissions (e.g., holding Enter key)
+  /** Refs for preventing rapid-fire form submissions (e.g., holding Enter key) */
   const isSubmittingRef = useRef(false);
   const lastSubmitTimeRef = useRef(0);
 
-  // Map Better Auth error messages to translation keys
+  /** Map Better Auth error messages to translation keys */
   const mapBetterAuthError = useCallback(
     (errorMessage: string): string => {
       const lowerError = errorMessage.toLowerCase();
 
-      // Better Auth returns INVALID_EMAIL_OR_PASSWORD for both wrong email and wrong password
+      /** Better Auth returns INVALID_EMAIL_OR_PASSWORD for both wrong email and wrong password */
       if (
         lowerError.includes("invalid email or password") ||
         lowerError.includes("invalid_email_or_password")
@@ -67,7 +67,7 @@ export const useHandleLogin = () => {
 
   const handleLogin = useCallback(
     async (data: LoginData, rememberMe: boolean) => {
-      // Check if running in presentation mode (no backend)
+      /** Check if running in presentation mode (no backend) */
       if (isPresentationModeClient()) {
         alert(
           "Authentication is disabled in the demo version. Check README.md to find information on how to connect the backend to make it work.",
@@ -91,7 +91,7 @@ export const useHandleLogin = () => {
           return;
         }
 
-        // Success - redirect to homepage (i18n router preserves locale automatically)
+        /** Success — redirect to homepage (i18n router preserves locale automatically) */
         router.push("/");
       } catch (error: unknown) {
         setIsLoggingIn(false);
@@ -115,10 +115,10 @@ export const useHandleLogin = () => {
     [t],
   );
 
-  // Hide error messages when user clicks anywhere on the screen
+  /** Hide error messages when user clicks anywhere on the screen */
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
-      // This "error-hide" logic fixes bug that forces double clicking on register/sample button on mobile when errors are visible
+      /** This "error-hide" logic fixes bug that forces double clicking on register/sample button on mobile when errors are visible */
       const target = event.target as HTMLElement;
       if (target.closest(".ignore-error-hide")) {
         return;
@@ -150,7 +150,7 @@ export const useHandleLogin = () => {
     },
   });
 
-  // Effects necessary to not show both error messages at the same time if not needed
+  /** Effects necessary to not show both error messages at the same time if not needed */
   useEffect(() => {
     if (errors.email) {
       setShowEmailError(true);
@@ -163,7 +163,7 @@ export const useHandleLogin = () => {
     }
   }, [errors.password]);
 
-  // Show auth error immediately without delay
+  /** Show auth error immediately without delay */
   useEffect(() => {
     if (authError) {
       setAuthErrorDisplayed(authError);
@@ -176,12 +176,12 @@ export const useHandleLogin = () => {
     async (data: LoginData, rememberMe: boolean) => {
       const now = Date.now();
 
-      // Prevent rapid-fire submissions (e.g., user holding Enter key)
+      /** Prevent rapid-fire submissions (e.g., user holding Enter key) */
       if (isSubmittingRef.current) {
         return;
       }
 
-      // Enforce cooldown between submissions to prevent spam
+      /** Enforce cooldown between submissions to prevent spam */
       if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
         return;
       }

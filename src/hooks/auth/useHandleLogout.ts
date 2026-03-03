@@ -19,7 +19,7 @@ export const useHandleLogout = () => {
   const setIsLoggingOut = useAppStore((state) => state.setIsLoggingOut);
 
   const handleLogout = async () => {
-    // Check if running in presentation mode (no backend)
+    /** Check if running in presentation mode (no backend) */
     if (isPresentationModeClient()) {
       alert(
         "Authentication is disabled in the demo version. Check README.md to find information on how to connect the backend to make it work.",

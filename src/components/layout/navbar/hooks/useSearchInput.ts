@@ -19,6 +19,11 @@ interface UseSearchInputOptions {
   isOpen: boolean;
 }
 
+/**
+ * Powers the navbar search input — maintains a registry of all navigable sections,
+ * translates them for i18n, filters by query, and handles keyboard navigation
+ * (arrows, Enter, Escape) plus client-side routing with hash-based scrolling.
+ */
 export const useSearchInput = ({
   closeOthers,
   open,
@@ -33,7 +38,7 @@ export const useSearchInput = ({
   const homepageLayout = useAppStore((state) => state.homepageLayout);
 
   const allSections = [
-    // Analytics
+    /** Analytics */
     { section: "Asset performance", page: "Analytics", id: "assetPerformance" },
     { section: "Today's sales", page: "Analytics", id: "todaysSales" },
     { section: "Total profit", page: "Analytics", id: "totalProfit" },
@@ -46,7 +51,7 @@ export const useSearchInput = ({
       id: "revenueDistribution",
     },
 
-    // Homepage
+    /** Homepage */
     { section: "Revenue over time", page: "Homepage", id: "revenueOverTime" },
     {
       section: "Bestselling products",
@@ -68,16 +73,18 @@ export const useSearchInput = ({
     { section: "Traffic", page: "Homepage", id: "trafficCard" },
     { section: "Customers", page: "Homepage", id: "customersCard" },
 
-    // Other pages
+    /** Other pages */
     { section: "Customers", page: "Customers", id: "customers" },
     { section: "Calendar", page: "Calendar", id: "calendar" },
     { section: "Orders", page: "Orders", id: "orders" },
     { section: "Products", page: "Products", id: "products" },
   ];
 
-  // Filter sections based on homepage layout
+  /**
+   * Filters out sections that don't exist in the current homepage layout.
+   * E.g. the "Customers" card is hidden when the layout is "three-cards".
+   */
   const sections = allSections.filter((section) => {
-    // If it's the "Customers" card on Homepage and layout is "three-cards", exclude it
     if (
       section.page === "Homepage" &&
       section.id === "customersCard" &&
@@ -88,9 +95,12 @@ export const useSearchInput = ({
     return true;
   });
 
-  // Transform sections with translations
+  /**
+   * Enriches each section with translated names. Uses try/catch because
+   * next-intl throws when a translation key is missing — in that case
+   * the original English name is kept as fallback.
+   */
   const translatedSections = sections.map((item) => {
-    // Try to get translated section name from search.sections
     let translatedSection;
     try {
       translatedSection = t(`search.sections.${item.id}`);
@@ -98,7 +108,6 @@ export const useSearchInput = ({
       translatedSection = item.section;
     }
 
-    // Try to get translated page name from search.pages
     let translatedPage;
     try {
       translatedPage = t(`search.pages.${item.page}`);
@@ -113,6 +122,10 @@ export const useSearchInput = ({
     };
   });
 
+  /**
+   * Matches the search query against both translated and original (English) names
+   * so the user can find sections regardless of the active locale.
+   */
   const filteredSections = translatedSections.filter(
     (item) =>
       item.translatedSection.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -137,6 +150,10 @@ export const useSearchInput = ({
     open();
   };
 
+  /**
+   * Keyboard navigation for the search dropdown. Tab/Escape close it,
+   * arrows move the highlight, Enter navigates to the highlighted section.
+   */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab" && isOpen && !searchText) {
       close();
@@ -177,6 +194,11 @@ export const useSearchInput = ({
     }
   };
 
+  /**
+   * Navigates to the selected section. If already on the target page,
+   * scrolls smoothly to the element by ID. Otherwise uses router.push
+   * with a hash so the target page can scroll on load.
+   */
   const handleSectionClick = (section: Section) => {
     close();
 

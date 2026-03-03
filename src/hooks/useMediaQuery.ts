@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 /**
  * Reactive media query matching with SSR support.
  * Listens to window.matchMedia changes and updates boolean state.
+ *
+ * @param query - CSS media query string (e.g. "(min-width: 768px)")
+ * @returns Whether the media query currently matches
  */
 export const useMediaQuery = (query: string): boolean => {
   const getMatches = (query: string): boolean => {

@@ -24,7 +24,7 @@ const loadEnvFile = () => {
       }
     }
   } catch {
-    // .env not found, skip
+    /** .env file not found — skip silently */
   }
 };
 

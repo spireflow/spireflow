@@ -19,7 +19,7 @@ import { HamburgerButton } from "./parts/HamburgerButton";
 import { NotificationsButton } from "./parts/NotificationsButton";
 import { SearchInput } from "./parts/SearchInput";
 import { ThemeButton } from "./parts/ThemeButton";
-import { UserButton } from "./parts/UserButton";
+import { UserMenuButton } from "./parts/UserMenuButton";
 
 export const Navbar = () => {
   const t = useTranslations("navbar");
@@ -147,7 +147,7 @@ export const Navbar = () => {
               />
             </div>
             <div className="flex items-center ml-auto">
-              <UserButton
+              <UserMenuButton
                 userIconBtnRef={userIconBtnRef}
                 closeMobileMenu={closeMobileMenu}
                 userDropdown={userDropdown}

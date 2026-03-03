@@ -1,6 +1,3 @@
-import { useTranslations } from "next-intl";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-
 import { BellIcon } from "../../../../assets/icons/BellIcon";
 import { CheckIcon } from "../../../../assets/icons/CheckIcon";
 import { DocumentIcon } from "../../../../assets/icons/DocumentIcon";
@@ -12,8 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "../../../common/shadcn/tooltip";
-import type { Notification } from "../hooks/useNotificationsData";
-import { useNotificationsData } from "../hooks/useNotificationsData";
+import { useNotifications } from "../hooks/useNotifications";
 import { NotificationsButtonProps } from "../types";
 import { AllNotificationsModal } from "./AllNotificationsModal";
 
@@ -26,48 +22,28 @@ export const NotificationsButton = ({
   closeMobileMenu,
   t,
 }: Omit<NotificationsButtonProps, "notificationsTooltip">) => {
-  const tNotifications = useTranslations("notificationsUI");
-  const { notifications: initialNotifications } = useNotificationsData();
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [isAllNotificationsModalOpen, setIsAllNotificationsModalOpen] =
-    useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const notificationsBtnRef = useRef<HTMLButtonElement>(null);
-  /** Blocks tooltip open until next pointer move or keyboard focus */
-  const suppressTooltipRef = useRef(false);
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-
-  /** Prevents tooltip from showing when Firefox re-fires hover events on tab switch */
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        suppressTooltipRef.current = true;
-      }
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  // Load notifications - always use fresh data on page load, ignore localStorage
-  useEffect(() => {
-    if (initialNotifications.length > 0) {
-      setNotifications(initialNotifications);
-      // Clear localStorage on fresh page load to reset notifications
-      localStorage.removeItem("notificationsState");
-    }
-  }, [initialNotifications]);
-
-  // Update notifications callback
-  const handleNotificationsUpdate = (updatedNotifications: Notification[]) => {
-    setNotifications(updatedNotifications);
-    localStorage.setItem(
-      "notificationsState",
-      JSON.stringify(updatedNotifications),
-    );
-  };
-
-  const newNotificationsCount = notifications.filter((n) => n.isNew).length;
+  const {
+    tNotifications,
+    notifications,
+    isAllNotificationsModalOpen,
+    setIsAllNotificationsModalOpen,
+    highlightedIndex,
+    setHighlightedIndex,
+    notificationsBtnRef,
+    suppressTooltipRef,
+    tooltipOpen,
+    setTooltipOpen,
+    newNotificationsCount,
+    isAnyDropdownOpen,
+    handleKeyDown,
+    handleCloseModal,
+    handleNotificationsUpdate,
+  } = useNotifications({
+    notificationsDropdown,
+    themeDropdown,
+    languageDropdown,
+    userDropdown,
+  });
 
   const getIcon = (iconType: string) => {
     switch (iconType) {
@@ -83,46 +59,6 @@ export const NotificationsButton = ({
         return <BellIcon />;
     }
   };
-
-  const isAnyDropdownOpen =
-    notificationsDropdown.isOpen ||
-    themeDropdown.isOpen ||
-    languageDropdown.isOpen ||
-    userDropdown.isOpen ||
-    isAllNotificationsModalOpen;
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (!notificationsDropdown.isOpen) return;
-
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev < notifications.length - 1 ? prev + 1 : prev,
-        );
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : prev));
-      } else if (e.key === "Enter" && highlightedIndex >= 0) {
-        e.preventDefault();
-        const notification = notifications[highlightedIndex];
-        const updatedNotifications = notifications.map((n) =>
-          n.id === notification.id ? { ...n, isNew: false } : n,
-        );
-        handleNotificationsUpdate(updatedNotifications);
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        notificationsDropdown.close();
-        setHighlightedIndex(-1);
-        notificationsBtnRef.current?.focus();
-      }
-    },
-    [notificationsDropdown, notifications, highlightedIndex],
-  );
-
-  const handleCloseModal = useCallback(() => {
-    setIsAllNotificationsModalOpen(false);
-  }, []);
 
   return (
     <div className="relative" ref={notificationsDropdown.ref}>
@@ -162,7 +98,7 @@ export const NotificationsButton = ({
               ref={notificationsBtnRef}
               onClick={(e) => {
                 setTooltipOpen(false);
-                // On mobile (<xl), open modal directly
+                /** On mobile (<xl), open modal directly */
                 if (window.innerWidth < BREAKPOINTS.xl) {
                   if (e.detail > 0) suppressTooltipRef.current = true;
                   closeMobileMenu();
@@ -232,7 +168,7 @@ export const NotificationsButton = ({
                     : "hover:bg-notificationItemBgHover"
                 }`}
                 onClick={() => {
-                  // Mark as read
+                  /** Mark as read */
                   const updatedNotifications = notifications.map((n) =>
                     n.id === notification.id ? { ...n, isNew: false } : n,
                   );

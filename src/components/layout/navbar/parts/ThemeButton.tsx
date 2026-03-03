@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-
 import { MoonIcon } from "../../../../assets/icons/MoonIcon";
 import { SunIcon } from "../../../../assets/icons/SunIcon";
 import {
@@ -7,6 +5,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "../../../common/shadcn/tooltip";
+import { useThemeChange } from "../hooks/useThemeChange";
 import { ThemeButtonProps } from "../types";
 
 export const ThemeButton = ({
@@ -17,50 +16,22 @@ export const ThemeButton = ({
   notificationsDropdown,
   t,
 }: Omit<ThemeButtonProps, "themeTooltip">) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const currentTheme = theme || "light";
-  const [sliderDark, setSliderDark] = useState(currentTheme === "dark");
-
-  /** Blocks tooltip open until next pointer move or keyboard focus */
-  const suppressTooltipRef = useRef(false);
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  /** Prevents tooltip from showing when Firefox re-fires hover events on tab switch */
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        suppressTooltipRef.current = true;
-        setTooltipOpen(false);
-      }
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSliderDark(currentTheme === "dark");
-    }, 10);
-    return () => clearTimeout(timeout);
-  }, [currentTheme]);
-
-  const toggleTheme = () => {
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    selectTheme(newTheme);
-    userDropdown.close();
-    languageDropdown.close();
-    notificationsDropdown.close();
-  };
-
-  const isAnyDropdownOpen =
-    userDropdown.isOpen ||
-    languageDropdown.isOpen ||
-    notificationsDropdown.isOpen;
+  const {
+    isMounted,
+    currentTheme,
+    sliderDark,
+    suppressTooltipRef,
+    tooltipOpen,
+    setTooltipOpen,
+    toggleTheme,
+    isAnyDropdownOpen,
+  } = useThemeChange({
+    theme,
+    selectTheme,
+    userDropdown,
+    languageDropdown,
+    notificationsDropdown,
+  });
 
   return (
     <Tooltip
