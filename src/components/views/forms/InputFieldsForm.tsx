@@ -9,6 +9,12 @@ import { Button } from "../../common/shadcn/button";
 import { Input } from "../../common/shadcn/input";
 import { Label } from "../../common/shadcn/label";
 
+/**
+ * Showcase of input variants: default, active, password
+ * with visibility toggle, error, disabled, and icon-prefixed.
+ *
+ * @component
+ */
 export const InputFieldsForm = () => {
   const t = useTranslations("forms");
   const [showPassword, setShowPassword] = React.useState(false);

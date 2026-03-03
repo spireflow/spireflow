@@ -98,6 +98,7 @@ export const ProgressCircles = ({ metrics }: ProgressCirclesProps) => {
                 </span>
               </CircularProgress>
               <div className="flex flex-col">
+                {/* Index 1 is the revenue circle — prefix/suffix with "$" and "k" to format as currency. */}
                 <div className="font-medium text-xl sm:text-md md:text-xl 3xl:text-2xl text-primaryText">
                   {index === 1 && "$"}
                   {firstValue}

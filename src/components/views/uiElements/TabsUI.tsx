@@ -13,6 +13,12 @@ import {
   TabsTrigger,
 } from "../../common/shadcn/tabs";
 
+/**
+ * Showcase of a three-tab layout (Account, Password, Settings)
+ * with distinct content panels per tab.
+ *
+ * @component
+ */
 export const TabsUI = () => {
   const t = useTranslations("uiElements");
 

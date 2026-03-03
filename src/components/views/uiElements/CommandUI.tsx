@@ -13,6 +13,12 @@ import {
   CommandList,
 } from "../../common/shadcn/command";
 
+/**
+ * Showcase of a command palette with search input
+ * and grouped suggestion items.
+ *
+ * @component
+ */
 export const CommandUI = () => {
   const t = useTranslations("uiElements");
 

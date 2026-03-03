@@ -5,6 +5,12 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 import { Skeleton } from "../../common/shadcn/skeleton";
 
+/**
+ * Showcase of skeleton loading placeholders: avatar with text lines,
+ * paragraph block, and a large content area.
+ *
+ * @component
+ */
 export const SkeletonsUI = () => {
   const t = useTranslations("uiElements");
 

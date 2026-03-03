@@ -12,6 +12,12 @@ import { SlidersForm } from "./SlidersForm";
 import { TextareaForm } from "./TextareaForm";
 import { ToggleSwitchForm } from "./ToggleSwitchForm";
 
+/**
+ * Layout container for the forms demo page.
+ * Displays all form variants in a responsive two-column grid.
+ *
+ * @component
+ */
 export const FormsView = () => {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 items-start">

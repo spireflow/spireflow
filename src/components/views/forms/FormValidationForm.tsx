@@ -19,7 +19,7 @@ import {
 } from "../../common/shadcn/form";
 import { Input } from "../../common/shadcn/input";
 
-// Form Schema for Validation Example using Yup
+/** Yup schema defining username (min 2 chars) and email validation rules. */
 const formSchema = yup.object({
   username: yup
     .string()
@@ -31,6 +31,12 @@ const formSchema = yup.object({
     .required("Email is required"),
 });
 
+/**
+ * Showcase of form validation using react-hook-form with Yup resolver.
+ * Demonstrates field-level errors and a submit confirmation state.
+ *
+ * @component
+ */
 export const FormValidationForm = () => {
   const t = useTranslations("forms");
   const [isSubmitted, setIsSubmitted] = useState(false);

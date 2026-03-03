@@ -29,11 +29,11 @@ export const OrdersDateRange = ({
     }
   }, [startDate, endDate, setStartDate, setEndDate]);
 
-  // Convert string to Date object for DatePicker `selected` prop
+  /** Convert string to Date object for DatePicker `selected` prop. */
   const startDateObj = startDate ? new Date(startDate) : null;
   const endDateObj = endDate ? new Date(endDate) : null;
 
-  // Handle Date change and convert back to ISO string format
+  /** Handle Date change and convert back to ISO string format. */
   const handleStartDateChange = (date: Date | null) => {
     setStartDate(date ? date.toISOString().split("T")[0] : null);
   };

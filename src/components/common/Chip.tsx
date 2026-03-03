@@ -3,6 +3,19 @@ interface ChipProps {
   onDelete: () => void;
 }
 
+/**
+ * Small removable tag used to display a selected filter value.
+ * Renders a rounded pill with a label and an "×" delete button.
+ *
+ * @component
+ * @param {string} label - Text displayed inside the chip
+ * @param {() => void} onDelete - Callback fired when the remove button is clicked
+ *
+ * @example
+ * ```tsx
+ * <Chip label="Color: Red" onDelete={() => removeFilter("color")} />
+ * ```
+ */
 export const Chip = ({ label, onDelete }: ChipProps) => {
   return (
     <div

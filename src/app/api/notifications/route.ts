@@ -7,11 +7,13 @@ import { NOTIFICATIONS_QUERY } from "../../../queries/NotificationsQuery";
 import { client } from "../../../services/apolloClient";
 import { hasValidBackendUrl } from "../../../utils/presentationMode";
 
+/**
+ * Notifications API route. Reads from backendBackup.json when no valid
+ * backend URL is configured, otherwise queries GraphQL with fs fallback.
+ */
 export async function GET() {
   try {
-    // Auto-detect: Use backup if no valid backend
     if (!hasValidBackendUrl()) {
-      // Read from backup JSON file (server-side, fs works here)
       const filePath = path.join(process.cwd(), "public", "backendBackup.json");
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const allData = JSON.parse(fileContent);
@@ -23,7 +25,6 @@ export async function GET() {
       return NextResponse.json(allData.notifications);
     }
 
-    // Try to fetch from GraphQL backend
     try {
       const { data } = await client.query<{ notifications: Notification[] }>({
         query: NOTIFICATIONS_QUERY,
@@ -32,7 +33,6 @@ export async function GET() {
 
       return NextResponse.json(data?.notifications ?? []);
     } catch (backendError: unknown) {
-      // Fallback to backup if backend fails
       console.warn(
         "[Backend Failed] Using backup data for notifications:",
         backendError,
@@ -56,6 +56,8 @@ export async function GET() {
   }
 }
 
-// Optional: Make this route static for production builds
-// export const dynamic = 'force-static';
-// export const revalidate = 3600; // Revalidate every hour
+/**
+ * Dynamic by default. Uncomment below for static builds with hourly revalidation:
+ * export const dynamic = 'force-static';
+ * export const revalidate = 3600;
+ */

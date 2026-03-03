@@ -12,6 +12,12 @@ import {
   TooltipTrigger,
 } from "../../common/shadcn/tooltip";
 
+/**
+ * Showcase of tooltips on buttons and icon buttons
+ * with different placement sides (top, bottom, left).
+ *
+ * @component
+ */
 export const TooltipsUI = () => {
   const t = useTranslations("uiElements");
 

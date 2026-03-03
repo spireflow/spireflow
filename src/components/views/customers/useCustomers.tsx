@@ -31,6 +31,10 @@ const ImageCell = ({ src }: { src: string }) => {
   );
 };
 
+/**
+ * Customers table logic — column definitions, client-side search/filter/sort,
+ * pagination, and XLSX export. Wraps TanStack Table.
+ */
 export const useCustomers = (customers: Customer[]) => {
   const {
     sorting,
@@ -104,6 +108,7 @@ export const useCustomers = (customers: Customer[]) => {
     setCurrentPage(0);
   }, [searchQuery, filters, setCurrentPage]);
 
+  /** Applies search query (across all fields) and country filter. */
   const filteredData = useMemo(() => {
     let data = customersData;
     if (searchQuery) {
@@ -123,6 +128,10 @@ export const useCustomers = (customers: Customer[]) => {
     return data;
   }, [searchQuery, filters, customersData]);
 
+  /**
+   * Maps to column-keyed shape and applies manual sort.
+   * Manual sort needed because TanStack Table only sorts the current page.
+   */
   const sortedAndFilteredData = useMemo(() => {
     const data = (filteredData ?? []).map((customer) => ({
       col0: customer.photo,

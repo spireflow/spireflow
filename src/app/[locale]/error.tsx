@@ -36,4 +36,5 @@ const Error = ({
     </CenteredPageWrapper>
   );
 };
+
 export default Error;

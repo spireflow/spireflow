@@ -19,6 +19,10 @@ import {
   useOrdersProps,
 } from "./types";
 
+/**
+ * Orders table logic — column definitions, multi-criteria filtering
+ * (search, date range, selects, price range), sorting, and pagination.
+ */
 export const useOrders = ({ orders }: useOrdersProps) => {
   const t = useTranslations("orders");
 
@@ -94,15 +98,17 @@ export const useOrders = ({ orders }: useOrdersProps) => {
 
   const setFilter = (filterType: keyof Filters, value: FilterValues) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterType]: value }));
-    // Reset the currentPage whenever a filter changes
     setCurrentPage(0);
   };
+  /**
+   * Type-safe filter getter. Date fields are narrowed to string | null
+   * because the union type FilterValues includes PriceRange.
+   */
   const getFilter = useCallback(
     (filterType: keyof Filters): FilterValues => {
       const value = filters[filterType];
 
       if (filterType === "startDate" || filterType === "endDate") {
-        // Ensure the returned type for startDate and endDate is always either a string or null
         return typeof value === "string" || value === null ? value : null;
       }
 
@@ -111,6 +117,7 @@ export const useOrders = ({ orders }: useOrdersProps) => {
     [filters],
   );
 
+  /** Narrows the generic Filters shape to only select-compatible fields. */
   const toSelectFilters = (filters: Filters): SelectFilters => {
     return {
       productName:
@@ -123,10 +130,12 @@ export const useOrders = ({ orders }: useOrdersProps) => {
     };
   };
 
+  /**
+   * Applies all active filters sequentially: text search, date range,
+   * product/user/delivery/status selects, and price range.
+   */
   const filteredData = useMemo(() => {
     let result = ordersData;
-
-    // Filtering the data based on search input
     if (searchQuery) {
       const lowercasedQuery = searchQuery.toLowerCase();
       result = result.filter((order) =>
@@ -136,7 +145,6 @@ export const useOrders = ({ orders }: useOrdersProps) => {
       );
     }
 
-    // Filtering the data based on date range
     const startDate = getFilter("startDate");
     if (startDate) {
       result = result.filter((order) => order.col6 >= startDate);
@@ -147,19 +155,16 @@ export const useOrders = ({ orders }: useOrdersProps) => {
       result = result.filter((order) => order.col6 <= endDate);
     }
 
-    // Filtering data based on product name
     if (getFilter("productName")) {
       result = result.filter(
         (order) => order.col2 === getFilter("productName"),
       );
     }
 
-    // Filtering data based on user
     if (getFilter("user")) {
       result = result.filter((order) => order.col3 === getFilter("user"));
     }
 
-    // Filtering data based on price range
     const priceRange = getFilter("priceRange");
     if (
       typeof priceRange === "object" &&
@@ -171,14 +176,12 @@ export const useOrders = ({ orders }: useOrdersProps) => {
       );
     }
 
-    // Filtering data based on delivery type
     if (getFilter("deliveryType")) {
       result = result.filter(
         (order) => order.col5 === getFilter("deliveryType"),
       );
     }
 
-    // Filtering data based on status
     if (getFilter("status")) {
       result = result.filter((order) => order.col7 === getFilter("status"));
     }

@@ -21,7 +21,6 @@ import { Button } from "../../common/shadcn/button";
 import { Checkbox } from "../../common/shadcn/checkbox";
 import { Input } from "../../common/shadcn/input";
 
-/** Transaction data structure for the advanced table. */
 type Transaction = {
   id: string;
   customer: string;
@@ -32,7 +31,6 @@ type Transaction = {
   date: string;
 };
 
-// Mock Data for Advanced Table
 const advancedTableData: Transaction[] = [
   {
     id: "TXN001",
@@ -190,7 +188,7 @@ const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
 export const AdvancedTable = () => {
   const t = useTranslations("tables.cardTitles");
 
-  // Advanced Table State
+  /** Sorting, filtering, selection, and search state for the advanced table. */
   const [advancedSorting, setAdvancedSorting] = React.useState<SortingState>(
     [],
   );
@@ -200,7 +198,7 @@ export const AdvancedTable = () => {
   const [rowSelection, setRowSelection] = React.useState({});
   const [globalFilter, setGlobalFilter] = React.useState("");
 
-  // Advanced Table Columns
+  /** Column definitions with row selection, status badges, and action buttons. */
   const advancedColumns: ColumnDef<Transaction>[] = [
     {
       id: "select",
@@ -292,7 +290,7 @@ export const AdvancedTable = () => {
     },
   ];
 
-  // Advanced Table Instance
+  /** TanStack Table instance with sorting, filtering, and row selection. */
   const advancedTable = useReactTable({
     data: advancedTableData,
     columns: advancedColumns,

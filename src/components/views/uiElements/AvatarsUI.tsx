@@ -5,6 +5,12 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 import { Avatar, AvatarFallback } from "../../common/shadcn/avatar";
 
+/**
+ * Showcase of avatar sizes (small, default, large)
+ * and an overlapping avatar group with overflow count.
+ *
+ * @component
+ */
 export const AvatarsUI = () => {
   const t = useTranslations("uiElements");
 

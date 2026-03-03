@@ -15,7 +15,6 @@ import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { Card } from "../../common/Card";
 
-/** Product data structure for the basic table. */
 type Product = {
   id: number;
   name: string;
@@ -25,7 +24,6 @@ type Product = {
   status: string;
 };
 
-// Mock Data for Basic Table
 const basicTableData: Product[] = [
   {
     id: 1,
@@ -157,10 +155,10 @@ const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
 export const BasicTable = () => {
   const t = useTranslations("tables.cardTitles");
 
-  // Basic Table State
+  /** @see {@link SortingState} — tracks current sort column and direction. */
   const [basicSorting, setBasicSorting] = React.useState<SortingState>([]);
 
-  // Basic Table Columns
+  /** Column definitions for the basic product table. */
   const basicColumns: ColumnDef<Product>[] = [
     {
       accessorKey: "id",
@@ -199,7 +197,7 @@ export const BasicTable = () => {
     },
   ];
 
-  // Basic Table Instance
+  /** TanStack Table instance with sorting support. */
   const basicTable = useReactTable({
     data: basicTableData,
     columns: basicColumns,

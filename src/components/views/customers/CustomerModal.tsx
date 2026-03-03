@@ -26,8 +26,8 @@ export const CustomerModal = ({
     Math.floor(Math.random() * 300 + 150),
   );
 
+  /** Some values here are mocked for visual/demo purposes. */
   const customerDetails = [
-    // Some values here are mocked for visual/demo purposes
     { label: t("moneySpent"), value: "$" + customerData.col6 },
     { label: t("totalOrders"), value: mockTotalOrders },
     { label: t("phone"), value: customerData.col5 },

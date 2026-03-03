@@ -107,10 +107,6 @@ export const RevenueTrends = ({ revenueTrendsData }: RevenueTrendsProps) => {
 
   return (
     <Card className="revenueTrendsCard" id="revenueTrends" title={t("title")}>
-      {/* <p className="text-sm hidden sm:block text-secondaryText">
-          {t("subtitle")}
-        </p> */}
-
       <div
         role="img"
         aria-label="Revenue trends bar chart"

@@ -57,6 +57,10 @@ export const mockDatesForEvents = [
   },
 ];
 
+/**
+ * Core calendar logic — event CRUD, modal state, date selection,
+ * and drag/resize handlers wired to FullCalendar callbacks.
+ */
 export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
   const t = useTranslations("calendar");
   const [currentEvents, setCurrentEvents] = useState<CalendarEvent[]>([]);
@@ -72,9 +76,11 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
   const [selectedDate, setSelectedDate] = useState("");
   const lastFocusedElementRef = useRef<HTMLElement | null>(null);
 
+  /**
+   * Merges backend events with mock dates so demos always
+   * show events in the current month regardless of real data.
+   */
   useEffect(() => {
-    // Here we assign dates to each event from the backend based on index
-    // Normally dates would come from backend, but I wanted to keep events always in current month for demo purposes
     const mergedEvents = calendarEvents.map((event, index) => {
       const mockDate = mockDatesForEvents[index];
       return { ...event, ...mockDate };
@@ -109,6 +115,10 @@ export const useCalendar = ({ calendarEvents }: CalendarViewProps) => {
     setAddEventModalOpen(false);
   }, []);
 
+  /**
+   * Validates title + time range, then appends a new event
+   * to local state. Skips API — events are client-only for demo.
+   */
   const handleAddEventModalConfirm = useCallback(() => {
     let validationError = "";
     if (eventTitle === "") {

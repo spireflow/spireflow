@@ -28,7 +28,6 @@ import {
   PaginationPrevious,
 } from "../../common/shadcn/pagination";
 
-/** Inventory item data structure for the inventory table. */
 type InventoryItem = {
   id: string;
   sku: string;
@@ -38,7 +37,6 @@ type InventoryItem = {
   supplier: string;
 };
 
-// Mock Data for Inventory Table
 const inventoryTableData: InventoryItem[] = [
   {
     id: "INV001",
@@ -264,7 +262,7 @@ export const InventoryTable = () => {
   const t = useTranslations("pagination");
   const tTables = useTranslations("tables.cardTitles");
 
-  // Inventory Table State (with Pagination)
+  /** Sorting and pagination state for the inventory table. */
   const [inventorySorting, setInventorySorting] = React.useState<SortingState>(
     [],
   );
@@ -274,7 +272,7 @@ export const InventoryTable = () => {
       pageSize: 8,
     });
 
-  // Inventory Table Columns
+  /** Column definitions with stock-level coloring and action buttons. */
   const inventoryColumns: ColumnDef<InventoryItem>[] = [
     {
       accessorKey: "id",
@@ -350,7 +348,7 @@ export const InventoryTable = () => {
     },
   ];
 
-  // Inventory Table Instance (with Pagination)
+  /** TanStack Table instance with sorting and client-side pagination. */
   const inventoryTable = useReactTable({
     data: inventoryTableData,
     columns: inventoryColumns,

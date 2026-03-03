@@ -5,6 +5,12 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 import { Badge } from "../../common/shadcn/badge";
 
+/**
+ * Showcase of badge variants: default, secondary,
+ * destructive, and outline.
+ *
+ * @component
+ */
 export const BadgesUI = () => {
   const t = useTranslations("uiElements");
 

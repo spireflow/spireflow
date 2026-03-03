@@ -6,6 +6,12 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 import { Alert, AlertDescription, AlertTitle } from "../../common/shadcn/alert";
 
+/**
+ * Showcase of alert variants: informational (default)
+ * and destructive with icon, title, and description.
+ *
+ * @component
+ */
 export const AlertsUI = () => {
   const t = useTranslations("uiElements");
 

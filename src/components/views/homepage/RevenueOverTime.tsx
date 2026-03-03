@@ -96,14 +96,15 @@ export const RevenueOverTime = ({
     Dec: 11,
   };
 
-  // Function to group monthly data into quarterly data
-  // Returns same number of points for smooth animation
+  /**
+   * Aggregates monthly data into quarterly averages when timeRange is "quarterly".
+   * Returns monthly data as-is otherwise.
+   */
   const processDataByTimeRange = (data: typeof revenueOverTimeData) => {
     if (timeRange === "monthly") {
       return data;
     }
 
-    // First, calculate quarterly averages
     const quarters: {
       [key: string]: {
         websiteSales: number;
@@ -127,7 +128,6 @@ export const RevenueOverTime = ({
       quarters[quarterKey].count += 1;
     });
 
-    // Map each month to its quarter's average value (keeps same point count)
     return data.map((item) => {
       const [monthStr, yearStr] = item.date.split(" ");
       const month = monthMap[monthStr];

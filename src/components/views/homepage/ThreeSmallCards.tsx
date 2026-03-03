@@ -32,10 +32,8 @@ export const ThreeSmallCards = ({
   const hoverScaleClass =
     "transition-transform duration-200 group-hover:scale-110";
 
-  // Take first 3 cards
   const metricsData = threeSmallCardsData.slice(0, 3);
 
-  // Hardcoded percentages for visual representation
   const hardcodedPercentages = [37, 28, 64];
 
   const getChartColor = (index: number) => {
@@ -53,7 +51,6 @@ export const ThreeSmallCards = ({
       { name: "remaining", value: 100 - percentage },
     ];
 
-    // Color for the remaining part of the pie chart
     const remainingColor =
       theme === "light" ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)";
 

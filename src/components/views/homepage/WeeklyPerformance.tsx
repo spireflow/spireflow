@@ -116,7 +116,6 @@ const WeeklyPerformanceChart = ({
   const { width: windowWidth } = useWindowDimensions();
   const { shouldAnimate, animationBegin } = useChartAnimation("homepage");
 
-  // Limit data to 5 bars in specific ranges
   const getDisplayData = () => {
     if (windowWidth < 500 || (windowWidth >= 1024 && windowWidth <= 1500)) {
       return data.slice(0, 5);
@@ -132,7 +131,6 @@ const WeeklyPerformanceChart = ({
     return 25;
   };
 
-  // Adjust margins based on screen size
   const getChartMargins = () => {
     if (windowWidth < 450) {
       return { top: 10, right: 5, left: -10, bottom: 5 };

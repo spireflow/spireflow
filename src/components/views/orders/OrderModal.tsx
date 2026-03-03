@@ -26,7 +26,7 @@ export const OrderModal = ({ closeModal, orderData }: OrderModalProps) => {
     },
     { label: t("date"), value: orderData.col6 },
     { label: t("status"), value: orderData.col7 },
-    // One mocked value to display even number of details, visual purposes only
+    /** One mocked value to display even number of details, visual purposes only. */
     { label: t("priority"), value: t("normal") },
   ];
 

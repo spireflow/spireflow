@@ -5,6 +5,12 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 import { Separator } from "../../common/shadcn/separator";
 
+/**
+ * Showcase of separator orientations:
+ * horizontal (between text) and vertical (between inline items).
+ *
+ * @component
+ */
 export const SeparatorsUI = () => {
   const t = useTranslations("uiElements");
 

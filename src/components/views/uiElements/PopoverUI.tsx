@@ -14,6 +14,12 @@ import {
   PopoverTrigger,
 } from "../../common/shadcn/popover";
 
+/**
+ * Showcase of popover variants: a dimensions form popover
+ * and a user profile card popover.
+ *
+ * @component
+ */
 export const PopoverUI = () => {
   const t = useTranslations("uiElements");
 

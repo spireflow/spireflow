@@ -36,7 +36,6 @@ import {
   PopoverTrigger,
 } from "../../common/shadcn/popover";
 
-/** User data structure for the user management table. */
 type User = {
   id: number;
   name: string;
@@ -46,7 +45,6 @@ type User = {
   joinDate: string;
 };
 
-// Mock Data for User Table
 const userTableData: User[] = [
   {
     id: 1,
@@ -180,7 +178,6 @@ const SortingArrow = ({ isSorted }: { isSorted: false | "asc" | "desc" }) => {
 export const UserTable = () => {
   const t = useTranslations("tables.cardTitles");
 
-  // User Table State (with Column Visibility)
   const [userSorting, setUserSorting] = React.useState<SortingState>([]);
   const [userColumnVisibility, setUserColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -188,7 +185,6 @@ export const UserTable = () => {
     string | undefined
   >(undefined);
 
-  // User Table Columns
   const userColumns: ColumnDef<User>[] = [
     {
       accessorKey: "id",
@@ -276,7 +272,7 @@ export const UserTable = () => {
     },
   ];
 
-  // Filter user table data based on role filter
+  /** Filters user data by the selected role dropdown value. */
   const filteredUserTableData = React.useMemo(() => {
     let filtered = [...userTableData];
 
@@ -287,7 +283,7 @@ export const UserTable = () => {
     return filtered;
   }, [userRoleFilter]);
 
-  // User Table Instance (with Column Visibility)
+  /** TanStack Table instance with sorting and column visibility. */
   const userTable = useReactTable({
     data: filteredUserTableData,
     columns: userColumns,

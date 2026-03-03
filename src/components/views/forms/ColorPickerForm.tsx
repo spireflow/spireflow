@@ -14,6 +14,12 @@ import {
   PopoverTrigger,
 } from "../../common/shadcn/popover";
 
+/**
+ * Showcase of a color picker using react-colorful
+ * with a popover panel and hex input.
+ *
+ * @component
+ */
 export const ColorPickerForm = () => {
   const t = useTranslations("forms");
   const [color, setColor] = React.useState("#4bbf7d");

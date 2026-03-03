@@ -15,6 +15,12 @@ import {
   DialogTrigger,
 } from "../../common/shadcn/dialog";
 
+/**
+ * Showcase of dialog variants: a standard confirmation dialog
+ * and a destructive delete confirmation dialog.
+ *
+ * @component
+ */
 export const DialogsUI = () => {
   const t = useTranslations("uiElements");
   const [dialogOpen, setDialogOpen] = React.useState(false);

@@ -6,6 +6,12 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 import { Button } from "../../common/shadcn/button";
 
+/**
+ * Showcase of button variants (default, secondary, destructive, etc.),
+ * sizes, and icon combinations.
+ *
+ * @component
+ */
 export const ButtonsUI = () => {
   const t = useTranslations("uiElements");
 

@@ -10,6 +10,12 @@ import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
 import { Card } from "../../common/Card";
 import { Label } from "../../common/shadcn/label";
 
+/**
+ * Showcase of a date picker using react-datepicker
+ * with a clickable calendar icon trigger.
+ *
+ * @component
+ */
 export const DatePickerForm = () => {
   const t = useTranslations("forms");
   const [date, setDate] = React.useState<Date>(new Date(2025, 3, 23)); // 23.04.2025

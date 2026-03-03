@@ -6,6 +6,10 @@ import { useTooltip } from "../../../hooks/useTooltip";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { Product, ProductCategory } from "./types";
 
+/**
+ * Products page logic — groups products by type into categories,
+ * tracks the active product selection, and handles responsive modal toggle.
+ */
 export const useProducts = (products: Product[]) => {
   const [activeProduct, setActiveProduct] = useState<Product>({
     productId: "",
@@ -34,6 +38,7 @@ export const useProducts = (products: Product[]) => {
     }
   };
 
+  /** Groups a flat product list into categories keyed by product type. */
   const categorizeProducts = (products: Product[]): ProductCategory[] => {
     const categories: { [key: string]: Product[] } = {};
     products.forEach((product) => {
@@ -53,6 +58,10 @@ export const useProducts = (products: Product[]) => {
     }
   }, [products]);
 
+  /**
+   * Selects a product and resets image loading state if the image changed.
+   * On mobile (<lg), also opens the detail modal automatically.
+   */
   const handleProductClick = (product: Product) => {
     if (activeProduct.image !== product.image) {
       setImageLoaded(false);

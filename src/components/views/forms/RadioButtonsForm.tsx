@@ -6,6 +6,12 @@ import { Card } from "../../common/Card";
 import { Label } from "../../common/shadcn/label";
 import { RadioGroup, RadioGroupItem } from "../../common/shadcn/radio-group";
 
+/**
+ * Showcase of radio button states: default,
+ * selected, and disabled within a radio group.
+ *
+ * @component
+ */
 export const RadioButtonsForm = () => {
   const t = useTranslations("forms");
 

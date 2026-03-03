@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 
 import { DownloadIcon } from "../../../assets/icons/DownloadIcon";
 import { SearchIcon } from "../../../assets/icons/SearchIcon";
+import { Chip } from "../../common/Chip";
 import { Button } from "../../common/shadcn/button";
 import {
   InputGroup,
@@ -15,7 +16,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "../../common/shadcn/tooltip";
-import { Chip } from "../../forms/Chip";
 import { CustomersCountryDropdown } from "./CustomersCountryDropdown";
 import { CustomersPagination } from "./CustomersPagination";
 import { CustomersSortDropdown } from "./CustomersSortDropdown";

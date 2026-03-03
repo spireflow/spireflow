@@ -6,6 +6,12 @@ import { Card } from "../../common/Card";
 import { Label } from "../../common/shadcn/label";
 import { Textarea } from "../../common/shadcn/textarea";
 
+/**
+ * Showcase of a multiline textarea input
+ * with label and placeholder text.
+ *
+ * @component
+ */
 export const TextareaForm = () => {
   const t = useTranslations("forms");
 

@@ -6,6 +6,12 @@ import { Card } from "../../common/Card";
 import { Label } from "../../common/shadcn/label";
 import { Slider } from "../../common/shadcn/slider";
 
+/**
+ * Showcase of slider variants: single-thumb default
+ * and dual-thumb range slider.
+ *
+ * @component
+ */
 export const SlidersForm = () => {
   const t = useTranslations("forms");
 

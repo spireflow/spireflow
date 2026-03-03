@@ -30,23 +30,23 @@ const isAuthConfigured = (): boolean => {
 const proxy = (request: NextRequest) => {
   const pathname = request.nextUrl.pathname;
 
-  // Public paths - always accessible
+  /** Public paths - always accessible. */
   if (isPublicPath(pathname)) {
     return handleI18nRouting(request);
   }
 
-  // No auth configured - standalone demo mode, skip protection
+  /** No auth configured - standalone demo mode, skip protection. */
   if (!isAuthConfigured()) {
     return handleI18nRouting(request);
   }
 
-  // Auth configured - check session
+  /** Auth configured - check session. */
   const sessionCookie = getSessionCookie(request);
   if (sessionCookie) {
     return handleI18nRouting(request);
   }
 
-  // No session - redirect to login
+  /** No session - redirect to login. */
   const locale = pathname.match(/^\/([a-z]{2})\//)?.at(1) || "";
   return NextResponse.redirect(
     new URL(`/${locale ? locale + "/" : ""}login`, request.url),

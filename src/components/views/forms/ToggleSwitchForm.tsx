@@ -6,6 +6,12 @@ import { Card } from "../../common/Card";
 import { Label } from "../../common/shadcn/label";
 import { Switch } from "../../common/shadcn/switch";
 
+/**
+ * Showcase of toggle switch states: default, checked,
+ * disabled, and disabled-checked.
+ *
+ * @component
+ */
 export const ToggleSwitchForm = () => {
   const t = useTranslations("forms");
 

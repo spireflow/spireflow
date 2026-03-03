@@ -18,10 +18,12 @@ const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
   );
 };
 
-// All API requests are resolved during build time on default for demo purposes
-// Uncomment those exports to enable dynamic rendering on this page
-// export const dynamic = 'force-dynamic'
-// export const revalidate = 0
+/**
+ * Static by default — all API calls resolve at build time for demo purposes.
+ * Uncomment below to enable dynamic rendering on this page:
+ * export const dynamic = 'force-dynamic'
+ * export const revalidate = 0
+ */
 
 export const metadata: Metadata = {
   title: { absolute: "Spireflow" },

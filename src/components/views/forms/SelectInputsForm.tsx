@@ -31,7 +31,6 @@ import {
   SelectValue,
 } from "../../common/shadcn/select";
 
-// Mock data for selects
 const frameworks = [
   { value: "next.js", label: "Next.js" },
   { value: "sveltekit", label: "SvelteKit" },
@@ -40,6 +39,12 @@ const frameworks = [
   { value: "astro", label: "Astro" },
 ];
 
+/**
+ * Showcase of select variants: basic dropdown
+ * and searchable combobox with keyboard navigation.
+ *
+ * @component
+ */
 export const SelectInputsForm = () => {
   const t = useTranslations("forms");
   const [openCombobox, setOpenCombobox] = React.useState(false);

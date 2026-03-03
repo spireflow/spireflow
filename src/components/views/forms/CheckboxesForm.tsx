@@ -6,6 +6,12 @@ import { Card } from "../../common/Card";
 import { Checkbox } from "../../common/shadcn/checkbox";
 import { Label } from "../../common/shadcn/label";
 
+/**
+ * Showcase of checkbox states: default, checked,
+ * disabled, and disabled-checked.
+ *
+ * @component
+ */
 export const CheckboxesForm = () => {
   const t = useTranslations("forms");
 

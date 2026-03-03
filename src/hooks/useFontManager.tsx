@@ -12,13 +12,13 @@ import { useAppStore } from "../store/appStore";
 export const FontManager = () => {
   const fontType = useAppStore((state) => state.fontType);
 
-  // Preload both fonts on mount to prevent flash on Firefox
+  /** Preloads both fonts on mount to prevent flash on Firefox. */
   useEffect(() => {
     document.fonts.load("1rem 'Outfit'");
     document.fonts.load("1rem 'Open Sans'");
   }, []);
 
-  // Switch font class based on fontType
+  /** Toggles the alternative font class on body based on fontType. */
   useEffect(() => {
     if (fontType === "alternative") {
       document.body.classList.add("font-alternative");

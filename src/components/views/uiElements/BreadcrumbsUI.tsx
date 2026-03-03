@@ -13,6 +13,12 @@ import {
   BreadcrumbSeparator,
 } from "../../common/shadcn/breadcrumb";
 
+/**
+ * Showcase of breadcrumb navigation: icon-based with chevron separators
+ * and text-based with default slash separators.
+ *
+ * @component
+ */
 export const BreadcrumbsUI = () => {
   const t = useTranslations("uiElements");
 

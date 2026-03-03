@@ -33,14 +33,6 @@ export const CustomersTable = ({ table }: CustomersTableProps) => {
   const [selectedCustomer, setSelectedCustomer] =
     useState<CustomerColumns | null>(null);
 
-  // if (loading) {
-  //   return (
-  //     <div className="w-full min-h-[50vh] flex justify-center items-center">
-  //       <Loader />
-  //     </div>
-  //   );
-  // }
-
   const triggerRef = useRef<HTMLTableRowElement | null>(null);
 
   const closeCustomerModal = () => {

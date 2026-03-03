@@ -14,7 +14,6 @@ export const ProfileView = () => {
   const t = useTranslations("profile");
   const [isEditing, setIsEditing] = useState(false);
 
-  // Mock user data
   const [userData, setUserData] = useState({
     name: "John Doe",
     email: "john.doe@example.com",

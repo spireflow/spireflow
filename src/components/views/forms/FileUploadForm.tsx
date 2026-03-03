@@ -6,6 +6,12 @@ import { useTranslations } from "next-intl";
 import { Card } from "../../common/Card";
 import { Label } from "../../common/shadcn/label";
 
+/**
+ * Showcase of a drag-and-drop file upload zone
+ * with keyboard-accessible label trigger.
+ *
+ * @component
+ */
 export const FileUploadForm = () => {
   const t = useTranslations("forms");
 

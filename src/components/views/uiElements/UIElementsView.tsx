@@ -14,6 +14,12 @@ import { SkeletonsUI } from "./SkeletonsUI";
 import { TabsUI } from "./TabsUI";
 import { TooltipsUI } from "./TooltipsUI";
 
+/**
+ * Layout container for the UI elements demo page.
+ * Displays all UI component variants in a responsive two-column grid.
+ *
+ * @component
+ */
 export const UIElementsView = () => {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 items-start">

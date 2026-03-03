@@ -6,6 +6,12 @@ import * as React from "react";
 import { Card } from "../../common/Card";
 import { Progress } from "../../common/shadcn/progress";
 
+/**
+ * Showcase of progress bar states: in-progress (66%),
+ * complete (100%), and empty (0%).
+ *
+ * @component
+ */
 export const ProgressUI = () => {
   const t = useTranslations("uiElements");
 
