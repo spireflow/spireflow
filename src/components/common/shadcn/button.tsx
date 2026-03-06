@@ -15,14 +15,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-containedButtonBg text-white hover:bg-containedButtonBgHover",
-        destructive: "bg-errorBg text-white hover:bg-errorBgHover",
+          "border border-transparent bg-containedButtonBg text-white hover:bg-containedButtonBgHover",
+        destructive:
+          "border border-transparent bg-errorBg text-white hover:bg-errorBgHover",
         outline:
           "border border-outlinedButtonBorder bg-outlinedButtonBg text-primaryText hover:bg-outlinedButtonBgHover hover:border-outlinedButtonBorderHover",
         secondary:
-          "bg-secondaryButtonBg text-primaryText hover:bg-secondaryButtonBgHover",
-        ghost: "text-primaryText hover:bg-navItemBgHover",
-        link: "text-coloredText underline-offset-4 hover:underline",
+          "border border-transparent bg-secondaryButtonBg text-primaryText hover:bg-secondaryButtonBgHover",
+        ghost:
+          "border border-transparent text-primaryText hover:bg-navItemBgHover",
+        link: "border border-transparent text-coloredText underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",

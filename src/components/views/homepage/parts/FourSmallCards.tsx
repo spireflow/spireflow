@@ -158,7 +158,7 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
                 </span>
               </div>
             </div>
-            {index !== 2 ? (
+            {index !== 0 && index !== 2 ? (
               <div className="flex items-center justify-center flex-shrink-0 group cursor-pointer">
                 {renderBarChart(item.chartData, getChartColor(index))}
               </div>

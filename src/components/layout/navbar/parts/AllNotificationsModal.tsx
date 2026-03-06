@@ -7,6 +7,7 @@ import { CheckIcon } from "../../../../assets/icons/CheckIcon";
 import { DocumentIcon } from "../../../../assets/icons/DocumentIcon";
 import { UpdateIcon } from "../../../../assets/icons/UpdateIcon";
 import { UsersIcon } from "../../../../assets/icons/UsersIcon";
+import { Badge } from "../../../common/shadcn/badge";
 import { Button } from "../../../common/shadcn/button";
 import {
   Dialog,
@@ -82,36 +83,30 @@ export const AllNotificationsModal = ({
               {t("title")}
             </h2>
             {newCount > 0 && (
-              <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-notificationBadgeBg text-white">
+              <Badge>
                 {newCount} {t("new")}
-              </span>
+              </Badge>
             )}
           </div>
 
           {/* Filter buttons */}
           <div className="flex gap-3">
-            <button
+            <Button
+              variant={filter === "all" ? "default" : "outline"}
+              size="sm"
               onClick={() => setFilter("all")}
               aria-current={filter === "all" ? "true" : undefined}
-              className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-                filter === "all"
-                  ? "bg-containedButtonBg text-white"
-                  : "bg-outlinedButtonBg text-secondaryText hover:bg-outlinedButtonBgHover border border-outlinedButtonBorder"
-              }`}
             >
               {t("all")}
-            </button>
-            <button
+            </Button>
+            <Button
+              variant={filter === "new" ? "default" : "outline"}
+              size="sm"
               onClick={() => setFilter("new")}
               aria-current={filter === "new" ? "true" : undefined}
-              className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-                filter === "new"
-                  ? "bg-containedButtonBg text-white"
-                  : "bg-outlinedButtonBg text-secondaryText hover:bg-outlinedButtonBgHover border border-outlinedButtonBorder"
-              }`}
             >
               {t("new")}
-            </button>
+            </Button>
           </div>
         </div>
 

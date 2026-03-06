@@ -32,7 +32,7 @@ const BestSellingCustomLegend = ({
       {[...(payload ?? [])].reverse().map((entry, index) => (
         <div key={`legend-${index}`} className="flex items-center">
           <div
-            className="w-3 h-3 mr-2"
+            className="w-3 h-3 rounded-sm mr-2"
             style={{ backgroundColor: entry.color }}
           />
           <span className="text-xs 1xl:text-sm text-primaryText">
@@ -76,6 +76,7 @@ const BestSellingTooltip = ({
 
 export const BestSellingProducts = ({
   bestSellingProductsData,
+  isFourCardsMode,
 }: BestSellingProductsProps) => {
   const t = useTranslations("homepage.bestSellingProducts");
 
@@ -113,7 +114,7 @@ export const BestSellingProducts = ({
           initialDimension={{ width: 320, height: 200 }}
         >
           <BarChart
-            layout="vertical"
+            layout={isFourCardsMode ? "vertical" : "horizontal"}
             data={chartData}
             margin={{
               top: 20,
@@ -132,46 +133,72 @@ export const BestSellingProducts = ({
               strokeDasharray="3 3"
               stroke="var(--color-chartPrimaryGrid)"
             />
-            <XAxis
-              type="number"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) =>
-                `$${Intl.NumberFormat("us").format(value)}`
-              }
-              domain={[
-                0,
-                (dataMax: number) => Math.ceil(dataMax / 1000) * 1000,
-              ]}
-            />
-            <YAxis
-              type="category"
-              dataKey="name"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={({
-                x,
-                y,
-                payload,
-              }: {
-                x: string | number;
-                y: string | number;
-                payload: { value: string };
-              }) => (
-                <text
-                  x={x}
-                  y={y}
-                  dy={4}
-                  textAnchor="end"
-                  fill="var(--color-chartAxisText)"
-                  fontSize={12}
-                >
-                  {payload.value}
-                </text>
-              )}
-              width={windowWidth > BREAKPOINTS.md ? 90 : 70}
-            />
+            {isFourCardsMode ? (
+              <XAxis
+                type="number"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) =>
+                  `$${Intl.NumberFormat("us").format(value)}`
+                }
+                domain={[
+                  0,
+                  (dataMax: number) => Math.ceil(dataMax / 1000) * 1000,
+                ]}
+              />
+            ) : (
+              <XAxis
+                type="category"
+                dataKey="name"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+            )}
+            {isFourCardsMode ? (
+              <YAxis
+                type="category"
+                dataKey="name"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={({
+                  x,
+                  y,
+                  payload,
+                }: {
+                  x: string | number;
+                  y: string | number;
+                  payload: { value: string };
+                }) => (
+                  <text
+                    x={x}
+                    y={y}
+                    dy={4}
+                    textAnchor="end"
+                    fill="var(--color-chartAxisText)"
+                    fontSize={12}
+                  >
+                    {payload.value}
+                  </text>
+                )}
+                width={windowWidth > BREAKPOINTS.md ? 90 : 70}
+              />
+            ) : (
+              <YAxis
+                type="number"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) =>
+                  `$${Intl.NumberFormat("us").format(value)}`
+                }
+                domain={[
+                  0,
+                  (dataMax: number) => Math.ceil(dataMax / 1000) * 1000,
+                ]}
+              />
+            )}
             <Tooltip
               content={<BestSellingTooltip />}
               isAnimationActive={false}
@@ -183,7 +210,7 @@ export const BestSellingProducts = ({
             <Bar
               dataKey="Sales"
               fill="var(--color-chartSecondaryFill)"
-              radius={[0, 4, 4, 0]}
+              radius={isFourCardsMode ? [0, 4, 4, 0] : [4, 4, 0, 0]}
               barSize={getBarSize()}
               isAnimationActive={shouldAnimate}
               animationBegin={animationBegin}
@@ -193,7 +220,7 @@ export const BestSellingProducts = ({
             <Bar
               dataKey="Profit"
               fill="var(--color-chartPrimaryFill)"
-              radius={[0, 4, 4, 0]}
+              radius={isFourCardsMode ? [0, 4, 4, 0] : [4, 4, 0, 0]}
               barSize={getBarSize()}
               isAnimationActive={shouldAnimate}
               animationBegin={animationBegin}

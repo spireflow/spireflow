@@ -59,6 +59,7 @@ export const HomepageView = ({ homepageData }: HomepageViewProps) => {
           {homepageData?.bestSellingProducts && (
             <BestSellingProducts
               bestSellingProductsData={homepageData.bestSellingProducts}
+              isFourCardsMode={homepageLayout === "four-cards"}
             />
           )}
         </div>

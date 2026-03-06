@@ -4,6 +4,8 @@ import { DocumentIcon } from "../../../../assets/icons/DocumentIcon";
 import { UpdateIcon } from "../../../../assets/icons/UpdateIcon";
 import { UsersIcon } from "../../../../assets/icons/UsersIcon";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
+import { Badge } from "../../../common/shadcn/badge";
+import { Button } from "../../../common/shadcn/button";
 import {
   Tooltip,
   TooltipContent,
@@ -150,9 +152,9 @@ export const NotificationsButton = ({
               {tNotifications("title")}
             </h3>
             {newNotificationsCount > 0 && (
-              <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-notificationBadgeBg text-white">
+              <Badge>
                 {newNotificationsCount} {tNotifications("new")}
-              </span>
+              </Badge>
             )}
           </div>
 
@@ -207,7 +209,8 @@ export const NotificationsButton = ({
 
           {/* Footer button */}
           <div className="p-3 border-t border-mainBorder bg-notificationHeaderBg">
-            <button
+            <Button
+              className="w-full"
               onPointerDown={() => {
                 suppressTooltipRef.current = true;
               }}
@@ -215,10 +218,9 @@ export const NotificationsButton = ({
                 setIsAllNotificationsModalOpen(true);
                 notificationsDropdown.close();
               }}
-              className="w-full py-2.5 px-4 rounded-lg bg-notificationBadgeBg hover:bg-notificationBadgeBgHover text-white font-medium text-sm transition-colors"
             >
               {tNotifications("readAll")}
-            </button>
+            </Button>
           </div>
         </div>
       )}

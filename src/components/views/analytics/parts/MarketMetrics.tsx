@@ -75,7 +75,7 @@ const CustomLegend = (props: LegendProps) => {
       {payload?.map((entry, index: number) => (
         <div key={index} className="flex items-center">
           <div
-            className="w-3 h-3 mr-2"
+            className="w-3 h-3 rounded-sm mr-2"
             style={{ backgroundColor: entry.color }}
           />
           <span className="text-sm text-primaryText">

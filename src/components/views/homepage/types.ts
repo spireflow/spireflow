@@ -6,6 +6,7 @@ export interface BestSellingProduct {
 
 export interface BestSellingProductsProps {
   bestSellingProductsData: BestSellingProduct[];
+  isFourCardsMode: boolean;
 }
 
 export interface ProductSatisfaction {
