@@ -172,7 +172,7 @@ export const MenuItemWithSubmenu = ({
 
   const showTooltip = isCollapsed && hasEnteredSinceCollapse && !isDropdownOpen;
 
-  const sharedClassName = `flex relative rounded-md items-center py-2 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-px 1xl:mb-1 3xl:mb-2 cursor-pointer transition-[background-color,border-color,padding,margin,width] duration-200 ${
+  const sharedClassName = `flex relative rounded-md items-center py-2 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-px 1xl:mb-1 3xl:mb-2 cursor-pointer transition-[background-color,border-color,padding,margin] duration-200 ease-in-out ${
     isCollapsed ? "mx-3 pl-[0.65rem]" : "w-full pl-4 pr-2"
   } ${
     isAnySubmenuActive
@@ -236,7 +236,7 @@ export const MenuItemWithSubmenu = ({
       }}
       onBlur={() => setHasEnteredSinceCollapse(false)}
     >
-      <Tooltip delayDuration={200} open={isDropdownOpen ? false : undefined}>
+      <Tooltip delayDuration={200} open={showTooltip}>
         <DropdownMenu
           open={isCollapsed && isDropdownOpen}
           onOpenChange={(open) => {

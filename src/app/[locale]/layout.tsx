@@ -30,7 +30,7 @@ export default async function RootLayout({
       lang={locale}
       data-scroll-behavior="smooth"
       /**
-       * Required by next-themes — theme attributes are injected before
+       * Required by next-themes - theme attributes are injected before
        * hydration to prevent flash.
        * @see https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
        */

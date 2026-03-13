@@ -105,7 +105,7 @@ export const SideMenu = () => {
           <Logo />
         </div>
         <div
-          className={`flex-1 overflow-y-auto overflow-x-hidden ${isSideMenuOpen ? "pr-3" : ""}`}
+          className={`flex-1 overflow-y-auto overflow-x-hidden transition-[padding] duration-200 ease-in-out ${isSideMenuOpen ? "pr-3" : "pr-0"}`}
         >
           {menuConfig.map((entry) => {
             switch (entry.type) {

@@ -8,7 +8,7 @@ import { useCallback } from "react";
  * Source: https://github.com/better-auth/better-auth/blob/canary/packages/core/src/error/codes.ts
  */
 const AUTH_ERROR_I18N_MAP: Record<string, string> = {
-  /** Credentials — same message to prevent user enumeration */
+  /** Credentials - same message to prevent user enumeration */
   INVALID_EMAIL_OR_PASSWORD: "INVALID_EMAIL_OR_PASSWORD",
   USER_NOT_FOUND: "INVALID_EMAIL_OR_PASSWORD",
   CREDENTIAL_ACCOUNT_NOT_FOUND: "INVALID_EMAIL_OR_PASSWORD",

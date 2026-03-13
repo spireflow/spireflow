@@ -23,6 +23,8 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
   const [hasEnteredSinceCollapse, setHasEnteredSinceCollapse] = useState(false);
   const prevCollapsedRef = useRef(false);
 
+  const isCollapsed = !isSideMenuOpen && isDesktop;
+
   const handleMenuItemClick = () => {
     if (window.innerWidth < BREAKPOINTS.lg) {
       toggleMobileMenu();
@@ -42,8 +44,6 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
   /** First render check needed to prevent hydration mismatch errors */
   const isFirstRender = useIsFirstRender();
   if (isFirstRender) return null;
-
-  const isCollapsed = !isSideMenuOpen && isDesktop;
 
   if (prevCollapsedRef.current !== isCollapsed) {
     prevCollapsedRef.current = isCollapsed;
@@ -65,11 +65,11 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
             if (isCollapsed) setHasEnteredSinceCollapse(true);
           }}
           onBlur={() => setHasEnteredSinceCollapse(false)}
-          className={`block rounded-md focus-visible:outline-offset-[-2px] transition-[width,margin] duration-200 ${isCollapsed ? "mx-3" : "w-full"}`}
+          className={`block rounded-md focus-visible:outline-offset-[-2px] transition-[margin] duration-200 ease-in-out ${isCollapsed ? "mx-3" : "w-full"}`}
         >
           <div
             onClick={handleMenuItemClick}
-            className={`flex relative rounded-md items-center py-2 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-px 1xl:mb-1 3xl:mb-2 transition-[background-color,border-color,padding] duration-200 ${
+            className={`flex relative rounded-md items-center py-2 1xl:py-[0.55rem] 3xl:py-[0.7rem] mb-px 1xl:mb-1 3xl:mb-2 transition-[background-color,border-color,padding] duration-200 ease-in-out ${
               isCollapsed ? "pl-[0.65rem]" : "pl-4 pr-2"
             } ${
               isActive
