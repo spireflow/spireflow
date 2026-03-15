@@ -18,42 +18,38 @@
   </a>
 </div>
 
-<h4 align="center">Open source dashboard starter built with Next.js and TypeScript</h4>
+<h4 align="center">Open source dashboard starter built with Next.js 16, TypeScript and Tailwind 4</h4>
 <br />
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/8a319429-2b20-466b-af26-3c36fee780c8" alt="Spireflow Dashboard" width="800" />
+  <img src="https://github.com/user-attachments/assets/87699c7e-15d5-4a7e-98c0-0ed94cfa6755" alt="Spireflow Dashboard" width="800" />
 </div>
+
+## 💎 Overview
+
+Spireflow is a free, open-source dashboard starter designed for building business applications, internal tools and data-rich admin panels. It provides all the UI components, pages and patterns you need to create a complete dashboard - available out of the box.
+
+It will give you a solid head start and save weeks of development time by serving as a practical foundation that you can easily extend and adapt to your specific needs. The project runs as a standalone frontend by default, ready to be integrated with your own API or an optional Spireflow backend that enables a production-ready authentication flow.
 
 ## :gear: Tech stack
 
-React 19, Next.js 15, TypeScript, Tailwind 4, Shadcn, Zustand, Apollo Client, Recharts, Better Auth, Jest
-
-## :sparkles: Features
-
-- 14 data charts (Recharts)
-- tables with filtering, sorting, searching, pagination and CSV export (Tanstack-ReactTable v8)
-- authentication (Better Auth, React Hook Forms and Yup)
-- internationalization: english and polish (next-intl)
-- calendar that allows for moving, adding and deleting events (Fullcalendar.io)
-- product gallery with Lightbox popup and PDF export (yet-another-react-lightbox, @react-pdf/renderer)
-- world map with tooltips (react-simple-maps)
-- CI pipeline for testing and linting, working on Github Actions
-- code formatter (Prettier), linter (Eslint) and Git Hooks (Husky)
-- dark and light mode (next-themes, tw-colors)
+React 19, Next.js 16, TypeScript, Tailwind 4, Shadcn UI, Zustand, Apollo Client, Recharts, Better-Auth, Vitest
 
 ## ✨ Features
 
-- 🎨 **90+ Components** - Shadcn UI + custom components
-- 📊 **25 Chart Types** - with Recharts
-- 🗄️ **Full Backend** - GraphQL + Prisma + PostgreSQL
-- 📋 **Advanced Tables** - TanStack Table v8 with filtering/sorting/export
-- 📅 **Calendar** - FullCalendar with CRUD operations
-- 🎭 **Themes** - Dark/light mode with 111 CSS variables
-- 🌍 **i18n** - English & Polish support
-- 📦 **Standalone Mode** - Works without backend using mock data
-- 🧪 **Testing** - Jest + React Testing Library
-- 🔒 **Auth** - Better Auth integration
+- **90+ reusable components** - Built on Shadcn UI and Radix primitives
+- **60+ chart variations** - Powered by Recharts library
+- **Authentication** - Better-Auth with login and registration flow + Yup validation
+- **i18n** - Multi-language support via next-intl
+- **Advanced Tables** - Filtering, sorting, search and pagination, via TanStack Table v8
+- **Calendar** - Move, add and delete events with FullCalendar.io
+- **Product gallery** - Lightbox popup and PDF export
+- **World map** - Interactive map with tooltips, powered by react-simple-maps
+- **Themes** - Dark/light mode via next-themes library and CSS variables
+- **Testing** - Unit tests written using Vitest + React Testing Library
+- **CI Pipeline** - Automated linting, type checking and testing via GitHub Actions
+- **Accessibility** - Seamless keyboard navigation, clear focus indicators and ARIA support
+- **Code quality** - Prettier (formatter), Eslint (linter) and Husky (pre-commit hooks)
 
 ## :rocket: Quickstart
 
@@ -74,100 +70,53 @@ Optionally, it can be connected to an associated Node.js backend, which enables 
 
 ## :link: Links
 
-Live demo [https://spireflow.app/](https://spireflow.app/)
+#### Live demo [https://demo.spireflow.app/](https://demo.spireflow.app/)
 
-- Storybook [https://storybook.spireflow.app/](https://storybook.spireflow.app/)
+#### Additional resources
 
-- Auth docs [https://auth.spireflow.app/](https://auth.spireflow.app/)
+- [Storybook](https://storybook.spireflow.app/)
+- [Authentication docs](https://auth.spireflow.app/)
+- [Node.js backend](https://github.com/matt765/spireflow-backend)
 
-#### Associated repositories
+#### Lightweight version
 
-- Backend [https://github.com/matt765/spireflow-backend](https://github.com/matt765/spireflow-backend)
-
-- Lightweight starter [https://github.com/matt765/spireflow-layout](https://github.com/matt765/spireflow-layout)
+- [Live demo](https://layout.spireflow.app/)
+- [Repository](https://github.com/matt765/spireflow-layout)
 
 ## :file_folder: Project structure
 
 ```shell
 ├── src
-│   ├── app                       # NextJS pages (App Router)
-│   │   └── locale                # Locale folder for i18n
+│   ├── app                       # Next.js pages (App Router)
+│   │   ├── [locale]              # Dynamic locale folder for i18n
+│   │   │   ├── (auth)            # Auth pages (login, register)
+│   │   │   └── (protected)       # Protected pages (require auth)
+│   │   └── api                   # API routes
 │   ├── assets                    # Static assets
 │   │   ├── icons                 # Icon components
 │   │   └── images                # Image files
 │   ├── components                # Main components folder
 │   │   ├── auth                  # Authentication related components
 │   │   ├── common                # Reusable components
-│   │   ├── forms                 # Form components
+│   │   ├── layout                # Layout components
 │   │   └── views                 # Page-specific components
-│   │       ├── analytics         # Analytics page components
-│   │       ├── calendar          # Calendar page components
-│   │       ├── customers         # Customers page components
-│   │       ├── homepage          # Homepage components
-│   │       ├── orders            # Orders page components
-│   │       └── products          # Products page components
 │   ├── hooks                     # Custom reusable hooks
 │   │   └── auth                  # Authentication hooks
 │   ├── i18n                      # Internationalization config
-│   ├── layout                    # Layout components
-│   │   ├── navbar                # Upper bar components
-│   │   └── sideMenu              # Side menu components
 │   ├── queries                   # GraphQL queries
 │   ├── services                  # Services utils
-│   ├── store                     # Zustand store
+│   ├── store                     # Zustand stores
 │   ├── styles                    # Themes and global styles
-│   │   └── themes                # Colors for themes
+│   │   ├── themes                # Colors for themes
+│   │   └── overrides             # Style overrides
 │   ├── tests                     # Test files
-│   │   ├── components            # Component tests
-│   │   ├── config                # Jest configuration
-│   │   └── hooks                 # Hook tests
+│   │   ├── config                # Test configuration
+│   │   ├── unit                  # Unit tests
+│   │   └── utils                 # Test utilities
 │   ├── utils                     # Utility functions
-│   └── middleware.ts             # NextJS middleware
+│   └── proxy.ts                  # Next.js proxy configuration
 └── package.json                  # Project dependencies and scripts
 ```
-
-## 📋 Available commands
-
-| Command                | Action                                |
-| :--------------------- | :------------------------------------ |
-| `npm install`          | Installs dependencies                 |
-| `npm run prepare`      | Sets up Husky git hooks               |
-| `npm run dev`          | Starts dev server at `localhost:3000` |
-| `npm run build`        | Builds your production site           |
-| `npm start`            | Starts server at `localhost:3000`     |
-| `npm run lint`         | Runs ESLint to check code quality     |
-| `npm run lint:fix`     | Runs ESLint and auto-fixes issues     |
-| `npm run type-check`   | Runs TypeScript type checking         |
-| `npm run test`         | Runs Jest tests                       |
-| `npm run test:watch`   | Runs Jest tests in watch mode         |
-| `npm run format`       | Formats code with Prettier            |
-| `npm run format:check` | Checks if code is properly formatted  |
-
-## 🚀 Why Spireflow?
-
-- 90+ reusable components built on Radix UI primitives and Shadcn patterns
-- Focus on accessibility and consistent UI behavior (keyboard-friendly interactions, ARIA where needed)
-- Modular structure designed for long-term extension (not a one-off demo)
-- Standalone mode with mock data (works without backend)
-- Optional full-stack path: connect an external backend when you need real data/auth
-- Data-driven UI out of the box: charts, tables, analytics-style pages
-- Advanced tables patterns included (filtering, sorting, search, pagination, CSV export)
-- Multiple chart types and ready-made chart pages for common dashboard use cases
-- Internationalization built-in (next-intl) with English + Polish support
-- Dark/light mode support with theme variables (easy to extend with more themes)
-- Page structure already scaffolded (dashboard, e-commerce area, analytics, profile, calendar, auth pages)
-- Navigation and layout patterns ready (sidebar with collapse/expand, categories, nested routes)
-- State management with Zustand (simple, predictable, easy to extend)
-- Form patterns included (React Hook Form + Yup validation flow)
-- Authentication integration included (Better Auth) with login/register pages
-- Calendar with CRUD interactions (move/add/delete events)
-- Product/gallery patterns included (lightbox + PDF export)
-- Project-level quality tools: ESLint + Prettier + Husky hooks
-- CI pipeline for linting/testing via GitHub Actions
-- Testing setup included (Jest + React Testing Library)
-- Clear project structure (components/views/layout/hooks/services/utils separated)
-- Designed for internal tools and admin panels (not just a marketing UI template)
-- Easy local start: clone → install → dev, with sensible defaults
 
 ## ⚙️ Configuration (optional)
 
@@ -228,47 +177,38 @@ The application automatically detects your configuration:
 
 If you use `npm start` (production mode), please remember that `npm run build` must be run after configuring environment variables for changes to take effect. This is not needed when using `npm run dev`.
 
-### Remote deployment
-
-For remote services (e.g., Vercel):
-
-1. Deploy your backend to a hosting service (e.g. Heroku/Render)
-2. Set environment variables in your Vercel project settings
-3. Deploy front-end app with proper env variables - it automatically detects and uses the backend
-
 ### One-click deploy
 
-You can easily deploy your own instance of Spireflow dashboard on Vercel using the link below.
+For remote hosting, you can easily deploy your own instance of Spireflow dashboard on Vercel using the link below.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/spireflow/Spireflow)
 
 ## 🧾 Pages
 
-| Path           | Description                                        |
-| -------------- | -------------------------------------------------- |
-| `/`            | Homepage with key metrics and widgets              |
-| `/orders`      | View, track, and manage all orders                 |
-| `/customers`   | Browse customer information                        |
-| `/analytics`   | Sales and performance charts                       |
-| `/calendar`    | Interactive calendar for events and scheduling     |
-| `/products`    | Product management with gallery and export options |
-| `/login`       | Sign in to your account                            |
-| `/register`    | Create a new account                               |
-| `/profile`     | User profile page                                  |
-| `/ui-elements` | Collection of shadcn                               |
-| `/forms`       | Collection of shadcn part 2                        |
-| `/tables`      | 4 tanstack tables                                  |
-| `/charts`      | 10 charts                                          |
+| Path               | Description                                                                                                                                                                                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `/`                | Homepage with key metrics cards (switchable 3/4 card layout via Zustand), multiple Recharts visualizations and an interactive world map with country-level revenue tooltips powered by react-simple-maps.                                                    |
+| `/orders`          | Orders management table built with TanStack Table v8, featuring text search, date range picker, multi-select filters (status, payment, shipping), column sorting, pagination with configurable page size, and XLSX export.                                   |
+| `/customers`       | Customer list table featuring text search, country filter dropdown, sort dropdown (name, orders, spend - ascending/descending), active filter chips with inline removal, pagination, and XLSX export.                                                        |
+| `/products`        | Product catalog with a categorized sidebar navigation, detailed product view showing image with lightbox gallery, parameters grid, circular progress metrics, copy-to-clipboard product ID, and PDF export via @react-pdf/renderer.                          |
+| `/analytics`       | Sales and performance page with multiple Recharts visualizations across different chart types, covering revenue, profit, and market data.                                                                                                                    |
+| `/profile`         | User profile page with header card, contact info sidebar, bio section with inline editing, account settings with toggle switches and recent activity feed.                                                                                                   |
+| `/calendar`        | Interactive event calendar powered by FullCalendar with month, week, day, and list views. Supports drag-and-drop event moving, date range selection for creating new events, and event deletion with confirmation modals.                                    |
+| `/login`           | Sign-in page with Better-Auth authentication, email/password form validated by react-hook-form and Yup, show/hide password toggle, "Remember me" checkbox and error tooltips. Styled with themed auth background pattern and centered modal.                 |
+| `/register`        | Registration page with Better-Auth authentication and sign-up form using the same validation and styling approach as login - Yup schema validation, accessible error handling, and themed auth modal layout with background pattern.                         |
+| `/forgot-password` | Password reset page (UI only, no backend integration) with email input form, Yup validation, and consistent auth page design matching login and registration - centered modal with background pattern.                                                       |
+| `/ui-elements`     | Showcase of Shadcn UI components displayed in a responsive two-column grid: buttons, command palette, avatars, tooltips, alerts, toasts, skeletons, dialogs, dropdown menus, badges, popovers, progress bars, breadcrumbs, tabs, separators, and pagination. |
+| `/forms`           | Collection of form components in a responsive two-column grid: input fields, select inputs, textareas, color picker, form validation, checkboxes, radio buttons, toggle switches, date picker, file upload, and sliders.                                     |
+| `/tables`          | Four TanStack Table variants demonstrating different table configurations and use cases: basic table, advanced table with enhanced filtering and sorting, user management table, and inventory tracking table.                                               |
+| `/charts`          | Gallery of Recharts chart types displayed in a responsive grid: area, scatter, pie, radar, composed, stacked bar, radial bar, two-axis line, mixed line, vertical bar, area fill by value, gradient pie, and a full-width line chart.                        |
 
-## ⌨️ Keyboard & Accessibility
+## ⌨️ Accessibility
 
-### Accessibility
-
-- Full keyboard navigation with Tab across all interactive elements
-- Visible focus indicators (focus-visible) on buttons, inputs, links, and menu items
+- Full keyboard navigation with Tab and arrow buttons across all interactive elements
+- Visible focus indicators (focus-visible) with common CSS variable
 - ARIA attributes on interactive components (combobox, listbox, dialog, menu)
-- Screen reader support with semantic HTML, aria-labels, and roles
 - Radix UI primitives for accessible modals, tooltips, dropdowns, and popovers
+- Tested with Storybook a11y addon and Chrome Lighthouse (95+)
 
 ### Keyboard shortcuts
 
@@ -282,12 +222,37 @@ Desktop-only shortcuts (active above 1280px). Disabled when focus is inside a te
 
 On macOS use `Cmd` instead of `Ctrl`.
 
-## 🤝 Community and contributions
+## 📋 Available commands
+
+| Command                | Action                                |
+| :--------------------- | :------------------------------------ |
+| `npm install`          | Installs dependencies                 |
+| `npm run prepare`      | Sets up Husky git hooks               |
+| `npm run dev`          | Starts dev server at `localhost:3000` |
+| `npm run build`        | Builds your production site           |
+| `npm start`            | Starts server at `localhost:3000`     |
+| `npm run lint`         | Runs ESLint to check code quality     |
+| `npm run lint:fix`     | Runs ESLint and auto-fixes issues     |
+| `npm run type-check`   | Runs TypeScript type checking         |
+| `npm run test`         | Runs Jest tests                       |
+| `npm run test:watch`   | Runs Jest tests in watch mode         |
+| `npm run format`       | Formats code with Prettier            |
+| `npm run format:check` | Checks if code is properly formatted  |
+
+## 🤝 Community and support
 
 Check out [CONTRIBUTING.md](https://github.com/matt765/spireflow/blob/main/CONTRIBUTING.md) to learn how to get started with contributions.
 
-All forms of project support are valued and appreciated, including code contributions, issue reporting, and sponsorship through GitHub Sponsors.
+All forms of project support are valued and appreciated, including code contributions, issue reporting, and sponsorship through GitHub Sponsors or [Buy Me A Coffee](https://buymeacoffee.com/matt765) service.
 
 ## 📝 License
 
 This project is open source and available under the MIT License. Feel free to use it to build any personal or commercial applications (SaaS, internal tools etc.). Although the license allows redistribution, I would greatly appreciate it if you did not repackage or resell this project as a standalone UI kit or template.
+
+## 💌 Stay updated
+
+Subscribe to the [Spireflow newsletter](https://spireflow.kit.com/) to get notified about major updates and new features.
+
+## Author
+
+Made with ♥ by [matt765](https://github.com/matt765/)

@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions & Discussions
+    url: https://github.com/matt765/spireflow/discussions
+    about: Ask questions and share ideas in GitHub Discussions
+  - name: Security Vulnerability
+    url: https://github.com/matt765/spireflow/security/advisories/new
+    about: Report security vulnerabilities privately

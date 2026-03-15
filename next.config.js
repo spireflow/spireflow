@@ -24,7 +24,7 @@ const connectSrcDomains = [
 ].join(" ");
 
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   transpilePackages: ["@react-pdf/renderer"],
   typescript: {
     ignoreBuildErrors: false,

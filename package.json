@@ -2,7 +2,7 @@
   "name": "spireflow",
   "version": "2.0.0",
   "license": "MIT",
-  "description": "Spireflow is an open source and free dashboard template",
+  "description": "Open source dashboard starter built with Next.js 16, TypeScript and Tailwind 4",
   "author": {
     "name": "matt765",
     "email": "mateusz.wyrebek@gmail.com",

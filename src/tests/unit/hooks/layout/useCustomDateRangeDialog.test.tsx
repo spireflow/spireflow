@@ -7,7 +7,13 @@ describe("useCustomDateRangeDialog", () => {
   const mockOnOpenChange = vi.fn();
 
   beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-03-16T12:00:00"));
     vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it("initializes with provided range", () => {

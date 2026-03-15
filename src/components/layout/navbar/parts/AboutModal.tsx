@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { GithubIcon } from "../../../../assets/icons/GithubIcon";
+import { MailIcon } from "../../../../assets/icons/MailIcon";
 import { Button } from "../../../common/shadcn/button";
 import {
   Dialog,
@@ -93,6 +94,16 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                 </Link>
               </Button>
             </div>
+            <Link
+              href="https://spireflow.kit.com/"
+              target="_blank"
+              className="inline-flex items-center gap-2 mt-1 text-coloredLinkText hover:underline font-medium"
+            >
+              <span className="stroke-coloredLinkText w-[18px] h-[18px] [&>svg]:w-[18px] [&>svg]:h-[18px]">
+                <MailIcon />
+              </span>
+              Subscribe to newsletter
+            </Link>
             <div className="text-primaryText text-base w-full text-left">
               <p className="text-left w-full mt-4 text-xl">Tech stack:</p>
               <div className="mt-4">
@@ -108,7 +119,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                 <li>Apollo Client</li>
                 <li>Recharts</li>
                 <li>Better-Auth</li>
-                <li>Jest</li>
+                <li>Vitest</li>
               </ul>
               <div>
                 <p className="text-primaryText mb-2">Back-End:</p>
@@ -120,6 +131,40 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                 <li>Prisma</li>
                 <li>Better-Auth</li>
                 <li>GraphQL</li>
+              </ul>
+            </div>
+            <div className="text-primaryText text-base w-full text-left mt-2">
+              <p className="text-left w-full text-xl mb-4">
+                Additional resources:
+              </p>
+              <ul className="list-disc list-inside pl-3 mb-4">
+                <li>
+                  <Link
+                    href="https://storybook.spireflow.app/"
+                    target="_blank"
+                    className="text-coloredLinkText hover:underline font-medium"
+                  >
+                    Storybook
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://auth.spireflow.app/"
+                    target="_blank"
+                    className="text-coloredLinkText hover:underline font-medium"
+                  >
+                    Authentication docs
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://github.com/matt765/spireflow-layout"
+                    target="_blank"
+                    className="text-coloredLinkText hover:underline font-medium"
+                  >
+                    Lightweight version
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
