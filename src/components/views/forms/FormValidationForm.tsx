@@ -54,7 +54,12 @@ export const FormValidationForm = () => {
   };
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("formValidation")}>
+    <Card
+      id="formValidation"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("formValidation")}
+    >
       <div className="text-sm text-secondaryText mb-6">
         Using react-hook-form and yup for validation.
       </div>

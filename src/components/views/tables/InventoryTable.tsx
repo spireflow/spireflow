@@ -364,7 +364,12 @@ export const InventoryTable = () => {
   });
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={tTables("pagination")}>
+    <Card
+      id="inventoryTable"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={tTables("pagination")}
+    >
       <div className="py-2">
         <div className="overflow-x-auto">
           <table className="w-full min-w-200" style={{ tableLayout: "fixed" }}>

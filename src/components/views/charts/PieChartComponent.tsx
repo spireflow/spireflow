@@ -142,6 +142,7 @@ export const PieChartComponent = () => {
 
   return (
     <Card
+      id="pieChart"
       className="w-full h-full"
       title={t("pieChart")}
       padding="px-9"

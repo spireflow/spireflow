@@ -2,16 +2,22 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-import { useLayoutStore } from "../../../../store/layoutStore";
+import { menuConfig } from "../../../../config/navigationConfig";
+import type { MenuConfigEntry } from "../../sideMenu/types";
 import { useNavbar } from "./useNavbar";
 
-interface Section {
-  section: string;
-  page: string;
+interface SearchItem {
   id: string;
+  sectionTitleKey: string;
+  pageTitleKey: string;
+  path: string;
+}
+
+interface TranslatedSearchItem extends SearchItem {
   translatedSection: string;
   translatedPage: string;
 }
+
 interface UseSearchInputOptions {
   closeOthers?: () => void;
   open: () => void;
@@ -20,9 +26,51 @@ interface UseSearchInputOptions {
 }
 
 /**
- * Powers the navbar search input - maintains a registry of all navigable sections,
- * translates them for i18n, filters by query, and handles keyboard navigation
- * (arrows, Enter, Escape) plus client-side routing with hash-based scrolling.
+ * Builds a flat list of searchable items from navigationConfig.
+ * Each item with `allSearchItems` produces one search entry per section.
+ * Items/submenuItems without allSearchItems are skipped.
+ */
+const buildSearchItems = (config: MenuConfigEntry[]): SearchItem[] => {
+  const items: SearchItem[] = [];
+
+  for (const entry of config) {
+    if (entry.type === "item" && entry.sections) {
+      for (const section of entry.sections) {
+        items.push({
+          id: section.id,
+          sectionTitleKey: section.titleKey,
+          pageTitleKey: entry.titleKey,
+          path: entry.path,
+        });
+      }
+    }
+
+    if (entry.type === "submenu") {
+      for (const sub of entry.submenuItems) {
+        if (sub.sections) {
+          for (const section of sub.sections) {
+            items.push({
+              id: section.id,
+              sectionTitleKey: section.titleKey,
+              pageTitleKey: sub.titleKey,
+              path: sub.path,
+            });
+          }
+        }
+      }
+    }
+  }
+
+  return items;
+};
+
+const allSearchItems = buildSearchItems(menuConfig);
+
+/**
+ * Powers the navbar search input - derives searchable allSearchItems from
+ * navigationConfig, translates them for i18n, filters by query, and
+ * handles keyboard navigation (arrows, Enter, Escape) plus client-side
+ * routing with hash-based scrolling.
  */
 export const useSearchInput = ({
   closeOthers,
@@ -35,103 +83,46 @@ export const useSearchInput = ({
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const { currentLanguage } = useNavbar();
   const router = useRouter();
-  const homepageLayout = useLayoutStore((state) => state.homepageLayout);
-
-  const allSections = [
-    /** Analytics */
-    { section: "Asset performance", page: "Analytics", id: "assetPerformance" },
-    { section: "Today's sales", page: "Analytics", id: "todaysSales" },
-    { section: "Total profit", page: "Analytics", id: "totalProfit" },
-    { section: "Revenue trends", page: "Analytics", id: "revenueTrends" },
-    { section: "Year overview", page: "Analytics", id: "yearOverview" },
-    { section: "Market metrics", page: "Analytics", id: "marketMetrics" },
-    {
-      section: "Revenue distribution",
-      page: "Analytics",
-      id: "revenueDistribution",
-    },
-
-    /** Homepage */
-    { section: "Revenue over time", page: "Homepage", id: "revenueOverTime" },
-    {
-      section: "Bestselling products",
-      page: "Homepage",
-      id: "bestsellingProducts",
-    },
-    {
-      section: "Customer satisfaction",
-      page: "Homepage",
-      id: "customerSatisfaction",
-    },
-    {
-      section: "Revenue per country",
-      page: "Homepage",
-      id: "revenuePerCountry",
-    },
-    { section: "Sales", page: "Homepage", id: "salesCard" },
-    { section: "Profit", page: "Homepage", id: "profitCard" },
-    { section: "Traffic", page: "Homepage", id: "trafficCard" },
-    { section: "Customers", page: "Homepage", id: "customersCard" },
-
-    /** Other pages */
-    { section: "Customers", page: "Customers", id: "customers" },
-    { section: "Calendar", page: "Calendar", id: "calendar" },
-    { section: "Orders", page: "Orders", id: "orders" },
-    { section: "Products", page: "Products", id: "products" },
-  ];
-
-  /**
-   * Filters out sections that don't exist in the current homepage layout.
-   * E.g. the "Customers" card is hidden when the layout is "three-cards".
-   */
-  const sections = allSections.filter((section) => {
-    if (
-      section.page === "Homepage" &&
-      section.id === "customersCard" &&
-      homepageLayout === "three-cards"
-    ) {
-      return false;
-    }
-    return true;
-  });
 
   /**
    * Enriches each section with translated names. Uses try/catch because
    * next-intl throws when a translation key is missing - in that case
-   * the original English name is kept as fallback.
+   * the titleKey is kept as fallback.
    */
-  const translatedSections = sections.map((item) => {
-    let translatedSection;
-    try {
-      translatedSection = t(`search.sections.${item.id}`);
-    } catch {
-      translatedSection = item.section;
-    }
+  const translatedSections: TranslatedSearchItem[] = allSearchItems.map(
+    (item) => {
+      let translatedSection;
+      try {
+        translatedSection = t(`search.sections.${item.sectionTitleKey}`);
+      } catch {
+        translatedSection = item.sectionTitleKey;
+      }
 
-    let translatedPage;
-    try {
-      translatedPage = t(`search.pages.${item.page}`);
-    } catch {
-      translatedPage = item.page;
-    }
+      let translatedPage;
+      try {
+        translatedPage = t(`search.pages.${item.pageTitleKey}`);
+      } catch {
+        translatedPage = item.pageTitleKey;
+      }
 
-    return {
-      ...item,
-      translatedSection,
-      translatedPage,
-    };
-  });
+      return {
+        ...item,
+        translatedSection,
+        translatedPage,
+      };
+    },
+  );
 
   /**
-   * Matches the search query against both translated and original (English) names
-   * so the user can find sections regardless of the active locale.
+   * Matches the search query against both translated and original key names
+   * so the user can find allSearchItems regardless of the active locale.
    */
   const filteredSections = translatedSections.filter(
     (item) =>
       item.translatedSection.toLowerCase().includes(searchText.toLowerCase()) ||
       item.translatedPage.toLowerCase().includes(searchText.toLowerCase()) ||
-      item.section.toLowerCase().includes(searchText.toLowerCase()) ||
-      item.page.toLowerCase().includes(searchText.toLowerCase()),
+      item.sectionTitleKey.toLowerCase().includes(searchText.toLowerCase()) ||
+      item.pageTitleKey.toLowerCase().includes(searchText.toLowerCase()),
   );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -199,32 +190,20 @@ export const useSearchInput = ({
    * scrolls smoothly to the element by ID. Otherwise uses router.push
    * with a hash so the target page can scroll on load.
    */
-  const handleSectionClick = (section: Section) => {
+  const handleSectionClick = (item: TranslatedSearchItem) => {
     close();
 
     const baseUrl = currentLanguage === "en" ? "" : `/${currentLanguage}`;
     const normalizedPath = window.location.pathname.replace(/\/$/, "");
+    const targetPath =
+      item.path === "/" ? baseUrl || "/" : `${baseUrl}${item.path}`;
+    const normalizedTarget = targetPath.replace(/\/$/, "");
 
-    if (section.page === "Homepage") {
-      if (normalizedPath === baseUrl) {
-        document
-          .getElementById(section.id)
-          ?.scrollIntoView({ behavior: "smooth" });
-        history.replaceState(null, "", `${baseUrl}/#${section.id}`);
-      } else {
-        router.push(`${baseUrl}/#${section.id}`);
-      }
-    } else if (section.page === "Analytics") {
-      if (normalizedPath === `${baseUrl}/analytics`) {
-        document
-          .getElementById(section.id)
-          ?.scrollIntoView({ behavior: "smooth" });
-        history.replaceState(null, "", `${baseUrl}/analytics#${section.id}`);
-      } else {
-        router.push(`${baseUrl}/analytics#${section.id}`);
-      }
+    if (normalizedPath === normalizedTarget) {
+      document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", `${targetPath}#${item.id}`);
     } else {
-      router.push(`${baseUrl}/${section.page.toLowerCase()}`);
+      router.push(`${targetPath}#${item.id}`);
     }
   };
 
@@ -244,7 +223,7 @@ export const useSearchInput = ({
 
   return {
     searchText,
-    sections,
+    allSearchItems,
     translatedSections,
     filteredSections,
     searchPlaceholder,

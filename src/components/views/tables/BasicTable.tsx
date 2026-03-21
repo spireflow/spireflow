@@ -210,7 +210,12 @@ export const BasicTable = () => {
   });
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("basicTable")}>
+    <Card
+      id="basicTable"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("basicTable")}
+    >
       <div className="py-2">
         <div className="overflow-x-auto">
           <table className="w-full min-w-200">

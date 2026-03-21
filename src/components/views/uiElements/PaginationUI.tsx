@@ -23,7 +23,12 @@ export const PaginationUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("pagination")}>
+    <Card
+      id="pagination"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("pagination")}
+    >
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-3">
           <span className="text-sm font-medium">With Page Numbers</span>

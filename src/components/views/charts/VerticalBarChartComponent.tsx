@@ -110,6 +110,7 @@ export const VerticalBarChartComponent = () => {
 
   return (
     <Card
+      id="verticalBarChart"
       className="w-full h-full"
       title={t("verticalBarChart")}
       padding="px-9"

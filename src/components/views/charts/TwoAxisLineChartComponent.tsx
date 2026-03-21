@@ -126,6 +126,7 @@ export const TwoAxisLineChartComponent = () => {
 
   return (
     <Card
+      id="twoAxisLineChart"
       className="w-full h-full"
       title={t("twoAxisLineChart")}
       padding="px-9"

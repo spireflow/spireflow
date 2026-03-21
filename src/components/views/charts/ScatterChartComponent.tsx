@@ -198,6 +198,7 @@ export const ScatterChartComponent = () => {
 
   return (
     <Card
+      id="scatterChart"
       className="w-full h-full"
       title={t("scatterChart")}
       padding="px-9"

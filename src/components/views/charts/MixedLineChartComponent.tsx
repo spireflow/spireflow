@@ -129,6 +129,7 @@ export const MixedLineChartComponent = () => {
 
   return (
     <Card
+      id="mixedLineChart"
       className="w-full h-full"
       title={t("mixedLineChart")}
       padding="px-9"

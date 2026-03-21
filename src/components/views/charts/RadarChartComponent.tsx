@@ -89,6 +89,7 @@ export const RadarChartComponent = () => {
 
   return (
     <Card
+      id="radarChart"
       className="w-full h-full"
       title={t("radarChart")}
       padding="px-9"

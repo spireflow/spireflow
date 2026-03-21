@@ -15,7 +15,12 @@ export const SkeletonsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("skeletons")}>
+    <Card
+      id="skeletons"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("skeletons")}
+    >
       <div className="space-y-4">
         <div className="flex items-center space-x-4">
           <Skeleton className="h-12 w-12 rounded-full" />

@@ -133,6 +133,7 @@ export const AreaChartComponent = () => {
 
   return (
     <Card
+      id="areaChart"
       className="w-full h-full"
       title={t("areaChart")}
       padding="px-9"

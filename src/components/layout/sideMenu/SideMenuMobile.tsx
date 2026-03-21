@@ -1,13 +1,13 @@
 import { useTranslations } from "next-intl";
 
 import { UserIcon } from "../../../assets/icons/UserIcon";
+import { menuConfig } from "../../../config/navigationConfig";
 import { useIsFirstRender } from "../../../hooks/useIsFirstRender";
 import { useSession } from "../../../services/auth/auth-client";
 import { useLayoutStore } from "../../../store/layoutStore";
 import { MenuCategory } from "./parts/MenuCategory";
 import { MenuItem } from "./parts/MenuItem";
 import { MenuItemWithSubmenu } from "./parts/MenuItemWithSubmenu";
-import { menuConfig } from "./SideMenu";
 import { SideMenuMobileProps } from "./types";
 
 export const SideMenuMobile = ({

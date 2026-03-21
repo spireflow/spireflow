@@ -1,5 +1,7 @@
 import { create } from "zustand";
 
+import { APP_DEFAULTS } from "../config/appDefaults";
+
 export type DateRangePreset =
   | "today"
   | "last7days"
@@ -31,7 +33,7 @@ export const DATE_RANGE_PRESETS: Exclude<DateRangePreset, "custom">[] = [
 ];
 
 export const useDateRangeStore = create<DateRangeStore>()((set) => ({
-  selectedPreset: "last7days",
+  selectedPreset: APP_DEFAULTS.dateRangePreset,
   customRange: null,
   setSelectedPreset: (selectedPreset) => set(() => ({ selectedPreset })),
   setCustomRange: (customRange) =>

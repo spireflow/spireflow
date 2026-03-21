@@ -1,92 +1,13 @@
 import { useTranslations } from "next-intl";
-import { ComponentType } from "react";
 
-import { AnalyticsIcon } from "../../../assets/icons/AnalyticsIcon";
 import { ArrowLeftIcon } from "../../../assets/icons/ArrowLeftIcon";
 import { ArrowRightIcon } from "../../../assets/icons/ArrowRightIcon";
-import { BugIcon } from "../../../assets/icons/BugIcon";
-import { CalendarIcon } from "../../../assets/icons/CalendarIcon";
-import { DashboardIcon } from "../../../assets/icons/DashboardIcon";
-import { DonutIcon } from "../../../assets/icons/DonutIcon";
-import { EcommerceIcon } from "../../../assets/icons/EcommerceIcon";
-import { FormsIcon } from "../../../assets/icons/FormsIcon";
-import { PasswordIcon } from "../../../assets/icons/PasswordIcon";
-import { TablesIcon } from "../../../assets/icons/TablesIcon";
-import { UIElementsIcon } from "../../../assets/icons/UIElementsIcon";
-import { UserProfileIcon } from "../../../assets/icons/UserProfileIcon";
+import { menuConfig } from "../../../config/navigationConfig";
 import { useLayoutStore } from "../../../store/layoutStore";
 import { Logo } from "./parts/Logo";
 import { MenuCategory } from "./parts/MenuCategory";
 import { MenuItem } from "./parts/MenuItem";
 import { MenuItemWithSubmenu } from "./parts/MenuItemWithSubmenu";
-
-type MenuConfigEntry =
-  | { type: "category"; titleKey: string }
-  | { type: "item"; titleKey: string; Icon: ComponentType; path: string }
-  | {
-      type: "submenu";
-      titleKey: string;
-      Icon: ComponentType;
-      submenuItems: { titleKey: string; path: string; newTab?: boolean }[];
-    };
-
-export const menuConfig: MenuConfigEntry[] = [
-  { type: "category", titleKey: "pages" },
-  { type: "item", titleKey: "dashboard", Icon: DashboardIcon, path: "/" },
-  {
-    type: "submenu",
-    titleKey: "eCommerce",
-    Icon: EcommerceIcon,
-    submenuItems: [
-      { titleKey: "orders", path: "/orders" },
-      { titleKey: "customers", path: "/customers" },
-      { titleKey: "products", path: "/products" },
-    ],
-  },
-  {
-    type: "item",
-    titleKey: "analytics",
-    Icon: AnalyticsIcon,
-    path: "/analytics",
-  },
-  {
-    type: "item",
-    titleKey: "userProfile",
-    Icon: UserProfileIcon,
-    path: "/profile",
-  },
-  { type: "item", titleKey: "calendar", Icon: CalendarIcon, path: "/calendar" },
-  {
-    type: "submenu",
-    titleKey: "authentication",
-    Icon: PasswordIcon,
-    submenuItems: [
-      { titleKey: "login", path: "/login", newTab: true },
-      { titleKey: "register", path: "/register", newTab: true },
-      { titleKey: "forgotPassword", path: "/forgot-password", newTab: true },
-    ],
-  },
-  {
-    type: "submenu",
-    titleKey: "errorPages",
-    Icon: BugIcon,
-    submenuItems: [
-      { titleKey: "error401", path: "/error-401", newTab: true },
-      { titleKey: "error404", path: "/error-404", newTab: true },
-      { titleKey: "error500", path: "/error-500", newTab: true },
-    ],
-  },
-  { type: "category", titleKey: "components" },
-  {
-    type: "item",
-    titleKey: "uiElements",
-    Icon: UIElementsIcon,
-    path: "/ui-elements",
-  },
-  { type: "item", titleKey: "forms", Icon: FormsIcon, path: "/forms" },
-  { type: "item", titleKey: "tables", Icon: TablesIcon, path: "/tables" },
-  { type: "item", titleKey: "charts", Icon: DonutIcon, path: "/charts" },
-];
 
 export const SideMenu = () => {
   const isSideMenuOpen = useLayoutStore((s) => s.isSideMenuOpen);

@@ -15,7 +15,7 @@ export const BadgesUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("badges")}>
+    <Card id="badges" isHeaderDividerVisible addTitleMargin title={t("badges")}>
       <div className="flex flex-wrap gap-3">
         <Badge>Default</Badge>
         <Badge variant="secondary">Secondary</Badge>

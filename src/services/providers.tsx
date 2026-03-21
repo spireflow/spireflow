@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 
 import { TooltipProvider } from "../components/common/shadcn/tooltip";
 import { Layout } from "../components/layout/Layout";
+import { APP_DEFAULTS } from "../config/appDefaults";
 import { client } from "./apolloClient";
 
 export const THEMES_ARRAY = ["light", "dark"];
@@ -26,10 +27,10 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
         enableSystem={false}
         attribute="class"
         themes={THEMES_ARRAY}
-        defaultTheme="dark"
+        defaultTheme={APP_DEFAULTS.defaultTheme}
         disableTransitionOnChange
       >
-        <TooltipProvider delayDuration={100}>
+        <TooltipProvider delayDuration={APP_DEFAULTS.tooltipDelayMs}>
           <Layout>{children}</Layout>
         </TooltipProvider>
       </ThemeProvider>

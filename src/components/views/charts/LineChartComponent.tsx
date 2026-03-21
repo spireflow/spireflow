@@ -147,6 +147,7 @@ export const LineChartComponent = () => {
 
   return (
     <Card
+      id="lineChart"
       className={isWideLayout ? "w-full !pt-8 !pb-8" : "w-full h-full"}
       title={isWideLayout ? undefined : t("lineChart")}
       customHeader={

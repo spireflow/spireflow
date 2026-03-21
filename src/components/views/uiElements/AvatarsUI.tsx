@@ -15,7 +15,12 @@ export const AvatarsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("avatars")}>
+    <Card
+      id="avatars"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("avatars")}
+    >
       <div className="flex flex-col gap-6">
         <div className="flex gap-4 items-center">
           <Avatar>

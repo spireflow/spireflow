@@ -24,7 +24,12 @@ export const PopoverUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("popover")}>
+    <Card
+      id="popover"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("popover")}
+    >
       <div className="flex gap-4 flex-wrap">
         <Popover>
           <PopoverTrigger asChild>

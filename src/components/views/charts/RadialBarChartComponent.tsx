@@ -91,6 +91,7 @@ export const RadialBarChartComponent = () => {
 
   return (
     <Card
+      id="radialBarChart"
       className="w-full h-full"
       title={t("radialBarChart")}
       padding="px-9"

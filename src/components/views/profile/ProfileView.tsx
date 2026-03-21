@@ -39,7 +39,7 @@ export const ProfileView = () => {
         {/* Right Column - Main Content */}
         <div className="lg:col-span-2 flex flex-col gap-6 max-3xl:gap-5 max-2xl:gap-4">
           {/* About Section Card */}
-          <Card className="!px-6">
+          <Card id="about" className="!px-6">
             <h2 className="text-xl max-3xl:text-lg max-2xl:text-base font-semibold text-primaryText mb-4 max-3xl:mb-3 max-2xl:mb-2">
               {t("about")}
             </h2>
@@ -59,7 +59,7 @@ export const ProfileView = () => {
           </Card>
 
           {/* Account Settings Card */}
-          <Card className="!px-6">
+          <Card id="accountSettings" className="!px-6">
             <h2 className="text-xl max-3xl:text-lg max-2xl:text-base font-semibold text-primaryText mb-4 max-3xl:mb-3 max-2xl:mb-2">
               {t("accountSettings")}
             </h2>
@@ -101,7 +101,7 @@ export const ProfileView = () => {
           </Card>
 
           {/* Recent Activity Card */}
-          <Card className="!px-6">
+          <Card id="recentActivity" className="!px-6">
             <h2 className="text-xl max-3xl:text-lg max-2xl:text-base font-semibold text-primaryText mb-4 max-3xl:mb-3 max-2xl:mb-2">
               {t("recentActivity")}
             </h2>

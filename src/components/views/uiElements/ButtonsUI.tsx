@@ -16,7 +16,12 @@ export const ButtonsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("buttons")}>
+    <Card
+      id="buttons"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("buttons")}
+    >
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <span className="text-sm font-medium">Button Variants</span>

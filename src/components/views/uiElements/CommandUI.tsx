@@ -23,7 +23,12 @@ export const CommandUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("command")}>
+    <Card
+      id="command"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("command")}
+    >
       <Command
         className="rounded-lg border border-inputBorder"
         value=""

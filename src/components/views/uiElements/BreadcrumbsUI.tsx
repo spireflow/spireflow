@@ -23,7 +23,12 @@ export const BreadcrumbsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("breadcrumbs")}>
+    <Card
+      id="breadcrumbs"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("breadcrumbs")}
+    >
       <div className="space-y-4">
         <Breadcrumb>
           <BreadcrumbList>

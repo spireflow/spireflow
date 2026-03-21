@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
+import { APP_DEFAULTS } from "../config/appDefaults";
+
 type ToastVariant = "default" | "destructive" | "success";
 
 interface Toast {
@@ -20,7 +22,7 @@ interface ToastStore {
   clearToast: () => void;
 }
 
-const TOAST_DURATION_MS = 5000;
+const TOAST_DURATION_MS = APP_DEFAULTS.toastDurationMs;
 
 let toastCounter = 0;
 let autoDismissTimer: ReturnType<typeof setTimeout> | null = null;

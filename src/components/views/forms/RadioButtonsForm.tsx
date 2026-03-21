@@ -16,7 +16,12 @@ export const RadioButtonsForm = () => {
   const t = useTranslations("forms");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("radioButtons")}>
+    <Card
+      id="radioButtons"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("radioButtons")}
+    >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-[0.8rem]">
           <Label>Default</Label>

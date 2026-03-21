@@ -22,7 +22,12 @@ export const TooltipsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("tooltips")}>
+    <Card
+      id="tooltips"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("tooltips")}
+    >
       <TooltipProvider delayDuration={100}>
         <div className="flex gap-4 flex-wrap">
           <Tooltip>

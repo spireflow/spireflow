@@ -133,6 +133,7 @@ export const StackedBarChartComponent = () => {
 
   return (
     <Card
+      id="stackedBarChart"
       className="w-full h-full"
       title={t("stackedBarChart")}
       padding="px-9"

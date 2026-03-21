@@ -125,6 +125,7 @@ export const ComposedChartComponent = () => {
 
   return (
     <Card
+      id="composedChart"
       className="w-full h-full"
       title={t("composedChart")}
       padding="px-9"

@@ -26,7 +26,12 @@ export const ColorPickerForm = () => {
   const [openColorPicker, setOpenColorPicker] = React.useState(false);
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("colorPicker")}>
+    <Card
+      id="colorPicker"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("colorPicker")}
+    >
       <div className="flex flex-col gap-6">
         <div className="grid w-full max-w-sm items-center gap-[0.8rem]">
           <Label>Pick a Color</Label>

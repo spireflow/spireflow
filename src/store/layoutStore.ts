@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
+import { APP_DEFAULTS } from "../config/appDefaults";
 import { BREAKPOINTS } from "../styles/breakpoints";
 import type { FontType } from "../styles/fonts";
 
@@ -70,20 +71,20 @@ export const useLayoutStore = create<LayoutStore>()(
         setIsLoggingOut: (isLoggingOut) => set(() => ({ isLoggingOut })),
         isLoggingIn: false,
         setIsLoggingIn: (isLoggingIn) => set(() => ({ isLoggingIn })),
-        homepageLayout: "three-cards",
+        homepageLayout: APP_DEFAULTS.homepageLayout,
         setHomepageLayout: (layout) => set(() => ({ homepageLayout: layout })),
-        fontType: "default",
+        fontType: APP_DEFAULTS.fontType,
         setFontType: (fontType) => set(() => ({ fontType })),
-        sidebarDefaultState: "expanded",
+        sidebarDefaultState: APP_DEFAULTS.sidebarDefaultState,
         setSidebarDefaultState: (sidebarDefaultState) =>
           set(() => ({
             sidebarDefaultState,
             isSideMenuOpen: sidebarDefaultState === "expanded",
           })),
-        chartAnimationsEnabled: false,
+        chartAnimationsEnabled: APP_DEFAULTS.chartAnimationsEnabled,
         setChartAnimationsEnabled: (chartAnimationsEnabled) =>
           set(() => ({ chartAnimationsEnabled })),
-        fixedNavbar: true,
+        fixedNavbar: APP_DEFAULTS.fixedNavbar,
         setFixedNavbar: (fixedNavbar) => set(() => ({ fixedNavbar })),
       }),
       {

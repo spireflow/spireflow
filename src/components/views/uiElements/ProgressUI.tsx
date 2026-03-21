@@ -16,7 +16,12 @@ export const ProgressUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("progress")}>
+    <Card
+      id="progress"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("progress")}
+    >
       <div className="space-y-6">
         <div>
           <div className="flex justify-between mb-2 text-sm">

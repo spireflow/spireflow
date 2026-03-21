@@ -23,7 +23,7 @@ export const TabsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("tabs")}>
+    <Card id="tabs" isHeaderDividerVisible addTitleMargin title={t("tabs")}>
       <Tabs defaultValue="account" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="account">Account</TabsTrigger>

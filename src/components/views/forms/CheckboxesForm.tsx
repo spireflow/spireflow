@@ -16,7 +16,12 @@ export const CheckboxesForm = () => {
   const t = useTranslations("forms");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("checkboxes")}>
+    <Card
+      id="checkboxes"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("checkboxes")}
+    >
       <div className="flex flex-col gap-6">
         <div className="flex items-center space-x-2">
           <Checkbox id="terms" />

@@ -1,8 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import React from "react";
 
-import { useLayoutStore } from "../../../../store/layoutStore";
-
 // Mock useNavbar to avoid its heavy dependency chain (useSession, useDropdown, etc.)
 vi.mock("../../../../components/layout/navbar/hooks/useNavbar", () => ({
   useNavbar: () => ({ currentLanguage: "en" }),
@@ -45,7 +43,6 @@ const typeSearch = (
 
 describe("useSearchInput", () => {
   beforeEach(() => {
-    useLayoutStore.setState({ homepageLayout: "three-cards" });
     Object.defineProperty(window, "location", {
       value: { pathname: "/" },
       writable: true,
@@ -62,8 +59,10 @@ describe("useSearchInput", () => {
       expect(
         result.current.filteredSections.every(
           (s) =>
-            s.section.toLowerCase().includes("revenue") ||
-            s.page.toLowerCase().includes("revenue"),
+            s.translatedSection.toLowerCase().includes("revenue") ||
+            s.translatedPage.toLowerCase().includes("revenue") ||
+            s.sectionTitleKey.toLowerCase().includes("revenue") ||
+            s.pageTitleKey.toLowerCase().includes("revenue"),
         ),
       ).toBe(true);
 
@@ -77,23 +76,10 @@ describe("useSearchInput", () => {
 
       typeSearch(result, "Analytics");
       expect(
-        result.current.filteredSections.every((s) => s.page === "Analytics"),
+        result.current.filteredSections.every(
+          (s) => s.pageTitleKey === "analytics",
+        ),
       ).toBe(true);
-    });
-
-    it("excludes customersCard in three-cards layout, includes in four-cards", () => {
-      useLayoutStore.setState({ homepageLayout: "three-cards" });
-      const controls = createControls();
-      const { result } = renderHook(() => useSearchInput(controls));
-      expect(
-        result.current.sections.find((s) => s.id === "customersCard"),
-      ).toBeUndefined();
-
-      useLayoutStore.setState({ homepageLayout: "four-cards" });
-      const { result: result2 } = renderHook(() => useSearchInput(controls));
-      expect(
-        result2.current.sections.find((s) => s.id === "customersCard"),
-      ).toBeDefined();
     });
   });
 

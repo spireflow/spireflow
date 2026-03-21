@@ -27,7 +27,12 @@ export const DialogsUI = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("dialogs")}>
+    <Card
+      id="dialogs"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("dialogs")}
+    >
       <div className="flex gap-4">
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>

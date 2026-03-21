@@ -15,7 +15,12 @@ export const SeparatorsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("separators")}>
+    <Card
+      id="separators"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("separators")}
+    >
       <div className="space-y-8">
         <div>
           <h4 className="text-sm font-medium mb-4">Horizontal Separator</h4>

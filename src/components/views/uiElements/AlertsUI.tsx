@@ -16,7 +16,7 @@ export const AlertsUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("alerts")}>
+    <Card id="alerts" isHeaderDividerVisible addTitleMargin title={t("alerts")}>
       <div className="flex flex-col gap-6">
         <Alert>
           <Info className="h-4 w-4" />

@@ -37,7 +37,12 @@ export const DropdownMenuUI = () => {
   const [sortBy, setSortBy] = React.useState("date");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("dropdownMenu")}>
+    <Card
+      id="dropdownMenu"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("dropdownMenu")}
+    >
       <div className="flex gap-4 flex-wrap">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

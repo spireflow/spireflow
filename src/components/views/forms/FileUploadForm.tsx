@@ -16,7 +16,12 @@ export const FileUploadForm = () => {
   const t = useTranslations("forms");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("fileUpload")}>
+    <Card
+      id="fileUpload"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("fileUpload")}
+    >
       <div>
         <Label className="mb-4 block">Dropzone</Label>
         <div className="flex items-center justify-center w-full">

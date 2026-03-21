@@ -17,7 +17,7 @@ export const ToastsUI = () => {
   const showToast = useToastStore((s) => s.showToast);
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("toasts")}>
+    <Card id="toasts" isHeaderDividerVisible addTitleMargin title={t("toasts")}>
       <div className="flex flex-wrap gap-4">
         <Button
           variant="outline"

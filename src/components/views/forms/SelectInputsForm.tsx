@@ -51,7 +51,12 @@ export const SelectInputsForm = () => {
   const [comboboxValue, setComboboxValue] = React.useState("");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("selectInputs")}>
+    <Card
+      id="selectInputs"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("selectInputs")}
+    >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3 w-3/4 xsm:w-1/2">
           <Label>Select Option</Label>

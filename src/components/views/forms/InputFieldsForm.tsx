@@ -20,7 +20,12 @@ export const InputFieldsForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("inputFields")}>
+    <Card
+      id="inputFields"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("inputFields")}
+    >
       <div className="flex flex-col gap-6">
         <div className="grid w-full max-w-sm items-center gap-[0.8rem]">
           <Label htmlFor="email">Default Input</Label>

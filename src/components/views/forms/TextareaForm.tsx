@@ -16,7 +16,12 @@ export const TextareaForm = () => {
   const t = useTranslations("forms");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("textarea")}>
+    <Card
+      id="textarea"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("textarea")}
+    >
       <div className="grid w-full gap-[0.8rem]">
         <Label htmlFor="message">Description</Label>
         <Textarea placeholder="Type your message here." id="message" rows={6} />

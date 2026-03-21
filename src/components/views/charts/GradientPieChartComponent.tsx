@@ -214,6 +214,7 @@ export const GradientPieChartComponent = () => {
 
   return (
     <Card
+      id="gradientPieChart"
       className="w-full h-full"
       title={t("gradientPieChart")}
       padding="px-9"

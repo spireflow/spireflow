@@ -34,7 +34,12 @@ export const DatePickerForm = () => {
   };
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("datePicker")}>
+    <Card
+      id="datePicker"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("datePicker")}
+    >
       <div className="flex flex-col gap-[0.8rem]">
         <Label>Select Date</Label>
         <div className="flex relative h-[2.3rem] w-40">

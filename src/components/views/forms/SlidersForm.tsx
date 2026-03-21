@@ -16,7 +16,12 @@ export const SlidersForm = () => {
   const t = useTranslations("forms");
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("sliders")}>
+    <Card
+      id="sliders"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("sliders")}
+    >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-[0.8rem]">
           <Label>Default Slider</Label>

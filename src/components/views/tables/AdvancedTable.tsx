@@ -311,7 +311,12 @@ export const AdvancedTable = () => {
   });
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("searchAndSelection")}>
+    <Card
+      id="advancedTable"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("searchAndSelection")}
+    >
       <div className="py-2">
         {/* Search and Info */}
         <div

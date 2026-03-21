@@ -298,7 +298,12 @@ export const UserTable = () => {
   });
 
   return (
-    <Card isHeaderDividerVisible addTitleMargin title={t("filters")}>
+    <Card
+      id="userTable"
+      isHeaderDividerVisible
+      addTitleMargin
+      title={t("filters")}
+    >
       <div className="py-2">
         {/* Controls Row */}
         <div className="flex justify-between items-center mb-4 max-xsm:gap-4">

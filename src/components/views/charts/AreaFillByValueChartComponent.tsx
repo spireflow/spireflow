@@ -147,6 +147,7 @@ export const AreaFillByValueChartComponent = () => {
 
   return (
     <Card
+      id="areaFillByValue"
       className="w-full h-full"
       title={t("areaFillByValueChart")}
       padding="px-9"
