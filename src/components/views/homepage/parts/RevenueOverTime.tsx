@@ -12,6 +12,7 @@ import {
 
 import { useChartAnimation } from "../../../../hooks/useChartAnimation";
 import { useIsFirstRender } from "../../../../hooks/useIsFirstRender";
+import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 import { useWindowDimensions } from "../../../../hooks/useWindowDimensions";
 import { useChartAnimationStore } from "../../../../store/chartAnimationStore";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
@@ -162,7 +163,7 @@ export const RevenueOverTime = ({
   const displayData = processDataByTimeRange(revenueOverTimeData);
 
   const customHeader = (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between mb-8 md:mb-6 1xl:mb-8">
       <div className="flex flex-col gap-0.5">
         <p className="text-sm 1xl:text-base 3xl:text-lg font-semibold text-primaryText">
           {t("title")}
@@ -198,13 +199,36 @@ export const RevenueOverTime = ({
     </div>
   );
 
+  const isAboveXsm = useMediaQuery(`(min-width: ${BREAKPOINTS.xsm}px)`);
+
   return (
     <Card
       className="h-full"
       id="revenueOverTime"
-      customHeader={customHeader}
-      hasSubtitle={true}
+      {...(isFirstRender || isAboveXsm
+        ? { customHeader }
+        : { title: t("title") })}
     >
+      <div className="flex flex-row justify-end gap-5 w-full mb-4 mt-6 xsm:hidden">
+        <div className="flex items-center">
+          <div
+            className="w-3 h-3 rounded-sm mr-2"
+            style={{ backgroundColor: "var(--color-chartPrimaryDisabled)" }}
+          />
+          <span className="text-xs 1xl:text-sm text-primaryText">
+            Website sales
+          </span>
+        </div>
+        <div className="flex items-center">
+          <div
+            className="w-3 h-3 rounded-sm mr-2"
+            style={{ backgroundColor: "var(--color-chartPrimaryFill)" }}
+          />
+          <span className="text-xs 1xl:text-sm text-primaryText">
+            In store sales
+          </span>
+        </div>
+      </div>
       <div
         role="img"
         aria-label="Revenue over time area chart"

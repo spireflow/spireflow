@@ -58,7 +58,7 @@ export const SignUpForm = ({
         {t("signUp")}
       </h1>
       <form
-        className="w-full flex flex-col gap-4 items-center"
+        className="w-full flex flex-col gap-3 3xl:gap-4 items-center"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mb-1 w-full relative h-[2.7rem]">

@@ -30,6 +30,7 @@ export interface NavbarDropdowns {
 export interface AboutModalProps {
   closeModal: () => void;
   returnFocusRef?: RefObject<HTMLButtonElement | null>;
+  onShowContributing?: () => void;
 }
 
 export interface HamburgerButtonProps {

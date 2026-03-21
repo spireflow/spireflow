@@ -72,6 +72,11 @@ export const DateRangeSelector = () => {
             </span>
             <span>{t("customRange")}</span>
           </DropdownMenuItem>
+          {selectedPreset === "custom" && customRange && (
+            <p className="xsm:hidden pb-1 pt-0.5 pl-[1.875rem] text-sm text-subtitleText">
+              {triggerLabel}
+            </p>
+          )}
         </DropdownMenuContent>
       </DropdownMenu>
 

@@ -15,6 +15,7 @@ import { useNavbar } from "./hooks/useNavbar";
 import { useNavbarModals } from "./hooks/useNavbarModals";
 import { AboutModal } from "./parts/AboutModal";
 import { ChangelogModal } from "./parts/ChangelogModal";
+import { ContributingModal } from "./parts/ContributingModal";
 import { FloatingMenuButton } from "./parts/FloatingMenuButton";
 import { NotificationsButton } from "./parts/NotificationsButton";
 import { SearchInput } from "./parts/SearchInput";
@@ -77,14 +78,17 @@ export const Navbar = () => {
     isSignUpModalOpen,
     isLogoutModalOpen,
     isAboutModalOpen,
+    isContributingModalOpen,
     isChangelogModalOpen,
     closeLoginModal,
     closeSignUpModal,
     closeLogoutModal,
     closeAboutModal,
+    closeContributingModal,
     closeChangelogModal,
     showLogoutModal,
     showAboutModal,
+    showContributingModal,
     showChangelogModal,
     showSignUpModal,
     switchToSignUp,
@@ -205,6 +209,13 @@ export const Navbar = () => {
       {isAboutModalOpen && (
         <AboutModal
           closeModal={closeAboutModal}
+          onShowContributing={showContributingModal}
+          returnFocusRef={userIconBtnRef}
+        />
+      )}
+      {isContributingModalOpen && (
+        <ContributingModal
+          closeModal={closeContributingModal}
           returnFocusRef={userIconBtnRef}
         />
       )}

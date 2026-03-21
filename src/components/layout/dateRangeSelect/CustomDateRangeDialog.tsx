@@ -36,6 +36,7 @@ export const CustomDateRangeDialog = ({
     handleOpenChange,
     handleApply,
     dateInputClasses,
+    handleMobileFocus,
   } = useCustomDateRangeDialog({ initialRange, onApply, onOpenChange });
 
   return (
@@ -70,6 +71,7 @@ export const CustomDateRangeDialog = ({
                 maxDate={today}
                 className={dateInputClasses}
                 popperPlacement="bottom-start"
+                onFocus={handleMobileFocus}
               />
               <div
                 onClick={() => startPickerRef.current?.setOpen(true)}
@@ -93,6 +95,7 @@ export const CustomDateRangeDialog = ({
                 maxDate={today}
                 className={dateInputClasses}
                 popperPlacement="bottom-start"
+                onFocus={handleMobileFocus}
               />
               <div
                 onClick={() => endPickerRef.current?.setOpen(true)}

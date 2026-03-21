@@ -301,7 +301,7 @@ export const MenuItemWithSubmenu = ({
         )}
       </Tooltip>
       {!isCollapsed && isExpanded && (isSideMenuOpen || !isDesktop) && (
-        <div className="ml-[1.6rem] relative -mt-[0.1rem] 1xl:-mt-[0.2rem] 3xl:-mt-[0.3rem]">
+        <div className="ml-[1.6rem] relative mt-[0.15rem] 1xl:-mt-[0.1rem] 3xl:-mt-[0.3rem]">
           <div
             ref={verticalLineRef}
             className="absolute left-0 top-0 w-0.5 bg-submenuTreeLine"
@@ -328,7 +328,7 @@ export const MenuItemWithSubmenu = ({
                 <div className="absolute left-[calc(1.6rem+2px)] top-1/2 w-3 h-0.5 bg-submenuTreeLine"></div>
                 <div
                   onClick={handleMenuItemClick}
-                  className={`flex rounded-md items-center py-[0.4rem] 1xl:py-[0.45rem] 3xl:py-[0.6rem] pl-[3.2rem] w-full pr-2 transition ${
+                  className={`flex rounded-md items-center py-2 1xl:py-[0.55rem] 3xl:py-[0.6rem] pl-[3.2rem] w-full pr-2 transition ${
                     isActive
                       ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover"
                       : "bg-navItemBg hover:bg-navItemBgHover"

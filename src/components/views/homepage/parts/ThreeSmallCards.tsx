@@ -94,7 +94,8 @@ export const ThreeSmallCards = ({
         {metricsData.map((metric, index) => (
           <div
             key={metric.title}
-            className="border light:shadow-lg border-cardBorder rounded-xl bg-primaryBg relative w-full text-left py-4 pl-8 pr-5 min-[25rem]:pr-8"
+            style={{ boxShadow: "var(--cardShadow)" }}
+            className="border border-cardBorder rounded-xl bg-primaryBg relative w-full text-left py-4 pl-8 pr-5 min-[25rem]:pr-8"
           >
             <div className="flex items-center justify-between gap-5 w-full">
               <div className="flex flex-col justify-center gap-1.5">
@@ -145,7 +146,8 @@ export const ThreeSmallCards = ({
         {metricsData.slice(0, 2).map((metric, index) => (
           <div
             key={metric.title}
-            className="border light:shadow-lg border-cardBorder rounded-xl bg-primaryBg relative w-full text-left py-4 px-5"
+            style={{ boxShadow: "var(--cardShadow)" }}
+            className="border border-cardBorder rounded-xl bg-primaryBg relative w-full text-left py-4 px-5"
           >
             <div className="flex items-center justify-between gap-3 w-full">
               <div className="flex flex-col justify-center gap-1">
@@ -192,7 +194,10 @@ export const ThreeSmallCards = ({
       </div>
 
       {/* Tablet+: single card with all metrics */}
-      <div className="hidden md:flex border light:shadow-lg border-cardBorder rounded-xl bg-primaryBg relative w-full text-left py-4 1xl:py-[1.3rem] 3xl:py-6">
+      <div
+        style={{ boxShadow: "var(--cardShadow)" }}
+        className="hidden md:flex border border-cardBorder rounded-xl bg-primaryBg relative w-full text-left py-4 1xl:py-[1.3rem] 3xl:py-6"
+      >
         <div className="flex flex-row justify-between gap-3 1xl:gap-4 2xl:gap-6 3xl:gap-8 px-5 3xl:px-4 w-full">
           {metricsData.map((metric, index) => (
             <div

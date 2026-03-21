@@ -21,7 +21,7 @@ export const ChangelogModal = ({
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
       <DialogContent
-        className="md:max-w-168 px-5 xsm:px-5 sm:px-6 md:px-12 pr-0 xsm:pr-0 sm:pr-0 pt-0 sm:pt-0 md:pt-12 pb-0 md:pb-12"
+        className="md:max-w-130 1xl:max-w-168 md:w-130 1xl:w-168 px-5 xsm:px-5 sm:px-6 md:px-10 1xl:px-12 pr-0 xsm:pr-0 sm:pr-0 pt-0 sm:pt-0 md:pt-10 1xl:pt-12 pb-0 md:pb-10 1xl:pb-12"
         onOpenAutoFocus={handleOpenAutoFocus}
         onCloseAutoFocus={(e) => {
           if (returnFocusRef?.current) {
@@ -36,7 +36,7 @@ export const ChangelogModal = ({
         <div
           ref={scrollRef}
           tabIndex={0}
-          className="w-full min-w-0 md:min-w-128 h-full max-h-none md:max-h-[65vh] overflow-y-auto pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none"
+          className="w-full min-w-0 h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none"
         >
           <div className="text-primaryText text-base w-full h-full text-left">
             {isLoading ? (

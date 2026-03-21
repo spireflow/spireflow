@@ -81,7 +81,7 @@ export const CustomerSatisfaction = ({
       <div
         role="img"
         aria-label="Customer satisfaction scatter chart"
-        className="h-64 1xl:h-70 3xl:h-78 mt-10"
+        className="h-64 1xl:h-70 3xl:h-78 mt-4 md:mt-10"
       >
         <ResponsiveContainer
           width="100%"

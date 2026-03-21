@@ -52,11 +52,12 @@ export const OrdersView = ({ ordersData }: OrdersViewProps) => {
     <div className="flex flex-col w-full h-full">
       <h1 className="sr-only">Orders</h1>
       <div className="w-full flex justify-between flex-wrap md:flex-nowrap">
-        <div className="w-full md:w-1/4 mb-4 min-w-60 h-[2.3rem] 3xl:h-[2.6rem]">
+        <div className="w-full md:w-1/4 mb-4 min-w-60 h-[2.6rem]">
           <InputGroup className="h-full">
             <InputGroupInput
               type="text"
               value={searchQuery}
+              className="!h-[2.6rem]"
               onChange={(e) => {
                 setSearchQuery(e.target.value);
                 setCurrentPage(0);
@@ -89,7 +90,7 @@ export const OrdersView = ({ ordersData }: OrdersViewProps) => {
           itemsPerPage={itemsPerPage}
         />
       </div>
-      <div className="flex justify-between flex-wrap pb-4">
+      <div className="flex flex-col sm:flex-row justify-between items-center flex-wrap pb-4">
         <div className="w-56 mt-8 sm:mb-0 flex gap-4 h-10 3xl:h-11">
           <Button
             variant="outline"

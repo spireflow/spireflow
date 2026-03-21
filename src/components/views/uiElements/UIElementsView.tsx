@@ -32,7 +32,9 @@ export const UIElementsView = () => {
         <ButtonsUI />
         <CommandUI />
         <AvatarsUI />
-        <TooltipsUI />
+        <div className="hidden lg:block">
+          <TooltipsUI />
+        </div>
         <AlertsUI />
         <ToastsUI />
         <SkeletonsUI />

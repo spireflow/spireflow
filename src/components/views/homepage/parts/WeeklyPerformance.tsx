@@ -158,7 +158,7 @@ const WeeklyPerformanceChart = ({
       <div
         role="img"
         aria-label="Weekly performance bar chart"
-        className={`w-full ${isExpanded ? chartHeightWhenNoActivities : "h-60 xsm:h-72 3xl:h-84"}`}
+        className={`w-full ${isExpanded ? chartHeightWhenNoActivities : "h-60 xsm:h-72 lg:h-66 1xl:h-72 3xl:h-84"}`}
       >
         <ResponsiveContainer
           width="100%"
@@ -282,7 +282,7 @@ const ActivityItem = ({ activity }: { activity: WeeklyActivity }) => {
   };
 
   return (
-    <div className="flex items-start gap-3 py-2.5 lg:py-2 1xl:py-2.5 3xl:py-5 border-b border-mainBorder last:border-b-0 hover:bg-navItemBgHover transition-colors px-3 1xl:px-4 rounded-lg">
+    <div className="flex items-start gap-3 py-2.5 lg:py-2.5 1xl:py-2.5 3xl:py-5 hover:bg-navItemBgHover transition-colors px-3 1xl:px-4 rounded-lg">
       <div
         className="w-8 h-8 1xl:w-10 1xl:h-10 rounded-full flex items-center justify-center flex-shrink-0"
         style={{
@@ -345,8 +345,13 @@ export const WeeklyPerformance = ({
               <p className="text-sm font-semibold text-primaryText">Activity</p>
             </div>
             <div className="flex flex-col">
-              {weeklyActivities.map((activity) => (
-                <ActivityItem key={activity.id} activity={activity} />
+              {weeklyActivities.map((activity, index) => (
+                <div key={activity.id}>
+                  {index > 0 && (
+                    <div className="mx-3 1xl:mx-4 border-b border-mainBorder" />
+                  )}
+                  <ActivityItem activity={activity} />
+                </div>
               ))}
             </div>
           </div>

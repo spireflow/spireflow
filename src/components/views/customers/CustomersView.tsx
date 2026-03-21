@@ -56,10 +56,11 @@ export const CustomersView = ({ customers }: CustomersViewProps) => {
     <div className="flex flex-col w-full h-full">
       <h1 className="sr-only">Customers</h1>
       <div className="flex justify-between flex-wrap md:flex-wrap w-full">
-        <div className="w-full md:w-1/3 lg:w-1/4 h-[2.3rem] 3xl:h-[2.6rem]">
+        <div className="w-full md:w-1/3 lg:w-1/4 h-[2.6rem]">
           <InputGroup className="h-full">
             <InputGroupInput
               type="text"
+              className="!h-[2.6rem]"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t("searchField.searchCustomers")}
@@ -70,7 +71,7 @@ export const CustomersView = ({ customers }: CustomersViewProps) => {
           </InputGroup>
         </div>
         <div className="flex gap-6 flex-wrap w-full md:w-auto mt-6 md:mt-0">
-          <div className="flex w-full md:w-auto justify-between gap-4 md:gap-4 h-9 3xl:h-10 max-xsm:gap-2">
+          <div className="flex w-full md:w-auto justify-between gap-4 md:gap-4 h-10 max-xsm:gap-2">
             <div className="max-xsm:w-[calc(50%-0.25rem)]">
               <CustomersCountryDropdown
                 options={countryOptions}

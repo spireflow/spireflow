@@ -39,7 +39,7 @@ export const ProfileHeaderCard = ({
       </div>
 
       {/* Profile Info */}
-      <div className="pt-16 max-3xl:pt-12 max-2xl:pt-10 px-6 pb-4 max-3xl:pb-2 max-2xl:pb-1 max-md:pb-3 relative min-h-40 max-3xl:min-h-32.5 max-2xl:min-h-[7.1875rem] max-md:min-h-0">
+      <div className="pt-16 max-3xl:pt-12 max-2xl:pt-14 px-6 pb-4 max-3xl:pb-2 max-2xl:pb-1 max-md:pb-3 relative min-h-40 max-3xl:min-h-32.5 max-2xl:min-h-[7.1875rem] max-md:min-h-0">
         {/* Text info centered below avatar */}
         <div className="text-center">
           <h1 className="text-3xl max-3xl:text-2xl max-2xl:text-xl font-bold text-primaryText mb-1">
@@ -54,7 +54,7 @@ export const ProfileHeaderCard = ({
         </div>
 
         {/* Social Links and Edit button */}
-        <div className="md:absolute md:top-1/2 md:-translate-y-1/2 right-6 max-lg:left-6 max-lg:justify-between flex items-center gap-6 max-md:justify-center max-md:mt-8">
+        <div className="md:absolute md:top-1/2 md:-translate-y-1/2 right-6 max-lg:left-6 max-lg:justify-between flex items-center gap-6 max-md:justify-center max-md:mt-6 max-md:-mb-2">
           <div className="flex gap-3">
             <button
               className="w-10 h-10 rounded-full bg-secondaryBg hover:bg-hoverBg flex items-center justify-center group"

@@ -128,12 +128,15 @@ export const TotalProfit = ({
               axisLine={{ stroke: "var(--color-chartAxisLine)" }}
               tickLine={false}
               tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              ticks={[
-                totalProfitSales[0]?.month,
-                totalProfitSales[totalProfitSales.length - 1]?.month,
-              ]}
             />
-            <YAxis hide />
+            <YAxis
+              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+              tickLine={false}
+              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              tickFormatter={(value) =>
+                `$${Intl.NumberFormat("us").format(value)}`
+              }
+            />
             <Tooltip
               content={<TotalProfitTooltip />}
               cursor={{

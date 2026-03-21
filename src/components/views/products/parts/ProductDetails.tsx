@@ -52,7 +52,9 @@ export const ProductDetails = ({
       const link = document.createElement("a");
       link.href = url;
       link.download = `${activeProduct.name}.pdf`;
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Failed to generate PDF:", error);

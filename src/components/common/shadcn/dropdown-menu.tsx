@@ -146,20 +146,42 @@ DropdownMenuSubContent.displayName =
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, loop = true, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      loop={loop}
-      className={cn(
-        "z-50 min-w-32 overflow-hidden rounded-md border border-inputBorder bg-dropdownBg p-1 text-primaryText shadow-md data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out",
-        className,
-      )}
-      {...props}
-    />
-  </DropdownMenuPrimitive.Portal>
-));
+>(
+  (
+    { className, sideOffset = 4, loop = true, onCloseAutoFocus, ...props },
+    ref,
+  ) => {
+    const closedWithPointerRef = React.useRef(false);
+
+    return (
+      <DropdownMenuPrimitive.Portal>
+        <DropdownMenuPrimitive.Content
+          ref={ref}
+          sideOffset={sideOffset}
+          loop={loop}
+          className={cn(
+            "z-50 min-w-32 overflow-hidden rounded-md border border-inputBorder bg-dropdownBg p-1 text-primaryText shadow-md data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out",
+            className,
+          )}
+          onPointerDown={() => {
+            closedWithPointerRef.current = true;
+          }}
+          onPointerDownOutside={() => {
+            closedWithPointerRef.current = true;
+          }}
+          onCloseAutoFocus={(e) => {
+            if (closedWithPointerRef.current) {
+              e.preventDefault();
+              closedWithPointerRef.current = false;
+            }
+            onCloseAutoFocus?.(e);
+          }}
+          {...props}
+        />
+      </DropdownMenuPrimitive.Portal>
+    );
+  },
+);
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
 /**

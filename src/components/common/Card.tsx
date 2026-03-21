@@ -49,8 +49,9 @@ export const Card = ({
   return (
     <div
       id={id}
-      className={`border light:shadow-lg border-cardBorder rounded-xl !border-cardBorder bg-primaryBg
-                relative w-full text-left h-full pt-[1.35rem]  
+      style={{ boxShadow: "var(--cardShadow)" }}
+      className={`border border-cardBorder rounded-xl !border-cardBorder bg-primaryBg
+                relative w-full text-left h-full pt-[1.35rem]
                 ${className} `}
     >
       {title && !customHeader && (

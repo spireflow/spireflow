@@ -15,14 +15,14 @@ export const ContributingModal = ({ closeModal }: AboutModalProps) => {
   return (
     <Dialog open={true} onOpenChange={(open) => !open && closeModal()}>
       <DialogContent
-        className="max-w-[90vw] sm:max-w-152 pt-0 sm:pt-0 md:pt-12 pb-0 md:pb-12"
+        className="max-w-[90vw] sm:max-w-152 md:max-w-130 md:w-130 1xl:w-152 1xl:max-w-152 px-5 xsm:px-5 sm:px-6 md:px-10 1xl:px-12 pr-0 xsm:pr-0 sm:pr-0 pt-0 sm:pt-0 md:pt-10 1xl:pt-12 pb-0 md:pb-10 1xl:pb-12"
         onOpenAutoFocus={handleOpenAutoFocus}
         onKeyDown={handleKeyDown}
       >
         <div
           ref={scrollRef}
           tabIndex={-1}
-          className="w-full h-full max-h-none md:max-h-[60vh] overflow-y-auto pr-4 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none"
+          className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none"
         >
           <DialogHeader>
             <DialogTitle className="text-primaryText text-3xl w-full text-left mb-4">
@@ -94,6 +94,20 @@ export const ContributingModal = ({ closeModal }: AboutModalProps) => {
                 Feel free to fork the repository and submit a merge requests. If
                 you&apos;ve spotted something that can be improved or fixed,
                 your input is more than welcome.
+              </p>
+
+              <p className="mb-4">
+                For more details on development setup, code conventions, and the
+                pull request process, check out the{" "}
+                <a
+                  href="https://github.com/spireflow/spireflow/blob/main/CONTRIBUTING.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-coloredLinkText hover:underline"
+                >
+                  CONTRIBUTING.md
+                </a>{" "}
+                on GitHub.
               </p>
 
               <h3 className="text-xl font-semibold mt-6 mb-3">

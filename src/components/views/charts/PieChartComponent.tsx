@@ -66,16 +66,6 @@ const PieTooltip = ({ active, payload }: PieTooltipProps) => {
           ${Intl.NumberFormat("us").format(data.value)}
         </span>
       </p>
-      <p className="px-3 pb-1 text-primaryText flex items-center justify-between">
-        <span>
-          <span
-            className="w-2 h-2 mr-2 rounded inline-block"
-            style={{ backgroundColor: color }}
-          />
-          Share:
-        </span>
-        <span className="pl-[0.7rem]">{data.percentage}%</span>
-      </p>
     </BaseTooltip>
   );
 };

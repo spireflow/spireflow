@@ -102,7 +102,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
       <Tabs defaultValue="yesterday">
         <TabsList
           variant="line"
-          className="flex lg:hidden 1xl:flex mt-1 2xl:mt-2 3xl:mt-6"
+          className="flex lg:hidden 1xl:flex mt-1 1xl:mt-2 3xl:mt-6"
         >
           <TabsTrigger
             variant="line"
@@ -123,7 +123,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
           <div
             role="img"
             aria-label="Today's sales line chart"
-            className="mt-7 lg:mt-6 1xl:mt-4 2xl:mt-8 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-44 1xl:h-50 3xl:h-64"
+            className="mt-7 lg:mt-6 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-56 1xl:h-60 3xl:h-64"
           >
             <ResponsiveContainer
               width="100%"
@@ -203,7 +203,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
           <div
             role="img"
             aria-label="Today's sales vs average line chart"
-            className="mt-7 lg:mt-6 1xl:mt-4 2xl:mt-8 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-44 1xl:h-50 3xl:h-64"
+            className="mt-7 lg:mt-6 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-56 1xl:h-60 3xl:h-64"
           >
             <ResponsiveContainer
               width="100%"

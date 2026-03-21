@@ -10,12 +10,14 @@ export const useNavbarModals = () => {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isContributingModalOpen, setIsContributingModalOpen] = useState(false);
   const [isChangelogModalOpen, setIsChangelogModalOpen] = useState(false);
 
   const closeLoginModal = () => setIsLoginModalOpen(false);
   const closeSignUpModal = () => setIsSignUpModalOpen(false);
   const closeLogoutModal = () => setIsLogoutModalOpen(false);
   const closeAboutModal = () => setIsAboutModalOpen(false);
+  const closeContributingModal = () => setIsContributingModalOpen(false);
   const closeChangelogModal = () => setIsChangelogModalOpen(false);
 
   const showLogoutModal = () => {
@@ -24,6 +26,11 @@ export const useNavbarModals = () => {
 
   const showAboutModal = () => {
     setIsAboutModalOpen(true);
+  };
+
+  const showContributingModal = () => {
+    setIsAboutModalOpen(false);
+    setIsContributingModalOpen(true);
   };
 
   const showChangelogModal = () => {
@@ -55,14 +62,17 @@ export const useNavbarModals = () => {
     isSignUpModalOpen,
     isLogoutModalOpen,
     isAboutModalOpen,
+    isContributingModalOpen,
     isChangelogModalOpen,
     closeLoginModal,
     closeSignUpModal,
     closeLogoutModal,
     closeAboutModal,
+    closeContributingModal,
     closeChangelogModal,
     showLogoutModal,
     showAboutModal,
+    showContributingModal,
     showChangelogModal,
     showSignUpModal,
     switchToSignUp,

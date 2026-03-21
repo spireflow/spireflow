@@ -87,7 +87,7 @@ const TabsTrigger = React.forwardRef<
       variant === "default" &&
         "rounded-md hover:text-tabDefaultInactiveTextHover data-[state=active]:bg-tabActiveBg data-[state=active]:text-primaryText data-[state=active]:hover:text-primaryText data-[state=active]:hover:bg-tabActiveBgHover",
       variant === "line" &&
-        "cursor-pointer rounded-none border-b-2 border-transparent text-tabLineInactiveText hover:text-tabLineInactiveTextHover data-[state=active]:border-tabLineActiveBorder data-[state=active]:text-tabLineActiveText data-[state=active]:hover:text-tabLineActiveTextHover",
+        "h-full cursor-pointer rounded-none border-b-2 border-transparent text-tabLineInactiveText hover:text-tabLineInactiveTextHover data-[state=active]:border-tabLineActiveBorder data-[state=active]:text-tabLineActiveText data-[state=active]:hover:text-tabLineActiveTextHover",
       className,
     )}
     {...props}

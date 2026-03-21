@@ -176,18 +176,18 @@ export const AssetPerformance = ({
                   key={asset.name}
                   className={`flex items-center justify-between
                   ${index === 7 ? "hidden 3xl:flex" : ""}
-                  ${index === 6 ? "hidden 1xl:flex 3xl:border-b 3xl:border-inputBorder" : ""}
-                  ${index === 5 ? "1xl:border-b 1xl:border-inputBorder" : ""}
+                  ${index === 6 ? "hidden lg:flex 3xl:border-b 3xl:border-inputBorder" : ""}
+                  ${index === 5 ? "lg:border-b lg:border-inputBorder" : ""}
                   ${index <= 4 ? "border-b border-inputBorder" : ""}
-                  pb-2 pt-2 1xl:py-2 3xl:py-2.5`}
+                  pb-2 pt-2 lg:py-2.5 3xl:py-2.5`}
                 >
-                  <div className="text-xs 2xl:text-sm text-secondaryText whitespace-nowrap">
+                  <div className="text-xs 1xl:text-sm text-secondaryText whitespace-nowrap">
                     {asset.name}
                   </div>
                   <div>
                     <div className="flex items-center justify-end space-x-4">
                       <p
-                        className="ml-2 text-xs 2xl:text-sm"
+                        className="ml-2 text-xs 1xl:text-sm"
                         style={{ color: getDeltaColor(asset.status) }}
                       >
                         {asset.delta}%

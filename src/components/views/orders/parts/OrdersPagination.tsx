@@ -31,8 +31,8 @@ export const OrdersPagination = ({
   const t = useTranslations("pagination");
 
   return (
-    <div className="flex items-center mt-8 gap-4 w-full sm:w-auto sm:gap-8 justify-between sm:justify-end text-primaryText">
-      <div className="min-w-18">
+    <div className="flex items-center mt-8 gap-4 w-full sm:w-auto lg:gap-8 justify-center xsm:justify-between sm:justify-end text-primaryText">
+      <div className="min-w-18 hidden xsm:block">
         <Select
           value={String(itemsPerPage)}
           onValueChange={(value) => {
@@ -50,7 +50,7 @@ export const OrdersPagination = ({
           </SelectContent>
         </Select>
       </div>
-      <Pagination className="m-0 justify-end">
+      <Pagination className="m-0 xsm:justify-end">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious

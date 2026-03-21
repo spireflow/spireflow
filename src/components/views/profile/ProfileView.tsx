@@ -73,7 +73,7 @@ export const ProfileView = () => {
                     {t("emailNotificationsDesc")}
                   </p>
                 </div>
-                <Switch defaultChecked />
+                <Switch className="max-md:ml-4" defaultChecked />
               </div>
               <div className="flex items-center justify-between py-3 border-b border-mainBorder">
                 <div>
@@ -84,7 +84,7 @@ export const ProfileView = () => {
                     {t("twoFactorAuthDesc")}
                   </p>
                 </div>
-                <Switch />
+                <Switch className="max-md:ml-4" />
               </div>
               <div className="flex items-center justify-between py-3">
                 <div>
@@ -95,7 +95,7 @@ export const ProfileView = () => {
                     Receive updates about new features and promotions
                   </p>
                 </div>
-                <Switch defaultChecked />
+                <Switch className="max-md:ml-4" defaultChecked />
               </div>
             </div>
           </Card>

@@ -2,11 +2,14 @@ import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useRef, useState } from "react";
 import type DatePicker from "react-datepicker";
 
+import { useIsFirstRender } from "../../../hooks/useIsFirstRender";
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import type {
   CustomDateRange,
   DateRangePreset,
 } from "../../../store/dateRangeStore";
 import { useDateRangeStore } from "../../../store/dateRangeStore";
+import { BREAKPOINTS } from "../../../styles/breakpoints";
 import type { CustomDateRangeDialogProps } from "./types";
 
 /**
@@ -149,6 +152,19 @@ export const useCustomDateRangeDialog = ({
     onOpenChange(false);
   };
 
+  const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS.md}px)`);
+  const isFirstRender = useIsFirstRender();
+  const shouldHideMobileKeyboard = !isFirstRender && !isDesktop;
+
+  /** Prevents virtual keyboard on mobile by setting readOnly on the DOM element directly.
+   *  Done via onFocus instead of react-datepicker's readOnly prop,
+   *  which would also block the calendar popup from opening. */
+  const handleMobileFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (shouldHideMobileKeyboard) {
+      e.target.readOnly = true;
+    }
+  };
+
   const dateInputClasses =
     "pl-3 p-2 text-sm 3xl:text-base bg-inputBg hover:bg-inputBgHover w-full h-[2.3rem] 3xl:h-[2.6rem] border rounded-md border-inputBorder text-primaryText placeholder-secondaryText hover:border-inputBorderHover transition";
 
@@ -165,5 +181,6 @@ export const useCustomDateRangeDialog = ({
     handleOpenChange,
     handleApply,
     dateInputClasses,
+    handleMobileFocus,
   };
 };

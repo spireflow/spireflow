@@ -45,20 +45,20 @@ const LAYOUT_STYLES = {
     showTopBar: false,
     showPaper: false,
     mainClasses:
-      "pt-[3.8rem] md:!pt-[5.3rem] xl:!pt-[5.3rem] 3xl:!pt-[5.8rem] md:px-8 xl:px-0 pb-0 md:!pb-8 xl:pb-8",
+      "pt-[3.8rem] md:!pt-[5.3rem] xl:!pt-[5.3rem] 3xl:!pt-[5.8rem] md:px-8 xl:px-0 pb-10 md:pb-10 xl:pb-8",
     contentGapClass: "pt-5",
   },
   content: {
     showTopBar: true,
     showPaper: false,
     mainClasses:
-      "pt-16 md:!pt-22 xl:!pt-22 3xl:!pt-24 md:px-8 xl:px-0 pb-0 md:!pb-8 xl:pb-8",
+      "pt-16 md:!pt-22 xl:!pt-22 3xl:!pt-24 md:px-8 xl:px-0 pb-10 md:pb-10 xl:pb-8",
     contentGapClass: "pt-3",
   },
   table: {
     showTopBar: true,
     showPaper: true,
-    mainClasses: "pt-22 md:pt-22 xl:pt-22 1xl:pt-22 3xl:pt-24",
+    mainClasses: "pt-22 md:pt-22 xl:pt-22 1xl:pt-22 3xl:pt-24 xl:pb-8",
     contentGapClass: "",
   },
 } as const;
@@ -114,12 +114,12 @@ export const PageWrapper = ({
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           {isEcommerce && (
-            <>
+            <span className="hidden xsm:contents">
               <BreadcrumbItem>
                 <BreadcrumbLink disabledLink>{t("ecommerce")}</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-            </>
+            </span>
           )}
           <BreadcrumbItem>
             <BreadcrumbPage>
@@ -134,7 +134,7 @@ export const PageWrapper = ({
 
   return (
     <main
-      className={`flex pb-0 flex-col max-w-full w-full md:pb-0 xl:pb-8 items-center ${styles.mainClasses}`}
+      className={`flex flex-col max-w-full w-full items-center ${styles.mainClasses}`}
       role="main"
     >
       <div className="flex flex-col max-w-full w-full">
@@ -142,7 +142,7 @@ export const PageWrapper = ({
           <div className="px-6 xsm:px-8 xl:px-0">{topBar}</div>
         )}
         {styles.showPaper ? (
-          <div className="mt-3 flex w-full max-w-full py-8 bg-primaryBg shadow-lg border-t xl:border border-mainBorder xl:rounded-xl px-6 xsm:p-8 1xl:p-10">
+          <div className="mt-3 flex w-full max-w-full pt-8 pb-18 xl:pb-8 1xl:pb-10 bg-primaryBg shadow-lg border-t xl:border border-mainBorder xl:rounded-xl px-6 xsm:px-8 xsm:pt-8 1xl:px-10 1xl:pt-10">
             {children}
           </div>
         ) : (

@@ -98,6 +98,7 @@
   --color-selectBgHover: rgb(255, 255, 255, 0.07);
   --color-userButtonBg: rgb(25, 32, 39);
   --color-loginModalBg: rgb(30, 33, 36);
+  --color-authPageLogoCircleBg: rgb(33, 36, 40);
   --color-authErrorTooltipBg: rgb(36, 40, 45);
   --color-navbarButtonBg: rgb(255, 255, 255, 0);
   --color-navbarButtonBgHover: rgb(255, 255, 255, 0.05);
@@ -117,8 +118,8 @@
   --color-dropzoneBg: rgb(36, 40, 45);
   --color-dropzoneBgHover: rgb(40, 44, 49);
   --color-themeToggleActiveBg: rgb(41, 43, 48);
-  --color-floatingMenuButtonBg: rgb(31, 34, 38);
-  --color-floatingMenuButtonBgHover: rgb(41, 44, 48);
+  --color-floatingMenuButtonBg: rgb(41, 44, 48);
+  --color-floatingMenuButtonBgHover: rgb(51, 54, 58);
   --color-percentageBadgeGreenBg: rgba(110, 231, 183, 0.05);
   --color-percentageBadgeRedBg: rgba(253, 164, 175, 0.05);
   --color-percentageBadgeGreenBorder: rgba(110, 231, 183, 0.3);
@@ -131,8 +132,8 @@
   --color-errorBg: rgb(195, 70, 70);
   --color-errorBgHover: rgb(207, 89, 89);
   --color-infoAlertBg: rgb(35, 38, 42);
-  --color-destructiveAlertBg: rgb(42, 36, 40);
-  --color-successAlertBg: rgb(31, 41, 40);
+  --color-destructiveAlertBg: rgb(35, 38, 42);
+  --color-successAlertBg: rgb(35, 38, 42);
   --color-skeletonBg: rgb(40, 43, 47);
   --color-navbarSearchInputBg: rgb(255, 255, 255, 0.01);
   --color-navbarSearchInputBgHover: rgb(255, 255, 255, 0.03);
@@ -179,6 +180,9 @@
   --color-chartCursorBg: rgb(255, 255, 255, 0.05);
   --color-destructiveAlertBorder: rgb(239, 68, 68, 0.5);
   --color-successAlertBorder: rgb(22, 163, 74, 0.5);
+
+  /* Shadows */
   --authModalShadow:
     0 18px 35px -10px rgb(0, 0, 0, 0.4), 0 6px 16px -5px rgb(0, 0, 0, 0.25);
+  --cardShadow: none;
 }

@@ -53,7 +53,7 @@ export const SelectInputsForm = () => {
   return (
     <Card isHeaderDividerVisible addTitleMargin title={t("selectInputs")}>
       <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-3 w-1/2">
+        <div className="flex flex-col gap-3 w-3/4 xsm:w-1/2">
           <Label>Select Option</Label>
           <Select>
             <SelectTrigger className="w-full">
@@ -72,7 +72,7 @@ export const SelectInputsForm = () => {
           </Select>
         </div>
 
-        <div className="flex flex-col gap-3 w-1/2">
+        <div className="flex flex-col gap-3 w-3/4 xsm:w-1/2">
           <Label>Combobox (Searchable)</Label>
           <Popover open={openCombobox} onOpenChange={setOpenCombobox}>
             <PopoverTrigger asChild>

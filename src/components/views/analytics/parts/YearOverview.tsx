@@ -73,26 +73,26 @@ const DataTable = ({ data }: { data: OverviewMonthData[] }) => {
   const lastSixMonths = data.slice(-8);
 
   return (
-    <div className="overflow-hidden h-72 1xl:h-76 3xl:h-96 mr-8 mt-1">
+    <div className="overflow-hidden h-72 lg:h-80 1xl:h-[22rem] 3xl:h-96 mr-8 mt-1">
       <table className="w-full">
         <caption className="sr-only">Yearly revenue overview</caption>
         <thead>
           <tr>
             <th
               scope="col"
-              className="text-secondaryText text-xs text-left text-base pl-4 py-2 3xl:py-3 border-b border-inputBorder"
+              className="text-secondaryText text-xs text-left text-base pl-4 py-2 1xl:py-3 3xl:py-3 border-b border-inputBorder"
             >
               Month
             </th>
             <th
               scope="col"
-              className="text-secondaryText text-xs text-left text-base pl-4  py-2 3xl:py-3 border-b border-inputBorder"
+              className="text-secondaryText text-xs text-left text-base pl-4  py-2 1xl:py-3 3xl:py-3 border-b border-inputBorder"
             >
               Phones
             </th>
             <th
               scope="col"
-              className="text-secondaryText text-xs text-left text-base pl-4  py-2 3xl:py-3 border-b border-inputBorder"
+              className="text-secondaryText text-xs text-left text-base pl-4  py-2 1xl:py-3 3xl:py-3 border-b border-inputBorder"
             >
               Laptops
             </th>
@@ -101,13 +101,13 @@ const DataTable = ({ data }: { data: OverviewMonthData[] }) => {
         <tbody>
           {lastSixMonths.map((row) => (
             <tr key={row.name} className="hover:bg-[rgb(255,255,255,0.03)]">
-              <td className="text-tableCellText  font-medium text-xs 3xl:text-sm p-[0.4rem] 3xl:p-2 pl-4 border-b border-inputBorder">
+              <td className="text-tableCellText  font-medium text-xs 1xl:text-sm p-[0.4rem] 1xl:p-2 pl-4 border-b border-inputBorder">
                 {row.name}
               </td>
-              <td className="text-tableCellText  font-medium text-xs 3xl:text-sm pl-4 border-b border-inputBorder text-left">
+              <td className="text-tableCellText  font-medium text-xs 1xl:text-sm pl-4 border-b border-inputBorder text-left">
                 ${Intl.NumberFormat("us").format(row.phones)}
               </td>
-              <td className="text-tableCellText  font-medium text-xs 3xl:text-sm pl-4 border-b border-inputBorder text-left">
+              <td className="text-tableCellText  font-medium text-xs 1xl:text-sm pl-4 border-b border-inputBorder text-left">
                 ${Intl.NumberFormat("us").format(row.laptops)}
               </td>
             </tr>
@@ -134,7 +134,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
         <div
           role="img"
           aria-label="Year overview area chart"
-          className="w-full lg:w-3/4 h-72 1xl:h-76 3xl:h-96"
+          className="w-full lg:w-3/4 h-72 lg:h-80 1xl:h-[22rem] 3xl:h-96"
         >
           <ResponsiveContainer
             width="100%"

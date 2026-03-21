@@ -118,7 +118,7 @@ export const ForgotPasswordForm = () => {
 
   return (
     <div className="w-full sm:max-w-84 md:w-78 1xl:w-84 flex flex-col items-center">
-      <h1 className="text-3xl sm:text-2xl 1xl:text-3xl font-bold mb-4 1xl:mb-5 mt-6 1xl:mt-8 text-primaryText text-center whitespace-nowrap">
+      <h1 className="text-3xl sm:text-2xl 1xl:text-3xl font-bold mb-4 1xl:mb-5 mt-2 sm:mt-6 1xl:mt-8 text-primaryText text-center whitespace-nowrap">
         {t("forgotPasswordTitle")}
       </h1>
       <p className="text-sm text-secondaryText text-center mb-12 1xl:mb-12">

@@ -98,6 +98,7 @@
   --color-selectBgHover: rgb(240, 240, 245, 0.2);
   --color-userButtonBg: rgb(240, 240, 245, 0.4);
   --color-loginModalBg: white;
+  --color-authPageLogoCircleBg: rgb(255, 255, 255);
   --color-authErrorTooltipBg: rgb(255, 255, 255);
   --color-navbarButtonBg: rgb(118, 167, 247);
   --color-navbarButtonBgHover: rgb(152, 192, 251);
@@ -132,8 +133,8 @@
   --color-errorBg: rgb(195, 70, 70);
   --color-errorBgHover: rgb(175, 55, 55);
   --color-infoAlertBg: white;
-  --color-destructiveAlertBg: rgb(252, 220, 220);
-  --color-successAlertBg: rgb(220, 241, 228);
+  --color-destructiveAlertBg: white;
+  --color-successAlertBg: white;
   --color-skeletonBg: rgb(225, 225, 230);
   --color-navbarSearchInputBg: rgb(240, 240, 245, 0.2);
   --color-navbarSearchInputBgHover: rgb(240, 240, 245, 0.4);
@@ -180,6 +181,9 @@
   --color-chartCursorBg: rgb(0, 0, 0, 0.05);
   --color-destructiveAlertBorder: rgb(239, 68, 68, 0.5);
   --color-successAlertBorder: rgb(22, 163, 74, 0.5);
+
+  /* Shadows */
   --authModalShadow:
     0 18px 35px -10px rgb(0, 0, 0, 0.3), 0 6px 16px -5px rgb(0, 0, 0, 0.15);
+  --cardShadow: 0 1px 3px 0 rgb(0, 0, 0, 0.1), 0 1px 2px -1px rgb(0, 0, 0, 0.1);
 }

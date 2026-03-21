@@ -1,8 +1,10 @@
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { useLayoutStore } from "../../../store/layoutStore";
+import { BREAKPOINTS } from "../../../styles/breakpoints";
 
 interface UseSettingsProps {
   open?: boolean;
@@ -39,9 +41,37 @@ export const useSettings = ({
    */
   const isControlled = externalOpen !== undefined;
   const open = isControlled ? externalOpen : internalOpen;
-  const setOpen = isControlled
-    ? (externalOnOpenChange ?? (() => {}))
-    : setInternalOpen;
+
+  /** Delegates open/close to the parent (controlled) or local state (uncontrolled). */
+  const handleOpenChange = useCallback(
+    (isOpen: boolean) => {
+      if (isControlled) {
+        externalOnOpenChange?.(isOpen);
+      } else {
+        setInternalOpen(isOpen);
+      }
+    },
+    [isControlled, externalOnOpenChange],
+  );
+
+  /**
+   * Manually locks/unlocks body scroll when the settings drawer opens/closes.
+   * Currently enabled below 1750px because on big screens settings drawer
+   * does not have own scrollbar.
+   */
+  const isDesktop = useMediaQuery(`(min-width: ${BREAKPOINTS["3xl"]}px)`);
+
+  useEffect(() => {
+    if (open && !isDesktop) {
+      document.body.style.setProperty("overflow", "hidden", "important");
+    } else {
+      document.body.style.removeProperty("overflow");
+    }
+
+    return () => {
+      document.body.style.removeProperty("overflow");
+    };
+  }, [open, isDesktop]);
 
   return {
     t,
@@ -54,6 +84,6 @@ export const useSettings = ({
     fixedNavbar,
     setFixedNavbar,
     open,
-    setOpen,
+    setOpen: handleOpenChange,
   };
 };
