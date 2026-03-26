@@ -68,7 +68,7 @@ const getBackupData = <T extends PageName>(pageName: T): PageDataMap[T] => {
  * @returns {Promise<PageDataMap[T]>} Strongly-typed page data
  * @throws {Error} If query not found or data invalid
  *
- * @see {@link https://github.com/matt765/nellavio-backend Backend setup}
+ * @see {@link https://github.com/nellavio/nellavio-backend Backend setup}
  */
 export const getData = async <T extends PageName>(
   pageName: T,

@@ -74,7 +74,7 @@ export const AboutModal = ({
               variant="outline"
               className="flex-1 xsm:flex-initial xsm:w-auto h-full sm:!px-6 gap-2"
             >
-              <Link href="https://github.com/matt765/nellavio" target="_blank">
+              <Link href="https://github.com/nellavio/nellavio" target="_blank">
                 <GithubIcon />
                 Front-end
               </Link>
@@ -85,7 +85,7 @@ export const AboutModal = ({
               className="flex-1 xsm:flex-initial xsm:w-auto h-full sm:!px-6 gap-2"
             >
               <Link
-                href="https://github.com/matt765/nellavio-backend"
+                href="https://github.com/nellavio/nellavio-backend"
                 target="_blank"
               >
                 <GithubIcon />
@@ -159,7 +159,7 @@ export const AboutModal = ({
               </li>
               <li>
                 <Link
-                  href="https://github.com/matt765/nellavio-layout"
+                  href="https://github.com/nellavio/nellavio-layout"
                   target="_blank"
                   className="text-coloredLinkText hover:underline font-medium"
                 >

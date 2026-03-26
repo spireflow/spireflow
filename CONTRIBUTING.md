@@ -5,8 +5,8 @@ Every form of contribution is valuable. Below are the main ways to get involved:
 
 ## 1. Share Feedback and Ideas 💡
 
-- Use the **[Discussions](https://github.com/matt765/nellavio/discussions/1)** on GitHub to share feedback, suggestions, or ideas for improvement.
-- Open an **[Issue](https://github.com/matt765/nellavio/issues)** if you've found a bug or something doesn't work as expected.
+- Use the **[Discussions](https://github.com/nellavio/nellavio/discussions/1)** on GitHub to share feedback, suggestions, or ideas for improvement.
+- Open an **[Issue](https://github.com/nellavio/nellavio/issues)** if you've found a bug or something doesn't work as expected.
 
 ## 2. Support Development 🔥
 

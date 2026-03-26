@@ -7,14 +7,14 @@
 </div>
 
 <div align="center">
-  <a href="https://github.com/matt765/nellavio/blob/main/CHANGELOG.md" style="text-decoration: none;">
+  <a href="https://github.com/nellavio/nellavio/blob/main/CHANGELOG.md" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/%20-changelog-blue?logo=readme&logoColor=white&labelColor=grey" alt="Changelog" />
   </a>
-  <a href="https://github.com/matt765/nellavio/blob/main/license" style="text-decoration: none;">
+  <a href="https://github.com/nellavio/nellavio/blob/main/license" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/license-MIT-blue" alt="License" />
   </a>
-  <a href="https://github.com/matt765/nellavio/releases" style="text-decoration: none;">
-    <img src="https://img.shields.io/github/package-json/v/matt765/nellavio?color=green" alt="Version" />
+  <a href="https://github.com/nellavio/nellavio/releases" style="text-decoration: none;">
+    <img src="https://img.shields.io/github/package-json/v/nellavio/nellavio?color=green" alt="Version" />
   </a>
 </div>
 
@@ -76,12 +76,12 @@ Optionally, it can be connected to an associated Node.js backend, which enables 
 
 - [Storybook](https://storybook.nellavio.com/)
 - [Authentication docs](https://auth.nellavio.com/)
-- [Node.js backend](https://github.com/matt765/nellavio-backend)
+- [Node.js backend](https://github.com/nellavio/nellavio-backend)
 
 #### Lightweight version
 
 - [Live demo](https://layout.nellavio.com/)
-- [Repository](https://github.com/matt765/nellavio-layout)
+- [Repository](https://github.com/nellavio/nellavio-layout)
 
 ## :file_folder: Project structure
 
@@ -126,7 +126,7 @@ Want to use real backend and authentication? Follow these steps:
 
 #### 1. Set up the backend
 
-Clone and run the [Nellavio Backend](https://github.com/matt765/nellavio-backend)
+Clone and run the [Nellavio Backend](https://github.com/nellavio/nellavio-backend)
 
 Follow the instructions in the backend README to initialize and seed the database. The backend will run on `http://localhost:4000` by default.
 
@@ -244,7 +244,7 @@ On macOS use `Cmd` instead of `Ctrl`.
 
 ## 🤝 Community and support
 
-Check out [CONTRIBUTING.md](https://github.com/matt765/nellavio/blob/main/CONTRIBUTING.md) to learn how to get started with contributions.
+Check out [CONTRIBUTING.md](https://github.com/nellavio/nellavio/blob/main/CONTRIBUTING.md) to learn how to get started with contributions.
 
 All forms of project support are valued and appreciated, including code contributions, issue reporting, and sponsorship through GitHub Sponsors or [Buy Me A Coffee](https://buymeacoffee.com/matt765) service.
 

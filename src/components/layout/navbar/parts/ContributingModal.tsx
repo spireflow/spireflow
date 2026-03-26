@@ -45,7 +45,7 @@ export const ContributingModal = ({ closeModal }: AboutModalProps) => {
                 <li className="mb-2">
                   Use the{" "}
                   <a
-                    href="https://github.com/matt765/nellavio/discussions/1"
+                    href="https://github.com/nellavio/nellavio/discussions/1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-coloredLinkText hover:underline"
@@ -58,7 +58,7 @@ export const ContributingModal = ({ closeModal }: AboutModalProps) => {
                 <li>
                   Open an{" "}
                   <a
-                    href="https://github.com/matt765/nellavio/issues"
+                    href="https://github.com/nellavio/nellavio/issues"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-coloredLinkText hover:underline"
