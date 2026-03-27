@@ -6,7 +6,7 @@ import {
   TooltipTrigger,
 } from "../../../common/shadcn/tooltip";
 import { useThemeChange } from "../hooks/useThemeChange";
-import { ThemeButtonProps } from "../types";
+import { NAVBAR_TOOLTIPS_ENABLED, ThemeButtonProps } from "../types";
 
 export const ThemeButton = ({
   theme,
@@ -108,7 +108,7 @@ export const ThemeButton = ({
           </div>
         </div>
       </TooltipTrigger>
-      {!isAnyDropdownOpen && (
+      {NAVBAR_TOOLTIPS_ENABLED && !isAnyDropdownOpen && (
         <TooltipContent
           side="bottom"
           align="start"

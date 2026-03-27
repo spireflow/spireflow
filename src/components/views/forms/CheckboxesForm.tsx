@@ -22,20 +22,20 @@ export const CheckboxesForm = () => {
       addTitleMargin
       title={t("checkboxes")}
     >
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center space-x-2">
+      <div className="flex flex-col gap-5">
+        <div className="flex items-center space-x-3">
           <Checkbox id="terms" />
-          <Label htmlFor="terms">Default Checkbox</Label>
+          <Label htmlFor="terms" withPointer>Default Checkbox</Label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <Checkbox id="checked" defaultChecked />
-          <Label htmlFor="checked">Checked Checkbox</Label>
+          <Label htmlFor="checked" withPointer>Checked Checkbox</Label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <Checkbox id="disabled-check" disabled />
           <Label htmlFor="disabled-check">Disabled Checkbox</Label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <Checkbox id="disabled-checked" disabled defaultChecked />
           <Label htmlFor="disabled-checked">Disabled Checked Checkbox</Label>
         </div>

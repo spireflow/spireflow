@@ -1,5 +1,7 @@
 import { RefObject } from "react";
 
+export const NAVBAR_TOOLTIPS_ENABLED = false;
+
 export interface TooltipProps {
   isTooltipVisible: boolean;
   showTooltip: () => void;

@@ -1,12 +1,19 @@
 "use client";
 
-import { Eye, EyeOff, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
 
+import { EyeIcon } from "../../../assets/icons/EyeIcon";
+import { EyeOffIcon } from "../../../assets/icons/EyeOffIcon";
 import { Card } from "../../common/Card";
-import { Button } from "../../common/shadcn/button";
 import { Input } from "../../common/shadcn/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "../../common/shadcn/input-group";
 import { Label } from "../../common/shadcn/label";
 
 /**
@@ -42,25 +49,21 @@ export const InputFieldsForm = () => {
         </div>
         <div className="grid w-full max-w-sm items-center gap-[0.8rem]">
           <Label htmlFor="password">Password Input</Label>
-          <div className="relative">
-            <Input
+          <InputGroup>
+            <InputGroupInput
               type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Password"
             />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <EyeOff className="h-4 w-4 text-secondaryText" />
-              ) : (
-                <Eye className="h-4 w-4 text-secondaryText" />
-              )}
-            </Button>
-          </div>
+            <InputGroupAddon align="inline-end" className="pr-1">
+              <InputGroupButton
+                className="h-7 px-1"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+              </InputGroupButton>
+            </InputGroupAddon>
+          </InputGroup>
         </div>
         <div className="grid w-full max-w-sm items-center gap-[0.8rem]">
           <Label htmlFor="error">Error Input</Label>

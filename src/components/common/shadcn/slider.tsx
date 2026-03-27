@@ -41,7 +41,7 @@ const Slider = React.forwardRef<
       )}
       {...props}
     >
-      <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondaryBg">
+      <SliderPrimitive.Track className="relative h-2 w-full grow cursor-pointer overflow-hidden rounded-full bg-secondaryBg">
         <SliderPrimitive.Range className="absolute h-full bg-containedButtonBg data-[disabled]:opacity-30" />
       </SliderPrimitive.Track>
       {initialValue.map((_, i) => (
@@ -54,7 +54,7 @@ const Slider = React.forwardRef<
                 : "Maximum"
               : "Value"
           }
-          className="block h-5 w-5 rounded-full border-2 border-containedButtonBg bg-white transition-colors data-[disabled]:pointer-events-none data-[disabled]:border-containedButtonBg/50"
+          className="block h-5 w-5 cursor-grab rounded-full border-2 border-containedButtonBg bg-white transition-colors active:cursor-grabbing data-[disabled]:pointer-events-none data-[disabled]:border-containedButtonBg/50"
         />
       ))}
     </SliderPrimitive.Root>

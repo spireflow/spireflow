@@ -5,7 +5,7 @@
 - migrated auth from Clerk to Better-Auth
 - migrated all charts from Tremor.so to Recharts
 - redesigned most of the UI - new colors, spacing, fonts and icons
-- redesigned half of cards on homepage and analytics page
+- redesigned multiple cards on homepage
 - migrated common components to Shadcn UI + Radix
 - added settings drawer
 - added notifications
@@ -17,7 +17,9 @@
 - improved accessibility
 - improved Husky, CI and Eslint settings
 - added error pages: /error-401, /error-404, /error-500
+- added animations for dropdowns and modals
 - updated all packages
+- changed project name (Spireflow -> Nellavio)
 
 ## 1.0.15 (12-05-2025)
 

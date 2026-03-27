@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "../../../common/shadcn/tooltip";
 import { useNotifications } from "../hooks/useNotifications";
-import { NotificationsButtonProps } from "../types";
+import { NAVBAR_TOOLTIPS_ENABLED, NotificationsButtonProps } from "../types";
 import { AllNotificationsModal } from "./AllNotificationsModal";
 
 export const NotificationsButton = ({
@@ -121,7 +121,7 @@ export const NotificationsButton = ({
             </button>
           </div>
         </TooltipTrigger>
-        {!isAnyDropdownOpen && (
+        {NAVBAR_TOOLTIPS_ENABLED && !isAnyDropdownOpen && (
           <TooltipContent
             side="bottom"
             align="start"
@@ -136,7 +136,7 @@ export const NotificationsButton = ({
         <div
           role="region"
           aria-label="Notifications"
-          className="hidden xl:block absolute right-0 top-10 xl:top-11 mt-2 w-88 border border-inputBorder bg-dropdownBg text-primaryText rounded-md shadow-lg overflow-hidden"
+          className="hidden xl:block absolute right-0 top-10 xl:top-11 mt-2 w-88 border border-inputBorder bg-dropdownBg text-primaryText rounded-md shadow-lg overflow-hidden animate-navbar-dropdown"
         >
           {/* Header */}
           <div className="px-5 py-3 border-b border-mainBorder flex justify-between items-center bg-notificationHeaderBg">

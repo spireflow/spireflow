@@ -8,7 +8,7 @@ import {
 } from "../../../common/shadcn/tooltip";
 import { SettingsDrawer } from "../../settings/SettingsDrawer";
 import { useUserMenu } from "../hooks/useUserMenu";
-import { UserButtonProps } from "../types";
+import { NAVBAR_TOOLTIPS_ENABLED, UserButtonProps } from "../types";
 import { UserMenuDropdown } from "./UserMenuDropdown";
 
 export const UserMenuButton = ({
@@ -117,7 +117,7 @@ export const UserMenuButton = ({
             </button>
           </div>
         </TooltipTrigger>
-        {!isAnyDropdownOpen && (
+        {NAVBAR_TOOLTIPS_ENABLED && !isAnyDropdownOpen && (
           <TooltipContent
             side="bottom"
             align="start"

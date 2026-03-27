@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 import { UserIcon } from "../../../assets/icons/UserIcon";
 import { menuConfig } from "../../../config/navigationConfig";
@@ -20,6 +21,22 @@ export const SideMenuMobile = ({
   const isLoaded = !isPending;
   const t = useTranslations("sideMenu");
 
+  /**
+   * Prevents background page scroll when the mobile menu is open.
+   * Sets overflow hidden on body while open, restores on close or unmount.
+   */
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   /** First render check needed to prevent hydration mismatch errors */
   const isFirstRender = useIsFirstRender();
   if (isFirstRender) return null;
@@ -28,7 +45,7 @@ export const SideMenuMobile = ({
     <nav
       aria-label="Mobile navigation"
       aria-hidden={!isMobileMenuOpen}
-      className={`z-50 overflow-auto overflow-x-hidden flex fixed xl:hidden flex-col justify-between bg-primaryBg border-r-[1px] border-mainBorder top-18 xl:top-16 2xl:top-18 mb-10 left-0 items-center transform transition-transform ease-in-out ${
+      className={`z-50 overflow-auto overflow-x-hidden overscroll-contain flex fixed xl:hidden flex-col justify-between bg-primaryBg border-r-[1px] border-mainBorder top-18 xl:top-16 2xl:top-18 mb-10 left-0 items-center transform transition-transform ease-in-out ${
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       }`}
       style={{ height: "calc(100dvh - 4.5rem)" }}

@@ -63,6 +63,7 @@
   --color-inputBg: rgb(255, 255, 255, 0.05);
   --color-inputBgHover: rgb(255, 255, 255, 0.07);
   --color-toggleSwitchBg: rgb(255, 255, 255, 0.08);
+  --color-switchUncheckedBgHover: rgb(255, 255, 255, 0.14);
   --color-paginationActiveBg: rgb(255, 255, 255, 0.05);
   --color-buttonActiveBg: rgb(35, 42, 49);
   --color-outlinedButtonBg: rgb(255, 255, 255, 0.05);
@@ -136,6 +137,8 @@
   --color-navbarSearchInputBgHover: rgb(255, 255, 255, 0.03);
   --color-profileHeaderBg: rgb(0, 0, 0, 0.09);
   --color-settingsDrawerHeaderBg: rgb(25, 28, 32);
+  --color-settingsDrawerGithubBg: rgb(25, 28, 32);
+  --color-settingsDrawerGithubBgHover: rgb(30, 33, 37);
   --color-settingsButtonBgHover: rgb(45, 48, 53);
   --color-settingsLayoutPreviewBg: rgb(255, 255, 255, 0.08);
   --color-notificationBadgeBg: rgb(54, 128, 96);
@@ -168,6 +171,7 @@
   --color-mapCountryFill: rgb(255, 255, 255, 0.1);
   --color-focusVisibleBorder: rgb(61, 185, 133);
   --color-checkboxBorder: rgb(255, 255, 255, 0.2);
+  --color-checkboxUncheckedBorderHover: rgb(255, 255, 255, 0.4);
   --color-checkboxBorderDisabled: rgb(255, 255, 255, 0.11);
   --color-navbarSearchInputBorder: rgb(255, 255, 255, 0.05);
   --color-navbarSearchInputBorderHover: rgb(255, 255, 255, 0.2);

@@ -35,7 +35,6 @@ export const Layout = ({ children }: LayoutProps) => {
   const animationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
-  const loaderInitializedRef = useRef(false);
 
   const currentPathname = usePathname();
 
@@ -77,19 +76,15 @@ export const Layout = ({ children }: LayoutProps) => {
       return;
     }
 
-    if (!loaderInitializedRef.current) {
-      loaderInitializedRef.current = true;
+    /** Start chart animations at 80% of loader duration */
+    animationTimeoutRef.current = setTimeout(() => {
+      setShouldStartChartAnimations(true);
+    }, LOADER_DURATION_MS * 0.8);
 
-      /** Start chart animations at 80% of loader duration */
-      animationTimeoutRef.current = setTimeout(() => {
-        setShouldStartChartAnimations(true);
-      }, LOADER_DURATION_MS * 0.8);
-
-      loaderTimeoutRef.current = setTimeout(() => {
-        setShowLoader(false);
-        setIsInitialLoad(false);
-      }, LOADER_DURATION_MS);
-    }
+    loaderTimeoutRef.current = setTimeout(() => {
+      setShowLoader(false);
+      setIsInitialLoad(false);
+    }, LOADER_DURATION_MS);
 
     return () => {
       if (loaderTimeoutRef.current) {
@@ -138,7 +133,7 @@ export const Layout = ({ children }: LayoutProps) => {
         </div>
         {isMobileMenuOpen && (
           <div
-            className="block xl:hidden fixed inset-0 bg-mobileOverlayBg z-[1] cursor-pointer"
+            className="block xl:hidden fixed inset-0 bg-mobileOverlayBg z-[1] cursor-pointer overflow-hidden overscroll-contain"
             onClick={toggleMobileMenu}
             aria-hidden="true"
           />

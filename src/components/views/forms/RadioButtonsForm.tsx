@@ -26,15 +26,15 @@ export const RadioButtonsForm = () => {
         <div className="flex flex-col gap-[0.8rem]">
           <Label>Default</Label>
           <RadioGroup defaultValue="option-one">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <RadioGroupItem value="option-one" id="option-one" />
-              <Label htmlFor="option-one">Default Radio</Label>
+              <Label htmlFor="option-one" withPointer>Default Radio</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <RadioGroupItem value="option-two" id="option-two" />
-              <Label htmlFor="option-two">Secondary Radio</Label>
+              <Label htmlFor="option-two" withPointer>Secondary Radio</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <RadioGroupItem value="option-three" id="option-three" disabled />
               <Label htmlFor="option-three">Disabled Radio</Label>
             </div>
@@ -43,18 +43,18 @@ export const RadioButtonsForm = () => {
 
         <div className="flex flex-col gap-[0.8rem]">
           <Label>Horizontal</Label>
-          <RadioGroup defaultValue="yes" className="flex flex-row gap-4">
-            <div className="flex items-center space-x-2">
+          <RadioGroup defaultValue="yes" className="flex flex-row gap-7.5">
+            <div className="flex items-center space-x-3">
               <RadioGroupItem value="yes" id="hor1" />
-              <Label htmlFor="hor1">Yes</Label>
+              <Label htmlFor="hor1" withPointer>Yes</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <RadioGroupItem value="no" id="hor2" />
-              <Label htmlFor="hor2">No</Label>
+              <Label htmlFor="hor2" withPointer>No</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <RadioGroupItem value="maybe" id="hor3" />
-              <Label htmlFor="hor3">Maybe</Label>
+              <Label htmlFor="hor3" withPointer>Maybe</Label>
             </div>
           </RadioGroup>
         </div>

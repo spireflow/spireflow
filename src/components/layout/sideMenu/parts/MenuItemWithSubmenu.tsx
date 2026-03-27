@@ -1,5 +1,6 @@
 "use client";
 
+import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { ReactElement, useCallback, useEffect, useRef, useState } from "react";
 
 import { ChevronDownIcon } from "../../../../assets/icons/ChevronDownIcon";
@@ -52,12 +53,22 @@ export const MenuItemWithSubmenu = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [hasEnteredSinceCollapse, setHasEnteredSinceCollapse] = useState(false);
   const prevCollapsedRef = useRef(false);
+  const manuallyClosed = useRef(false);
+  const prevPathnameRef = useRef(currentPathname);
 
   /**
    * Syncs active submenu highlight and auto-expands the group
    * when the current route matches a submenu item (trailing-slash agnostic).
+   * Respects manual close - only auto-expands on route change.
    */
   useEffect(() => {
+    const pathnameChanged = prevPathnameRef.current !== currentPathname;
+    prevPathnameRef.current = currentPathname;
+
+    if (pathnameChanged) {
+      manuallyClosed.current = false;
+    }
+
     const normalizedPathname = currentPathname?.endsWith("/")
       ? currentPathname.slice(0, -1)
       : currentPathname;
@@ -72,7 +83,9 @@ export const MenuItemWithSubmenu = ({
 
     if (activeItem) {
       setActiveSubmenuPath(activeItem.path);
-      setIsExpanded(true);
+      if (!manuallyClosed.current) {
+        setIsExpanded(true);
+      }
     } else {
       setActiveSubmenuPath(null);
     }
@@ -98,8 +111,12 @@ export const MenuItemWithSubmenu = ({
 
     if (!isExpanded) return;
     updateLineHeight();
+    const timeout = setTimeout(updateLineHeight, 160);
     window.addEventListener("resize", updateLineHeight);
-    return () => window.removeEventListener("resize", updateLineHeight);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("resize", updateLineHeight);
+    };
   }, [isExpanded, submenuItems.length, isSideMenuOpen]);
 
   const handleMenuItemClick = () => {
@@ -111,6 +128,7 @@ export const MenuItemWithSubmenu = ({
   const handleToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isExpanded) manuallyClosed.current = true;
     setIsExpanded(!isExpanded);
   };
 
@@ -136,10 +154,12 @@ export const MenuItemWithSubmenu = ({
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         if (!isExpanded) {
+          manuallyClosed.current = false;
           setIsExpanded(true);
           setFocusedSubmenuIndex(0);
           setTimeout(() => submenuRefs.current[0]?.focus(), 0);
         } else {
+          manuallyClosed.current = true;
           setIsExpanded(false);
           setFocusedSubmenuIndex(-1);
         }
@@ -158,6 +178,7 @@ export const MenuItemWithSubmenu = ({
         submenuRefs.current[prevIndex]?.focus();
       } else if (e.key === "Escape" && isExpanded) {
         e.preventDefault();
+        manuallyClosed.current = true;
         setIsExpanded(false);
         setFocusedSubmenuIndex(-1);
       }
@@ -300,52 +321,61 @@ export const MenuItemWithSubmenu = ({
           </TooltipContent>
         )}
       </Tooltip>
-      {!isCollapsed && isExpanded && (isSideMenuOpen || !isDesktop) && (
-        <div className="ml-[1.6rem] relative mt-[0.15rem] 1xl:-mt-[0.1rem] 3xl:-mt-[0.05rem]">
-          <div
-            ref={verticalLineRef}
-            className="absolute left-0 top-0 w-0.5 bg-submenuTreeLine"
-          ></div>
-          {submenuItems.map((item, index) => {
-            const normalizedPathname = currentPathname?.endsWith("/")
-              ? currentPathname.slice(0, -1)
-              : currentPathname;
-            const normalizedPath = item.path.endsWith("/")
-              ? item.path.slice(0, -1)
-              : item.path;
-            const isActive = normalizedPathname === normalizedPath;
+      {!isCollapsed && (isSideMenuOpen || !isDesktop) && (
+        <CollapsiblePrimitive.Root
+          open={isExpanded}
+          onOpenChange={setIsExpanded}
+        >
+          <CollapsiblePrimitive.Content className="CollapsibleContent">
+            <div className="ml-[1.6rem] relative mt-[0.15rem] 1xl:-mt-[0.1rem] 3xl:-mt-[0.05rem]">
+              <div
+                ref={verticalLineRef}
+                className="absolute left-0 top-0 w-0.5 bg-submenuTreeLine"
+              ></div>
+              {submenuItems.map((item, index) => {
+                const normalizedPathname = currentPathname?.endsWith("/")
+                  ? currentPathname.slice(0, -1)
+                  : currentPathname;
+                const normalizedPath = item.path.endsWith("/")
+                  ? item.path.slice(0, -1)
+                  : item.path;
+                const isActive = normalizedPathname === normalizedPath;
 
-            return (
-              <Link
-                key={item.path}
-                href={item.path}
-                target={item.newTab ? "_blank" : undefined}
-                ref={(el) => {
-                  submenuRefs.current[index] = el;
-                }}
-                className="block mb-px 1xl:mb-1 3xl:mb-[0.2rem] -ml-[1.6rem] w-[calc(100%+1.6rem)] rounded-md relative focus-visible:outline-offset-[-2px]"
-              >
-                <div className="absolute left-[calc(1.6rem+2px)] top-1/2 w-3 h-0.5 bg-submenuTreeLine"></div>
-                <div
-                  onClick={handleMenuItemClick}
-                  className={`flex rounded-md items-center py-2 1xl:py-[0.55rem] 3xl:py-[0.5rem] pl-[3.2rem] w-full pr-2 transition ${
-                    isActive
-                      ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover"
-                      : "bg-navItemBg hover:bg-navItemBgHover"
-                  }`}
-                >
-                  <div
-                    className={`text-xs xl:text-xs 3xl:text-sm font-medium tracking-wide ${
-                      isActive ? "text-navItemTextActive" : "text-navItemText"
-                    }`}
+                return (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    target={item.newTab ? "_blank" : undefined}
+                    ref={(el) => {
+                      submenuRefs.current[index] = el;
+                    }}
+                    className="block mb-px 1xl:mb-1 3xl:mb-[0.2rem] -ml-[1.6rem] w-[calc(100%+1.6rem)] rounded-md relative focus-visible:outline-offset-[-2px]"
                   >
-                    {item.title}
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+                    <div className="absolute left-[calc(1.6rem+2px)] top-1/2 w-3 h-0.5 bg-submenuTreeLine"></div>
+                    <div
+                      onClick={handleMenuItemClick}
+                      className={`flex rounded-md items-center py-2 1xl:py-[0.55rem] 3xl:py-[0.5rem] pl-[3.2rem] w-full pr-2 transition ${
+                        isActive
+                          ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover"
+                          : "bg-navItemBg hover:bg-navItemBgHover"
+                      }`}
+                    >
+                      <div
+                        className={`text-xs xl:text-xs 3xl:text-sm font-medium tracking-wide ${
+                          isActive
+                            ? "text-navItemTextActive"
+                            : "text-navItemText"
+                        }`}
+                      >
+                        {item.title}
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </CollapsiblePrimitive.Content>
+        </CollapsiblePrimitive.Root>
       )}
     </div>
   );

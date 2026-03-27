@@ -23,19 +23,19 @@ export const ToggleSwitchForm = () => {
       title={t("toggleSwitch")}
     >
       <div className="flex flex-col gap-6">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
           <Switch id="airplane-mode" />
-          <Label htmlFor="airplane-mode">Default Switch</Label>
+          <Label htmlFor="airplane-mode" withPointer>Default Switch</Label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
           <Switch id="checked-switch" defaultChecked />
-          <Label htmlFor="checked-switch">Checked Switch</Label>
+          <Label htmlFor="checked-switch" withPointer>Checked Switch</Label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
           <Switch id="disabled-switch" disabled />
           <Label htmlFor="disabled-switch">Disabled Switch</Label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
           <Switch id="disabled-checked-switch" disabled defaultChecked />
           <Label htmlFor="disabled-checked-switch">
             Disabled Checked Switch

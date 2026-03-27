@@ -67,6 +67,7 @@
   --color-inputBg: rgb(240, 240, 245, 0.1);
   --color-inputBgHover: white;
   --color-toggleSwitchBg: rgb(200, 200, 200);
+  --color-switchUncheckedBgHover: rgb(180, 180, 180);
   --color-paginationActiveBg: rgb(0, 0, 0, 0.08);
   --color-buttonActiveBg: rgb(0, 0, 0, 0.1);
   --color-outlinedButtonBg: white;
@@ -143,6 +144,8 @@
   --color-settingsButtonBgHover: rgb(242, 242, 247);
   --color-settingsLayoutPreviewBg: rgb(0, 0, 0, 0.12);
   --color-settingsDrawerHeaderBg: rgb(247, 247, 247);
+  --color-settingsDrawerGithubBg: rgb(247, 247, 247);
+  --color-settingsDrawerGithubBgHover: rgb(235, 235, 238);
   --color-profileHeaderBg: rgb(124, 186, 223, 0.24);
   --color-fourCardIconBg: rgb(0, 0, 0, 0.05);
   --color-fourCardIconBgHover: rgb(0, 0, 0, 0.03);
@@ -169,6 +172,7 @@
   --color-mapCountryFill: rgb(0, 0, 0, 0.13);
   --color-focusVisibleBorder: rgb(59, 130, 246);
   --color-checkboxBorder: rgb(0, 0, 0, 0.28);
+  --color-checkboxUncheckedBorderHover: rgb(0, 0, 0, 0.5);
   --color-checkboxBorderDisabled: rgb(0, 0, 0, 0.18);
   --color-navbarSearchInputBorder: rgb(0, 0, 0, 0.12);
   --color-navbarSearchInputBorderHover: rgb(0, 0, 0, 0.2);

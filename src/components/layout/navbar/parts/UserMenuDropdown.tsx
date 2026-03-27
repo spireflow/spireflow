@@ -34,7 +34,7 @@ export const UserMenuDropdown = ({
       role="menu"
       aria-label="User menu"
       onKeyDown={handleMenuKeyDown}
-      className="absolute right-2 text-sm xl:right-0 top-10 xl:top-11 mt-2 w-54 border border-inputBorder bg-dropdownBg text-primaryText placeholder-secondaryText rounded-md shadow"
+      className="absolute right-2 text-sm xl:right-0 top-10 xl:top-11 mt-2 w-54 border border-inputBorder bg-dropdownBg text-primaryText placeholder-secondaryText rounded-md shadow animate-navbar-dropdown"
     >
       {/* Auth Section - Expandable */}
       <DropdownMenuItem
@@ -294,7 +294,7 @@ export const UserMenuDropdown = ({
 
       {/* GitHub */}
       <Link
-        href="https://github.com/matt765/spireflow"
+        href="https://github.com/nellavio/nellavio"
         target="_blank"
         className="px-4 py-2 pr-5 pl-4 flex hover:bg-dropdownBgHover cursor-pointer focus-visible:bg-dropdownBgHover"
         role="menuitem"

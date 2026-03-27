@@ -29,7 +29,7 @@ const RadioGroup = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <RadioGroupPrimitive.Root
-    className={cn("grid gap-2", className)}
+    className={cn("grid gap-3", className)}
     {...props}
     ref={ref}
   />
@@ -58,7 +58,7 @@ const RadioGroupItem = React.forwardRef<
     ref={ref}
     tabIndex={0}
     className={cn(
-      "aspect-square h-4 w-4 rounded-full border border-checkboxBorder text-containedButtonBg disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50",
+      "aspect-square h-4.5 w-4.5 rounded-full border border-checkboxBorder text-containedButtonBg transition-colors data-[state=unchecked]:hover:border-checkboxUncheckedBorderHover data-[state=checked]:border-containedButtonBg disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50",
       className,
     )}
     onKeyDownCapture={(e) => {
@@ -70,8 +70,8 @@ const RadioGroupItem = React.forwardRef<
     }}
     {...props}
   >
-    <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-      <Circle className="h-2.5 w-2.5 fill-current text-current" />
+    <RadioGroupPrimitive.Indicator className="relative flex items-center justify-center">
+      <Circle className="absolute top-1/2 left-1/2 h-2.75 w-2.75 -translate-x-1/2 -translate-y-1/2 fill-current text-current" />
     </RadioGroupPrimitive.Indicator>
   </RadioGroupPrimitive.Item>
 ));

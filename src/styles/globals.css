@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "./themes/light.css";
 @import "./themes/dark.css";
 @import "./themes/authBgPattern.css";
@@ -85,6 +86,54 @@ body.font-alternative {
 
 .circle {
   @apply w-4 h-4 my-12 mx-1 bg-loaderCircleBg rounded-full;
+}
+
+/* Submenu expand/collapse animation */
+.CollapsibleContent {
+  overflow: hidden;
+}
+
+.CollapsibleContent[data-state="open"] {
+  animation: submenuSlideDown 150ms ease-out;
+}
+
+.CollapsibleContent[data-state="closed"] {
+  animation: submenuSlideUp 150ms ease-out;
+}
+
+@keyframes submenuSlideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes submenuSlideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Navbar dropdown enter animation (translateZ(0) prevents sub-pixel shift from GPU layer switch) */
+@keyframes navbarDropdownEnter {
+  from {
+    opacity: 0;
+    transform: translateZ(0) scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) scale(1) translateY(0);
+  }
+}
+
+.animate-navbar-dropdown {
+  animation: navbarDropdownEnter 150ms ease-out forwards;
+  transform: translateZ(0);
 }
 
 /* Font color for axis ticks in Recharts charts */

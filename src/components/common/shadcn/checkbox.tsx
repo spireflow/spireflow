@@ -31,7 +31,7 @@ const Checkbox = React.forwardRef<
   <CheckboxPrimitive.Root
     ref={ref}
     className={cn(
-      "peer h-4 w-4 shrink-0 rounded-sm border border-checkboxBorder disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50 data-[state=checked]:bg-containedButtonBg data-[state=checked]:text-white data-[state=checked]:border-containedButtonBg",
+      "peer h-4.5 w-4.5 shrink-0 rounded-sm border border-checkboxBorder transition-colors disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50 data-[state=unchecked]:hover:border-checkboxUncheckedBorderHover data-[state=checked]:bg-containedButtonBg data-[state=checked]:text-white data-[state=checked]:border-containedButtonBg",
       className,
     )}
     onKeyDown={(e) => {
@@ -51,7 +51,7 @@ const Checkbox = React.forwardRef<
     <CheckboxPrimitive.Indicator
       className={cn("flex items-center justify-center text-current")}
     >
-      <Check className="h-4 w-4" />
+      <Check className="h-4.5 w-4.5" />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));
