@@ -16,7 +16,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Tooltip payload item structure. */
 interface TooltipPayload {
@@ -153,123 +158,122 @@ export const BarChartComponent = () => {
   ];
 
   return (
-    <Card
-      className="w-full pt-11 pb-6"
-      title={t("title")}
-      padding="px-6 md:px-20"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 1xl:h-80 w-full">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <BarChart
-            data={barChartData}
-            margin={{
-              top: 10,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-              bottom: 5,
-            }}
+    <Card className="w-full pt-11 pb-6">
+      <CardHeader variant="divider" className="px-6 md:px-20">
+        <CardTitle>{t("title")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-6 md:px-20">
+        <div className="h-64 1xl:h-80 w-full">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="name"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) =>
-                `$${Intl.NumberFormat("us").format(value)}`
-              }
-              width={60}
-            />
-            <Tooltip
-              content={<BarTooltip />}
-              cursor={{
-                fill: "rgba(255,255,255,0.05)",
-                stroke: "var(--color-chartVerticalLine)",
+            <BarChart
+              data={barChartData}
+              margin={{
+                top: 10,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                bottom: 5,
               }}
-              isAnimationActive={false}
-            />
-            <Legend
-              verticalAlign="top"
-              align="center"
-              content={<CustomLegend />}
-            />
-            <Bar
-              dataKey="widgets"
-              name="Widgets"
-              fill={barColors[0]}
-              radius={[4, 4, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="gadgets"
-              name="Gadgets"
-              fill={barColors[1]}
-              radius={[4, 4, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="modules"
-              name="Modules"
-              fill={barColors[2]}
-              radius={[4, 4, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="components"
-              name="Components"
-              fill={barColors[3]}
-              radius={[4, 4, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="kits"
-              name="Kits"
-              fill={barColors[4]}
-              radius={[4, 4, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="accessories"
-              name="Accessories"
-              fill={barColors[5]}
-              radius={[4, 4, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="name"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) =>
+                  `$${Intl.NumberFormat("us").format(value)}`
+                }
+                width={60}
+              />
+              <Tooltip
+                content={<BarTooltip />}
+                cursor={{
+                  fill: "rgba(255,255,255,0.05)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+                isAnimationActive={false}
+              />
+              <Legend
+                verticalAlign="top"
+                align="center"
+                content={<CustomLegend />}
+              />
+              <Bar
+                dataKey="widgets"
+                name="Widgets"
+                fill={barColors[0]}
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="gadgets"
+                name="Gadgets"
+                fill={barColors[1]}
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="modules"
+                name="Modules"
+                fill={barColors[2]}
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="components"
+                name="Components"
+                fill={barColors[3]}
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="kits"
+                name="Kits"
+                fill={barColors[4]}
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="accessories"
+                name="Accessories"
+                fill={barColors[5]}
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

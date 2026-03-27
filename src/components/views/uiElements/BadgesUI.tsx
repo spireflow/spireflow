@@ -2,8 +2,13 @@
 
 import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
 import { Badge } from "../../common/shadcn/badge";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /**
  * Showcase of badge variants: default, secondary,
@@ -15,13 +20,18 @@ export const BadgesUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card id="badges" isHeaderDividerVisible addTitleMargin title={t("badges")}>
-      <div className="flex flex-wrap gap-3">
-        <Badge>Default</Badge>
-        <Badge variant="secondary">Secondary</Badge>
-        <Badge variant="destructive">Destructive</Badge>
-        <Badge variant="outline">Outline</Badge>
-      </div>
+    <Card id="badges">
+      <CardHeader variant="divider">
+        <CardTitle>{t("badges")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-wrap gap-3">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="outline">Outline</Badge>
+        </div>
+      </CardContent>
     </Card>
   );
 };

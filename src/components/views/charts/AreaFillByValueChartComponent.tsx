@@ -15,8 +15,14 @@ import {
 import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
+import { cn } from "../../../utils/classNames";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for profit/loss chart. */
 interface DataPoint {
@@ -146,98 +152,110 @@ export const AreaFillByValueChartComponent = () => {
   const off = gradientOffset();
 
   return (
-    <Card
-      id="areaFillByValue"
-      className="w-full h-full"
-      title={t("areaFillByValueChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin={windowWidth === 0 || windowWidth >= BREAKPOINTS.xsm}
-    >
-      <div className="h-72 xsm:h-80 1xl:h-96 3xl:h-112 w-full">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <AreaChart
-            data={chartdata}
-            margin={{
-              top: 20,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-              bottom: 5,
-            }}
+    <Card id="areaFillByValue" className="w-full h-full">
+      <CardHeader
+        variant="divider"
+        className={cn(
+          "px-9",
+          windowWidth !== 0 && windowWidth < BREAKPOINTS.xsm && "mb-0",
+        )}
+      >
+        <CardTitle>{t("areaFillByValueChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-72 xsm:h-80 1xl:h-96 3xl:h-112 w-full">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="name"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
-            />
-            <Tooltip
-              content={
-                <FillByValueTooltip
-                  positiveColor={positiveColor}
-                  negativeColor={negativeColor}
-                />
-              }
-              isAnimationActive={false}
-              cursor={{
-                fill: "rgba(255,255,255,0.05)",
-                stroke: "var(--color-chartVerticalLine)",
+            <AreaChart
+              data={chartdata}
+              margin={{
+                top: 20,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                bottom: 5,
               }}
-            />
-            <Legend
-              verticalAlign="top"
-              align="center"
-              content={
-                <CustomLegend
-                  positiveColor={positiveColor}
-                  negativeColor={negativeColor}
-                />
-              }
-            />
-            <defs>
-              <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor={positiveColor} stopOpacity={0.8} />
-                <stop
-                  offset={off}
-                  stopColor={positiveColor}
-                  stopOpacity={0.1}
-                />
-                <stop
-                  offset={off}
-                  stopColor={negativeColor}
-                  stopOpacity={0.1}
-                />
-                <stop offset="1" stopColor={negativeColor} stopOpacity={0.8} />
-              </linearGradient>
-            </defs>
-            <Area
-              type="monotone"
-              dataKey="value"
-              stroke="rgba(255,255,255,0.5)"
-              strokeWidth={2}
-              fill="url(#splitColor)"
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="name"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
+              />
+              <Tooltip
+                content={
+                  <FillByValueTooltip
+                    positiveColor={positiveColor}
+                    negativeColor={negativeColor}
+                  />
+                }
+                isAnimationActive={false}
+                cursor={{
+                  fill: "rgba(255,255,255,0.05)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+              />
+              <Legend
+                verticalAlign="top"
+                align="center"
+                content={
+                  <CustomLegend
+                    positiveColor={positiveColor}
+                    negativeColor={negativeColor}
+                  />
+                }
+              />
+              <defs>
+                <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="0"
+                    stopColor={positiveColor}
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset={off}
+                    stopColor={positiveColor}
+                    stopOpacity={0.1}
+                  />
+                  <stop
+                    offset={off}
+                    stopColor={negativeColor}
+                    stopOpacity={0.1}
+                  />
+                  <stop
+                    offset="1"
+                    stopColor={negativeColor}
+                    stopOpacity={0.8}
+                  />
+                </linearGradient>
+              </defs>
+              <Area
+                type="monotone"
+                dataKey="value"
+                stroke="rgba(255,255,255,0.5)"
+                strokeWidth={2}
+                fill="url(#splitColor)"
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

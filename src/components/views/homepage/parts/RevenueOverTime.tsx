@@ -17,7 +17,12 @@ import { useWindowDimensions } from "../../../../hooks/useWindowDimensions";
 import { useChartAnimationStore } from "../../../../store/chartAnimationStore";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 import { BaseTooltip } from "../../../common/BaseTooltip";
-import { Card } from "../../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../common/shadcn/card";
 import {
   Tabs,
   TabsContent,
@@ -162,175 +167,178 @@ export const RevenueOverTime = ({
 
   const displayData = processDataByTimeRange(revenueOverTimeData);
 
-  const customHeader = (
-    <div className="flex items-center justify-between mb-8 md:mb-6 1xl:mb-8">
-      <div className="flex flex-col gap-0.5">
-        <p className="text-sm 1xl:text-base 3xl:text-lg font-semibold text-primaryText">
-          {t("title")}
-        </p>
-        <span className="text-[0.85rem] text-subtitleText">
-          Historical performance
-        </span>
-      </div>
-      {!isFirstRender && (
-        <Tabs
-          value={timeRange}
-          onValueChange={(v) => setTimeRange(v as "monthly" | "quarterly")}
-          className="hidden xsm:block"
-        >
-          <TabsList className="bg-tabsBg">
-            <TabsTrigger
-              value="monthly"
-              className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-revenueTabActiveBgHover"
-            >
-              Monthly
-            </TabsTrigger>
-            <TabsTrigger
-              value="quarterly"
-              className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-revenueTabActiveBgHover"
-            >
-              Quarterly
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="monthly" />
-          <TabsContent value="quarterly" />
-        </Tabs>
-      )}
-    </div>
-  );
-
   const isAboveXsm = useMediaQuery(`(min-width: ${BREAKPOINTS.xsm}px)`);
 
+  const showExpandedHeader = isFirstRender || isAboveXsm;
+
   return (
-    <Card
-      className="h-full"
-      id="revenueOverTime"
-      {...(isFirstRender || isAboveXsm
-        ? { customHeader }
-        : { title: t("title") })}
-    >
-      <div className="flex flex-row justify-end gap-5 w-full mb-4 mt-6 xsm:hidden">
-        <div className="flex items-center">
-          <div
-            className="w-3 h-3 rounded-sm mr-2"
-            style={{ backgroundColor: "var(--color-chartPrimaryDisabled)" }}
-          />
-          <span className="text-xs 1xl:text-sm text-primaryText">
-            Website sales
-          </span>
+    <Card className="h-full" id="revenueOverTime">
+      <CardHeader>
+        {showExpandedHeader ? (
+          <div className="flex items-center justify-between mb-8 md:mb-6 1xl:mb-8">
+            <div className="flex flex-col gap-0.5">
+              <p className="text-sm 1xl:text-base 3xl:text-lg font-semibold text-primaryText">
+                {t("title")}
+              </p>
+              <span className="text-[0.85rem] text-subtitleText">
+                Historical performance
+              </span>
+            </div>
+            {!isFirstRender && (
+              <Tabs
+                value={timeRange}
+                onValueChange={(v) =>
+                  setTimeRange(v as "monthly" | "quarterly")
+                }
+                className="hidden xsm:block"
+              >
+                <TabsList className="bg-tabsBg">
+                  <TabsTrigger
+                    value="monthly"
+                    className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-revenueTabActiveBgHover"
+                  >
+                    Monthly
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="quarterly"
+                    className="text-xs data-[state=active]:bg-revenueTabActiveBg data-[state=active]:hover:bg-revenueTabActiveBgHover"
+                  >
+                    Quarterly
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="monthly" />
+                <TabsContent value="quarterly" />
+              </Tabs>
+            )}
+          </div>
+        ) : (
+          <CardTitle>{t("title")}</CardTitle>
+        )}
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-row justify-end gap-5 w-full mb-4 mt-6 xsm:hidden">
+          <div className="flex items-center">
+            <div
+              className="w-3 h-3 rounded-sm mr-2"
+              style={{ backgroundColor: "var(--color-chartPrimaryDisabled)" }}
+            />
+            <span className="text-xs 1xl:text-sm text-primaryText">
+              Website sales
+            </span>
+          </div>
+          <div className="flex items-center">
+            <div
+              className="w-3 h-3 rounded-sm mr-2"
+              style={{ backgroundColor: "var(--color-chartPrimaryFill)" }}
+            />
+            <span className="text-xs 1xl:text-sm text-primaryText">
+              In store sales
+            </span>
+          </div>
         </div>
-        <div className="flex items-center">
-          <div
-            className="w-3 h-3 rounded-sm mr-2"
-            style={{ backgroundColor: "var(--color-chartPrimaryFill)" }}
-          />
-          <span className="text-xs 1xl:text-sm text-primaryText">
-            In store sales
-          </span>
-        </div>
-      </div>
-      <div
-        role="img"
-        aria-label="Revenue over time area chart"
-        className="w-full overflow-hidden h-58 lg:h-62 1xl:h-60 2xl:h-62 3xl:h-80"
-      >
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          minWidth={0}
-          minHeight={200}
-          initialDimension={{ width: 320, height: 200 }}
+        <div
+          role="img"
+          aria-label="Revenue over time area chart"
+          className="w-full overflow-hidden h-58 lg:h-62 1xl:h-60 2xl:h-62 3xl:h-80"
         >
-          <AreaChart
-            data={shouldStartChartAnimations ? displayData : []}
-            margin={{
-              top: 10,
-              ...getChartMargins(),
-              bottom: 5,
-            }}
-            tabIndex={-1}
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            minWidth={0}
+            minHeight={200}
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <defs>
-              <linearGradient id="colorWebsite" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-chartPrimaryDisabled)"
-                  stopOpacity={0.3}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-chartPrimaryDisabled)"
-                  stopOpacity={0}
-                />
-              </linearGradient>
-              <linearGradient id="colorInStore" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-chartPrimaryFill)"
-                  stopOpacity={0.3}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-chartPrimaryFill)"
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke="var(--color-chartPrimaryGrid)"
-            />
-            <XAxis
-              dataKey="date"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) =>
-                `$${Intl.NumberFormat("us").format(value)}`
-              }
-            />
-            <Tooltip
-              content={<RevenueOverTimeTooltip />}
-              isAnimationActive={false}
-              cursor={{
-                fill: "rgba(255,255,255,0.05)",
-                stroke: "var(--color-chartVerticalLine)",
+            <AreaChart
+              data={shouldStartChartAnimations ? displayData : []}
+              margin={{
+                top: 10,
+                ...getChartMargins(),
+                bottom: 5,
               }}
-            />
-            <Area
-              type="linear"
-              dataKey="websiteSales"
-              name="Website sales"
-              stroke="var(--color-chartPrimaryDisabled)"
-              strokeWidth={2}
-              fillOpacity={1}
-              fill="url(#colorWebsite)"
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={500}
-              animationEasing="ease-out"
-            />
-            <Area
-              type="linear"
-              dataKey="inStoreSales"
-              name="In store sales"
-              stroke="var(--color-chartPrimaryFill)"
-              strokeWidth={2}
-              fillOpacity={1}
-              fill="url(#colorInStore)"
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={500}
-              animationEasing="ease-out"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+              tabIndex={-1}
+            >
+              <defs>
+                <linearGradient id="colorWebsite" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor="var(--color-chartPrimaryDisabled)"
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--color-chartPrimaryDisabled)"
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+                <linearGradient id="colorInStore" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor="var(--color-chartPrimaryFill)"
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--color-chartPrimaryFill)"
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--color-chartPrimaryGrid)"
+              />
+              <XAxis
+                dataKey="date"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) =>
+                  `$${Intl.NumberFormat("us").format(value)}`
+                }
+              />
+              <Tooltip
+                content={<RevenueOverTimeTooltip />}
+                isAnimationActive={false}
+                cursor={{
+                  fill: "rgba(255,255,255,0.05)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+              />
+              <Area
+                type="linear"
+                dataKey="websiteSales"
+                name="Website sales"
+                stroke="var(--color-chartPrimaryDisabled)"
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorWebsite)"
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={500}
+                animationEasing="ease-out"
+              />
+              <Area
+                type="linear"
+                dataKey="inStoreSales"
+                name="In store sales"
+                stroke="var(--color-chartPrimaryFill)"
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorInStore)"
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={500}
+                animationEasing="ease-out"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

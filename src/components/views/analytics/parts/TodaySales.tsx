@@ -16,7 +16,7 @@ import { useChartAnimation } from "../../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 import { BaseTooltip } from "../../../common/BaseTooltip";
-import { Card } from "../../../common/Card";
+import { Card, CardContent } from "../../../common/shadcn/card";
 import {
   Tabs,
   TabsContent,
@@ -93,193 +93,194 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
     <Card
       className="w-full h-full recharts-tooltip-stable todaySalesContainer"
       id="todaysSales"
-      customHeader
     >
-      <p className="text-sm text-primaryText">{t("title")}</p>
-      <div className="mt-1 text-xl 1xl:text-2xl 3xl:text-3xl font-bold text-primaryText">
-        $ 2276
-      </div>
-      <Tabs defaultValue="yesterday">
-        <TabsList
-          variant="line"
-          className="flex lg:hidden 1xl:flex mt-1 1xl:mt-2 3xl:mt-6"
-        >
-          <TabsTrigger
+      <CardContent>
+        <p className="text-sm text-primaryText">{t("title")}</p>
+        <div className="mt-1 text-xl 1xl:text-2xl 3xl:text-3xl font-bold text-primaryText">
+          $ 2276
+        </div>
+        <Tabs defaultValue="yesterday">
+          <TabsList
             variant="line"
-            value="yesterday"
-            className="text-xs 1xl:text-sm"
+            className="flex lg:hidden 1xl:flex mt-1 1xl:mt-2 3xl:mt-6"
           >
-            Today vs. Yesterday
-          </TabsTrigger>
-          <TabsTrigger
-            variant="line"
-            value="average"
-            className="text-xs 1xl:text-sm"
-          >
-            Today vs. Average
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="yesterday">
-          <div
-            role="img"
-            aria-label="Today's sales line chart"
-            className="mt-7 lg:mt-6 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-56 1xl:h-60 3xl:h-64"
-          >
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-              initialDimension={{ width: 320, height: 200 }}
+            <TabsTrigger
+              variant="line"
+              value="yesterday"
+              className="text-xs 1xl:text-sm"
             >
-              <LineChart
-                data={todaySalesData}
-                margin={{
-                  top: 5,
-                  right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-                  left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-                  bottom: 5,
-                }}
-                tabIndex={-1}
-              >
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke={"var(--color-chartPrimaryGrid)"}
-                />
-                <XAxis
-                  dataKey="hour"
-                  axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-                  tickLine={false}
-                  tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-                />
-                <YAxis
-                  axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-                  tickLine={false}
-                  tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-                  tickFormatter={(value) =>
-                    `$${Intl.NumberFormat("us").format(value)}`
-                  }
-                />
-                <Tooltip
-                  content={<TodaySalesTooltip />}
-                  cursor={{
-                    fill: "rgba(255,255,255,0.05)",
-                    stroke: "var(--color-chartVerticalLine)",
-                  }}
-                  isAnimationActive={false}
-                />
-                <Legend
-                  verticalAlign="bottom"
-                  align="right"
-                  content={<CustomLegend />}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="today"
-                  name="Today"
-                  stroke={"var(--color-chartPrimaryFill)"}
-                  strokeWidth={2}
-                  dot={false}
-                  isAnimationActive={shouldAnimate}
-                  animationBegin={animationBegin}
-                  animationDuration={800}
-                  animationEasing="ease-out"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="yesterday"
-                  name="Yesterday"
-                  stroke={"var(--color-chartSecondaryFill)"}
-                  strokeWidth={2}
-                  dot={false}
-                  isAnimationActive={shouldAnimate}
-                  animationBegin={animationBegin}
-                  animationDuration={800}
-                  animationEasing="ease-out"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </TabsContent>
-        <TabsContent value="average">
-          <div
-            role="img"
-            aria-label="Today's sales vs average line chart"
-            className="mt-7 lg:mt-6 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-56 1xl:h-60 3xl:h-64"
-          >
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-              initialDimension={{ width: 320, height: 200 }}
+              Today vs. Yesterday
+            </TabsTrigger>
+            <TabsTrigger
+              variant="line"
+              value="average"
+              className="text-xs 1xl:text-sm"
             >
-              <LineChart
-                data={todaySalesData}
-                margin={{
-                  top: 5,
-                  right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-                  left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-                  bottom: 5,
-                }}
-                tabIndex={-1}
+              Today vs. Average
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="yesterday">
+            <div
+              role="img"
+              aria-label="Today's sales line chart"
+              className="mt-7 lg:mt-6 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-56 1xl:h-60 3xl:h-64"
+            >
+              <ResponsiveContainer
+                width="100%"
+                height="100%"
+                initialDimension={{ width: 320, height: 200 }}
               >
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke={"var(--color-chartPrimaryGrid)"}
-                />
-                <XAxis
-                  dataKey="hour"
-                  axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-                  tickLine={false}
-                  tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-                />
-                <YAxis
-                  axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-                  tickLine={false}
-                  tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-                  tickFormatter={(value) =>
-                    `$${Intl.NumberFormat("us").format(value)}`
-                  }
-                />
-                <Tooltip
-                  content={<TodaySalesTooltip />}
-                  cursor={{
-                    fill: "rgba(255,255,255,0.05)",
-                    stroke: "var(--color-chartVerticalLine)",
+                <LineChart
+                  data={todaySalesData}
+                  margin={{
+                    top: 5,
+                    right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                    left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                    bottom: 5,
                   }}
-                  isAnimationActive={false}
-                />
-                <Legend
-                  verticalAlign="bottom"
-                  align="right"
-                  content={<CustomLegend />}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="today"
-                  name="Today"
-                  stroke={"var(--color-chartPrimaryFill)"}
-                  strokeWidth={2}
-                  dot={false}
-                  isAnimationActive={shouldAnimate}
-                  animationBegin={animationBegin}
-                  animationDuration={800}
-                  animationEasing="ease-out"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="average"
-                  name="Average"
-                  stroke={"var(--color-chartSecondaryFill)"}
-                  strokeWidth={2}
-                  dot={false}
-                  isAnimationActive={shouldAnimate}
-                  animationBegin={animationBegin}
-                  animationDuration={800}
-                  animationEasing="ease-out"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </TabsContent>
-      </Tabs>
+                  tabIndex={-1}
+                >
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke={"var(--color-chartPrimaryGrid)"}
+                  />
+                  <XAxis
+                    dataKey="hour"
+                    axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                    tickLine={false}
+                    tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                  />
+                  <YAxis
+                    axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                    tickLine={false}
+                    tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                    tickFormatter={(value) =>
+                      `$${Intl.NumberFormat("us").format(value)}`
+                    }
+                  />
+                  <Tooltip
+                    content={<TodaySalesTooltip />}
+                    cursor={{
+                      fill: "rgba(255,255,255,0.05)",
+                      stroke: "var(--color-chartVerticalLine)",
+                    }}
+                    isAnimationActive={false}
+                  />
+                  <Legend
+                    verticalAlign="bottom"
+                    align="right"
+                    content={<CustomLegend />}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="today"
+                    name="Today"
+                    stroke={"var(--color-chartPrimaryFill)"}
+                    strokeWidth={2}
+                    dot={false}
+                    isAnimationActive={shouldAnimate}
+                    animationBegin={animationBegin}
+                    animationDuration={800}
+                    animationEasing="ease-out"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="yesterday"
+                    name="Yesterday"
+                    stroke={"var(--color-chartSecondaryFill)"}
+                    strokeWidth={2}
+                    dot={false}
+                    isAnimationActive={shouldAnimate}
+                    animationBegin={animationBegin}
+                    animationDuration={800}
+                    animationEasing="ease-out"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </TabsContent>
+          <TabsContent value="average">
+            <div
+              role="img"
+              aria-label="Today's sales vs average line chart"
+              className="mt-7 lg:mt-6 3xl:mt-6 -ml-3 1xl:ml-0 h-60 lg:h-56 1xl:h-60 3xl:h-64"
+            >
+              <ResponsiveContainer
+                width="100%"
+                height="100%"
+                initialDimension={{ width: 320, height: 200 }}
+              >
+                <LineChart
+                  data={todaySalesData}
+                  margin={{
+                    top: 5,
+                    right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                    left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                    bottom: 5,
+                  }}
+                  tabIndex={-1}
+                >
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke={"var(--color-chartPrimaryGrid)"}
+                  />
+                  <XAxis
+                    dataKey="hour"
+                    axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                    tickLine={false}
+                    tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                  />
+                  <YAxis
+                    axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                    tickLine={false}
+                    tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                    tickFormatter={(value) =>
+                      `$${Intl.NumberFormat("us").format(value)}`
+                    }
+                  />
+                  <Tooltip
+                    content={<TodaySalesTooltip />}
+                    cursor={{
+                      fill: "rgba(255,255,255,0.05)",
+                      stroke: "var(--color-chartVerticalLine)",
+                    }}
+                    isAnimationActive={false}
+                  />
+                  <Legend
+                    verticalAlign="bottom"
+                    align="right"
+                    content={<CustomLegend />}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="today"
+                    name="Today"
+                    stroke={"var(--color-chartPrimaryFill)"}
+                    strokeWidth={2}
+                    dot={false}
+                    isAnimationActive={shouldAnimate}
+                    animationBegin={animationBegin}
+                    animationDuration={800}
+                    animationEasing="ease-out"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="average"
+                    name="Average"
+                    stroke={"var(--color-chartSecondaryFill)"}
+                    strokeWidth={2}
+                    dot={false}
+                    isAnimationActive={shouldAnimate}
+                    animationBegin={animationBegin}
+                    animationDuration={800}
+                    animationEasing="ease-out"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </CardContent>
     </Card>
   );
 };

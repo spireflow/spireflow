@@ -16,7 +16,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for mixed line chart. */
 interface DataPoint {
@@ -128,97 +133,95 @@ export const MixedLineChartComponent = () => {
   ];
 
   return (
-    <Card
-      id="mixedLineChart"
-      className="w-full h-full"
-      title={t("mixedLineChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-4">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <LineChart
-            data={chartdata}
-            margin={{
-              top: 20,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-              bottom: 20,
-            }}
+    <Card id="mixedLineChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("mixedLineChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-4">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="month"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
-            />
-            <Tooltip
-              content={<MixedLineTooltip />}
-              cursor={{ stroke: "var(--color-chartVerticalLine)" }}
-              isAnimationActive={false}
-            />
-            <Legend
-              iconType="line"
-              wrapperStyle={{ paddingTop: "2rem" }}
-              content={<MixedLineCustomLegend />}
-            />
-            <Line
-              type="monotone"
-              dataKey="organic"
-              stroke={"var(--color-chartPrimaryFill)"}
-              strokeWidth={2}
-              name="Organic"
-              dot={{ r: 4 }}
-              activeDot={{ r: 6 }}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Line
-              type="monotone"
-              dataKey="paid"
-              stroke={"var(--color-chartSecondaryFill)"}
-              strokeWidth={2}
-              name="Paid Ads"
-              dot={{ r: 4, fill: "var(--color-chartSecondaryFill)" }}
-              activeDot={{ r: 6 }}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Line
-              type="monotone"
-              dataKey="referral"
-              stroke="rgb(168, 162, 255)"
-              strokeWidth={2}
-              name="Referral"
-              dot={{ r: 4, fill: "rgb(168, 162, 255)" }}
-              activeDot={{ r: 6 }}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+            <LineChart
+              data={chartdata}
+              margin={{
+                top: 20,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                bottom: 20,
+              }}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="month"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
+              />
+              <Tooltip
+                content={<MixedLineTooltip />}
+                cursor={{ stroke: "var(--color-chartVerticalLine)" }}
+                isAnimationActive={false}
+              />
+              <Legend
+                iconType="line"
+                wrapperStyle={{ paddingTop: "2rem" }}
+                content={<MixedLineCustomLegend />}
+              />
+              <Line
+                type="monotone"
+                dataKey="organic"
+                stroke={"var(--color-chartPrimaryFill)"}
+                strokeWidth={2}
+                name="Organic"
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Line
+                type="monotone"
+                dataKey="paid"
+                stroke={"var(--color-chartSecondaryFill)"}
+                strokeWidth={2}
+                name="Paid Ads"
+                dot={{ r: 4, fill: "var(--color-chartSecondaryFill)" }}
+                activeDot={{ r: 6 }}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Line
+                type="monotone"
+                dataKey="referral"
+                stroke="rgb(168, 162, 255)"
+                strokeWidth={2}
+                name="Referral"
+                dot={{ r: 4, fill: "rgb(168, 162, 255)" }}
+                activeDot={{ r: 6 }}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

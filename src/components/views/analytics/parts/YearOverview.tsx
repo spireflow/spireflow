@@ -15,7 +15,12 @@ import { useWindowDimensions } from "../../../../hooks/useWindowDimensions";
 import { useChartAnimationStore } from "../../../../store/chartAnimationStore";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 import { BaseTooltip } from "../../../common/BaseTooltip";
-import { Card } from "../../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../common/shadcn/card";
 import {
   OverviewMonthData,
   YearOverviewCustomLegendProps,
@@ -129,122 +134,127 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
   );
 
   return (
-    <Card className="h-full" id="yearOverview" title={t("title")}>
-      <div className="flex gap-8 3xl:pt-4">
-        <div
-          role="img"
-          aria-label="Year overview area chart"
-          className="w-full lg:w-3/4 h-72 lg:h-80 1xl:h-[22rem] 3xl:h-96"
-        >
-          <ResponsiveContainer
-            width="100%"
-            height="100%"
-            initialDimension={{ width: 320, height: 200 }}
+    <Card className="h-full" id="yearOverview">
+      <CardHeader>
+        <CardTitle>{t("title")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex gap-8 3xl:pt-4">
+          <div
+            role="img"
+            aria-label="Year overview area chart"
+            className="w-full lg:w-3/4 h-72 lg:h-80 1xl:h-[22rem] 3xl:h-96"
           >
-            <AreaChart
-              data={shouldStartChartAnimations ? yearOverviewData : []}
-              margin={{
-                top: 20,
-                right: windowWidth > BREAKPOINTS.xsm ? 30 : 15,
-                left: windowWidth > BREAKPOINTS.xsm ? 20 : 7,
-                bottom: 5,
-              }}
-              tabIndex={-1}
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+              initialDimension={{ width: 320, height: 200 }}
             >
-              <defs>
-                <linearGradient id="colorPhones" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="5%"
-                    stopColor={"var(--color-chartSecondaryInverted)"}
-                    stopOpacity={0.3}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor={"var(--color-chartSecondaryInverted)"}
-                    stopOpacity={0}
-                  />
-                </linearGradient>
-                <linearGradient id="colorLaptops" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="5%"
-                    stopColor={"var(--color-chartPrimaryInverted)"}
-                    stopOpacity={0.3}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor={"var(--color-chartPrimaryInverted)"}
-                    stopOpacity={0}
-                  />
-                </linearGradient>
-              </defs>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke={"var(--color-chartPrimaryGrid)"}
-              />
-              <XAxis
-                dataKey="name"
-                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-                tickLine={false}
-                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              />
-              <YAxis
-                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-                tickLine={false}
-                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-                tickFormatter={(value) =>
-                  `${Intl.NumberFormat("us").format(value)}`
-                }
-                domain={[
-                  0,
-                  (dataMax: number) => Math.ceil(dataMax / 1000) * 1000,
-                ]}
-              />
-              <Tooltip
-                content={<YearOverviewTooltip />}
-                cursor={{
-                  fill: "rgba(255,255,255,0.05)",
-                  stroke: "var(--color-chartVerticalLine)",
+              <AreaChart
+                data={shouldStartChartAnimations ? yearOverviewData : []}
+                margin={{
+                  top: 20,
+                  right: windowWidth > BREAKPOINTS.xsm ? 30 : 15,
+                  left: windowWidth > BREAKPOINTS.xsm ? 20 : 7,
+                  bottom: 5,
                 }}
-                isAnimationActive={false}
-              />
-              <Legend
-                verticalAlign="top"
-                align="center"
-                content={<CustomLegend />}
-              />
-              <Area
-                name="Phones"
-                type="monotone"
-                dataKey="phones"
-                stroke={"var(--color-chartSecondaryInverted)"}
-                strokeWidth={2}
-                fillOpacity={1}
-                fill="url(#colorPhones)"
-                isAnimationActive={shouldAnimate}
-                animationBegin={animationBegin}
-                animationDuration={800}
-                animationEasing="ease-out"
-              />
-              <Area
-                name="Laptops"
-                type="monotone"
-                dataKey="laptops"
-                stroke={"var(--color-chartPrimaryInverted)"}
-                strokeWidth={2}
-                fillOpacity={1}
-                fill="url(#colorLaptops)"
-                isAnimationActive={shouldAnimate}
-                animationBegin={animationBegin}
-                animationDuration={800}
-                animationEasing="ease-out"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+                tabIndex={-1}
+              >
+                <defs>
+                  <linearGradient id="colorPhones" x1="0" y1="0" x2="0" y2="1">
+                    <stop
+                      offset="5%"
+                      stopColor={"var(--color-chartSecondaryInverted)"}
+                      stopOpacity={0.3}
+                    />
+                    <stop
+                      offset="95%"
+                      stopColor={"var(--color-chartSecondaryInverted)"}
+                      stopOpacity={0}
+                    />
+                  </linearGradient>
+                  <linearGradient id="colorLaptops" x1="0" y1="0" x2="0" y2="1">
+                    <stop
+                      offset="5%"
+                      stopColor={"var(--color-chartPrimaryInverted)"}
+                      stopOpacity={0.3}
+                    />
+                    <stop
+                      offset="95%"
+                      stopColor={"var(--color-chartPrimaryInverted)"}
+                      stopOpacity={0}
+                    />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke={"var(--color-chartPrimaryGrid)"}
+                />
+                <XAxis
+                  dataKey="name"
+                  axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                  tickLine={false}
+                  tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                />
+                <YAxis
+                  axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                  tickLine={false}
+                  tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                  tickFormatter={(value) =>
+                    `${Intl.NumberFormat("us").format(value)}`
+                  }
+                  domain={[
+                    0,
+                    (dataMax: number) => Math.ceil(dataMax / 1000) * 1000,
+                  ]}
+                />
+                <Tooltip
+                  content={<YearOverviewTooltip />}
+                  cursor={{
+                    fill: "rgba(255,255,255,0.05)",
+                    stroke: "var(--color-chartVerticalLine)",
+                  }}
+                  isAnimationActive={false}
+                />
+                <Legend
+                  verticalAlign="top"
+                  align="center"
+                  content={<CustomLegend />}
+                />
+                <Area
+                  name="Phones"
+                  type="monotone"
+                  dataKey="phones"
+                  stroke={"var(--color-chartSecondaryInverted)"}
+                  strokeWidth={2}
+                  fillOpacity={1}
+                  fill="url(#colorPhones)"
+                  isAnimationActive={shouldAnimate}
+                  animationBegin={animationBegin}
+                  animationDuration={800}
+                  animationEasing="ease-out"
+                />
+                <Area
+                  name="Laptops"
+                  type="monotone"
+                  dataKey="laptops"
+                  stroke={"var(--color-chartPrimaryInverted)"}
+                  strokeWidth={2}
+                  fillOpacity={1}
+                  fill="url(#colorLaptops)"
+                  isAnimationActive={shouldAnimate}
+                  animationBegin={animationBegin}
+                  animationDuration={800}
+                  animationEasing="ease-out"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="hidden lg:inline lg:w-1/4">
+            <DataTable data={yearOverviewData} />
+          </div>
         </div>
-        <div className="hidden lg:inline lg:w-1/4">
-          <DataTable data={yearOverviewData} />
-        </div>
-      </div>
+      </CardContent>
     </Card>
   );
 };

@@ -3,7 +3,12 @@
 import { useTranslations } from "next-intl";
 import * as React from "react";
 
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 import { Progress } from "../../common/shadcn/progress";
 
 /**
@@ -16,35 +21,35 @@ export const ProgressUI = () => {
   const t = useTranslations("uiElements");
 
   return (
-    <Card
-      id="progress"
-      isHeaderDividerVisible
-      addTitleMargin
-      title={t("progress")}
-    >
-      <div className="space-y-6">
-        <div>
-          <div className="flex justify-between mb-2 text-sm">
-            <span>Loading...</span>
-            <span>66%</span>
+    <Card id="progress">
+      <CardHeader variant="divider">
+        <CardTitle>{t("progress")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-6">
+          <div>
+            <div className="flex justify-between mb-2 text-sm">
+              <span>Loading...</span>
+              <span>66%</span>
+            </div>
+            <Progress value={66} />
           </div>
-          <Progress value={66} />
-        </div>
-        <div>
-          <div className="flex justify-between mb-2 text-sm">
-            <span>Complete</span>
-            <span>100%</span>
+          <div>
+            <div className="flex justify-between mb-2 text-sm">
+              <span>Complete</span>
+              <span>100%</span>
+            </div>
+            <Progress value={100} />
           </div>
-          <Progress value={100} />
-        </div>
-        <div>
-          <div className="flex justify-between mb-2 text-sm">
-            <span>Starting</span>
-            <span>0%</span>
+          <div>
+            <div className="flex justify-between mb-2 text-sm">
+              <span>Starting</span>
+              <span>0%</span>
+            </div>
+            <Progress value={0} />
           </div>
-          <Progress value={0} />
         </div>
-      </div>
+      </CardContent>
     </Card>
   );
 };

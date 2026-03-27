@@ -12,7 +12,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for radial bar chart. */
 interface DataPoint {
@@ -90,58 +95,59 @@ export const RadialBarChartComponent = () => {
   ];
 
   return (
-    <Card
-      id="radialBarChart"
-      className="w-full h-full"
-      title={t("radialBarChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full flex flex-col">
-        <div className="flex-1 min-h-0">
-          <ResponsiveContainer
-            width="100%"
-            height="100%"
-            initialDimension={{ width: 320, height: 200 }}
-          >
-            <RadialBarChart
-              cx="50%"
-              cy="42%"
-              innerRadius="10%"
-              outerRadius="80%"
-              barSize={20}
-              data={chartdata}
+    <Card id="radialBarChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("radialBarChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full flex flex-col">
+          <div className="flex-1 min-h-0">
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+              initialDimension={{ width: 320, height: 200 }}
             >
-              <RadialBar
-                label={{ position: "insideStart", fill: "#fff" }}
-                background={{ fill: "rgba(255,255,255,0.05)" }}
-                dataKey="value"
-                isAnimationActive={shouldAnimate}
-                animationBegin={animationBegin}
-                animationDuration={800}
-                animationEasing="ease-out"
-              />
-              <Tooltip content={<RadialTooltip />} isAnimationActive={false} />
-            </RadialBarChart>
-          </ResponsiveContainer>
+              <RadialBarChart
+                cx="50%"
+                cy="42%"
+                innerRadius="10%"
+                outerRadius="80%"
+                barSize={20}
+                data={chartdata}
+              >
+                <RadialBar
+                  label={{ position: "insideStart", fill: "#fff" }}
+                  background={{ fill: "rgba(255,255,255,0.05)" }}
+                  dataKey="value"
+                  isAnimationActive={shouldAnimate}
+                  animationBegin={animationBegin}
+                  animationDuration={800}
+                  animationEasing="ease-out"
+                />
+                <Tooltip
+                  content={<RadialTooltip />}
+                  isAnimationActive={false}
+                />
+              </RadialBarChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="flex flex-row justify-center gap-6 whitespace-nowrap pb-2">
+            {chartdata.map((entry, index) => (
+              <div key={`legend-${index}`} className="flex items-center">
+                <div
+                  className="w-2.5 h-2.5 mr-1.5 rounded-sm"
+                  style={{ backgroundColor: entry.fill }}
+                />
+                <span className="text-xs 1xl:text-sm text-primaryText">
+                  {windowWidth > 0 && windowWidth < BREAKPOINTS.xsm
+                    ? entry.name.replace(" Sales", "")
+                    : entry.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-row justify-center gap-6 whitespace-nowrap pb-2">
-          {chartdata.map((entry, index) => (
-            <div key={`legend-${index}`} className="flex items-center">
-              <div
-                className="w-2.5 h-2.5 mr-1.5 rounded-sm"
-                style={{ backgroundColor: entry.fill }}
-              />
-              <span className="text-xs 1xl:text-sm text-primaryText">
-                {windowWidth > 0 && windowWidth < BREAKPOINTS.xsm
-                  ? entry.name.replace(" Sales", "")
-                  : entry.name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
+      </CardContent>
     </Card>
   );
 };

@@ -16,7 +16,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Tooltip payload item structure. */
 interface TooltipPayload {
@@ -132,125 +137,125 @@ export const AreaChartComponent = () => {
   ];
 
   return (
-    <Card
-      id="areaChart"
-      className="w-full h-full"
-      title={t("areaChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <AreaChart
-            data={chartdata}
-            margin={{
-              top: 10,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left:
-                windowWidth > BREAKPOINTS["1xl"]
-                  ? 20
-                  : windowWidth > BREAKPOINTS.xsm
-                    ? 5
-                    : -5,
-              bottom: 5,
-            }}
+    <Card id="areaChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("areaChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <defs>
-              <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor={"var(--color-chartPrimaryDisabled)"}
-                  stopOpacity={0.3}
-                />
-                <stop
-                  offset="95%"
-                  stopColor={"var(--color-chartPrimaryDisabled)"}
-                  stopOpacity={0}
-                />
-              </linearGradient>
-              <linearGradient
-                id="colorUniqueVisitors"
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="1"
-              >
-                <stop
-                  offset="5%"
-                  stopColor={"var(--color-chartPrimaryFill)"}
-                  stopOpacity={0.3}
-                />
-                <stop
-                  offset="95%"
-                  stopColor={"var(--color-chartPrimaryFill)"}
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="date"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              width={windowWidth > 0 && windowWidth < BREAKPOINTS.xsm ? 45 : 60}
-              tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
-            />
-            <Tooltip
-              content={<AreaTooltip />}
-              isAnimationActive={false}
-              cursor={{
-                fill: "rgba(255,255,255,0.05)",
-                stroke: "var(--color-chartVerticalLine)",
+            <AreaChart
+              data={chartdata}
+              margin={{
+                top: 10,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left:
+                  windowWidth > BREAKPOINTS["1xl"]
+                    ? 20
+                    : windowWidth > BREAKPOINTS.xsm
+                      ? 5
+                      : -5,
+                bottom: 5,
               }}
-            />
-            <Legend
-              verticalAlign="top"
-              align="center"
-              content={<CustomLegend />}
-            />
-            <Area
-              type="linear"
-              dataKey="views"
-              name="Views"
-              stroke={"var(--color-chartPrimaryDisabled)"}
-              strokeWidth={2}
-              fillOpacity={1}
-              fill="url(#colorViews)"
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Area
-              type="linear"
-              dataKey="uniqueVisitors"
-              name="Unique visitors"
-              stroke={"var(--color-chartPrimaryFill)"}
-              strokeWidth={2}
-              fillOpacity={1}
-              fill="url(#colorUniqueVisitors)"
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+            >
+              <defs>
+                <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor={"var(--color-chartPrimaryDisabled)"}
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={"var(--color-chartPrimaryDisabled)"}
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+                <linearGradient
+                  id="colorUniqueVisitors"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="5%"
+                    stopColor={"var(--color-chartPrimaryFill)"}
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={"var(--color-chartPrimaryFill)"}
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="date"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                width={
+                  windowWidth > 0 && windowWidth < BREAKPOINTS.xsm ? 45 : 60
+                }
+                tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
+              />
+              <Tooltip
+                content={<AreaTooltip />}
+                isAnimationActive={false}
+                cursor={{
+                  fill: "rgba(255,255,255,0.05)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+              />
+              <Legend
+                verticalAlign="top"
+                align="center"
+                content={<CustomLegend />}
+              />
+              <Area
+                type="linear"
+                dataKey="views"
+                name="Views"
+                stroke={"var(--color-chartPrimaryDisabled)"}
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorViews)"
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Area
+                type="linear"
+                dataKey="uniqueVisitors"
+                name="Unique visitors"
+                stroke={"var(--color-chartPrimaryFill)"}
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorUniqueVisitors)"
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

@@ -16,7 +16,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for orders and returns chart. */
 interface DataPoint {
@@ -89,107 +94,106 @@ export const LineAreaChartComponent = () => {
   ];
 
   return (
-    <Card
-      className="w-full h-full"
-      title={t("lineAreaChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-96 1xl:h-112 3xl:h-128 w-full">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <AreaChart
-            data={chartdata}
-            margin={{
-              top: 20,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-              bottom: 5,
-            }}
+    <Card className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("lineAreaChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-96 1xl:h-112 3xl:h-128 w-full">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <defs>
-              <linearGradient id="colorOrders" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor={"var(--color-chartPrimaryFill)"}
-                  stopOpacity={0.3}
-                />
-                <stop
-                  offset="95%"
-                  stopColor={"var(--color-chartPrimaryFill)"}
-                  stopOpacity={0}
-                />
-              </linearGradient>
-              <linearGradient id="colorReturns" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor={"var(--color-chartPrimaryDisabled)"}
-                  stopOpacity={0.3}
-                />
-                <stop
-                  offset="95%"
-                  stopColor={"var(--color-chartPrimaryDisabled)"}
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="month"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
-            />
-            <Tooltip
-              content={<LineAreaTooltip />}
-              cursor={{ stroke: "var(--color-chartVerticalLine)" }}
-              isAnimationActive={false}
-            />
-            <Legend
-              wrapperStyle={{
-                paddingTop: "10px",
+            <AreaChart
+              data={chartdata}
+              margin={{
+                top: 20,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                bottom: 5,
               }}
-            />
-            <Area
-              type="monotone"
-              dataKey="orders"
-              stroke={"var(--color-chartPrimaryFill)"}
-              strokeWidth={2}
-              fill="url(#colorOrders)"
-              name="Orders"
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Area
-              type="monotone"
-              dataKey="returns"
-              stroke={"var(--color-chartPrimaryDisabled)"}
-              strokeWidth={2}
-              fill="url(#colorReturns)"
-              name="Returns"
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+            >
+              <defs>
+                <linearGradient id="colorOrders" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor={"var(--color-chartPrimaryFill)"}
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={"var(--color-chartPrimaryFill)"}
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+                <linearGradient id="colorReturns" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor={"var(--color-chartPrimaryDisabled)"}
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={"var(--color-chartPrimaryDisabled)"}
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="month"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
+              />
+              <Tooltip
+                content={<LineAreaTooltip />}
+                cursor={{ stroke: "var(--color-chartVerticalLine)" }}
+                isAnimationActive={false}
+              />
+              <Legend
+                wrapperStyle={{
+                  paddingTop: "10px",
+                }}
+              />
+              <Area
+                type="monotone"
+                dataKey="orders"
+                stroke={"var(--color-chartPrimaryFill)"}
+                strokeWidth={2}
+                fill="url(#colorOrders)"
+                name="Orders"
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Area
+                type="monotone"
+                dataKey="returns"
+                stroke={"var(--color-chartPrimaryDisabled)"}
+                strokeWidth={2}
+                fill="url(#colorReturns)"
+                name="Returns"
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

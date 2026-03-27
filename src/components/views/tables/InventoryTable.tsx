@@ -16,8 +16,13 @@ import * as React from "react";
 
 import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
-import { Card } from "../../common/Card";
 import { Button } from "../../common/shadcn/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 import {
   Pagination,
   PaginationContent,
@@ -364,145 +369,151 @@ export const InventoryTable = () => {
   });
 
   return (
-    <Card
-      id="inventoryTable"
-      isHeaderDividerVisible
-      addTitleMargin
-      title={tTables("pagination")}
-    >
-      <div className="py-2">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-200" style={{ tableLayout: "fixed" }}>
-            <caption className="sr-only">Inventory stock table</caption>
-            <thead>
-              {inventoryTable.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header, index) => (
-                    <th
-                      key={header.id}
-                      scope="col"
-                      aria-sort={
-                        header.column.getIsSorted() === "asc"
-                          ? "ascending"
-                          : header.column.getIsSorted() === "desc"
-                            ? "descending"
-                            : undefined
-                      }
-                      className={`text-secondaryText font-medium text-left text-sm px-4 py-3 whitespace-nowrap border-t border-b border-inputBorder bg-tableHeaderBg ${
-                        index === 0 ? "border-l" : ""
-                      } ${
-                        index === headerGroup.headers.length - 1
-                          ? "border-r"
-                          : ""
-                      } ${header.column.getCanSort() ? "cursor-pointer select-none hover:bg-tableHeaderBgHover" : ""}`}
-                      onClick={header.column.getToggleSortingHandler()}
-                    >
-                      <div className="flex items-center">
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                        <SortingArrow isSorted={header.column.getIsSorted()} />
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody>
-              {inventoryTable.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="hover:bg-tableRowBgHover">
-                  {row.getVisibleCells().map((cell, cellIndex) => (
-                    <td
-                      key={cell.id}
-                      className={`px-4 py-3 text-primaryText text-sm border-b border-mainBorder ${cellIndex === 0 ? "border-l" : ""} ${cellIndex === row.getVisibleCells().length - 1 ? "border-r" : ""}`}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination Controls */}
-        <div
-          className="flex items-center justify-between max-sm:flex-col max-sm:items-center max-sm:gap-6"
-          style={{ marginTop: "2rem" }}
-        >
-          <div className="text-sm text-secondaryText whitespace-nowrap max-sm:text-center">
-            {t("showing")}{" "}
-            {inventoryTable.getState().pagination.pageIndex *
-              inventoryTable.getState().pagination.pageSize +
-              1}{" "}
-            {t("to")}{" "}
-            {Math.min(
-              (inventoryTable.getState().pagination.pageIndex + 1) *
-                inventoryTable.getState().pagination.pageSize,
-              inventoryTableData.length,
-            )}{" "}
-            {t("of")} {inventoryTableData.length} {t("results")}
-          </div>
-          <Pagination className="m-0 justify-end max-sm:justify-center">
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  onClick={() => inventoryTable.previousPage()}
-                  disabled={!inventoryTable.getCanPreviousPage()}
-                  label={t("previous")}
-                />
-              </PaginationItem>
-              {Array.from(
-                { length: inventoryTable.getPageCount() },
-                (_, i) => i,
-              ).map((pageIndex) => {
-                const currentPage =
-                  inventoryTable.getState().pagination.pageIndex;
-                const totalPages = inventoryTable.getPageCount();
-
-                /** Show first page, last page, current page, and pages around current */
-                if (
-                  pageIndex === 0 ||
-                  pageIndex === totalPages - 1 ||
-                  (pageIndex >= currentPage - 1 && pageIndex <= currentPage + 1)
-                ) {
-                  return (
-                    <PaginationItem key={pageIndex}>
-                      <PaginationLink
-                        onClick={() => inventoryTable.setPageIndex(pageIndex)}
-                        isActive={pageIndex === currentPage}
+    <Card id="inventoryTable">
+      <CardHeader variant="divider">
+        <CardTitle>{tTables("pagination")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="py-2">
+          <div className="overflow-x-auto">
+            <table
+              className="w-full min-w-200"
+              style={{ tableLayout: "fixed" }}
+            >
+              <caption className="sr-only">Inventory stock table</caption>
+              <thead>
+                {inventoryTable.getHeaderGroups().map((headerGroup) => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map((header, index) => (
+                      <th
+                        key={header.id}
+                        scope="col"
+                        aria-sort={
+                          header.column.getIsSorted() === "asc"
+                            ? "ascending"
+                            : header.column.getIsSorted() === "desc"
+                              ? "descending"
+                              : undefined
+                        }
+                        className={`text-secondaryText font-medium text-left text-sm px-4 py-3 whitespace-nowrap border-t border-b border-inputBorder bg-tableHeaderBg ${
+                          index === 0 ? "border-l" : ""
+                        } ${
+                          index === headerGroup.headers.length - 1
+                            ? "border-r"
+                            : ""
+                        } ${header.column.getCanSort() ? "cursor-pointer select-none hover:bg-tableHeaderBgHover" : ""}`}
+                        onClick={header.column.getToggleSortingHandler()}
                       >
-                        {pageIndex + 1}
-                      </PaginationLink>
-                    </PaginationItem>
-                  );
-                } else if (
-                  pageIndex === currentPage - 2 ||
-                  pageIndex === currentPage + 2
-                ) {
-                  return (
-                    <PaginationItem key={pageIndex}>
-                      <PaginationEllipsis />
-                    </PaginationItem>
-                  );
-                }
-                return null;
-              })}
-              <PaginationItem>
-                <PaginationNext
-                  onClick={() => inventoryTable.nextPage()}
-                  disabled={!inventoryTable.getCanNextPage()}
-                  label={t("next")}
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+                        <div className="flex items-center">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                          <SortingArrow
+                            isSorted={header.column.getIsSorted()}
+                          />
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                {inventoryTable.getRowModel().rows.map((row) => (
+                  <tr key={row.id} className="hover:bg-tableRowBgHover">
+                    {row.getVisibleCells().map((cell, cellIndex) => (
+                      <td
+                        key={cell.id}
+                        className={`px-4 py-3 text-primaryText text-sm border-b border-mainBorder ${cellIndex === 0 ? "border-l" : ""} ${cellIndex === row.getVisibleCells().length - 1 ? "border-r" : ""}`}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination Controls */}
+          <div
+            className="flex items-center justify-between max-sm:flex-col max-sm:items-center max-sm:gap-6"
+            style={{ marginTop: "2rem" }}
+          >
+            <div className="text-sm text-secondaryText whitespace-nowrap max-sm:text-center">
+              {t("showing")}{" "}
+              {inventoryTable.getState().pagination.pageIndex *
+                inventoryTable.getState().pagination.pageSize +
+                1}{" "}
+              {t("to")}{" "}
+              {Math.min(
+                (inventoryTable.getState().pagination.pageIndex + 1) *
+                  inventoryTable.getState().pagination.pageSize,
+                inventoryTableData.length,
+              )}{" "}
+              {t("of")} {inventoryTableData.length} {t("results")}
+            </div>
+            <Pagination className="m-0 justify-end max-sm:justify-center">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => inventoryTable.previousPage()}
+                    disabled={!inventoryTable.getCanPreviousPage()}
+                    label={t("previous")}
+                  />
+                </PaginationItem>
+                {Array.from(
+                  { length: inventoryTable.getPageCount() },
+                  (_, i) => i,
+                ).map((pageIndex) => {
+                  const currentPage =
+                    inventoryTable.getState().pagination.pageIndex;
+                  const totalPages = inventoryTable.getPageCount();
+
+                  /** Show first page, last page, current page, and pages around current */
+                  if (
+                    pageIndex === 0 ||
+                    pageIndex === totalPages - 1 ||
+                    (pageIndex >= currentPage - 1 &&
+                      pageIndex <= currentPage + 1)
+                  ) {
+                    return (
+                      <PaginationItem key={pageIndex}>
+                        <PaginationLink
+                          onClick={() => inventoryTable.setPageIndex(pageIndex)}
+                          isActive={pageIndex === currentPage}
+                        >
+                          {pageIndex + 1}
+                        </PaginationLink>
+                      </PaginationItem>
+                    );
+                  } else if (
+                    pageIndex === currentPage - 2 ||
+                    pageIndex === currentPage + 2
+                  ) {
+                    return (
+                      <PaginationItem key={pageIndex}>
+                        <PaginationEllipsis />
+                      </PaginationItem>
+                    );
+                  }
+                  return null;
+                })}
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() => inventoryTable.nextPage()}
+                    disabled={!inventoryTable.getCanNextPage()}
+                    label={t("next")}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
         </div>
-      </div>
+      </CardContent>
     </Card>
   );
 };

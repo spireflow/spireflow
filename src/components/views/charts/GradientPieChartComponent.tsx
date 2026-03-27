@@ -16,7 +16,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for gradient pie chart. */
 interface DataPoint {
@@ -213,75 +218,73 @@ export const GradientPieChartComponent = () => {
   ];
 
   return (
-    <Card
-      id="gradientPieChart"
-      className="w-full h-full"
-      title={t("gradientPieChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full flex items-center justify-center">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <PieChart>
-            <defs>
-              {COLORS.map((color, index) => (
-                <radialGradient
-                  key={`gradient${index}`}
-                  id={`pieGradient${index}`}
-                  cx="50%"
-                  cy="50%"
-                  r="50%"
-                >
-                  <stop offset="0%" stopColor={color} stopOpacity={0.7} />
-                  <stop offset="100%" stopColor={color} stopOpacity={1} />
-                </radialGradient>
-              ))}
-            </defs>
-            <Pie
-              data={chartdata}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              innerRadius="30%"
-              outerRadius="70%"
-              paddingAngle={3}
-              shape={createPieShapeRenderer(COLORS)}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            >
-              {chartdata.map((_, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={`url(#pieGradient${index})`}
-                  stroke={COLORS[index % COLORS.length]}
-                  strokeWidth={1}
-                />
-              ))}
-            </Pie>
-            <Tooltip
-              content={<GradientPieTooltip />}
-              isAnimationActive={false}
-            />
-            <Legend
-              verticalAlign="bottom"
-              height={
-                windowWidth > 0 && windowWidth < BREAKPOINTS.xsm ? 56 : 36
-              }
-              content={
-                <PieCustomLegend colors={COLORS} windowWidth={windowWidth} />
-              }
-            />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
+    <Card id="gradientPieChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("gradientPieChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full flex items-center justify-center">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
+          >
+            <PieChart>
+              <defs>
+                {COLORS.map((color, index) => (
+                  <radialGradient
+                    key={`gradient${index}`}
+                    id={`pieGradient${index}`}
+                    cx="50%"
+                    cy="50%"
+                    r="50%"
+                  >
+                    <stop offset="0%" stopColor={color} stopOpacity={0.7} />
+                    <stop offset="100%" stopColor={color} stopOpacity={1} />
+                  </radialGradient>
+                ))}
+              </defs>
+              <Pie
+                data={chartdata}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                innerRadius="30%"
+                outerRadius="70%"
+                paddingAngle={3}
+                shape={createPieShapeRenderer(COLORS)}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              >
+                {chartdata.map((_, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={`url(#pieGradient${index})`}
+                    stroke={COLORS[index % COLORS.length]}
+                    strokeWidth={1}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                content={<GradientPieTooltip />}
+                isAnimationActive={false}
+              />
+              <Legend
+                verticalAlign="bottom"
+                height={
+                  windowWidth > 0 && windowWidth < BREAKPOINTS.xsm ? 56 : 36
+                }
+                content={
+                  <PieCustomLegend colors={COLORS} windowWidth={windowWidth} />
+                }
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

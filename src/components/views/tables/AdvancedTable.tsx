@@ -16,8 +16,13 @@ import * as React from "react";
 
 import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
-import { Card } from "../../common/Card";
 import { Button } from "../../common/shadcn/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 import { Checkbox } from "../../common/shadcn/checkbox";
 import { Input } from "../../common/shadcn/input";
 
@@ -311,103 +316,105 @@ export const AdvancedTable = () => {
   });
 
   return (
-    <Card
-      id="advancedTable"
-      isHeaderDividerVisible
-      addTitleMargin
-      title={t("searchAndSelection")}
-    >
-      <div className="py-2">
-        {/* Search and Info */}
-        <div
-          className="flex items-center justify-between"
-          style={{ marginBottom: "1.3rem" }}
-        >
-          <div className="flex items-center gap-2 max-xsm:w-full">
-            <Input
-              placeholder="Search..."
-              value={globalFilter ?? ""}
-              onChange={(event) => setGlobalFilter(event.target.value)}
-              className="w-64 max-xsm:w-[80%] flex-shrink-0"
-            />
-            {Object.keys(rowSelection).length > 0 && (
-              <span className="text-sm text-secondaryText whitespace-nowrap">
-                {Object.keys(rowSelection).length} of{" "}
-                {advancedTable.getFilteredRowModel().rows.length} row(s)
-                selected
-              </span>
-            )}
+    <Card id="advancedTable">
+      <CardHeader variant="divider">
+        <CardTitle>{t("searchAndSelection")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="py-2">
+          {/* Search and Info */}
+          <div
+            className="flex items-center justify-between"
+            style={{ marginBottom: "1.3rem" }}
+          >
+            <div className="flex items-center gap-2 max-xsm:w-full">
+              <Input
+                placeholder="Search..."
+                value={globalFilter ?? ""}
+                onChange={(event) => setGlobalFilter(event.target.value)}
+                className="w-64 max-xsm:w-[80%] flex-shrink-0"
+              />
+              {Object.keys(rowSelection).length > 0 && (
+                <span className="text-sm text-secondaryText whitespace-nowrap">
+                  {Object.keys(rowSelection).length} of{" "}
+                  {advancedTable.getFilteredRowModel().rows.length} row(s)
+                  selected
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-200">
+              <caption className="sr-only">
+                Advanced data table with selection
+              </caption>
+              <thead>
+                {advancedTable.getHeaderGroups().map((headerGroup) => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map((header, index) => (
+                      <th
+                        key={header.id}
+                        scope="col"
+                        aria-sort={
+                          header.column.getIsSorted() === "asc"
+                            ? "ascending"
+                            : header.column.getIsSorted() === "desc"
+                              ? "descending"
+                              : undefined
+                        }
+                        className={`text-secondaryText font-medium text-left text-sm px-4 py-3 whitespace-nowrap bg-tableHeaderBg border-t border-b border-inputBorder ${
+                          index === 0 ? "border-l" : ""
+                        } ${
+                          index === headerGroup.headers.length - 1
+                            ? "border-r"
+                            : ""
+                        } ${header.column.getCanSort() ? "cursor-pointer select-none hover:bg-tableHeaderBgHover" : ""}`}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        <div className="flex items-center">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                          <SortingArrow
+                            isSorted={header.column.getIsSorted()}
+                          />
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                {advancedTable.getRowModel().rows.map((row) => (
+                  <tr
+                    key={row.id}
+                    className={
+                      row.getIsSelected()
+                        ? "bg-tableRowBgHover"
+                        : "hover:bg-tableRowBgHover"
+                    }
+                  >
+                    {row.getVisibleCells().map((cell, cellIndex) => (
+                      <td
+                        key={cell.id}
+                        className={`px-4 py-3 text-primaryText text-sm border-b border-mainBorder ${cellIndex === 0 ? "border-l" : ""} ${cellIndex === row.getVisibleCells().length - 1 ? "border-r" : ""}`}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
-
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-200">
-            <caption className="sr-only">
-              Advanced data table with selection
-            </caption>
-            <thead>
-              {advancedTable.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header, index) => (
-                    <th
-                      key={header.id}
-                      scope="col"
-                      aria-sort={
-                        header.column.getIsSorted() === "asc"
-                          ? "ascending"
-                          : header.column.getIsSorted() === "desc"
-                            ? "descending"
-                            : undefined
-                      }
-                      className={`text-secondaryText font-medium text-left text-sm px-4 py-3 whitespace-nowrap bg-tableHeaderBg border-t border-b border-inputBorder ${
-                        index === 0 ? "border-l" : ""
-                      } ${
-                        index === headerGroup.headers.length - 1
-                          ? "border-r"
-                          : ""
-                      } ${header.column.getCanSort() ? "cursor-pointer select-none hover:bg-tableHeaderBgHover" : ""}`}
-                      onClick={header.column.getToggleSortingHandler()}
-                    >
-                      <div className="flex items-center">
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                        <SortingArrow isSorted={header.column.getIsSorted()} />
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody>
-              {advancedTable.getRowModel().rows.map((row) => (
-                <tr
-                  key={row.id}
-                  className={
-                    row.getIsSelected()
-                      ? "bg-tableRowBgHover"
-                      : "hover:bg-tableRowBgHover"
-                  }
-                >
-                  {row.getVisibleCells().map((cell, cellIndex) => (
-                    <td
-                      key={cell.id}
-                      className={`px-4 py-3 text-primaryText text-sm border-b border-mainBorder ${cellIndex === 0 ? "border-l" : ""} ${cellIndex === row.getVisibleCells().length - 1 ? "border-r" : ""}`}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      </CardContent>
     </Card>
   );
 };

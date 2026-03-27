@@ -16,7 +16,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for stacked bar chart. */
 interface DataPoint {
@@ -132,103 +137,101 @@ export const StackedBarChartComponent = () => {
   ];
 
   return (
-    <Card
-      id="stackedBarChart"
-      className="w-full h-full"
-      title={t("stackedBarChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-4">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <BarChart
-            data={chartdata}
-            margin={{
-              top: 20,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-              bottom: 5,
-            }}
-            barSize={
-              windowWidth > BREAKPOINTS["1xl"]
-                ? 40
-                : windowWidth > BREAKPOINTS.sm
-                  ? 32
-                  : windowWidth > BREAKPOINTS.xsm
-                    ? 26
-                    : 16
-            }
+    <Card id="stackedBarChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("stackedBarChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-4">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="day"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => `${(value / 1000).toFixed(0)}K`}
-            />
-            <Tooltip
-              content={<StackedTooltip />}
-              cursor={{
-                fill: "rgba(255, 255, 255, 0.02)",
-                stroke: "var(--color-chartVerticalLine)",
+            <BarChart
+              data={chartdata}
+              margin={{
+                top: 20,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                bottom: 5,
               }}
-              isAnimationActive={false}
-            />
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              content={<StackedCustomLegend />}
-            />
-            <Bar
-              dataKey="desktop"
-              stackId="a"
-              fill={"var(--color-chartPrimaryFill)"}
-              name="Desktop"
-              radius={[0, 0, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="mobile"
-              stackId="a"
-              fill={"var(--color-chartSecondaryFill)"}
-              name="Mobile"
-              radius={[0, 0, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="tablet"
-              stackId="a"
-              fill="rgb(168, 162, 255)"
-              name="Tablet"
-              radius={[8, 8, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+              barSize={
+                windowWidth > BREAKPOINTS["1xl"]
+                  ? 40
+                  : windowWidth > BREAKPOINTS.sm
+                    ? 32
+                    : windowWidth > BREAKPOINTS.xsm
+                      ? 26
+                      : 16
+              }
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="day"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => `${(value / 1000).toFixed(0)}K`}
+              />
+              <Tooltip
+                content={<StackedTooltip />}
+                cursor={{
+                  fill: "rgba(255, 255, 255, 0.02)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+                isAnimationActive={false}
+              />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                content={<StackedCustomLegend />}
+              />
+              <Bar
+                dataKey="desktop"
+                stackId="a"
+                fill={"var(--color-chartPrimaryFill)"}
+                name="Desktop"
+                radius={[0, 0, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="mobile"
+                stackId="a"
+                fill={"var(--color-chartSecondaryFill)"}
+                name="Mobile"
+                radius={[0, 0, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="tablet"
+                stackId="a"
+                fill="rgb(168, 162, 255)"
+                name="Tablet"
+                radius={[8, 8, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

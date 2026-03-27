@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { GithubIcon } from "../../../assets/icons/GithubIcon";
 import { LinkedinIcon } from "../../../assets/icons/LinkedinIcon";
 import { TwitterIcon } from "../../../assets/icons/TwitterIcon";
-import { Card } from "../../common/Card";
+import { Card } from "../../common/shadcn/card";
 
 type ProfileHeaderCardProps = {
   userData: {
@@ -23,7 +23,7 @@ export const ProfileHeaderCard = ({
   const t = useTranslations("profile");
 
   return (
-    <Card id="profileHeader" className="!p-0 overflow-hidden">
+    <Card id="profileHeader" className="!pt-0 overflow-hidden">
       {/* Banner */}
       <div className="h-40 max-3xl:h-32 max-2xl:h-28 relative bg-profileHeaderBg">
         <div className="absolute -bottom-12 max-3xl:-bottom-10 left-1/2 -translate-x-1/2">

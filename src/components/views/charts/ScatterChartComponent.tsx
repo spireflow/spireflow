@@ -17,7 +17,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for scatter chart. */
 interface DataPoint {
@@ -197,81 +202,79 @@ export const ScatterChartComponent = () => {
   }));
 
   return (
-    <Card
-      id="scatterChart"
-      className="w-full h-full"
-      title={t("scatterChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-2">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <ScatterChart
-            margin={{
-              top: 40,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS["1xl"] ? 20 : 5,
-              bottom: 5,
-            }}
+    <Card id="scatterChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("scatterChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-2">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              type="number"
-              dataKey="gdp"
-              name="GDP"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
-            />
-            <YAxis
-              type="number"
-              dataKey="lifeExpectancy"
-              name="Life expectancy"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              domain={[60, 90]}
-              width={50}
-            />
-            <ZAxis
-              type="number"
-              dataKey="population"
-              range={[50, 1000]}
-              name="Population"
-            />
-            <Tooltip
-              content={<ScatterTooltip />}
-              cursor={{
-                strokeDasharray: "3 3",
-                stroke: "var(--color-chartVerticalLine)",
+            <ScatterChart
+              margin={{
+                top: 40,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS["1xl"] ? 20 : 5,
+                bottom: 5,
               }}
-              isAnimationActive={false}
-            />
-            <Scatter
-              data={chartdata}
-              fill={"var(--color-chartPrimaryFill)"}
-              fillOpacity={0.8}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
             >
-              {chartdata.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Scatter>
-          </ScatterChart>
-        </ResponsiveContainer>
-      </div>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                type="number"
+                dataKey="gdp"
+                name="GDP"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+              />
+              <YAxis
+                type="number"
+                dataKey="lifeExpectancy"
+                name="Life expectancy"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                domain={[60, 90]}
+                width={50}
+              />
+              <ZAxis
+                type="number"
+                dataKey="population"
+                range={[50, 1000]}
+                name="Population"
+              />
+              <Tooltip
+                content={<ScatterTooltip />}
+                cursor={{
+                  strokeDasharray: "3 3",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+                isAnimationActive={false}
+              />
+              <Scatter
+                data={chartdata}
+                fill={"var(--color-chartPrimaryFill)"}
+                fillOpacity={0.8}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              >
+                {chartdata.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Scatter>
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

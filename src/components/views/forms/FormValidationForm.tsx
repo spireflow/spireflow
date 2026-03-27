@@ -7,8 +7,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import { Card } from "../../common/Card";
 import { Button } from "../../common/shadcn/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 import {
   Form,
   FormControl,
@@ -54,68 +59,68 @@ export const FormValidationForm = () => {
   };
 
   return (
-    <Card
-      id="formValidation"
-      isHeaderDividerVisible
-      addTitleMargin
-      title={t("formValidation")}
-    >
-      <div className="text-sm text-secondaryText mb-6">
-        Using react-hook-form and yup for validation.
-      </div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-primaryText">Username</FormLabel>
-                <FormControl>
-                  <Input
-                    className="mt-[0.3rem]"
-                    placeholder="shadcn"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-              </FormItem>
+    <Card id="formValidation">
+      <CardHeader variant="divider">
+        <CardTitle>{t("formValidation")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="text-sm text-secondaryText mb-6">
+          Using react-hook-form and yup for validation.
+        </div>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-primaryText">Username</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="mt-[0.3rem]"
+                      placeholder="shadcn"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-primaryText">Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="mt-[0.3rem]"
+                      placeholder="m@example.com"
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            {Object.keys(form.formState.errors).length > 0 && (
+              <p className="text-sm text-errorBg">
+                Please fill in all required fields.
+              </p>
             )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-primaryText">Email</FormLabel>
-                <FormControl>
-                  <Input
-                    className="mt-[0.3rem]"
-                    placeholder="m@example.com"
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
+            <Button className="mt-4" type="submit">
+              Submit
+            </Button>
+            {isSubmitted && (
+              <p className="flex items-center gap-2 text-sm text-greenBadgeText mt-3">
+                <Check className="h-4 w-4" />
+                Form submitted
+              </p>
             )}
-          />
-          {Object.keys(form.formState.errors).length > 0 && (
-            <p className="text-sm text-errorBg">
-              Please fill in all required fields.
-            </p>
-          )}
-          <Button className="mt-4" type="submit">
-            Submit
-          </Button>
-          {isSubmitted && (
-            <p className="flex items-center gap-2 text-sm text-greenBadgeText mt-3">
-              <Check className="h-4 w-4" />
-              Form submitted
-            </p>
-          )}
-        </form>
-      </Form>
+          </form>
+        </Form>
+      </CardContent>
     </Card>
   );
 };

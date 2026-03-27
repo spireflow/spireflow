@@ -14,7 +14,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for pie chart segments. */
 interface DataPoint {
@@ -141,83 +146,87 @@ export const PieChartComponent = () => {
   ];
 
   return (
-    <Card
-      id="pieChart"
-      className="w-full h-full"
-      title={t("pieChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full flex items-center justify-center">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <PieChart>
-            <Pie
-              data={chartdata}
-              cx="50%"
-              cy="45%"
-              labelLine={false}
-              label={
-                windowWidth > 0 && windowWidth < BREAKPOINTS.sm
-                  ? false
-                  : (props) => {
-                      const p = props as unknown as DataPoint & {
-                        cx: number;
-                        cy: number;
-                        midAngle: number;
-                        outerRadius: number;
-                      };
-                      const RADIAN = Math.PI / 180;
-                      const r = p.outerRadius + 15;
-                      const x = p.cx + r * Math.cos(-p.midAngle * RADIAN);
-                      const y = p.cy + r * Math.sin(-p.midAngle * RADIAN);
-                      return (
-                        <text
-                          x={x}
-                          y={y}
-                          fill="rgba(255,255,255,0.85)"
-                          textAnchor={x > p.cx ? "start" : "end"}
-                          dominantBaseline="central"
-                          fontSize={windowWidth < BREAKPOINTS["2xl"] ? 10 : 12}
-                        >
-                          {`${p.name} ${p.percentage}%`}
-                        </text>
-                      );
-                    }
-              }
-              outerRadius={
-                windowWidth === 0 || windowWidth >= BREAKPOINTS["2xl"]
-                  ? 120
-                  : 84
-              }
-              fill="#8884d8"
-              dataKey="value"
-              stroke="none"
-              strokeWidth={0}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            >
-              {chartdata.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
-              ))}
-            </Pie>
-            <Tooltip content={<PieTooltip />} isAnimationActive={false} />
-            <Legend
-              verticalAlign="bottom"
-              height={
-                windowWidth > 0 && windowWidth < BREAKPOINTS["2xl"] ? 56 : 36
-              }
-              content={<PieCustomLegend windowWidth={windowWidth} />}
-            />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
+    <Card id="pieChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("pieChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full flex items-center justify-center">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
+          >
+            <PieChart>
+              <Pie
+                data={chartdata}
+                cx="50%"
+                cy="45%"
+                labelLine={false}
+                label={
+                  windowWidth > 0 && windowWidth < BREAKPOINTS.sm
+                    ? false
+                    : (props) => {
+                        const p = props as unknown as DataPoint & {
+                          cx: number;
+                          cy: number;
+                          midAngle: number;
+                          outerRadius: number;
+                        };
+                        const RADIAN = Math.PI / 180;
+                        const r = p.outerRadius + 15;
+                        const x = p.cx + r * Math.cos(-p.midAngle * RADIAN);
+                        const y = p.cy + r * Math.sin(-p.midAngle * RADIAN);
+                        return (
+                          <text
+                            x={x}
+                            y={y}
+                            fill="rgba(255,255,255,0.85)"
+                            textAnchor={x > p.cx ? "start" : "end"}
+                            dominantBaseline="central"
+                            fontSize={
+                              windowWidth < BREAKPOINTS["2xl"] ? 10 : 12
+                            }
+                          >
+                            {`${p.name} ${p.percentage}%`}
+                          </text>
+                        );
+                      }
+                }
+                outerRadius={
+                  windowWidth === 0 || windowWidth >= BREAKPOINTS["2xl"]
+                    ? 120
+                    : 84
+                }
+                fill="#8884d8"
+                dataKey="value"
+                stroke="none"
+                strokeWidth={0}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              >
+                {chartdata.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.color}
+                    stroke="none"
+                  />
+                ))}
+              </Pie>
+              <Tooltip content={<PieTooltip />} isAnimationActive={false} />
+              <Legend
+                verticalAlign="bottom"
+                height={
+                  windowWidth > 0 && windowWidth < BREAKPOINTS["2xl"] ? 56 : 36
+                }
+                content={<PieCustomLegend windowWidth={windowWidth} />}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

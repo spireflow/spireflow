@@ -17,7 +17,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Data point structure for composed chart. */
 interface DataPoint {
@@ -124,112 +129,110 @@ export const ComposedChartComponent = () => {
   ];
 
   return (
-    <Card
-      id="composedChart"
-      className="w-full h-full"
-      title={t("composedChart")}
-      padding="px-9"
-      isHeaderDividerVisible
-      addTitleMargin
-    >
-      <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-4">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
-        >
-          <ComposedChart
-            data={chartdata}
-            margin={{
-              top: 20,
-              right:
-                windowWidth > BREAKPOINTS.md
-                  ? 30
-                  : windowWidth > BREAKPOINTS.xsm
-                    ? 10
-                    : 2,
-              left:
-                windowWidth > BREAKPOINTS.md
-                  ? 20
-                  : windowWidth > BREAKPOINTS.xsm
-                    ? 5
-                    : 0,
-              bottom: 5,
-            }}
+    <Card id="composedChart" className="w-full h-full">
+      <CardHeader variant="divider" className="px-9">
+        <CardTitle>{t("composedChart")}</CardTitle>
+      </CardHeader>
+      <CardContent className="px-9">
+        <div className="h-64 xsm:h-80 1xl:h-96 3xl:h-112 w-full mt-4">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="month"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              yAxisId="left"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
-            />
-            <YAxis
-              yAxisId="right"
-              orientation="right"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => `${value}%`}
-            />
-            <Tooltip
-              content={<ComposedTooltip />}
-              cursor={{ stroke: "var(--color-chartVerticalLine)" }}
-              isAnimationActive={false}
-            />
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              content={<ComposedCustomLegend />}
-            />
-            <Bar
-              yAxisId="left"
-              dataKey="revenue"
-              fill={"var(--color-chartPrimaryFill)"}
-              name="Revenue"
-              radius={[8, 8, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              yAxisId="left"
-              dataKey="profit"
-              fill={"var(--color-chartSecondaryFill)"}
-              name="Profit"
-              radius={[8, 8, 0, 0]}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Line
-              yAxisId="right"
-              type="monotone"
-              dataKey="margin"
-              stroke="rgb(168, 162, 255)"
-              strokeWidth={3}
-              name="Margin %"
-              dot={{ r: 5, fill: "rgb(168, 162, 255)", strokeWidth: 2 }}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </ComposedChart>
-        </ResponsiveContainer>
-      </div>
+            <ComposedChart
+              data={chartdata}
+              margin={{
+                top: 20,
+                right:
+                  windowWidth > BREAKPOINTS.md
+                    ? 30
+                    : windowWidth > BREAKPOINTS.xsm
+                      ? 10
+                      : 2,
+                left:
+                  windowWidth > BREAKPOINTS.md
+                    ? 20
+                    : windowWidth > BREAKPOINTS.xsm
+                      ? 5
+                      : 0,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="month"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                yAxisId="left"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}K`}
+              />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => `${value}%`}
+              />
+              <Tooltip
+                content={<ComposedTooltip />}
+                cursor={{ stroke: "var(--color-chartVerticalLine)" }}
+                isAnimationActive={false}
+              />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                content={<ComposedCustomLegend />}
+              />
+              <Bar
+                yAxisId="left"
+                dataKey="revenue"
+                fill={"var(--color-chartPrimaryFill)"}
+                name="Revenue"
+                radius={[8, 8, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                yAxisId="left"
+                dataKey="profit"
+                fill={"var(--color-chartSecondaryFill)"}
+                name="Profit"
+                radius={[8, 8, 0, 0]}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="margin"
+                stroke="rgb(168, 162, 255)"
+                strokeWidth={3}
+                name="Margin %"
+                dot={{ r: 5, fill: "rgb(168, 162, 255)", strokeWidth: 2 }}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

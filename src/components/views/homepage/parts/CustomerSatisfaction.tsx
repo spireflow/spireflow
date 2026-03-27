@@ -17,7 +17,12 @@ import { useChartAnimation } from "../../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 import { BaseTooltip } from "../../../common/BaseTooltip";
-import { Card } from "../../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../common/shadcn/card";
 import { CustomerSatisfactionProps } from "../types";
 
 interface CustomerScatterTooltipProps {
@@ -76,86 +81,90 @@ export const CustomerSatisfaction = ({
     <Card
       className="max-w-full h-full max-h-full flex flex-col"
       id="customerSatisfaction"
-      title={t("title")}
     >
-      <div
-        role="img"
-        aria-label="Customer satisfaction scatter chart"
-        className="h-64 1xl:h-70 3xl:h-78 mt-4 md:mt-10"
-      >
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
+      <CardHeader>
+        <CardTitle>{t("title")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div
+          role="img"
+          aria-label="Customer satisfaction scatter chart"
+          className="h-64 1xl:h-70 3xl:h-78 mt-4 md:mt-10"
         >
-          <ScatterChart
-            margin={{
-              top: 20,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-              bottom: 5,
-            }}
-            tabIndex={-1}
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke="var(--color-chartPrimaryGrid)"
-            />
-            <XAxis
-              type="number"
-              dataKey="totalSales"
-              name="Total sales"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) => `$${(value / 1000).toFixed(1)}K`}
-            />
-            <YAxis
-              type="number"
-              dataKey="customerSatisfaction"
-              name="Customer satisfaction"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              domain={[60, 100]}
-              width={50}
-            />
-            <ZAxis
-              type="number"
-              dataKey="numberOfOrders"
-              range={bubbleRange}
-              name="Number of orders"
-            />
-            <Tooltip
-              content={<CustomerScatterTooltip />}
-              cursor={{ strokeDasharray: "3 3" }}
-              isAnimationActive={false}
-            />
-            <Scatter
-              data={customerSatisfactionData}
-              fill="var(--color-chartPrimaryFill)"
-              fillOpacity={0.8}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
+            <ScatterChart
+              margin={{
+                top: 20,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                bottom: 5,
+              }}
+              tabIndex={-1}
             >
-              {customerSatisfactionData.map((_entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={
-                    index % 3 === 0
-                      ? "var(--color-chartPrimaryFill)"
-                      : index % 3 === 1
-                        ? "var(--color-chartSecondaryFill)"
-                        : "rgb(168, 162, 255)"
-                  }
-                />
-              ))}
-            </Scatter>
-          </ScatterChart>
-        </ResponsiveContainer>
-      </div>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--color-chartPrimaryGrid)"
+              />
+              <XAxis
+                type="number"
+                dataKey="totalSales"
+                name="Total sales"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) => `$${(value / 1000).toFixed(1)}K`}
+              />
+              <YAxis
+                type="number"
+                dataKey="customerSatisfaction"
+                name="Customer satisfaction"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                domain={[60, 100]}
+                width={50}
+              />
+              <ZAxis
+                type="number"
+                dataKey="numberOfOrders"
+                range={bubbleRange}
+                name="Number of orders"
+              />
+              <Tooltip
+                content={<CustomerScatterTooltip />}
+                cursor={{ strokeDasharray: "3 3" }}
+                isAnimationActive={false}
+              />
+              <Scatter
+                data={customerSatisfactionData}
+                fill="var(--color-chartPrimaryFill)"
+                fillOpacity={0.8}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              >
+                {customerSatisfactionData.map((_entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={
+                      index % 3 === 0
+                        ? "var(--color-chartPrimaryFill)"
+                        : index % 3 === 1
+                          ? "var(--color-chartSecondaryFill)"
+                          : "rgb(168, 162, 255)"
+                    }
+                  />
+                ))}
+              </Scatter>
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

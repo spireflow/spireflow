@@ -11,7 +11,7 @@ import {
 import { useChartAnimation } from "../../../../hooks/useChartAnimation";
 import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
-import { Card } from "../../../common/Card";
+import { Card } from "../../../common/shadcn/card";
 import {
   Tooltip,
   TooltipContent,

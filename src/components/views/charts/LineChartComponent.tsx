@@ -16,7 +16,12 @@ import { useChartAnimation } from "../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../styles/breakpoints";
 import { BaseTooltip } from "../../common/BaseTooltip";
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 
 /** Props for line chart tooltip component. */
 interface LineChartTooltipProps {
@@ -148,103 +153,110 @@ export const LineChartComponent = () => {
   return (
     <Card
       id="lineChart"
-      className={isWideLayout ? "w-full !pt-8 !pb-8" : "w-full h-full"}
-      title={isWideLayout ? undefined : t("lineChart")}
-      customHeader={
-        isWideLayout ? (
+      className={isWideLayout ? "w-full !pt-8 !pb-14" : "w-full h-full"}
+    >
+      <CardHeader
+        variant={isWideLayout ? "default" : "divider"}
+        className={isWideLayout ? "px-6 md:px-20" : "px-9"}
+      >
+        {isWideLayout ? (
           <p className="-mx-6 md:-mx-20 px-6 md:px-20 text-sm 1xl:text-base 3xl:text-lg font-semibold text-primaryText pb-6 mb-14 border-b border-cardBorder">
             {t("lineChart")}
           </p>
-        ) : undefined
-      }
-      padding={isWideLayout ? "px-6 md:px-20" : "px-9"}
-      isHeaderDividerVisible={!isWideLayout}
-    >
-      <div
-        className={
-          isWideLayout
-            ? "mt-2 1xl:mt-6 h-[14.4rem] xsm:h-72 1xl:h-88 3xl:h-96"
-            : "mt-6 h-72 xsm:h-80 1xl:h-88 3xl:h-96"
-        }
-      >
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
+        ) : (
+          <CardTitle>{t("lineChart")}</CardTitle>
+        )}
+      </CardHeader>
+      <CardContent className={isWideLayout ? "px-6 md:px-20" : "px-9"}>
+        <div
+          className={
+            isWideLayout
+              ? "mt-2 1xl:mt-6 h-[14.4rem] xsm:h-72 1xl:h-88 3xl:h-96"
+              : "mt-6 h-72 xsm:h-80 1xl:h-88 3xl:h-96"
+          }
         >
-          <LineChart
-            data={dragonPopulationInWesteros}
-            margin={{
-              top: isWideLayout ? 20 : 5,
-              right: windowWidth > BREAKPOINTS.md ? 30 : 10,
-              left: windowWidth > BREAKPOINTS.md ? 20 : 5,
-              bottom: 5,
-            }}
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              dataKey="year"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              width={40}
-              tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
-            />
-            <Tooltip
-              content={<LineChartTooltip />}
-              cursor={{
-                fill: "rgba(255,255,255,0.05)",
-                stroke: "var(--color-chartVerticalLine)",
+            <LineChart
+              data={dragonPopulationInWesteros}
+              margin={{
+                top: isWideLayout ? 20 : 5,
+                right: windowWidth > BREAKPOINTS.md ? 30 : 10,
+                left: windowWidth > BREAKPOINTS.md ? 20 : 5,
+                bottom: 5,
               }}
-              isAnimationActive={false}
-            />
-            <Legend
-              verticalAlign="top"
-              align="center"
-              content={<CustomLegend isWideLayout={isWideLayout} />}
-            />
-            <Line
-              type="monotone"
-              dataKey="houseTargaryen"
-              name="House Targaryen"
-              stroke={"var(--color-chartPrimaryFill)"}
-              strokeWidth={2}
-              dot={true}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Line
-              type="monotone"
-              dataKey="houseVelaryon"
-              name="House Velaryon"
-              stroke="rgb(148, 163, 184)"
-              strokeWidth={2}
-              dot={true}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="w-full hidden sm:flex justify-between mx-auto mt-6 1xl:mt-8 ml-8">
-        {dragonPopulationInWesteros.map((item, index) => (
-          <div key={index} className="text-xs lg:text-xs text-primaryText px-2">
-            {item.title}
-          </div>
-        ))}
-      </div>
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                dataKey="year"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                width={40}
+                tickFormatter={(value) => Intl.NumberFormat("us").format(value)}
+              />
+              <Tooltip
+                content={<LineChartTooltip />}
+                cursor={{
+                  fill: "rgba(255,255,255,0.05)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+                isAnimationActive={false}
+              />
+              <Legend
+                verticalAlign="top"
+                align="center"
+                content={<CustomLegend isWideLayout={isWideLayout} />}
+              />
+              <Line
+                type="monotone"
+                dataKey="houseTargaryen"
+                name="House Targaryen"
+                stroke={"var(--color-chartPrimaryFill)"}
+                strokeWidth={2}
+                dot={true}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Line
+                type="monotone"
+                dataKey="houseVelaryon"
+                name="House Velaryon"
+                stroke="rgb(148, 163, 184)"
+                strokeWidth={2}
+                dot={true}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="w-full hidden sm:flex justify-between mx-auto mt-6 1xl:mt-8 ml-8">
+          {dragonPopulationInWesteros.map((item, index) => (
+            <div
+              key={index}
+              className="text-xs lg:text-xs text-primaryText px-2"
+            >
+              {item.title}
+            </div>
+          ))}
+        </div>
+      </CardContent>
     </Card>
   );
 };

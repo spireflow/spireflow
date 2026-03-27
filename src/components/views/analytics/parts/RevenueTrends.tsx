@@ -14,7 +14,12 @@ import { useChartAnimation } from "../../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 import { BaseTooltip } from "../../../common/BaseTooltip";
-import { Card } from "../../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../common/shadcn/card";
 import {
   RevenueTrendsCustomLegendProps,
   RevenueTrendsCustomXAxisTickProps,
@@ -107,89 +112,94 @@ export const RevenueTrends = ({ revenueTrendsData }: RevenueTrendsProps) => {
       : revenueTrendsData.slice(-4);
 
   return (
-    <Card className="revenueTrendsCard" id="revenueTrends" title={t("title")}>
-      <div
-        role="img"
-        aria-label="Revenue trends bar chart"
-        className="h-64 1xl:h-84 3xl:h-96"
-      >
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
+    <Card className="revenueTrendsCard" id="revenueTrends">
+      <CardHeader>
+        <CardTitle>{t("title")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div
+          role="img"
+          aria-label="Revenue trends bar chart"
+          className="h-64 1xl:h-84 3xl:h-96"
         >
-          <BarChart
-            data={chartData}
-            margin={{
-              top: 20,
-              right: windowWidth > BREAKPOINTS.xsm ? 30 : 15,
-              left: windowWidth > BREAKPOINTS.xsm ? 20 : 7,
-              bottom: 5,
-            }}
-            tabIndex={-1}
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke="var(--color-chartPrimaryGrid)"
-            />
-            <XAxis
-              dataKey="month"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={<CustomXAxisTick />}
-            />
-            <YAxis
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value: number) =>
-                `$${Intl.NumberFormat("us").format(value)}`
-              }
-              domain={[
-                0,
-                (dataMax: number) => Math.ceil(dataMax / 1000) * 1000,
-              ]}
-            />
-            <Tooltip
-              content={<RevenueTrendsTooltip />}
-              isAnimationActive={false}
-              cursor={{
-                fill: "rgba(255,255,255,0.05)",
-                stroke: "var(--color-chartVerticalLine)",
+            <BarChart
+              data={chartData}
+              margin={{
+                top: 20,
+                right: windowWidth > BREAKPOINTS.xsm ? 30 : 15,
+                left: windowWidth > BREAKPOINTS.xsm ? 20 : 7,
+                bottom: 5,
               }}
-            />
-            <Legend
-              verticalAlign="top"
-              align="center"
-              content={<CustomLegend />}
-            />
-            <Bar
-              dataKey="sales"
-              name="Sales"
-              fill="var(--color-chartSecondaryInverted)"
-              radius={[4, 4, 0, 0]}
-              barSize={getBarSize()}
-              minPointSize={5}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="profit"
-              name="Profit"
-              fill="var(--color-chartPrimaryInverted)"
-              radius={[4, 4, 0, 0]}
-              barSize={getBarSize()}
-              minPointSize={5}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+              tabIndex={-1}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--color-chartPrimaryGrid)"
+              />
+              <XAxis
+                dataKey="month"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={<CustomXAxisTick />}
+              />
+              <YAxis
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value: number) =>
+                  `$${Intl.NumberFormat("us").format(value)}`
+                }
+                domain={[
+                  0,
+                  (dataMax: number) => Math.ceil(dataMax / 1000) * 1000,
+                ]}
+              />
+              <Tooltip
+                content={<RevenueTrendsTooltip />}
+                isAnimationActive={false}
+                cursor={{
+                  fill: "rgba(255,255,255,0.05)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+              />
+              <Legend
+                verticalAlign="top"
+                align="center"
+                content={<CustomLegend />}
+              />
+              <Bar
+                dataKey="sales"
+                name="Sales"
+                fill="var(--color-chartSecondaryInverted)"
+                radius={[4, 4, 0, 0]}
+                barSize={getBarSize()}
+                minPointSize={5}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="profit"
+                name="Profit"
+                fill="var(--color-chartPrimaryInverted)"
+                radius={[4, 4, 0, 0]}
+                barSize={getBarSize()}
+                minPointSize={5}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

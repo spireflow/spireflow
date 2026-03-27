@@ -13,7 +13,12 @@ import { useChartAnimation } from "../../../../hooks/useChartAnimation";
 import { useWindowDimensions } from "../../../../hooks/useWindowDimensions";
 import { BREAKPOINTS } from "../../../../styles/breakpoints";
 import { BaseTooltip } from "../../../common/BaseTooltip";
-import { Card } from "../../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../common/shadcn/card";
 import {
   RevenueDistributionProps,
   RevenueDistributionTooltipProps,
@@ -76,83 +81,88 @@ export const RevenueDistribution = ({
   const onlineColor = "var(--color-chartMutedFill)";
 
   return (
-    <Card className="h-full" id="revenueDistribution" title={t("title")}>
-      <div
-        role="img"
-        aria-label="Revenue distribution bar chart"
-        className="w-full h-72 3xl:h-96 mt-4 1xl:mt-4 -ml-4"
-      >
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          initialDimension={{ width: 320, height: 200 }}
+    <Card className="h-full" id="revenueDistribution">
+      <CardHeader>
+        <CardTitle>{t("title")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div
+          role="img"
+          aria-label="Revenue distribution bar chart"
+          className="w-full h-72 3xl:h-96 mt-4 1xl:mt-4 -ml-4"
         >
-          <BarChart
-            data={revenueDistributionData}
-            layout="vertical"
-            margin={{
-              top: 20,
-              right: windowWidth > BREAKPOINTS.xsm ? 30 : 5,
-              left: windowWidth > BREAKPOINTS.xsm ? 40 : 30,
-              bottom: 5,
-            }}
-            tabIndex={-1}
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            initialDimension={{ width: 320, height: 200 }}
           >
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke={"var(--color-chartPrimaryGrid)"}
-            />
-            <XAxis
-              type="number"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-              tickFormatter={(value) =>
-                `$${Intl.NumberFormat("us").format(value)}`
-              }
-            />
-            <YAxis
-              type="category"
-              dataKey="category"
-              axisLine={{ stroke: "var(--color-chartAxisLine)" }}
-              tickLine={false}
-              tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
-            />
-            <Tooltip
-              content={<RevenueDistributionTooltip />}
-              cursor={{
-                fill: "rgba(255,255,255,0.05)",
-                stroke: "var(--color-chartVerticalLine)",
+            <BarChart
+              data={revenueDistributionData}
+              layout="vertical"
+              margin={{
+                top: 20,
+                right: windowWidth > BREAKPOINTS.xsm ? 30 : 5,
+                left: windowWidth > BREAKPOINTS.xsm ? 40 : 30,
+                bottom: 5,
               }}
-              isAnimationActive={false}
-            />
-            <Bar
-              dataKey="inStore"
-              name="In-store"
-              stackId="a"
-              fill={inStoreColor}
-              radius={[0, 4, 4, 0]}
-              barSize={30}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            <Bar
-              dataKey="online"
-              name="Online"
-              stackId="a"
-              fill={onlineColor}
-              radius={[0, 4, 4, 0]}
-              barSize={30}
-              isAnimationActive={shouldAnimate}
-              animationBegin={animationBegin}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+              tabIndex={-1}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={"var(--color-chartPrimaryGrid)"}
+              />
+              <XAxis
+                type="number"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+                tickFormatter={(value) =>
+                  `$${Intl.NumberFormat("us").format(value)}`
+                }
+              />
+              <YAxis
+                type="category"
+                dataKey="category"
+                axisLine={{ stroke: "var(--color-chartAxisLine)" }}
+                tickLine={false}
+                tick={{ fill: "var(--color-chartAxisText)", fontSize: 12 }}
+              />
+              <Tooltip
+                content={<RevenueDistributionTooltip />}
+                cursor={{
+                  fill: "rgba(255,255,255,0.05)",
+                  stroke: "var(--color-chartVerticalLine)",
+                }}
+                isAnimationActive={false}
+              />
+              <Bar
+                dataKey="inStore"
+                name="In-store"
+                stackId="a"
+                fill={inStoreColor}
+                radius={[0, 4, 4, 0]}
+                barSize={30}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+              <Bar
+                dataKey="online"
+                name="Online"
+                stackId="a"
+                fill={onlineColor}
+                radius={[0, 4, 4, 0]}
+                barSize={30}
+                isAnimationActive={shouldAnimate}
+                animationBegin={animationBegin}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </CardContent>
     </Card>
   );
 };

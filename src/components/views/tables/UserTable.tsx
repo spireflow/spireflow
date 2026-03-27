@@ -17,9 +17,14 @@ import { ArrowDownIcon } from "../../../assets/icons/ArrowDownIcon";
 import { ArrowUpIcon } from "../../../assets/icons/ArrowUpIcon";
 import { FilterIcon } from "../../../assets/icons/FilterIcon";
 import { SortIcon } from "../../../assets/icons/SortIcon";
-import { Card } from "../../common/Card";
 import { Badge } from "../../common/shadcn/badge";
 import { Button } from "../../common/shadcn/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 import { Checkbox } from "../../common/shadcn/checkbox";
 import {
   DropdownMenu,
@@ -298,278 +303,284 @@ export const UserTable = () => {
   });
 
   return (
-    <Card
-      id="userTable"
-      isHeaderDividerVisible
-      addTitleMargin
-      title={t("filters")}
-    >
-      <div className="py-2">
-        {/* Controls Row */}
-        <div className="flex justify-between items-center mb-4 max-xsm:gap-4">
-          {/* Column Visibility Button - Left */}
-          <div className="max-xsm:flex-1">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="h-full py-2 px-4 text-sm max-xsm:w-full"
-                >
-                  <Columns className="h-4 w-4 mr-2" />
-                  Columns
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent align="start" className="w-50 p-3">
-                <div className="space-y-2">
-                  <div className="text-sm font-medium mb-3">Toggle columns</div>
-                  {userTable
-                    .getAllLeafColumns()
-                    .filter((column) => column.id !== "actions")
-                    .map((column) => (
-                      <div
-                        key={column.id}
-                        className="flex items-center space-x-2"
-                      >
-                        <Checkbox
-                          checked={column.getIsVisible()}
-                          onCheckedChange={(value) =>
-                            column.toggleVisibility(!!value)
-                          }
-                          id={`user-${column.id}`}
-                        />
-                        <label
-                          htmlFor={`user-${column.id}`}
-                          className="text-sm font-normal cursor-pointer flex-1"
+    <Card id="userTable">
+      <CardHeader variant="divider">
+        <CardTitle>{t("filters")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="py-2">
+          {/* Controls Row */}
+          <div className="flex justify-between items-center mb-4 max-xsm:gap-4">
+            {/* Column Visibility Button - Left */}
+            <div className="max-xsm:flex-1">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="h-full py-2 px-4 text-sm max-xsm:w-full"
+                  >
+                    <Columns className="h-4 w-4 mr-2" />
+                    Columns
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent align="start" className="w-50 p-3">
+                  <div className="space-y-2">
+                    <div className="text-sm font-medium mb-3">
+                      Toggle columns
+                    </div>
+                    {userTable
+                      .getAllLeafColumns()
+                      .filter((column) => column.id !== "actions")
+                      .map((column) => (
+                        <div
+                          key={column.id}
+                          className="flex items-center space-x-2"
                         >
-                          {typeof column.columnDef.header === "string"
-                            ? column.columnDef.header
-                            : column.id}
-                        </label>
-                      </div>
-                    ))}
-                </div>
-              </PopoverContent>
-            </Popover>
-          </div>
+                          <Checkbox
+                            checked={column.getIsVisible()}
+                            onCheckedChange={(value) =>
+                              column.toggleVisibility(!!value)
+                            }
+                            id={`user-${column.id}`}
+                          />
+                          <label
+                            htmlFor={`user-${column.id}`}
+                            className="text-sm font-normal cursor-pointer flex-1"
+                          >
+                            {typeof column.columnDef.header === "string"
+                              ? column.columnDef.header
+                              : column.id}
+                          </label>
+                        </div>
+                      ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
 
-          {/* Sort and Filter Controls - Right */}
-          <div className="flex gap-4 max-xsm:flex-1">
-            {/* Role Filter */}
-            <DropdownMenu modal={false}>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="h-9.5 py-2 px-4 text-sm gap-2 max-xsm:w-full"
-                >
-                  <FilterIcon />
-                  Filter by role
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-44" align="end">
-                <DropdownMenuRadioGroup
-                  value={userRoleFilter || ""}
-                  onValueChange={(value) => setUserRoleFilter(value)}
-                >
-                  {["Admin", "Editor", "Viewer"].map((role) => (
-                    <DropdownMenuRadioItem key={role} value={role}>
-                      {role}
-                    </DropdownMenuRadioItem>
-                  ))}
-                </DropdownMenuRadioGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => setUserRoleFilter(undefined)}>
-                  Clear Filter
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Sort Dropdown */}
-            <div className="max-sm:hidden">
+            {/* Sort and Filter Controls - Right */}
+            <div className="flex gap-4 max-xsm:flex-1">
+              {/* Role Filter */}
               <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    className="h-9.5 py-2 px-4 text-sm gap-2"
+                    className="h-9.5 py-2 px-4 text-sm gap-2 max-xsm:w-full"
                   >
-                    <SortIcon />
-                    Sort by
+                    <FilterIcon />
+                    Filter by role
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-44" align="end">
                   <DropdownMenuRadioGroup
-                    value={userSorting[0]?.id || ""}
-                    onValueChange={(value) => {
-                      setUserSorting([
-                        { id: value, desc: userSorting[0]?.desc || false },
-                      ]);
-                    }}
+                    value={userRoleFilter || ""}
+                    onValueChange={(value) => setUserRoleFilter(value)}
                   >
-                    {[
-                      { value: "name", label: "Name" },
-                      { value: "email", label: "Email" },
-                      { value: "role", label: "Role" },
-                      { value: "joinDate", label: "Join Date" },
-                    ].map((option) => (
-                      <DropdownMenuRadioItem
-                        key={option.value}
-                        value={option.value}
-                      >
-                        {option.label}
+                    {["Admin", "Editor", "Viewer"].map((role) => (
+                      <DropdownMenuRadioItem key={role} value={role}>
+                        {role}
                       </DropdownMenuRadioItem>
                     ))}
                   </DropdownMenuRadioGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuRadioGroup
-                    value={userSorting[0]?.desc ? "desc" : "asc"}
-                    onValueChange={(value) => {
-                      if (userSorting[0]) {
-                        setUserSorting([
-                          { ...userSorting[0], desc: value === "desc" },
-                        ]);
-                      }
-                    }}
+                  <DropdownMenuItem
+                    onClick={() => setUserRoleFilter(undefined)}
                   >
-                    <DropdownMenuRadioItem value="asc">
-                      Ascending
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="desc">
-                      Descending
-                    </DropdownMenuRadioItem>
-                  </DropdownMenuRadioGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => setUserSorting([])}>
-                    Clear Sorting
+                    Clear Filter
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+
+              {/* Sort Dropdown */}
+              <div className="max-sm:hidden">
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="h-9.5 py-2 px-4 text-sm gap-2"
+                    >
+                      <SortIcon />
+                      Sort by
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-44" align="end">
+                    <DropdownMenuRadioGroup
+                      value={userSorting[0]?.id || ""}
+                      onValueChange={(value) => {
+                        setUserSorting([
+                          { id: value, desc: userSorting[0]?.desc || false },
+                        ]);
+                      }}
+                    >
+                      {[
+                        { value: "name", label: "Name" },
+                        { value: "email", label: "Email" },
+                        { value: "role", label: "Role" },
+                        { value: "joinDate", label: "Join Date" },
+                      ].map((option) => (
+                        <DropdownMenuRadioItem
+                          key={option.value}
+                          value={option.value}
+                        >
+                          {option.label}
+                        </DropdownMenuRadioItem>
+                      ))}
+                    </DropdownMenuRadioGroup>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuRadioGroup
+                      value={userSorting[0]?.desc ? "desc" : "asc"}
+                      onValueChange={(value) => {
+                        if (userSorting[0]) {
+                          setUserSorting([
+                            { ...userSorting[0], desc: value === "desc" },
+                          ]);
+                        }
+                      }}
+                    >
+                      <DropdownMenuRadioItem value="asc">
+                        Ascending
+                      </DropdownMenuRadioItem>
+                      <DropdownMenuRadioItem value="desc">
+                        Descending
+                      </DropdownMenuRadioItem>
+                    </DropdownMenuRadioGroup>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => setUserSorting([])}>
+                      Clear Sorting
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Chips/Badges for active filters and sorting */}
-        {(userRoleFilter || userSorting[0]) && (
+          {/* Chips/Badges for active filters and sorting */}
+          {(userRoleFilter || userSorting[0]) && (
+            <div
+              className="flex flex-wrap gap-2"
+              style={{ marginBottom: "1.3rem" }}
+            >
+              {userRoleFilter && (
+                <Badge variant="outline" className="cursor-pointer py-1.5 px-3">
+                  Role: {userRoleFilter}
+                  <button
+                    onClick={() => setUserRoleFilter(undefined)}
+                    className="ml-2"
+                    aria-label={`Remove role filter`}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </Badge>
+              )}
+              {userSorting[0] && (
+                <Badge variant="outline" className="cursor-pointer py-1.5 px-3">
+                  Sorted by:{" "}
+                  {userSorting[0].id === "joinDate"
+                    ? "Join Date"
+                    : userSorting[0].id.charAt(0).toUpperCase() +
+                      userSorting[0].id.slice(1)}
+                  <button
+                    onClick={() => setUserSorting([])}
+                    className="ml-2"
+                    aria-label={`Remove sorting`}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </Badge>
+              )}
+            </div>
+          )}
+
           <div
-            className="flex flex-wrap gap-2"
-            style={{ marginBottom: "1.3rem" }}
+            className="overflow-x-auto"
+            style={{
+              marginTop: userRoleFilter || userSorting[0] ? "0" : "1.3rem",
+            }}
           >
-            {userRoleFilter && (
-              <Badge variant="outline" className="cursor-pointer py-1.5 px-3">
-                Role: {userRoleFilter}
-                <button
-                  onClick={() => setUserRoleFilter(undefined)}
-                  className="ml-2"
-                  aria-label={`Remove role filter`}
-                >
-                  <svg
-                    className="w-3 h-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </Badge>
-            )}
-            {userSorting[0] && (
-              <Badge variant="outline" className="cursor-pointer py-1.5 px-3">
-                Sorted by:{" "}
-                {userSorting[0].id === "joinDate"
-                  ? "Join Date"
-                  : userSorting[0].id.charAt(0).toUpperCase() +
-                    userSorting[0].id.slice(1)}
-                <button
-                  onClick={() => setUserSorting([])}
-                  className="ml-2"
-                  aria-label={`Remove sorting`}
-                >
-                  <svg
-                    className="w-3 h-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </Badge>
-            )}
-          </div>
-        )}
-
-        <div
-          className="overflow-x-auto"
-          style={{
-            marginTop: userRoleFilter || userSorting[0] ? "0" : "1.3rem",
-          }}
-        >
-          <table className="w-full min-w-200">
-            <caption className="sr-only">Users table</caption>
-            <thead>
-              {userTable.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header, index) => (
-                    <th
-                      key={header.id}
-                      scope="col"
-                      aria-sort={
-                        header.column.getIsSorted() === "asc"
-                          ? "ascending"
-                          : header.column.getIsSorted() === "desc"
-                            ? "descending"
-                            : undefined
-                      }
-                      className={`text-secondaryText font-medium text-left text-sm px-4 py-3 whitespace-nowrap border-t border-b border-inputBorder bg-tableHeaderBg ${
-                        index === 0 ? "border-l" : ""
-                      } ${
-                        index === headerGroup.headers.length - 1
-                          ? "border-r"
-                          : ""
-                      } ${header.column.getCanSort() ? "cursor-pointer select-none hover:bg-tableHeaderBgHover" : ""}`}
-                      onClick={header.column.getToggleSortingHandler()}
-                    >
-                      <div className="flex items-center">
+            <table className="w-full min-w-200">
+              <caption className="sr-only">Users table</caption>
+              <thead>
+                {userTable.getHeaderGroups().map((headerGroup) => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map((header, index) => (
+                      <th
+                        key={header.id}
+                        scope="col"
+                        aria-sort={
+                          header.column.getIsSorted() === "asc"
+                            ? "ascending"
+                            : header.column.getIsSorted() === "desc"
+                              ? "descending"
+                              : undefined
+                        }
+                        className={`text-secondaryText font-medium text-left text-sm px-4 py-3 whitespace-nowrap border-t border-b border-inputBorder bg-tableHeaderBg ${
+                          index === 0 ? "border-l" : ""
+                        } ${
+                          index === headerGroup.headers.length - 1
+                            ? "border-r"
+                            : ""
+                        } ${header.column.getCanSort() ? "cursor-pointer select-none hover:bg-tableHeaderBgHover" : ""}`}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        <div className="flex items-center">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                          <SortingArrow
+                            isSorted={header.column.getIsSorted()}
+                          />
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                {userTable.getRowModel().rows.map((row) => (
+                  <tr key={row.id} className="hover:bg-tableRowBgHover">
+                    {row.getVisibleCells().map((cell, cellIndex) => (
+                      <td
+                        key={cell.id}
+                        className={`px-4 py-3 text-primaryText text-sm border-b border-mainBorder ${cellIndex === 0 ? "border-l" : ""} ${cellIndex === row.getVisibleCells().length - 1 ? "border-r" : ""}`}
+                      >
                         {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
                         )}
-                        <SortingArrow isSorted={header.column.getIsSorted()} />
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody>
-              {userTable.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="hover:bg-tableRowBgHover">
-                  {row.getVisibleCells().map((cell, cellIndex) => (
-                    <td
-                      key={cell.id}
-                      className={`px-4 py-3 text-primaryText text-sm border-b border-mainBorder ${cellIndex === 0 ? "border-l" : ""} ${cellIndex === row.getVisibleCells().length - 1 ? "border-r" : ""}`}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </CardContent>
     </Card>
   );
 };

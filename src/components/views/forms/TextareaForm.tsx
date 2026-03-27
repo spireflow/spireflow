@@ -2,7 +2,12 @@
 
 import { useTranslations } from "next-intl";
 
-import { Card } from "../../common/Card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../common/shadcn/card";
 import { Label } from "../../common/shadcn/label";
 import { Textarea } from "../../common/shadcn/textarea";
 
@@ -16,16 +21,20 @@ export const TextareaForm = () => {
   const t = useTranslations("forms");
 
   return (
-    <Card
-      id="textarea"
-      isHeaderDividerVisible
-      addTitleMargin
-      title={t("textarea")}
-    >
-      <div className="grid w-full gap-[0.8rem]">
-        <Label htmlFor="message">Description</Label>
-        <Textarea placeholder="Type your message here." id="message" rows={6} />
-      </div>
+    <Card id="textarea">
+      <CardHeader variant="divider">
+        <CardTitle>{t("textarea")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid w-full gap-[0.8rem]">
+          <Label htmlFor="message">Description</Label>
+          <Textarea
+            placeholder="Type your message here."
+            id="message"
+            rows={6}
+          />
+        </div>
+      </CardContent>
     </Card>
   );
 };
