@@ -548,6 +548,11 @@
   },
   "errorPages": {
     "backToHomepage": "Powrót do strony głównej",
+    "tryAgain": "Spróbuj ponownie",
+    "unexpectedError": {
+      "title": "Coś poszło nie tak",
+      "description": "Wystąpił nieoczekiwany błąd podczas ładowania tej strony. Możesz spróbować ponownie lub wrócić do strony głównej."
+    },
     "error401": {
       "title": "Brak dostępu",
       "description": "Nie masz uprawnień do wyświetlenia tej strony. Zaloguj się przy użyciu prawidłowych danych, aby kontynuować."

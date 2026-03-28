@@ -549,6 +549,11 @@
   },
   "errorPages": {
     "backToHomepage": "Back to Homepage",
+    "tryAgain": "Try Again",
+    "unexpectedError": {
+      "title": "Something Went Wrong",
+      "description": "An unexpected error occurred while loading this page. You can try again or return to the homepage."
+    },
     "error401": {
       "title": "Unauthorized",
       "description": "You don't have permission to access this page. Please sign in with valid credentials to continue."
