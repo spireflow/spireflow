@@ -5,6 +5,7 @@ import { PhoneIcon } from "@/assets/icons/PhoneIcon";
 import { Button } from "@/components/common/shadcn/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -59,8 +60,12 @@ export const OrderModal = ({ closeModal, orderData }: OrderModalProps) => {
             </div>
           </div>
           <DialogFooter className="mt-8 sm:mt-12 !flex-row gap-3 sm:space-x-0 [&>*]:flex-1 [&>*]:h-[2.9rem]">
-            <Button variant="outline">Cancel order</Button>
-            <Button icon={<PhoneIcon />}>Call logistics</Button>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel order</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button icon={<PhoneIcon />}>Call logistics</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

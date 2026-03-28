@@ -138,7 +138,11 @@ export const CustomersView = ({ customers }: CustomersViewProps) => {
                 <DownloadIcon />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right" align="center">
+            <TooltipContent
+              side="right"
+              align="center"
+              className="hidden lg:block"
+            >
               {t("button.xlsx")}
             </TooltipContent>
           </Tooltip>

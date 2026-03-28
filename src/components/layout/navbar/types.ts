@@ -20,8 +20,7 @@ export interface ModalActions {
   showLogout: () => void;
   showAbout: () => void;
   showChangelog: () => void;
-  handleLogin: () => void;
-  showSignUp: () => void;
+  showContributing: () => void;
 }
 
 export interface NavbarDropdowns {
@@ -32,7 +31,6 @@ export interface NavbarDropdowns {
 export interface AboutModalProps {
   closeModal: () => void;
   returnFocusRef?: RefObject<HTMLButtonElement | null>;
-  onShowContributing?: () => void;
 }
 
 export interface HamburgerButtonProps {
@@ -93,8 +91,6 @@ export interface NotificationsButtonProps {
 export interface SubMenuState {
   isLanguageMenuOpen: boolean;
   setIsLanguageMenuOpen: (value: boolean) => void;
-  isAuthMenuOpen: boolean;
-  setIsAuthMenuOpen: (value: boolean) => void;
   isThemeMenuOpen: boolean;
   setIsThemeMenuOpen: (value: boolean) => void;
   isSettingsDrawerOpen: boolean;
@@ -105,7 +101,6 @@ export interface UserMenuDropdownProps {
   menuRef: React.RefObject<HTMLDivElement | null>;
   handleMenuKeyDown: (e: React.KeyboardEvent) => void;
   suppressTooltipRef: React.MutableRefObject<boolean>;
-  tAuth: (key: string) => string;
   t: (key: string) => string;
   pathname: string;
   currentLanguage: string;

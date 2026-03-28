@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { UserIcon } from "@/assets/icons/UserIcon";
 import { menuConfig } from "@/config/navigationConfig";
 import { useIsFirstRender } from "@/hooks/useIsFirstRender";
+import { Link } from "@/i18n/navigation";
 import { useSession } from "@/services/auth/auth-client";
 import { useLayoutStore } from "@/store/layoutStore";
 
@@ -12,10 +13,7 @@ import { MenuItem } from "./parts/MenuItem";
 import { MenuItemWithSubmenu } from "./parts/MenuItemWithSubmenu";
 import { SideMenuMobileProps } from "./types";
 
-export const SideMenuMobile = ({
-  isMobileMenuOpen,
-  onLoginButtonClick,
-}: SideMenuMobileProps) => {
+export const SideMenuMobile = ({ isMobileMenuOpen }: SideMenuMobileProps) => {
   const toggleMobileMenu = useLayoutStore((state) => state.toggleMobileMenu);
   const { data: sessionData, isPending } = useSession();
   const isSignedIn = !!sessionData;
@@ -46,7 +44,7 @@ export const SideMenuMobile = ({
     <nav
       aria-label="Mobile navigation"
       aria-hidden={!isMobileMenuOpen}
-      className={`z-50 overflow-auto overflow-x-hidden overscroll-contain flex fixed xl:hidden flex-col justify-between bg-primaryBg border-r-[1px] border-mainBorder top-18 xl:top-16 2xl:top-18 mb-10 left-0 items-center transform transition-transform ease-in-out ${
+      className={`z-50 overflow-auto overflow-x-hidden overscroll-contain flex fixed xl:hidden flex-col justify-between bg-primaryBg border-r-[1px] border-mainBorder top-18 xl:top-16 2xl:top-18 mb-10 left-0 items-center transform transition-transform duration-300 ease-in-out ${
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       }`}
       style={{ height: "calc(100dvh - 4.5rem)" }}
@@ -100,15 +98,13 @@ export const SideMenuMobile = ({
         )}
         {isLoaded && !isSignedIn && (
           <div className="w-full border-t-0 border-mainBorder px-4 pt-8 mb-6">
-            <button
-              onClick={() => {
-                onLoginButtonClick();
-                toggleMobileMenu();
-              }}
+            <Link
+              href="/login"
+              onClick={() => toggleMobileMenu()}
               className="block xl:hidden mt-auto mb-8 rounded-xl w-full h-10 flex justify-center items-center font-medium border border-mainColor text-primaryText bg-sideMenuButtonBg hover:bg-sideMenuButtonBgHover mt-12"
             >
               {t("signIn")}
-            </button>
+            </Link>
           </div>
         )}
       </div>

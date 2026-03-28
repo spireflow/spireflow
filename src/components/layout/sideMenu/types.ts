@@ -38,5 +38,4 @@ export interface MenuItemProps {
 
 export interface SideMenuMobileProps {
   isMobileMenuOpen: boolean;
-  onLoginButtonClick: () => void;
 }

@@ -282,19 +282,10 @@ export const ProductDetails = ({
         <Button
           variant="outline"
           onClick={handleShowAllProductsClick}
-          className="w-1/2 h-full"
+          className="w-[80%] sm:w-1/2 h-full"
         >
           {t("mobileList.showAllProducts")}
         </Button>
-        <div className="flex sm:hidden w-1/2 h-full">
-          <Button
-            variant="outline"
-            className="w-full h-full"
-            onClick={handleExportPDF}
-          >
-            {t("pdf.exportToPdf")}
-          </Button>
-        </div>
       </div>
     </div>
   );

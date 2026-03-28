@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import React, {
   RefObject,
   useCallback,
@@ -34,11 +33,9 @@ export const useUserMenu = ({
   session,
   theme,
 }: UseUserMenuParams) => {
-  const tAuth = useTranslations("auth");
   const isLoggedIn = session?.isLoggedIn || false;
   const pathname = usePathname();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-  const [isAuthMenuOpen, setIsAuthMenuOpen] = useState(false);
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const [isSettingsDrawerOpen, setIsSettingsDrawerOpen] = useState(false);
   const currentTheme = theme || "light";
@@ -155,8 +152,6 @@ export const useUserMenu = ({
   const subMenuState = {
     isLanguageMenuOpen,
     setIsLanguageMenuOpen,
-    isAuthMenuOpen,
-    setIsAuthMenuOpen,
     isThemeMenuOpen,
     setIsThemeMenuOpen,
     isSettingsDrawerOpen,
@@ -164,7 +159,6 @@ export const useUserMenu = ({
   };
 
   return {
-    tAuth,
     isLoggedIn,
     pathname,
     subMenuState,

@@ -22,7 +22,7 @@
 <br />
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/87699c7e-15d5-4a7e-98c0-0ed94cfa6755" alt="Nellavio Dashboard" width="800" />
+  <img src="https://github.com/user-attachments/assets/0e2f303a-aac8-4fa0-86c0-e6387fb58a42" alt="Nellavio Dashboard" width="800" />
 </div>
 
 ## 💎 Overview

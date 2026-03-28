@@ -27,7 +27,6 @@ export const UserMenuButton = ({
   const isFirstRender = useIsFirstRender();
 
   const {
-    tAuth,
     isLoggedIn: rawIsLoggedIn,
     pathname,
     subMenuState,
@@ -134,7 +133,6 @@ export const UserMenuButton = ({
           menuRef={menuRef}
           handleMenuKeyDown={handleMenuKeyDown}
           suppressTooltipRef={suppressTooltipRef}
-          tAuth={tAuth}
           t={t}
           pathname={pathname}
           currentLanguage={currentLanguage}

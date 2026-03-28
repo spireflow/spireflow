@@ -253,6 +253,7 @@ export const ThreeSmallCards = ({
                     align="start"
                     alignOffset={-14}
                     sideOffset={-4}
+                    className="hidden lg:block"
                   >
                     <p>{t("monthlyTarget")}</p>
                   </TooltipContent>

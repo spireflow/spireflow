@@ -130,13 +130,15 @@ export const Layout = ({ children }: LayoutProps) => {
             {children}
           </div>
         </div>
-        {isMobileMenuOpen && (
-          <div
-            className="block xl:hidden fixed inset-0 bg-mobileOverlayBg z-[1] cursor-pointer overflow-hidden overscroll-contain"
-            onClick={toggleMobileMenu}
-            aria-hidden="true"
-          />
-        )}
+        <div
+          className={`block xl:hidden fixed inset-0 bg-mobileOverlayBg z-[1] cursor-pointer overflow-hidden overscroll-contain transition-opacity duration-300 ease-in-out ${
+            isMobileMenuOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+          onClick={toggleMobileMenu}
+          aria-hidden={!isMobileMenuOpen}
+        />
       </div>
       <ToastContainer />
     </>

@@ -3,9 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef } from "react";
 
-import { LoginModal } from "@/components/auth/LoginModal";
 import { LogoutModal } from "@/components/auth/LogoutModal";
-import { SignUpModal } from "@/components/auth/SignUpModal";
 import { useLayoutStore } from "@/store/layoutStore";
 import { BREAKPOINTS } from "@/styles/breakpoints";
 
@@ -77,14 +75,10 @@ export const Navbar = () => {
   } = useNavbar();
 
   const {
-    isLoginModalOpen,
-    isSignUpModalOpen,
     isLogoutModalOpen,
     isAboutModalOpen,
     isContributingModalOpen,
     isChangelogModalOpen,
-    closeLoginModal,
-    closeSignUpModal,
     closeLogoutModal,
     closeAboutModal,
     closeContributingModal,
@@ -93,10 +87,6 @@ export const Navbar = () => {
     showAboutModal,
     showContributingModal,
     showChangelogModal,
-    showSignUpModal,
-    switchToSignUp,
-    switchToSignIn,
-    handleLoginButton,
   } = useNavbarModals();
 
   const modalActions = useMemo(
@@ -104,15 +94,13 @@ export const Navbar = () => {
       showLogout: showLogoutModal,
       showAbout: showAboutModal,
       showChangelog: showChangelogModal,
-      handleLogin: handleLoginButton,
-      showSignUp: showSignUpModal,
+      showContributing: showContributingModal,
     }),
     [
       showLogoutModal,
       showAboutModal,
       showChangelogModal,
-      handleLoginButton,
-      showSignUpModal,
+      showContributingModal,
     ],
   );
 
@@ -185,10 +173,7 @@ export const Navbar = () => {
           </div>
         </div>
       </header>
-      <SideMenuMobile
-        isMobileMenuOpen={isMobileMenuOpen}
-        onLoginButtonClick={handleLoginButton}
-      />
+      <SideMenuMobile isMobileMenuOpen={isMobileMenuOpen} />
       <FloatingMenuButton
         isMobileMenuOpen={isMobileMenuOpen}
         toggleMobileMenu={() => {
@@ -196,13 +181,6 @@ export const Navbar = () => {
           toggleMobileMenu();
         }}
       />
-      {isMobileMenuOpen && (
-        <div
-          className="fixed top-18 bottom-0 w-full bg-[rgb(0,0,0,0.35)] z-10 cursor-pointer"
-          onClick={toggleMobileMenu}
-          aria-hidden="true"
-        />
-      )}
       {isLogoutModalOpen && (
         <LogoutModal
           closeModal={closeLogoutModal}
@@ -212,7 +190,6 @@ export const Navbar = () => {
       {isAboutModalOpen && (
         <AboutModal
           closeModal={closeAboutModal}
-          onShowContributing={showContributingModal}
           returnFocusRef={userIconBtnRef}
         />
       )}
@@ -225,20 +202,6 @@ export const Navbar = () => {
       {isChangelogModalOpen && (
         <ChangelogModal
           closeModal={closeChangelogModal}
-          returnFocusRef={userIconBtnRef}
-        />
-      )}
-      {isLoginModalOpen && (
-        <LoginModal
-          closeModal={closeLoginModal}
-          switchToSignUp={switchToSignUp}
-          returnFocusRef={userIconBtnRef}
-        />
-      )}
-      {isSignUpModalOpen && (
-        <SignUpModal
-          closeModal={closeSignUpModal}
-          switchToSignIn={switchToSignIn}
           returnFocusRef={userIconBtnRef}
         />
       )}

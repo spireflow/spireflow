@@ -17,12 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/common/shadcn/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/common/shadcn/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/common/shadcn/tabs";
 import { useChartAnimation } from "@/hooks/useChartAnimation";
 import { useIsFirstRender } from "@/hooks/useIsFirstRender";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -202,8 +197,6 @@ export const RevenueOverTime = ({
                     Quarterly
                   </TabsTrigger>
                 </TabsList>
-                <TabsContent value="monthly" />
-                <TabsContent value="quarterly" />
               </Tabs>
             )}
           </div>

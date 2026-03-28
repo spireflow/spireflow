@@ -16,11 +16,7 @@ import {
 import { useModalKeyboardScroll } from "../hooks/useModalKeyboardScroll";
 import { AboutModalProps } from "../types";
 
-export const AboutModal = ({
-  closeModal,
-  returnFocusRef,
-  onShowContributing,
-}: AboutModalProps) => {
+export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
   const { scrollRef, handleKeyDown, handleOpenAutoFocus } =
     useModalKeyboardScroll();
 
@@ -55,19 +51,6 @@ export const AboutModal = ({
                 admin panels. It provides the UI components, pages and patterns
                 that will give you a solid head start for building your own
                 application
-              </p>
-              <p className="mb-4 text-base md:text-sm 1xl:text-base">
-                If you&apos;d like to contribute, check out the{" "}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onShowContributing?.();
-                  }}
-                  className="text-coloredLinkText hover:underline font-medium"
-                >
-                  Contributing guide
-                </button>
-                .
               </p>
             </div>
           </DialogDescription>
@@ -171,7 +154,7 @@ export const AboutModal = ({
               </li>
             </ul>
           </div>
-          <div className="flex items-center gap-4 mt-6 mb-2 pt-5 border-t border-mainBorder">
+          <div className="flex items-center gap-4 mt-6 mb-6 pt-5 border-t border-mainBorder">
             <span className="text-primaryText text-base md:text-sm 1xl:text-base">
               Made by matt765
             </span>

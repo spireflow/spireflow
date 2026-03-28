@@ -95,7 +95,6 @@ body.font-alternative {
 
 .CollapsibleContent[data-state="open"] {
   animation: submenuSlideDown 150ms ease-out;
-  overflow: visible;
 }
 
 .CollapsibleContent[data-state="closed"] {

@@ -6,6 +6,7 @@ import { SpinnerIcon } from "@/assets/icons/SpinnerIcon";
 import { Button } from "@/components/common/shadcn/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -87,8 +88,12 @@ export const CustomerModal = ({
             </div>
           </div>
           <DialogFooter className="mt-8 sm:mt-12 !flex-row gap-3 sm:space-x-0 [&>*]:h-[2.9rem] [&>*]:flex-1 md:[&>*]:flex-initial md:justify-end md:[&>*]:w-38 md:gap-3">
-            <Button variant="outline">Order history</Button>
-            <Button icon={<PhoneIcon />}>Call customer</Button>
+            <DialogClose asChild>
+              <Button variant="outline">Order history</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button icon={<PhoneIcon />}>Call customer</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

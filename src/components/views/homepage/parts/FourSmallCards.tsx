@@ -192,6 +192,7 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
                   align="start"
                   alignOffset={-18}
                   sideOffset={-4}
+                  className="hidden lg:block"
                 >
                   <p>{t("monthlyTarget")}</p>
                 </TooltipContent>
