@@ -58,7 +58,7 @@ const RadioGroupItem = React.forwardRef<
     ref={ref}
     tabIndex={0}
     className={cn(
-      "aspect-square h-4.5 w-4.5 rounded-full border border-checkboxBorder text-containedButtonBg transition-colors data-[state=unchecked]:hover:border-checkboxUncheckedBorderHover data-[state=checked]:border-containedButtonBg disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50",
+      "aspect-square h-4.5 w-4.5 rounded-full border border-checkboxBorder text-containedButtonBg transition-colors focus-visible:outline-2 focus-visible:outline-focusVisibleBorder focus-visible:outline-offset-2 data-[state=unchecked]:hover:border-checkboxUncheckedBorderHover data-[state=checked]:border-containedButtonBg disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50",
       className,
     )}
     onKeyDownCapture={(e) => {

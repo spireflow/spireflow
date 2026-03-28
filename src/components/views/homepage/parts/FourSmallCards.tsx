@@ -144,17 +144,17 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
         <Card
           key={`${item.title}-${index}`}
           id={cardIds[index]}
-          className="lg:h-28 1xl:h-28 3xl:h-32 px-5 py-0 lg:py-4 lg:pt-[1.45rem] 2xl:px-6"
+          className="lg:h-28 1xl:h-28 3xl:h-32 px-5 py-[1.2rem] lg:py-4 lg:pt-[1.45rem] 2xl:px-6"
         >
           <div className="flex items-center justify-between gap-6 lg:gap-5 1xl:gap-6 h-full">
-            <div className="flex flex-col justify-center gap-[0.2rem] -my-[0.14rem] whitespace-nowrap 1xl:-translate-y-1 3xl:translate-y-0">
+            <div className="flex flex-col justify-center gap-[0.2rem] -my-[0.14rem] whitespace-nowrap lg:-translate-y-[0.1rem] 1xl:-translate-y-1 3xl:-translate-y-[0.25rem]">
               <div className="text-secondaryText text-sm lg:text-xs 1xl:text-sm tracking-tight">
                 {item.title}
               </div>
               <div className="text-3xl lg:text-2xl 1xl:text-2xl 3xl:text-3xl font-semibold text-primaryText">
                 {item.metric}
               </div>
-              <div className="flex items-center gap-1.5 text-xs text-secondaryText">
+              <div className="flex items-center gap-1.5 text-xs text-secondaryText lg:mt-[0.1rem] 1xl:mt-0 3xl:mt-[0.2rem]">
                 <span>{item.changeText}</span>
                 <span
                   className={

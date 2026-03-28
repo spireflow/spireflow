@@ -83,7 +83,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50",
+      "inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
       variant === "default" &&
         "rounded-md hover:text-tabDefaultInactiveTextHover data-[state=active]:bg-tabActiveBg data-[state=active]:text-primaryText data-[state=active]:hover:text-primaryText data-[state=active]:hover:bg-tabActiveBgHover",
       variant === "line" &&

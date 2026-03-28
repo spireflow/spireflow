@@ -95,6 +95,7 @@ body.font-alternative {
 
 .CollapsibleContent[data-state="open"] {
   animation: submenuSlideDown 150ms ease-out;
+  overflow: visible;
 }
 
 .CollapsibleContent[data-state="closed"] {
@@ -161,6 +162,12 @@ body.font-alternative {
 [role="listbox"] :focus-visible,
 [data-radix-collection-item]:focus-visible {
   outline: none;
+}
+
+/* Focus ring on tabs */
+[role="tablist"] > [data-radix-collection-item]:focus-visible {
+  outline: 2px solid var(--color-focusVisibleBorder);
+  outline-offset: 2px;
 }
 
 /* Override Tailwind v4 transition utilities to exclude outline-color.

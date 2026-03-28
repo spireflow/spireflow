@@ -18,20 +18,20 @@ export const SideMenu = () => {
   return (
     <nav
       aria-label="Side navigation"
-      className={`mt-0 3xl:mt-0 hidden xl:flex flex-col h-screen xl:w-52.5 xl:min-w-52.5 1xl:min-w-55 3xl:min-w-67.5 pt-0 2xl:pt-0 transition-all duration-200 ease-in-out ${
+      className={`mt-0 3xl:mt-0 hidden xl:flex flex-col h-screen xl:w-57.5 xl:min-w-57.5 1xl:min-w-62.5 3xl:min-w-67.5 pt-0 2xl:pt-0 transition-all duration-200 ease-in-out ${
         !isSideMenuOpen && "xl:!max-w-12 !w-12 xl:!min-w-18 pr-0"
       }
       `}
     >
       <div
-        className={`pl-3 pt-0 1xl:pt-0 z-[40] 2xl:pt-0 3xl:pt-0 fixed xl:w-52.5 xl:min-w-52.5 1xl:min-w-55 3xl:min-w-67.5 bg-navigationBg h-dvh border-r-[1px] border-mainBorder transition-all duration-200 ease-in-out flex flex-col ${
+        className={`pl-3 pt-0 1xl:pt-0 z-[40] 2xl:pt-0 3xl:pt-0 fixed xl:w-57.5 xl:min-w-57.5 1xl:min-w-62.5 3xl:min-w-67.5 bg-navigationBg h-dvh border-r-[1px] border-mainBorder transition-all duration-200 ease-in-out flex flex-col ${
           !isSideMenuOpen &&
           "xl:!max-w-12 xl:!w-12 xl:!min-w-18 !pl-0 pr-[0.1rem]"
         }
           `}
       >
         <div
-          className={`flex shrink-0 h-18 3xl:h-20 items-center pr-2 pl-[1.4rem] 3xl:pl-[2.4rem] xl:translate-y-[0.7rem] transition-all duration-200 ${
+          className={`flex shrink-0 h-18 3xl:h-20 items-center pr-2 pl-[1.4rem] xl:pl-[2.3rem] 1xl:pl-[2.7rem] 3xl:pl-[2.9rem] xl:translate-y-[0.7rem] transition-all duration-200 ${
             !isSideMenuOpen &&
             "xl:!w-18 3xl:pr-2 !pl-[1.2rem] 3xl:!pl-[1.05rem]"
           }`}

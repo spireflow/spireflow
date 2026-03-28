@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     "admin template",
     "shadcn dashboard",
     "open source dashboard",
-    "nextjs 15",
+    "nextjs 16",
     "typescript dashboard",
     "tailwind dashboard",
     "recharts",

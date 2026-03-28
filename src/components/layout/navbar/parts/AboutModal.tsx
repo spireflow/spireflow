@@ -1,7 +1,9 @@
 import Link from "next/link";
 
 import { GithubIcon } from "@/assets/icons/GithubIcon";
+import { LinkedinIcon } from "@/assets/icons/LinkedinIcon";
 import { MailIcon } from "@/assets/icons/MailIcon";
+import { TwitterIcon } from "@/assets/icons/TwitterIcon";
 import { Button } from "@/components/common/shadcn/button";
 import {
   Dialog,
@@ -38,7 +40,7 @@ export const AboutModal = ({
         <div
           ref={scrollRef}
           tabIndex={-1}
-          className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none"
+          className="w-full h-full max-h-none md:max-h-[65vh] overflow-y-auto pl-1 pr-0 md:pr-4 [&>*]:pr-4 md:[&>*]:pr-0 pt-12 md:pt-0 focus:outline-none focus-visible:outline-none will-change-[scroll-position]"
         >
           <DialogHeader>
             <DialogTitle className="text-primaryText text-3xl md:text-2xl 1xl:text-3xl w-full text-left mb-4">
@@ -168,6 +170,43 @@ export const AboutModal = ({
                 </Link>
               </li>
             </ul>
+          </div>
+          <div className="flex items-center gap-4 mt-6 mb-2 pt-5 border-t border-mainBorder">
+            <span className="text-primaryText text-base md:text-sm 1xl:text-base">
+              Made by matt765
+            </span>
+            <div className="flex items-center gap-2.5">
+              <Link
+                href="https://github.com/matt765"
+                target="_blank"
+                className="text-grayIcon hover:text-primaryText transition-colors"
+                aria-label="GitHub profile"
+              >
+                <span className="w-[22px] h-[22px] [&>svg]:w-[22px] [&>svg]:h-[22px]">
+                  <GithubIcon />
+                </span>
+              </Link>
+              <Link
+                href="https://x.com/matt765_dev"
+                target="_blank"
+                className="text-grayIcon hover:text-primaryText transition-colors"
+                aria-label="X profile"
+              >
+                <span className="w-[22px] h-[22px] [&>svg]:w-[22px] [&>svg]:h-[22px]">
+                  <TwitterIcon />
+                </span>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/mateusz-wyrebek/"
+                target="_blank"
+                className="text-grayIcon hover:text-primaryText transition-colors"
+                aria-label="LinkedIn profile"
+              >
+                <span className="w-[22px] h-[22px] [&>svg]:w-[22px] [&>svg]:h-[22px]">
+                  <LinkedinIcon />
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </DialogContent>

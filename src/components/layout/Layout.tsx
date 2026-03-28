@@ -144,4 +144,4 @@ export const Layout = ({ children }: LayoutProps) => {
 };
 
 export const CONTENT_MAX_WIDTH =
-  "xl:max-w-[82%] 1xl:max-w-[82%] 2xl:max-w-[83vw] 3xl:max-w-[82vw] 5xl:max-w-408";
+  "xl:max-w-[80%] 1xl:max-w-[80%] 2xl:max-w-[81vw] 3xl:max-w-[82vw] 5xl:max-w-408";

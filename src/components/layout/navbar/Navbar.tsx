@@ -125,7 +125,7 @@ export const Navbar = () => {
       >
         {/* Placeholder for maintaining consistent spacing with page wrapper */}
         <div
-          className={`hidden xl:block xl:w-52.5 1xl:min-w-55 3xl:min-w-67.5 h-12 transition-all duration-200 ease-in-out ${
+          className={`hidden xl:block xl:w-57.5 1xl:min-w-62.5 3xl:min-w-67.5 h-12 transition-all duration-200 ease-in-out ${
             !isSideMenuOpen && "xl:!max-w-12 !w-12 xl:!min-w-18"
           }`}
         ></div>
