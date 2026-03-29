@@ -81,7 +81,7 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
           height="100%"
           initialDimension={{ width: 64, height: 64 }}
         >
-          <PieChart>
+          <PieChart accessibilityLayer={false}>
             <Pie
               data={isReady ? data : []}
               cx="50%"
@@ -121,7 +121,11 @@ export const FourSmallCards = ({ fourSmallCardsData }: FourSmallCardsProps) => {
           height="100%"
           initialDimension={{ width: 112, height: 64 }}
         >
-          <BarChart data={isReady ? chartData : []} barCategoryGap={1}>
+          <BarChart
+            accessibilityLayer={false}
+            data={isReady ? chartData : []}
+            barCategoryGap={1}
+          >
             <Bar
               dataKey="metric"
               fill={color}

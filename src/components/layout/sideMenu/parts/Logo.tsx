@@ -14,6 +14,9 @@ export const Logo = () => {
     <Link
       href="/"
       tabIndex={0}
+      ref={(el: HTMLAnchorElement | null) => {
+        if (el) el.setAttribute("tabindex", "0");
+      }}
       aria-label="Nellavio - home"
       className="flex items-center text-2xl xl:text-xl 1xl:text-[1.3rem] 3xl:text-[1.4rem] font-medium"
     >

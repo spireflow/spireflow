@@ -133,6 +133,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 initialDimension={{ width: 320, height: 200 }}
               >
                 <LineChart
+                  accessibilityLayer={false}
                   data={isReady ? todaySalesData : []}
                   margin={{
                     top: 5,
@@ -213,6 +214,7 @@ export const TodaySales = ({ todaySalesData }: TodaySalesProps) => {
                 initialDimension={{ width: 320, height: 200 }}
               >
                 <LineChart
+                  accessibilityLayer={false}
                   data={isReady ? todaySalesData : []}
                   margin={{
                     top: 5,

@@ -126,7 +126,7 @@ export const AssetPerformance = ({
                 height="100%"
                 initialDimension={{ width: 320, height: 200 }}
               >
-                <PieChart tabIndex={-1}>
+                <PieChart accessibilityLayer={false}>
                   <Pie
                     data={isReady ? dataWithColors : []}
                     cx="50%"

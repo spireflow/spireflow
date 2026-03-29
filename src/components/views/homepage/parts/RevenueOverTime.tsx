@@ -249,6 +249,7 @@ export const RevenueOverTime = ({
             initialDimension={{ width: 320, height: 200 }}
           >
             <AreaChart
+              accessibilityLayer={false}
               data={isReady ? displayData : []}
               margin={{
                 top: 10,

@@ -129,6 +129,7 @@ const GlobalError = ({
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a
               href="/"
+              tabIndex={0}
               style={{
                 padding: "0.75rem 1.5rem",
                 borderRadius: "0.75rem",

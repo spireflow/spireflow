@@ -149,6 +149,7 @@ export const YearOverview = ({ yearOverviewData }: YearOverviewProps) => {
               initialDimension={{ width: 320, height: 200 }}
             >
               <AreaChart
+                accessibilityLayer={false}
                 data={isReady ? yearOverviewData : []}
                 margin={{
                   top: 20,

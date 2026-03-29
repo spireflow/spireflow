@@ -99,6 +99,7 @@ export const RevenueDistribution = ({
             initialDimension={{ width: 320, height: 200 }}
           >
             <BarChart
+              accessibilityLayer={false}
               data={isReady ? revenueDistributionData : []}
               layout="vertical"
               margin={{

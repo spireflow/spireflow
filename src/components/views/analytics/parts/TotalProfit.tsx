@@ -85,6 +85,7 @@ export const TotalProfit = ({
             initialDimension={{ width: 320, height: 200 }}
           >
             <AreaChart
+              accessibilityLayer={false}
               data={isReady ? totalProfitSales : []}
               margin={{
                 top: 10,

@@ -57,7 +57,7 @@ export const SettingsDrawer = ({
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Drawer direction="right" open={open} onOpenChange={setOpen}>
+    <Drawer direction="right" open={open} onOpenChange={setOpen} noBodyStyles>
       {children && <DrawerTrigger asChild>{children}</DrawerTrigger>}
       <DrawerContent
         className="!bg-primaryBg max-xsm:!w-full"

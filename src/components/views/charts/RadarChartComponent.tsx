@@ -108,6 +108,7 @@ export const RadarChartComponent = () => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <RadarChart
+              accessibilityLayer={false}
               data={isReady ? chartdata : []}
               margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >

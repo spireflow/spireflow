@@ -230,7 +230,7 @@ export const GradientPieChartComponent = () => {
             height="100%"
             initialDimension={{ width: 320, height: 200 }}
           >
-            <PieChart>
+            <PieChart accessibilityLayer={false}>
               <defs>
                 {COLORS.map((color, index) => (
                   <radialGradient

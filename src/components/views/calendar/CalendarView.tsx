@@ -7,6 +7,7 @@ import listPlugin from "@fullcalendar/list";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useRef } from "react";
 
 import { AddEventModal } from "./parts/AddEventModal";
 import { RemoveEventModal } from "./parts/RemoveEventModal";
@@ -41,9 +42,28 @@ export const CalendarView = ({ calendarEvents }: CalendarViewProps) => {
   } = useCalendar({ calendarEvents });
 
   const locale = useLocale();
+  const calendarContainerRef = useRef<HTMLDivElement>(null);
+
+  /** FullCalendar renders its own <button> elements in the DOM.
+   *  Safari skips native buttons without explicit tabIndex, so we patch them after mount. */
+  useEffect(() => {
+    const container = calendarContainerRef.current;
+    if (!container) return;
+    const buttons = container.querySelectorAll<HTMLButtonElement>(
+      ".fc-header-toolbar button",
+    );
+    buttons.forEach((btn) => {
+      if (!btn.hasAttribute("tabindex")) {
+        btn.setAttribute("tabindex", "0");
+      }
+    });
+  });
 
   return (
-    <div className="w-full h-full alternativeScrollbar">
+    <div
+      ref={calendarContainerRef}
+      className="w-full h-full alternativeScrollbar"
+    >
       <h1 className="sr-only">Calendar</h1>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin, listPlugin, timeGridPlugin]}

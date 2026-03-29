@@ -109,6 +109,7 @@ export const RadialBarChartComponent = () => {
               initialDimension={{ width: 320, height: 200 }}
             >
               <RadialBarChart
+                accessibilityLayer={false}
                 cx="50%"
                 cy="42%"
                 innerRadius="10%"

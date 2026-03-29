@@ -116,6 +116,7 @@ export const MarketMetrics = ({ marketMetricsData }: MarketMetricsProps) => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <RadarChart
+              accessibilityLayer={false}
               cx="50%"
               cy="50%"
               outerRadius="80%"

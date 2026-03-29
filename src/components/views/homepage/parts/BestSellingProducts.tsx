@@ -131,6 +131,7 @@ export const BestSellingProducts = ({
               initialDimension={{ width: 320, height: 200 }}
             >
               <BarChart
+                accessibilityLayer={false}
                 layout={isFourCardsMode ? "vertical" : "horizontal"}
                 data={isReady ? chartData : []}
                 margin={{

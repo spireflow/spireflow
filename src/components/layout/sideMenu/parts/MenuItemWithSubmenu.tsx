@@ -300,6 +300,9 @@ export const MenuItemWithSubmenu = ({
                     <Link
                       href={item.path}
                       tabIndex={0}
+                      ref={(el: HTMLAnchorElement | null) => {
+                        if (el) el.setAttribute("tabindex", "0");
+                      }}
                       target={item.newTab ? "_blank" : undefined}
                       onClick={handleMenuItemClick}
                       className={`w-full ${isItemActive ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover focus:bg-navItemActiveBgHover text-navItemTextActive focus:text-navItemTextActive" : ""}`}
@@ -349,8 +352,9 @@ export const MenuItemWithSubmenu = ({
                     href={item.path}
                     tabIndex={0}
                     target={item.newTab ? "_blank" : undefined}
-                    ref={(el) => {
+                    ref={(el: HTMLAnchorElement | null) => {
                       submenuRefs.current[index] = el;
+                      if (el) el.setAttribute("tabindex", "0");
                     }}
                     className="block mb-px 1xl:mb-1 3xl:mb-[0.2rem] -ml-[1.6rem] w-[calc(100%+1.6rem)] rounded-md relative focus-visible:outline-offset-[-2px]"
                   >
@@ -364,7 +368,7 @@ export const MenuItemWithSubmenu = ({
                       }`}
                     >
                       <div
-                        className={`text-xs xl:text-xs 3xl:text-sm font-medium tracking-wide ${
+                        className={`text-xs xl:text-xs 3xl:text-sm font-medium tracking-wide whitespace-nowrap ${
                           isActive
                             ? "text-navItemTextActive"
                             : "text-navItemText"

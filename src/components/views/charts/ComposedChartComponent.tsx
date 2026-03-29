@@ -142,6 +142,7 @@ export const ComposedChartComponent = () => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <ComposedChart
+              accessibilityLayer={false}
               data={isReady ? chartdata : []}
               margin={{
                 top: 20,

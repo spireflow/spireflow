@@ -99,6 +99,7 @@ export const CustomerSatisfaction = ({
             initialDimension={{ width: 320, height: 200 }}
           >
             <ScatterChart
+              accessibilityLayer={false}
               margin={{
                 top: 20,
                 right: windowWidth > BREAKPOINTS.md ? 30 : 10,

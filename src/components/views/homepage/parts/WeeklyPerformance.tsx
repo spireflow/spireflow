@@ -173,6 +173,7 @@ const WeeklyPerformanceChart = ({
           initialDimension={{ width: 320, height: 200 }}
         >
           <BarChart
+            accessibilityLayer={false}
             data={isReady ? displayData : []}
             margin={getChartMargins()}
             tabIndex={-1}

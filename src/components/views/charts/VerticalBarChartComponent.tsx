@@ -127,6 +127,7 @@ export const VerticalBarChartComponent = () => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <BarChart
+              accessibilityLayer={false}
               data={isReady ? chartdata : []}
               margin={{
                 top: 20,

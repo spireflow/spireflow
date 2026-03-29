@@ -171,6 +171,7 @@ export const BarChartComponent = () => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <BarChart
+              accessibilityLayer={false}
               data={isReady ? barChartData : []}
               margin={{
                 top: 10,

@@ -130,6 +130,7 @@ export const RevenueTrends = ({ revenueTrendsData }: RevenueTrendsProps) => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <BarChart
+              accessibilityLayer={false}
               data={isReady ? chartData : []}
               margin={{
                 top: 20,

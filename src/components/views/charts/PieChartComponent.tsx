@@ -158,7 +158,7 @@ export const PieChartComponent = () => {
             height="100%"
             initialDimension={{ width: 320, height: 200 }}
           >
-            <PieChart>
+            <PieChart accessibilityLayer={false}>
               <Pie
                 data={isReady ? chartdata : []}
                 cx="50%"

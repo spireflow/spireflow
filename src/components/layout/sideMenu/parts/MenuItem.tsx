@@ -59,6 +59,9 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
         <Link
           href={path}
           tabIndex={0}
+          ref={(el: HTMLAnchorElement | null) => {
+            if (el) el.setAttribute("tabindex", "0");
+          }}
           onPointerEnter={() => {
             if (isCollapsed) setHasEnteredSinceCollapse(true);
           }}

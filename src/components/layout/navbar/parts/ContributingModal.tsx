@@ -58,6 +58,7 @@ export const ContributingModal = ({
                     href="https://github.com/nellavio/nellavio/discussions/1"
                     target="_blank"
                     rel="noopener noreferrer"
+                    tabIndex={0}
                     className="text-coloredLinkText hover:underline"
                   >
                     Discussions
@@ -71,6 +72,7 @@ export const ContributingModal = ({
                     href="https://github.com/nellavio/nellavio/issues"
                     target="_blank"
                     rel="noopener noreferrer"
+                    tabIndex={0}
                     className="text-coloredLinkText hover:underline"
                   >
                     Issue
@@ -90,6 +92,7 @@ export const ContributingModal = ({
                   href="https://github.com/sponsors/matt765"
                   target="_blank"
                   rel="noopener noreferrer"
+                  tabIndex={0}
                   className="text-coloredLinkText hover:underline"
                 >
                   GitHub Sponsors
@@ -113,6 +116,7 @@ export const ContributingModal = ({
                   href="https://github.com/nellavio/nellavio/blob/main/CONTRIBUTING.md"
                   target="_blank"
                   rel="noopener noreferrer"
+                  tabIndex={0}
                   className="text-coloredLinkText hover:underline"
                 >
                   CONTRIBUTING.md

@@ -64,7 +64,7 @@ export const ThreeSmallCards = ({
           height="100%"
           initialDimension={{ width: 100, height: 100 }}
         >
-          <PieChart tabIndex={-1}>
+          <PieChart accessibilityLayer={false}>
             <Pie
               data={isReady ? data : []}
               cx="50%"

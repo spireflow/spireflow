@@ -182,6 +182,7 @@ export const LineChartComponent = () => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <LineChart
+              accessibilityLayer={false}
               data={isReady ? dragonPopulationInWesteros : []}
               margin={{
                 top: isWideLayout ? 20 : 5,

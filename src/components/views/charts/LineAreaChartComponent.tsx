@@ -107,6 +107,7 @@ export const LineAreaChartComponent = () => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <AreaChart
+              accessibilityLayer={false}
               data={isReady ? chartdata : []}
               margin={{
                 top: 20,

@@ -146,6 +146,7 @@ export const MixedLineChartComponent = () => {
             initialDimension={{ width: 320, height: 200 }}
           >
             <LineChart
+              accessibilityLayer={false}
               data={isReady ? chartdata : []}
               margin={{
                 top: 20,
