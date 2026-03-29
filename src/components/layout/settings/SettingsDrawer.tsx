@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { RefObject, useRef } from "react";
 
 import { GithubIcon } from "@/assets/icons/GithubIcon";
 import {
@@ -30,12 +31,14 @@ interface SettingsDrawerProps {
   children?: React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }
 
 export const SettingsDrawer = ({
   children,
   open: externalOpen,
   onOpenChange: externalOnOpenChange,
+  returnFocusRef,
 }: SettingsDrawerProps) => {
   const {
     t,
@@ -51,10 +54,24 @@ export const SettingsDrawer = ({
     setOpen,
   } = useSettings({ open: externalOpen, onOpenChange: externalOnOpenChange });
 
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+
   return (
     <Drawer direction="right" open={open} onOpenChange={setOpen}>
       {children && <DrawerTrigger asChild>{children}</DrawerTrigger>}
-      <DrawerContent className="!bg-primaryBg max-xsm:!w-full">
+      <DrawerContent
+        className="!bg-primaryBg max-xsm:!w-full"
+        onOpenAutoFocus={(e: Event) => {
+          e.preventDefault();
+          scrollAreaRef.current?.focus();
+        }}
+        onCloseAutoFocus={(e: Event) => {
+          if (returnFocusRef?.current) {
+            e.preventDefault();
+            returnFocusRef.current.focus();
+          }
+        }}
+      >
         <DrawerHeader className="bg-settingsDrawerHeaderBg border-b border-settingsDrawerDivider relative">
           <DrawerTitle className="text-primaryText text-2xl font-semibold">
             {t("title")}
@@ -62,10 +79,7 @@ export const SettingsDrawer = ({
           <DrawerDescription className="sr-only">
             Customize dashboard appearance settings
           </DrawerDescription>
-          <DrawerClose
-            autoFocus
-            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-sm opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none"
-          >
+          <DrawerClose className="absolute right-4 top-1/2 -translate-y-1/2 rounded-sm opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none">
             <svg
               width="20"
               height="20"
@@ -85,7 +99,11 @@ export const SettingsDrawer = ({
           </DrawerClose>
         </DrawerHeader>
 
-        <div className="flex-1 min-h-0 overflow-y-auto">
+        <div
+          ref={scrollAreaRef}
+          tabIndex={-1}
+          className="flex-1 min-h-0 overflow-y-auto focus:outline-none focus-visible:outline-none"
+        >
           <div className="flex flex-col min-h-full">
             {/* Theme Section */}
             <div className="px-6 py-5 border-b border-settingsDrawerDivider">

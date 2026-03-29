@@ -9,7 +9,10 @@ import {
 import { useModalKeyboardScroll } from "../hooks/useModalKeyboardScroll";
 import { AboutModalProps } from "../types";
 
-export const ContributingModal = ({ closeModal }: AboutModalProps) => {
+export const ContributingModal = ({
+  closeModal,
+  returnFocusRef,
+}: AboutModalProps) => {
   const { scrollRef, handleKeyDown, handleOpenAutoFocus } =
     useModalKeyboardScroll();
 
@@ -18,6 +21,12 @@ export const ContributingModal = ({ closeModal }: AboutModalProps) => {
       <DialogContent
         className="md:max-w-130 md:w-130 1xl:w-152 1xl:max-w-152 px-5 xsm:px-5 sm:px-6 md:px-10 1xl:px-12 pr-0 xsm:pr-0 sm:pr-0 pt-0 sm:pt-0 md:pt-10 1xl:pt-12 pb-0 md:pb-10 1xl:pb-12"
         onOpenAutoFocus={handleOpenAutoFocus}
+        onCloseAutoFocus={(e) => {
+          if (returnFocusRef?.current) {
+            e.preventDefault();
+            returnFocusRef.current.focus();
+          }
+        }}
         onKeyDown={handleKeyDown}
       >
         <div

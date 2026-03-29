@@ -158,7 +158,7 @@ export const MenuItemWithSubmenu = ({
           manuallyClosed.current = false;
           setIsExpanded(true);
           setFocusedSubmenuIndex(0);
-          setTimeout(() => submenuRefs.current[0]?.focus(), 0);
+          setTimeout(() => submenuRefs.current[0]?.focus(), 100);
         } else {
           manuallyClosed.current = true;
           setIsExpanded(false);

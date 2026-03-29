@@ -146,6 +146,7 @@ export const UserMenuButton = ({
       <SettingsDrawer
         open={subMenuState.isSettingsDrawerOpen}
         onOpenChange={subMenuState.setIsSettingsDrawerOpen}
+        returnFocusRef={userIconBtnRef}
       />
     </div>
   );

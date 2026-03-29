@@ -54,7 +54,7 @@ const Slider = React.forwardRef<
                 : "Maximum"
               : "Value"
           }
-          className="block h-5 w-5 cursor-grab rounded-full border-2 border-containedButtonBg bg-white transition-colors focus-visible:outline-2 focus-visible:outline-focusVisibleBorder focus-visible:outline-offset-2 active:cursor-grabbing data-[disabled]:pointer-events-none data-[disabled]:border-containedButtonBg/50"
+          className="block h-5 w-5 cursor-grab rounded-full border-2 border-containedButtonBg bg-white transition-colors focus-visible:!outline-2 focus-visible:!outline-focusVisibleBorder focus-visible:!outline-offset-2 active:cursor-grabbing data-[disabled]:pointer-events-none data-[disabled]:border-containedButtonBg/50"
         />
       ))}
     </SliderPrimitive.Root>
