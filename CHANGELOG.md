@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 (15-03-2026)
+## 2.0.0 (29-03-2026)
 
 - migrated auth from Clerk to Better-Auth
 - migrated all charts from Tremor.so to Recharts

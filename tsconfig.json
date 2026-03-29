@@ -14,8 +14,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "noUncheckedSideEffectImports": false,
     "types": ["node"],
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },

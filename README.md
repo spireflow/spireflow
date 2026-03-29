@@ -22,36 +22,43 @@
 <br />
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/0e2f303a-aac8-4fa0-86c0-e6387fb58a42" alt="Nellavio Dashboard" width="800" />
+  <img src="https://github.com/user-attachments/assets/d143f2da-8aec-4a5d-914a-46f15aadf2d4" alt="Nellavio Dashboard" width="800" />
 </div>
 
-## 💎 Overview
+## Overview
 
 Nellavio is a free, open-source dashboard starter designed for building modern SaaS products, internal tools and data-rich admin panels. It provides the UI components, pages and patterns you need to create a complete dashboard application - available out of the box.
 
-It will give you a solid head start and save weeks of development time by serving as a practical foundation that you can easily extend and adapt to your specific needs. The project runs as a standalone frontend by default, ready to be integrated with your own API or an optional Nellavio backend that enables a production-ready authentication flow.
+It will give you a solid head start and save a lot of development time by serving as a practical foundation that you can easily extend and adapt to your specific needs. The project runs as a standalone frontend by default, ready to be integrated with your own API or an optional Nellavio backend that enables a production-ready authentication flow.
 
-## :gear: Tech stack
+## Tech stack
 
 React 19, Next.js 16, TypeScript, Tailwind 4, Shadcn UI, Zustand, Apollo Client, Recharts, Better-Auth, Vitest
 
-## ✨ Features
+## Features
 
-- **90+ reusable components** - Built on Shadcn UI and Radix primitives
+- **90+ reusable components** - Built on top of Shadcn UI and Radix primitives
 - **60+ chart variations** - Powered by Recharts library
-- **Authentication** - Better-Auth with login and registration flow + Yup validation
+- **Authentication** - Full Better-Auth integration with login, register and forgot password pages + Yup validation
 - **i18n** - Multi-language support via next-intl
-- **Advanced Tables** - Filtering, sorting, search and pagination, via TanStack Table v8
+- **Themes** - Dark/light mode via next-themes library and CSS variables
+- **Advanced tables** - Filtering, sorting, search and pagination, via TanStack Table v8
 - **Calendar** - Move, add and delete events with FullCalendar.io
 - **Product gallery** - Lightbox popup and PDF export
 - **World map** - Interactive map with tooltips, powered by react-simple-maps
-- **Themes** - Dark/light mode via next-themes library and CSS variables
-- **Testing** - Unit tests written using Vitest + React Testing Library
+- **Profile page** - User profile with header card, contact info, bio section with inline editing, account settings and activity feed
+- **Error pages** - 401 (Unauthorized), 404 (Not Found) and 500 (Server Error)
+- **Security** - OWASP-aligned security headers (CSP, HSTS, X-Frame-Options) configured out of the box
+- **Accessibility** - Keyboard navigation, clear focus indicators and ARIA support
+
+## Pre-configured tooling
+
+- **Storybook** - Component documentation and visual testing
+- **Testing** - Unit tests written with Vitest + React Testing Library
 - **CI Pipeline** - Automated linting, type checking and testing via GitHub Actions
-- **Accessibility** - Seamless keyboard navigation, clear focus indicators and ARIA support
 - **Code quality** - Prettier (formatter), Eslint (linter) and Husky (pre-commit hooks)
 
-## :rocket: Quickstart
+## Quickstart
 
 You can get started with Nellavio by cloning the repository:
 
@@ -68,7 +75,7 @@ Nellavio starter is designed to work as a standalone front-end application by de
 
 Optionally, it can be connected to an associated Node.js backend, which enables authentication and fetching real data on each request. See `Configuration` section below for more details.
 
-## :link: Links
+## Links
 
 #### Live demo [https://demo.nellavio.com/](https://demo.nellavio.com/)
 
@@ -83,7 +90,7 @@ Optionally, it can be connected to an associated Node.js backend, which enables 
 - [Live demo](https://layout.nellavio.com/)
 - [Repository](https://github.com/nellavio/nellavio-layout)
 
-## :file_folder: Project structure
+## Project structure
 
 ```shell
 ├── src
@@ -118,7 +125,7 @@ Optionally, it can be connected to an associated Node.js backend, which enables 
 └── package.json                  # Project dependencies and scripts
 ```
 
-## ⚙️ Configuration (optional)
+## Configuration (optional)
 
 ### Connect to backend & enable authentication
 
@@ -183,7 +190,7 @@ For remote hosting, you can easily deploy your own instance of Nellavio dashboar
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/nellavio/nellavio)
 
-## 🧾 Pages
+## Pages
 
 | Path               | Description                                                                                                                                                                                                                                                         |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -205,9 +212,33 @@ For remote hosting, you can easily deploy your own instance of Nellavio dashboar
 | `/tables`          | Four TanStack Table variants demonstrating different table configurations and use cases: basic table, advanced table with enhanced filtering and sorting, user management table, and inventory tracking table.                                                      |
 | `/charts`          | Gallery of Recharts chart types displayed in a responsive grid: area, scatter, pie, radar, composed, stacked bar, radial bar, two-axis line, mixed line, vertical bar, area fill by value, gradient pie, and a full-width line chart.                               |
 
-## ⌨️ Accessibility
+## How to customize
 
-- Seamless keyboard navigation with Tab and arrow buttons across all interactive elements
+#### Add a new page
+
+1. Create a folder in `src/app/[locale]/(protected)/` with a `page.tsx` file
+2. Add an entry to `src/config/navigationConfig.ts` to show it in the sidebar
+3. Wrap your content with `<PageWrapper pageName="YourPage">` for breadcrumbs and layout
+
+#### Add a new color token
+
+1. Add the CSS variable to both `src/styles/themes/light.css` and `dark.css`
+2. For consistency, consider placing it in one of the existing groups (Texts, Icons, Backgrounds or Borders) following the naming convention
+3. Tailwind 4 auto-generates utility classes from the `--color-` prefix - use `bg-yourToken`, `text-yourToken` etc.
+
+#### Add a new language
+
+1. Create a new JSON file in `messages/` (e.g. `de.json`) based on `en.json`
+2. Add the locale to `src/i18n/routing.ts` in the `locales` array
+3. Add a language option in `UserMenuDropdown.tsx`
+
+#### Change default settings
+
+Edit `src/config/appDefaults.ts` to change the default theme, font, sidebar state, chart animations, toast duration and other global defaults. These values are used by Zustand stores on first visit.
+
+## Accessibility
+
+- Keyboard navigation with Tab and arrow buttons across all interactive elements
 - Visible focus indicators (focus-visible) with single CSS variable for consistent outline color
 - ARIA attributes wherever needed across components
 - UI components are built on top of Radix UI primitives which provide core accessibility support
@@ -225,7 +256,7 @@ Desktop-only shortcuts (active above 1280px). Disabled when focus is inside a te
 
 On macOS use `Cmd` instead of `Ctrl`.
 
-## 📋 Available commands
+## Available commands
 
 | Command                | Action                                |
 | :--------------------- | :------------------------------------ |
@@ -242,17 +273,17 @@ On macOS use `Cmd` instead of `Ctrl`.
 | `npm run format`       | Formats code with Prettier            |
 | `npm run format:check` | Checks if code is properly formatted  |
 
-## 🤝 Community and support
+## Community and support
 
 Check out [CONTRIBUTING.md](https://github.com/nellavio/nellavio/blob/main/CONTRIBUTING.md) to learn how to get started with contributions.
 
-All forms of project support are valued and appreciated, including code contributions, issue reporting, and sponsorship through GitHub Sponsors or [Buy Me A Coffee](https://buymeacoffee.com/matt765) service.
+All forms of project support are valued and appreciated, including code contributions, issue reporting, and sponsorship through GitHub Sponsors.
 
-## 📝 License
+## License
 
 This project is open source and available under the MIT License. Feel free to use it to build any personal or commercial applications (SaaS, internal tools etc.). Although the license allows redistribution, I would greatly appreciate it if you did not repackage or resell this project as a standalone UI kit or a template.
 
-## 💌 Stay updated
+## Stay updated
 
 Subscribe to the [Nellavio newsletter](https://nellavio.kit.com/) to get notified about major updates and new features.
 

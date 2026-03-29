@@ -66,7 +66,7 @@ export const SearchInput = forwardRef<HTMLDivElement, SearchInputProps>(
     return (
       <>
         <div
-          className="2xl:-ml-[0.05rem] 3xl:-ml-[0.15rem] w-68 alternativeScrollbar hidden lg:block"
+          className="2xl:-ml-[0.05rem] 3xl:ml-[0.05rem] w-68 alternativeScrollbar hidden lg:block"
           ref={ref}
         >
           <div className="relative w-full">
