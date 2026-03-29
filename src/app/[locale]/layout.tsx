@@ -46,13 +46,13 @@ export default async function RootLayout({
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nellavio.com"),
+  metadataBase: new URL("https://demo.nellavio.com"),
   title: {
     default: "Nellavio",
     template: "%s | Nellavio",
   },
   description:
-    "Open source dashboard starter with auth, i18n, dark/light mode, 26 charts and 80+ reusable UI components",
+    "Open source Next.js dashboard starter with auth, i18n, 12 pages, 60+ charts and 90+ UI components",
   keywords: [
     "nextjs dashboard",
     "react dashboard",
@@ -71,11 +71,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nellavio.com",
+    url: "https://demo.nellavio.com",
     siteName: "Nellavio",
     title: "Nellavio | Open Source Next.js Dashboard Starter",
     description:
-      "Open source dashboard starter with auth, i18n, dark/light mode, 26 charts and 80+ reusable UI components",
+      "Open source Next.js dashboard starter with auth, i18n, 12 pages, 60+ charts and 90+ UI components",
     images: [
       {
         url: "/og-image.png",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nellavio | Open Source Next.js Dashboard Starter",
     description:
-      "Open source dashboard starter with auth, i18n, dark/light mode, 26 charts and 80+ reusable UI components",
+      "Open source Next.js dashboard starter with auth, i18n, 12 pages, 60+ charts and 90+ UI components",
     images: ["/og-image.png"],
   },
 };

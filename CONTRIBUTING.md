@@ -25,7 +25,7 @@ npm install
 npm run dev
 ```
 
-The app runs at `http://localhost:3000` in standalone mode with mock data — no backend needed.
+The app runs at `http://localhost:3000` in standalone mode with mock data - no backend needed.
 
 To browse and develop UI components in isolation, run Storybook:
 
@@ -54,7 +54,7 @@ Husky pre-commit hooks will automatically run ESLint and Prettier on staged file
 
 - Named exports over default exports
 - Arrow functions over function declarations
-- Keep files under 300 lines — split into smaller modules if needed
+- Keep files under 300 lines - split into smaller modules if needed
 - Group imports: external libraries first, then internal imports, separated by blank lines
 - Use `async/await` with `try/catch` instead of `.then()/.catch()`
 - Always log errors in `catch` blocks
@@ -63,7 +63,7 @@ Husky pre-commit hooks will automatically run ESLint and Prettier on staged file
 
 ### What makes a good PR
 
-- Focused — one concern per PR
+- Focused - one concern per PR
 - Passes all CI checks (lint, type-check, tests, build)
 - Includes a clear description of what changed and why
 - Does not introduce console errors or warnings

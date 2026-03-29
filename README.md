@@ -22,7 +22,7 @@
 <br />
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/0e2f303a-aac8-4fa0-86c0-e6387fb58a42" alt="Nellavio Dashboard" width="800" />
+  <img src="https://github.com/user-attachments/assets/d143f2da-8aec-4a5d-914a-46f15aadf2d4" alt="Nellavio Dashboard" width="800" />
 </div>
 
 ## 💎 Overview
@@ -37,18 +37,25 @@ React 19, Next.js 16, TypeScript, Tailwind 4, Shadcn UI, Zustand, Apollo Client,
 
 ## ✨ Features
 
-- **90+ reusable components** - Built on Shadcn UI and Radix primitives
+- **90+ reusable components** - Built on top of Shadcn UI and Radix primitives
 - **60+ chart variations** - Powered by Recharts library
-- **Authentication** - Better-Auth with login and registration flow + Yup validation
+- **Authentication** - Full Better-Auth integration with login, register and forgot password pages + Yup validation
 - **i18n** - Multi-language support via next-intl
-- **Advanced Tables** - Filtering, sorting, search and pagination, via TanStack Table v8
+- **Themes** - Dark/light mode via next-themes library and CSS variables
+- **Advanced tables** - Filtering, sorting, search and pagination, via TanStack Table v8
 - **Calendar** - Move, add and delete events with FullCalendar.io
 - **Product gallery** - Lightbox popup and PDF export
 - **World map** - Interactive map with tooltips, powered by react-simple-maps
-- **Themes** - Dark/light mode via next-themes library and CSS variables
-- **Testing** - Unit tests written using Vitest + React Testing Library
+- **Profile page** - User profile with header card, contact info, bio section with inline editing, account settings and activity feed
+- **Error pages** - 401 (Unauthorized), 404 (Not Found) and 500 (Server Error)
+- **Security** - OWASP-aligned security headers (CSP, HSTS, X-Frame-Options) configured out of the box
+- **Accessibility** - Keyboard navigation, clear focus indicators and ARIA support
+
+## 🛠️ Pre-configured tooling
+
+- **Storybook** - Component documentation and visual testing
+- **Testing** - Unit tests written with Vitest + React Testing Library
 - **CI Pipeline** - Automated linting, type checking and testing via GitHub Actions
-- **Accessibility** - Seamless keyboard navigation, clear focus indicators and ARIA support
 - **Code quality** - Prettier (formatter), Eslint (linter) and Husky (pre-commit hooks)
 
 ## :rocket: Quickstart
@@ -205,9 +212,33 @@ For remote hosting, you can easily deploy your own instance of Nellavio dashboar
 | `/tables`          | Four TanStack Table variants demonstrating different table configurations and use cases: basic table, advanced table with enhanced filtering and sorting, user management table, and inventory tracking table.                                                      |
 | `/charts`          | Gallery of Recharts chart types displayed in a responsive grid: area, scatter, pie, radar, composed, stacked bar, radial bar, two-axis line, mixed line, vertical bar, area fill by value, gradient pie, and a full-width line chart.                               |
 
+## 🔧 How to customize
+
+#### Add a new page
+
+1. Create a folder in `src/app/[locale]/(protected)/` with a `page.tsx` file
+2. Add an entry to `src/config/navigationConfig.ts` to show it in the sidebar
+3. Wrap your content with `<PageWrapper pageName="YourPage">` for breadcrumbs and layout
+
+#### Add a new color token
+
+1. Add the CSS variable to both `src/styles/themes/light.css` and `dark.css`
+2. For consistency, consider placing it in one of the existing groups (Texts, Icons, Backgrounds or Borders) following the naming convention
+3. Tailwind 4 auto-generates utility classes from the `--color-` prefix - use `bg-yourToken`, `text-yourToken` etc.
+
+#### Add a new language
+
+1. Create a new JSON file in `messages/` (e.g. `de.json`) based on `en.json`
+2. Add the locale to `src/i18n/routing.ts` in the `locales` array
+3. Add a language option in `UserMenuDropdown.tsx`
+
+#### Change default settings
+
+Edit `src/config/appDefaults.ts` to change the default theme, font, sidebar state, chart animations, toast duration and other global defaults. These values are used by Zustand stores on first visit.
+
 ## ⌨️ Accessibility
 
-- Seamless keyboard navigation with Tab and arrow buttons across all interactive elements
+- Keyboard navigation with Tab and arrow buttons across all interactive elements
 - Visible focus indicators (focus-visible) with single CSS variable for consistent outline color
 - ARIA attributes wherever needed across components
 - UI components are built on top of Radix UI primitives which provide core accessibility support
