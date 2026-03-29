@@ -104,6 +104,7 @@ const PaginationLink = ({
   return (
     <button
       aria-current={isActive ? "page" : undefined}
+      tabIndex={0}
       data-slot="pagination-link"
       data-active={isActive}
       className={cn(

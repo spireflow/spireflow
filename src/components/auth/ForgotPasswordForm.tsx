@@ -108,6 +108,7 @@ export const ForgotPasswordForm = () => {
           <span className="text-primaryText">{t("backToSignInPrefix")}</span>
           <Link
             href="/login"
+            tabIndex={0}
             className="text-coloredText cursor-pointer hover:text-coloredTextHover"
           >
             {t("backToSignInLink")}
@@ -190,6 +191,7 @@ export const ForgotPasswordForm = () => {
             <span className="text-primaryText">{t("backToSignInPrefix")}</span>
             <Link
               href="/login"
+              tabIndex={0}
               className="text-coloredText cursor-pointer hover:text-coloredTextHover ignore-error-hide"
             >
               {t("backToSignInLink")}

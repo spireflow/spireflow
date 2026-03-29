@@ -147,21 +147,17 @@ export const useNotificationsModal = ({
   });
 
   const handleMarkAsRead = (id: string) => {
-    setLocalNotifications((prev) => {
-      const updated = prev.map((n) =>
-        n.id === id ? { ...n, isNew: false } : n,
-      );
-      onNotificationsUpdate?.(updated);
-      return updated;
-    });
+    const updated = localNotifications.map((n) =>
+      n.id === id ? { ...n, isNew: false } : n,
+    );
+    setLocalNotifications(updated);
+    onNotificationsUpdate?.(updated);
   };
 
   const handleMarkAllAsRead = () => {
-    setLocalNotifications((prev) => {
-      const updated = prev.map((n) => ({ ...n, isNew: false }));
-      onNotificationsUpdate?.(updated);
-      return updated;
-    });
+    const updated = localNotifications.map((n) => ({ ...n, isNew: false }));
+    setLocalNotifications(updated);
+    onNotificationsUpdate?.(updated);
   };
 
   const newCount = localNotifications.filter((n) => n.isNew).length;

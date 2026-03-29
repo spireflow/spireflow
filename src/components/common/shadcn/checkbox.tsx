@@ -30,6 +30,7 @@ const Checkbox = React.forwardRef<
 >(({ className, onKeyDown, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}
+    tabIndex={0}
     className={cn(
       "peer h-4.5 w-4.5 shrink-0 rounded-sm border border-checkboxBorder transition-colors disabled:cursor-not-allowed disabled:border-checkboxBorderDisabled disabled:opacity-50 data-[state=unchecked]:hover:border-checkboxUncheckedBorderHover data-[state=checked]:bg-containedButtonBg data-[state=checked]:text-white data-[state=checked]:border-containedButtonBg",
       className,

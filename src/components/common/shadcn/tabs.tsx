@@ -82,6 +82,7 @@ const TabsTrigger = React.forwardRef<
 >(({ className, variant = "default", ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
+    tabIndex={0}
     className={cn(
       "inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
       variant === "default" &&

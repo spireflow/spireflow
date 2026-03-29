@@ -13,6 +13,7 @@ export const Logo = () => {
   return (
     <Link
       href="/"
+      tabIndex={0}
       aria-label="Nellavio - home"
       className="flex items-center text-2xl xl:text-xl 1xl:text-[1.3rem] 3xl:text-[1.4rem] font-medium"
     >

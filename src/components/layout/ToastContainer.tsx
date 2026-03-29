@@ -48,6 +48,7 @@ const ToastItem = ({
         <AlertDescription>{description}</AlertDescription>
         <button
           onClick={onClose}
+          tabIndex={0}
           className="absolute top-3 right-3 p-1 rounded-md opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
           aria-label="Close notification"
         >

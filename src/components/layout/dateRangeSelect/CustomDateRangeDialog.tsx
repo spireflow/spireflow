@@ -23,6 +23,7 @@ export const CustomDateRangeDialog = ({
   onOpenChange,
   onApply,
   initialRange,
+  returnFocusRef,
 }: CustomDateRangeDialogProps) => {
   const {
     t,
@@ -47,6 +48,12 @@ export const CustomDateRangeDialog = ({
         onOpenAutoFocus={(e) => {
           e.preventDefault();
           (e.target as HTMLElement).focus();
+        }}
+        onCloseAutoFocus={(e) => {
+          if (returnFocusRef?.current) {
+            e.preventDefault();
+            returnFocusRef.current.focus();
+          }
         }}
       >
         <DialogHeader>

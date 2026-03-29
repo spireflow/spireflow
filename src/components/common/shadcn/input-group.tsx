@@ -204,6 +204,7 @@ const InputGroupButton = React.forwardRef<
       <button
         ref={ref}
         type={type}
+        tabIndex={0}
         className={cn(
           buttonVariants({ variant, size: "default" }),
           inputGroupButtonVariants({ size }),

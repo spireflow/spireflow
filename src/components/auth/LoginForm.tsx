@@ -198,6 +198,7 @@ export const LoginForm = ({
           </div>
           <Link
             href="/forgot-password"
+            tabIndex={0}
             className="text-xs 1xl:text-sm text-coloredText cursor-pointer hover:text-coloredTextHover"
           >
             {t("forgotPassword")}
@@ -218,6 +219,7 @@ export const LoginForm = ({
             {switchToSignUp ? (
               <button
                 type="button"
+                tabIndex={0}
                 onClick={switchToSignUp}
                 className="text-coloredText cursor-pointer hover:text-coloredTextHover ignore-error-hide"
               >
@@ -226,6 +228,7 @@ export const LoginForm = ({
             ) : (
               <Link
                 href="/register"
+                tabIndex={0}
                 className="text-coloredText cursor-pointer hover:text-coloredTextHover ignore-error-hide"
               >
                 {t("registerHere")}

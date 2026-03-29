@@ -9,6 +9,7 @@ export const FloatingMenuButton = ({
   <button
     className="fixed bottom-5 xsm:bottom-6 right-4 xsm:right-6 z-[45] flex items-center justify-center w-14 h-14 rounded-full bg-floatingMenuButtonBg hover:bg-floatingMenuButtonBgHover border border-mainBorder shadow-xl transition-colors duration-200 xl:hidden will-change-transform"
     onClick={toggleMobileMenu}
+    tabIndex={0}
     aria-label="Toggle menu"
   >
     <div className="relative flex overflow-hidden items-center justify-center w-5 h-5 transform transition-transform duration-200">

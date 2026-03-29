@@ -270,6 +270,7 @@ export const SignUpForm = ({
             {switchToSignIn ? (
               <button
                 type="button"
+                tabIndex={0}
                 onClick={switchToSignIn}
                 className="text-coloredText text-semibold cursor-pointer hover:text-coloredTextHover ignore-error-hide"
               >
@@ -278,6 +279,7 @@ export const SignUpForm = ({
             ) : (
               <Link
                 href="/login"
+                tabIndex={0}
                 className="text-coloredText text-semibold cursor-pointer hover:text-coloredTextHover ignore-error-hide"
               >
                 {t("signInHere")}

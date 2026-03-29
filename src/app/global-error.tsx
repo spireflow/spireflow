@@ -107,6 +107,7 @@ const GlobalError = ({
           <div style={{ display: "flex", gap: "0.75rem" }}>
             <button
               onClick={() => reset()}
+              tabIndex={0}
               style={{
                 padding: "0.75rem 1.5rem",
                 borderRadius: "0.75rem",

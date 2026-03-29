@@ -60,7 +60,11 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
               variant="outline"
               className="flex-1 xsm:flex-initial xsm:w-auto h-full sm:!px-6 gap-2"
             >
-              <Link href="https://github.com/nellavio/nellavio" target="_blank">
+              <Link
+                href="https://github.com/nellavio/nellavio"
+                target="_blank"
+                tabIndex={0}
+              >
                 <GithubIcon />
                 Front-end
               </Link>
@@ -73,6 +77,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
               <Link
                 href="https://github.com/nellavio/nellavio-backend"
                 target="_blank"
+                tabIndex={0}
               >
                 <GithubIcon />
                 Back-end
@@ -82,6 +87,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
           <Link
             href="https://nellavio.kit.com/"
             target="_blank"
+            tabIndex={0}
             className="inline-flex items-center gap-2 mt-1 text-coloredLinkText hover:underline font-medium"
           >
             <span className="stroke-coloredLinkText w-[18px] h-[18px] [&>svg]:w-[18px] [&>svg]:h-[18px]">
@@ -129,6 +135,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                 <Link
                   href="https://storybook.nellavio.com/"
                   target="_blank"
+                  tabIndex={0}
                   className="text-coloredLinkText hover:underline font-medium"
                 >
                   Storybook
@@ -138,6 +145,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                 <Link
                   href="https://auth.nellavio.com/"
                   target="_blank"
+                  tabIndex={0}
                   className="text-coloredLinkText hover:underline font-medium"
                 >
                   Authentication docs
@@ -147,6 +155,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
                 <Link
                   href="https://github.com/nellavio/nellavio-layout"
                   target="_blank"
+                  tabIndex={0}
                   className="text-coloredLinkText hover:underline font-medium"
                 >
                   Lightweight version
@@ -162,6 +171,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
               <Link
                 href="https://github.com/matt765"
                 target="_blank"
+                tabIndex={0}
                 className="text-grayIcon hover:text-primaryText transition-colors"
                 aria-label="GitHub profile"
               >
@@ -172,6 +182,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
               <Link
                 href="https://x.com/matt765_dev"
                 target="_blank"
+                tabIndex={0}
                 className="text-grayIcon hover:text-primaryText transition-colors"
                 aria-label="X profile"
               >
@@ -182,6 +193,7 @@ export const AboutModal = ({ closeModal, returnFocusRef }: AboutModalProps) => {
               <Link
                 href="https://www.linkedin.com/in/mateusz-wyrebek/"
                 target="_blank"
+                tabIndex={0}
                 className="text-grayIcon hover:text-primaryText transition-colors"
                 aria-label="LinkedIn profile"
               >

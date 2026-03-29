@@ -465,6 +465,7 @@ export const UserTable = () => {
                   Role: {userRoleFilter}
                   <button
                     onClick={() => setUserRoleFilter(undefined)}
+                    tabIndex={0}
                     className="ml-2"
                     aria-label={`Remove role filter`}
                   >
@@ -493,6 +494,7 @@ export const UserTable = () => {
                       userSorting[0].id.slice(1)}
                   <button
                     onClick={() => setUserSorting([])}
+                    tabIndex={0}
                     className="ml-2"
                     aria-label={`Remove sorting`}
                   >

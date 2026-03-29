@@ -25,6 +25,7 @@ export const Chip = ({ label, onDelete }: ChipProps) => {
       {label}
       <button
         onClick={onDelete}
+        tabIndex={0}
         className="ml-2 pt-0.5"
         aria-label={`Remove ${label}`}
       >

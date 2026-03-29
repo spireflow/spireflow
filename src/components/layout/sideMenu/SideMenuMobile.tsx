@@ -104,6 +104,7 @@ export const SideMenuMobile = ({ isMobileMenuOpen }: SideMenuMobileProps) => {
             <div className="w-full border-t-0 border-mainBorder px-4 pt-8 mb-6">
               <Link
                 href="/login"
+                tabIndex={0}
                 onClick={() => toggleMobileMenu()}
                 className="block xl:hidden mt-auto mb-8 rounded-xl w-full h-10 flex justify-center items-center font-medium border border-mainColor text-primaryText bg-sideMenuButtonBg hover:bg-sideMenuButtonBgHover mt-12"
               >

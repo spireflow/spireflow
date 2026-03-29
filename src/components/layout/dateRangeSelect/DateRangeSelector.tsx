@@ -1,6 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
+import { useRef } from "react";
 
 import { CalendarIcon } from "@/assets/icons/CalendarIcon";
 import { ChevronDownIcon } from "@/assets/icons/ChevronDownIcon";
@@ -31,11 +32,15 @@ export const DateRangeSelector = () => {
     triggerLabel,
   } = useRangeSelect();
 
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
   return (
     <>
       <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
         <DropdownMenuTrigger asChild>
           <button
+            ref={triggerRef}
+            tabIndex={0}
             className="-mt-[0.1rem] text-sm cursor-pointer flex rounded-md justify-center items-center gap-2 h-[2.4rem] px-3 xsm:px-4 border border-mainBorder hover:border-mainBorderHover text-primaryText stroke-grayIcon fill-grayIcon"
             type="button"
             aria-label="Select date range"
@@ -86,6 +91,7 @@ export const DateRangeSelector = () => {
         onOpenChange={setDialogOpen}
         onApply={handleCustomRangeApply}
         initialRange={customRange}
+        returnFocusRef={triggerRef}
       />
     </>
   );

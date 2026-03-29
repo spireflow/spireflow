@@ -151,6 +151,7 @@ export const HomepageLayoutSection = () => {
         {/* Three Cards Option */}
         <button
           onClick={() => setHomepageLayout("three-cards")}
+          tabIndex={0}
           aria-pressed={homepageLayout === "three-cards"}
           className={`relative flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition ${
             homepageLayout === "three-cards"
@@ -170,6 +171,7 @@ export const HomepageLayoutSection = () => {
         {/* Four Cards Option */}
         <button
           onClick={() => setHomepageLayout("four-cards")}
+          tabIndex={0}
           aria-pressed={homepageLayout === "four-cards"}
           className={`relative flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition ${
             homepageLayout === "four-cards"

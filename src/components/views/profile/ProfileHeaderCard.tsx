@@ -57,6 +57,7 @@ export const ProfileHeaderCard = ({
         <div className="md:absolute md:top-1/2 md:-translate-y-1/2 right-6 max-lg:left-6 max-lg:justify-between flex items-center gap-6 max-md:justify-center max-md:mt-6 max-md:-mb-2">
           <div className="flex gap-3">
             <button
+              tabIndex={0}
               className="w-10 h-10 rounded-full bg-secondaryBg hover:bg-hoverBg flex items-center justify-center group"
               aria-label="GitHub profile"
             >
@@ -65,6 +66,7 @@ export const ProfileHeaderCard = ({
               </div>
             </button>
             <button
+              tabIndex={0}
               className="w-10 h-10 rounded-full bg-secondaryBg hover:bg-hoverBg flex items-center justify-center group"
               aria-label="LinkedIn profile"
             >
@@ -73,6 +75,7 @@ export const ProfileHeaderCard = ({
               </div>
             </button>
             <button
+              tabIndex={0}
               className="w-10 h-10 rounded-full bg-secondaryBg hover:bg-hoverBg flex items-center justify-center group"
               aria-label="Twitter profile"
             >
@@ -84,6 +87,7 @@ export const ProfileHeaderCard = ({
 
           <button
             onClick={onToggleEdit}
+            tabIndex={0}
             className="max-md:hidden px-4 py-2 bg-containedButtonBg hover:bg-containedButtonBgHover text-white rounded-md transition-colors text-sm font-medium"
           >
             {isEditing ? t("saveChanges") : t("editProfile")}

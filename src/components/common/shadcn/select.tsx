@@ -51,6 +51,7 @@ const SelectTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
+    tabIndex={0}
     className={cn(
       "flex h-10 w-full cursor-pointer items-center justify-between rounded-md border border-inputBorder bg-inputBg px-3 py-2 text-sm transition placeholder:text-secondaryText hover:bg-inputBgHover hover:border-inputBorderHover focus:outline-none focus:border-inputBorderFocus disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className,

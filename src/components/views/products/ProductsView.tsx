@@ -81,6 +81,7 @@ export const ProductsView = ({ products }: { products: Product[] }) => {
         >
           <button
             onClick={toggle}
+            tabIndex={0}
             className="absolute top-7 right-8 stroke-secondaryText fill-secondaryText"
             aria-label="Close product details"
           >

@@ -91,6 +91,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        tabIndex={0}
         {...props}
         disabled={disabled || loading}
         aria-busy={loading || undefined}

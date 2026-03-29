@@ -58,6 +58,7 @@ export const MenuItem = ({ title, icon, path }: MenuItemProps) => {
       <TooltipTrigger asChild>
         <Link
           href={path}
+          tabIndex={0}
           onPointerEnter={() => {
             if (isCollapsed) setHasEnteredSinceCollapse(true);
           }}

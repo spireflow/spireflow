@@ -102,6 +102,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <div className="hidden xl:block fixed bottom-6 right-4 z-50">
           <SettingsDrawer>
             <button
+              tabIndex={0}
               className="w-16 h-16 rounded-full border border-mainBorder bg-floatingMenuButtonBg hover:bg-floatingMenuButtonBgHover text-settingsIcon stroke-settingsIcon fill-settingsIcon shadow-lg flex items-center justify-center transition-colors cursor-pointer"
               aria-label="Open settings"
             >

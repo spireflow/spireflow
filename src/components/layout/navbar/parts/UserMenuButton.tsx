@@ -85,6 +85,7 @@ export const UserMenuButton = ({
           >
             <button
               ref={userIconBtnRef}
+              tabIndex={0}
               onClick={() => {
                 setTooltipOpen(false);
                 closeMobileMenu();

@@ -1,3 +1,5 @@
+import type { RefObject } from "react";
+
 import type { CustomDateRange } from "@/store/dateRangeStore";
 
 export interface CustomDateRangeDialogProps {
@@ -5,4 +7,5 @@ export interface CustomDateRangeDialogProps {
   onOpenChange: (open: boolean) => void;
   onApply: (range: CustomDateRange) => void;
   initialRange: CustomDateRange | null;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 }

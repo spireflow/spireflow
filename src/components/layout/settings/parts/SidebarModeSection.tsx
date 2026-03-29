@@ -159,6 +159,7 @@ export const SidebarModeSection = () => {
         {/* Expanded Option */}
         <button
           onClick={() => setSidebarDefaultState("expanded")}
+          tabIndex={0}
           aria-pressed={sidebarDefaultState === "expanded"}
           className={`relative flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition ${
             sidebarDefaultState === "expanded"
@@ -178,6 +179,7 @@ export const SidebarModeSection = () => {
         {/* Collapsed Option */}
         <button
           onClick={() => setSidebarDefaultState("collapsed")}
+          tabIndex={0}
           aria-pressed={sidebarDefaultState === "collapsed"}
           className={`relative flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition ${
             sidebarDefaultState === "collapsed"

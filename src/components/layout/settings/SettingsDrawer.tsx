@@ -173,6 +173,7 @@ export const SettingsDrawer = ({
               <Link
                 href="https://github.com/nellavio/nellavio"
                 target="_blank"
+                tabIndex={0}
                 className="flex items-center justify-center gap-2 py-4 bg-settingsDrawerGithubBg hover:bg-settingsDrawerGithubBgHover transition-colors focus-visible:outline-offset-[-2px]"
               >
                 <div className="w-5 h-5 text-grayIcon">

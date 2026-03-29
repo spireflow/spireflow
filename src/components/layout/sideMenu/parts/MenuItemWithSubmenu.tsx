@@ -299,6 +299,7 @@ export const MenuItemWithSubmenu = ({
                   <DropdownMenuItem key={item.path} asChild>
                     <Link
                       href={item.path}
+                      tabIndex={0}
                       target={item.newTab ? "_blank" : undefined}
                       onClick={handleMenuItemClick}
                       className={`w-full ${isItemActive ? "bg-navItemActiveBg hover:bg-navItemActiveBgHover focus:bg-navItemActiveBgHover text-navItemTextActive focus:text-navItemTextActive" : ""}`}
@@ -346,6 +347,7 @@ export const MenuItemWithSubmenu = ({
                   <Link
                     key={item.path}
                     href={item.path}
+                    tabIndex={0}
                     target={item.newTab ? "_blank" : undefined}
                     ref={(el) => {
                       submenuRefs.current[index] = el;

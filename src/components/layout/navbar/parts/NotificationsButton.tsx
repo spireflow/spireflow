@@ -94,6 +94,7 @@ export const NotificationsButton = ({
           >
             <button
               ref={notificationsBtnRef}
+              tabIndex={0}
               onClick={(e) => {
                 setTooltipOpen(false);
                 /** On mobile (<xl), open modal directly */
