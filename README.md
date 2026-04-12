@@ -8,7 +8,7 @@
 <h4 align="center">Open source dashboard starter built with Next.js 16, TypeScript and Tailwind 4</h4>
 <div align="center">
 
-[Live Demo](https://demo.nellavio.cpom) &nbsp; [Getting Started](#quickstart) &nbsp; [Changelog](https://github.com/nellavio/nellavio/blob/main/CHANGELOG.md)
+[Live Demo](https://demo.nellavio.com) &nbsp; [Getting Started](#quickstart) &nbsp; [Changelog](https://github.com/nellavio/nellavio/blob/main/CHANGELOG.md)
 
 </div>
 <div align="center">

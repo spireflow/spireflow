@@ -52,10 +52,10 @@
   --color-authPageBg: rgb(17, 21, 26);
   --color-errorPageBg: rgb(17, 21, 26);
   --color-assetPerformanceBarBg: rgb(22, 26, 31);
-  --color-tabsBg: rgb(25, 29, 34);
+  --color-tabsBg: rgb(27, 31, 36);
   --color-tabListBg: rgb(22, 26, 31);
-  --color-tabActiveBg: rgb(35, 38, 42);
-  --color-tabActiveBgHover: rgb(45, 48, 52);
+  --color-tabActiveBg: rgb(28, 32, 37);
+  --color-tabActiveBgHover: rgb(34, 38, 43);
   --color-revenueTabActiveBg: rgb(35, 38, 42);
   --color-revenueTabActiveBgHover: rgb(45, 48, 52);
   --color-mainColor: rgb(61, 185, 133);
@@ -65,8 +65,8 @@
   --color-navItemBgHover: rgb(255, 255, 255, 0.03);
   --color-navItemActiveBg: rgb(255, 255, 255, 0.07);
   --color-navItemActiveBgHover: rgb(255, 255, 255, 0.1);
-  --color-inputBg: rgb(255, 255, 255, 0.05);
-  --color-inputBgHover: rgb(255, 255, 255, 0.07);
+  --color-inputBg: rgb(255, 255, 255, 0.03);
+  --color-inputBgHover: rgb(255, 255, 255, 0.05);
   --color-toggleSwitchBg: rgb(255, 255, 255, 0.08);
   --color-switchUncheckedBgHover: rgb(255, 255, 255, 0.14);
   --color-paginationActiveBg: rgb(255, 255, 255, 0.05);
@@ -79,8 +79,8 @@
   --color-containedButtonBgHover: #4a9373;
   --color-badgeDefaultBg: rgb(54, 128, 96);
   --color-badgeDefaultBgHover: #4a9373;
-  --color-dropdownBg: rgb(36, 39, 43);
-  --color-dropdownBgHover: rgb(42, 46, 51);
+  --color-dropdownBg: rgb(36, 40, 45);
+  --color-dropdownBgHover: rgb(43, 47, 52);
   --color-calendarTodayBg: rgb(255, 255, 255, 0.04);
   --color-calendarListDayHeaderBg: rgb(255, 255, 255, 0.02);
   --color-calendarEventBgHover: rgb(255, 255, 255, 0.02);
@@ -100,7 +100,7 @@
   --color-selectBg: rgb(255, 255, 255, 0.05);
   --color-selectBgHover: rgb(255, 255, 255, 0.07);
   --color-userButtonBg: rgb(25, 32, 39);
-  --color-loginModalBg: rgb(27, 31, 35);
+  --color-loginModalBg: rgb(25, 30, 35);
   --color-authPageLogoCircleBg: rgb(33, 36, 40);
   --color-authErrorTooltipBg: rgb(36, 40, 45);
   --color-navbarButtonBg: rgb(255, 255, 255, 0);
@@ -134,9 +134,9 @@
   --color-mutedBg: rgb(36, 39, 43);
   --color-errorBg: rgb(195, 70, 70);
   --color-errorBgHover: rgb(207, 89, 89);
-  --color-infoAlertBg: rgb(35, 38, 42);
-  --color-destructiveAlertBg: rgb(35, 38, 42);
-  --color-successAlertBg: rgb(35, 38, 42);
+  --color-infoAlertBg: rgb(34, 38, 43);
+  --color-destructiveAlertBg: rgb(34, 38, 43);
+  --color-successAlertBg: rgb(34, 38, 43);
   --color-skeletonBg: rgb(40, 43, 47);
   --color-navbarSearchInputBg: rgb(255, 255, 255, 0.01);
   --color-navbarSearchInputBgHover: rgb(255, 255, 255, 0.03);

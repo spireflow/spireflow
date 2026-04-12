@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.1 (12-04-2026)
+
+- added RBAC with user management page
+- added unit tests for RBAC
+- fixed dropdown styles
+- fixed charts rendering on Safari
+- updated metadata
+
 ## 2.0.0 (29-03-2026)
 
 - migrated auth from Clerk to Better-Auth
