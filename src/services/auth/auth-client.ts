@@ -9,6 +9,10 @@ const isAuthConfigured =
  * Better Auth client instance for client-side authentication.
  * Returns null in presentation mode (NEXT_PUBLIC_AUTH_URL not set)
  * to avoid 404 requests and hydration mismatches.
+ *
+ * Admin plugin (adminClient) should be added here when connecting
+ * to a real backend with RBAC enabled. See config/access.ts for
+ * role definitions compatible with Better Auth's admin plugin.
  */
 const authClient = isAuthConfigured
   ? createAuthClient({ baseURL: authUrl })

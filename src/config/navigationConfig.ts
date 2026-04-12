@@ -88,6 +88,7 @@ export const menuConfig: MenuConfigEntry[] = [
     titleKey: "authentication",
     Icon: PasswordIcon,
     submenuItems: [
+      { titleKey: "userManagement", path: "/user-management" },
       { titleKey: "login", path: "/login", newTab: true },
       { titleKey: "register", path: "/register", newTab: true },
       { titleKey: "forgotPassword", path: "/forgot-password", newTab: true },

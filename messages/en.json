@@ -210,6 +210,7 @@
     "login": "Login",
     "register": "Register",
     "forgotPassword": "Forgot Password",
+    "userManagement": "User Management",
     "components": "Components",
     "uiElements": "UI Elements",
     "forms": "Forms",
@@ -337,7 +338,8 @@
         "uiElements": "UI Elements",
         "forms": "Forms",
         "tables": "Tables",
-        "charts": "Charts"
+        "charts": "Charts",
+        "userManagement": "User Management"
       }
     }
   },
@@ -418,7 +420,8 @@
     "forms": "Forms",
     "tables": "Tables",
     "ecommerce": "E-commerce",
-    "components": "Components"
+    "components": "Components",
+    "user management": "User Management"
   },
   "profile": {
     "memberSince": "Member since",
@@ -549,24 +552,83 @@
     "gradientPieChart": "Gradient Pie Chart",
     "lineAreaChart": "Orders & Returns Trend"
   },
+  "userManagement": {
+    "title": "User Management",
+    "demoBanner": "Demo mode - changes reset on page refresh. Connect your Better Auth backend for persistent RBAC.",
+    "searchPlaceholder": "Search users...",
+    "filter": {
+      "all": "All users",
+      "active": "Active",
+      "banned": "Banned",
+      "allRoles": "All roles"
+    },
+    "button": {
+      "sortBy": "Sort by",
+      "ascending": "Ascending",
+      "descending": "Descending",
+      "clearSorting": "Clear sorting",
+      "clearFilters": "Clear filters"
+    },
+    "chip": {
+      "role": "Role",
+      "status": "Status",
+      "sortedBy": "Sorted by"
+    },
+    "tableHeader": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "joined": "Joined",
+      "actions": "Actions"
+    },
+    "role": {
+      "admin": "Admin",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    },
+    "status": {
+      "active": "Active",
+      "banned": "Banned"
+    },
+    "toast": {
+      "roleUpdated": "Role updated",
+      "roleUpdatedDesc": "{name} is now {role}",
+      "nameUpdated": "Name updated",
+      "nameUpdatedDesc": "User renamed to {name}",
+      "error": "Action failed",
+      "permissionDenied": "You don't have permission to perform this action"
+    },
+    "selfDemotion": {
+      "title": "Are you sure?",
+      "description": "Removing your own admin role will sign you out. You will need another admin to restore your access.",
+      "cancel": "Cancel",
+      "confirm": "Yes"
+    },
+    "totalUsers": "{count} users",
+    "loading": "Loading users...",
+    "emptyState": "No users found",
+    "accessDenied": "Admin access required",
+    "accessDeniedHint": "This page is restricted to users with the admin role. To gain access, ask an existing admin to update your role or set it directly in the database."
+  },
   "errorPages": {
     "backToHomepage": "Back to Homepage",
     "tryAgain": "Try Again",
     "unexpectedError": {
       "title": "Something Went Wrong",
-      "description": "An unexpected error occurred while loading this page. You can try again or return to the homepage."
+      "description": "An unexpected error occurred while loading this page."
     },
     "error401": {
       "title": "Unauthorized",
-      "description": "You don't have permission to access this page. Please sign in with valid credentials to continue."
+      "description": "You don't have permission to access this page."
     },
     "error404": {
       "title": "Page Not Found",
-      "description": "The page you are looking for might have been moved, deleted, or never existed in the first place."
+      "description": "The page you are looking for might have been moved or deleted."
     },
     "error500": {
       "title": "Server Error",
-      "description": "Something went wrong on our end. Our servers encountered an unexpected error while processing your request."
+      "description": "Something went wrong on our end while processing your request."
     }
   }
 }

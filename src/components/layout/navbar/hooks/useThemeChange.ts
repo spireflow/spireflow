@@ -55,13 +55,37 @@ export const useThemeChange = ({
     return () => clearTimeout(timeout);
   }, [currentTheme]);
 
-  /** Switches between light and dark, closing all open dropdowns to avoid stale overlays. */
+  const themeChangeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+
+  /** Clean up pending theme-change timeout on unmount */
+  useEffect(() => {
+    return () => {
+      if (themeChangeTimeoutRef.current) {
+        clearTimeout(themeChangeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  /**
+   * Switches between light and dark with a short delay so the slider animation
+   * is visible before the page theme actually flips.
+   * Closes all open dropdowns to avoid stale overlays.
+   */
   const toggleTheme = () => {
     const newTheme = currentTheme === "dark" ? "light" : "dark";
-    selectTheme(newTheme);
+    setSliderDark(newTheme === "dark");
     userDropdown.close();
     languageDropdown.close();
     notificationsDropdown.close();
+
+    if (themeChangeTimeoutRef.current) {
+      clearTimeout(themeChangeTimeoutRef.current);
+    }
+    themeChangeTimeoutRef.current = setTimeout(() => {
+      selectTheme(newTheme);
+    }, 200);
   };
 
   const isAnyDropdownOpen =

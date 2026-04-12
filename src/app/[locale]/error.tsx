@@ -28,7 +28,7 @@ const Error = ({
       >
         <ServerCrashIcon />
       </div>
-      <h1 className="text-[5.5rem] xsm:text-[7.5rem] font-bold text-primaryText tracking-tight leading-none mb-6">
+      <h1 className="text-[7rem] xsm:text-[9rem] font-bold text-primaryText tracking-tight leading-none mb-6">
         500
       </h1>
       <h2 className="text-2xl sm:text-3xl font-semibold text-primaryText mb-3 text-center">

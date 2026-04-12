@@ -18,6 +18,11 @@
   --color-greenBadgeText: rgb(110, 231, 183);
   --color-redBadgeText: rgb(253, 164, 175);
   --color-orangeBadgeText: rgb(253, 186, 116);
+  --color-roleAdminBadgeText: rgb(147, 197, 253);
+  --color-roleEditorBadgeText: rgb(196, 181, 253);
+  --color-roleViewerBadgeText: rgb(134, 239, 172);
+  --color-roleBannedBadgeText: rgb(252, 165, 165);
+  --color-roleDemoBannerText: rgb(156, 163, 175);
   --color-destructiveAlertText: rgb(255, 255, 255);
   --color-destructiveAlertIcon: rgb(248, 113, 113);
   --color-successAlertText: rgb(255, 255, 255);
@@ -42,20 +47,20 @@
   --color-fourCardIconBlue: rgb(130, 180, 240);
 
   /* Backgrounds */
-  --color-primaryBg: rgb(31, 34, 38);
-  --color-secondaryBg: rgb(25, 28, 32);
-  --color-authPageBg: rgb(20, 23, 26);
-  --color-errorPageBg: rgb(20, 23, 26);
-  --color-assetPerformanceBarBg: rgb(25, 28, 32);
-  --color-tabsBg: rgb(28, 31, 35);
-  --color-tabListBg: rgb(25, 28, 32);
+  --color-primaryBg: rgb(28, 32, 37);
+  --color-secondaryBg: rgb(22, 26, 31);
+  --color-authPageBg: rgb(17, 21, 26);
+  --color-errorPageBg: rgb(17, 21, 26);
+  --color-assetPerformanceBarBg: rgb(22, 26, 31);
+  --color-tabsBg: rgb(25, 29, 34);
+  --color-tabListBg: rgb(22, 26, 31);
   --color-tabActiveBg: rgb(35, 38, 42);
   --color-tabActiveBgHover: rgb(45, 48, 52);
   --color-revenueTabActiveBg: rgb(35, 38, 42);
   --color-revenueTabActiveBgHover: rgb(45, 48, 52);
   --color-mainColor: rgb(61, 185, 133);
   --color-progressIndicator: rgb(61, 185, 133);
-  --color-navigationBg: rgb(31, 34, 38);
+  --color-navigationBg: rgb(28, 32, 37);
   --color-navItemBg: rgb(12, 18, 24, 0);
   --color-navItemBgHover: rgb(255, 255, 255, 0.03);
   --color-navItemActiveBg: rgb(255, 255, 255, 0.07);
@@ -95,7 +100,7 @@
   --color-selectBg: rgb(255, 255, 255, 0.05);
   --color-selectBgHover: rgb(255, 255, 255, 0.07);
   --color-userButtonBg: rgb(25, 32, 39);
-  --color-loginModalBg: rgb(30, 33, 36);
+  --color-loginModalBg: rgb(27, 31, 35);
   --color-authPageLogoCircleBg: rgb(33, 36, 40);
   --color-authErrorTooltipBg: rgb(36, 40, 45);
   --color-navbarButtonBg: rgb(255, 255, 255, 0);
@@ -107,7 +112,7 @@
   --color-datepickerHeaderBg: rgb(41, 43, 48);
   --color-tooltipBg: rgb(44, 49, 55);
   --color-scrollbarBg: #22252a;
-  --color-scrollbarPlaceholderBg: rgb(26, 29, 32);
+  --color-scrollbarPlaceholderBg: rgb(23, 27, 31);
   --color-activeProductBg: rgb(255, 255, 255, 0.07);
   --color-calendarMainColor: rgb(54, 128, 96);
   --color-scrollbarThumb: rgba(94, 98, 105, 0.7);
@@ -122,7 +127,7 @@
   --color-percentageBadgeRedBg: rgba(253, 164, 175, 0.05);
   --color-percentageBadgeGreenBorder: rgba(110, 231, 183, 0.3);
   --color-percentageBadgeRedBorder: rgba(255, 100, 120, 0.35);
-  --color-modalBg: rgb(30, 33, 36);
+  --color-modalBg: rgb(27, 31, 35);
   --color-logoBg: rgb(53, 136, 101);
   --color-chipBg: rgb(255, 255, 255, 0.07);
   --color-chipBgHover: rgb(255, 255, 255, 0.1);
@@ -136,22 +141,28 @@
   --color-navbarSearchInputBg: rgb(255, 255, 255, 0.01);
   --color-navbarSearchInputBgHover: rgb(255, 255, 255, 0.03);
   --color-profileHeaderBg: rgb(0, 0, 0, 0.09);
-  --color-settingsDrawerHeaderBg: rgb(25, 28, 32);
-  --color-settingsDrawerGithubBg: rgb(25, 28, 32);
-  --color-settingsDrawerGithubBgHover: rgb(30, 33, 37);
+  --color-settingsDrawerHeaderBg: rgb(22, 26, 31);
+  --color-settingsDrawerGithubBg: rgb(22, 26, 31);
+  --color-settingsDrawerGithubBgHover: rgb(27, 31, 36);
   --color-settingsButtonBgHover: rgb(45, 48, 53);
   --color-settingsLayoutPreviewBg: rgb(255, 255, 255, 0.08);
   --color-notificationBadgeBg: rgb(54, 128, 96);
   --color-notificationBadgeBgHover: #4a9373;
   --color-notificationItemBg: rgb(36, 39, 43);
   --color-notificationItemBgHover: rgb(42, 46, 51);
-  --color-notificationHeaderBg: rgb(31, 34, 38);
+  --color-notificationHeaderBg: rgb(28, 32, 37);
   --color-fourCardIconBg: rgb(255, 255, 255, 0.04);
   --color-fourCardIconBgHover: rgb(255, 255, 255, 0.02);
   --color-sideMenuButtonBg: rgb(255, 255, 255, 0.02);
   --color-sideMenuButtonBgHover: rgb(255, 255, 255, 0.06);
   --color-authThemeButtonBg: rgb(36, 39, 43);
   --color-authThemeButtonBgHover: rgb(44, 48, 53);
+  --color-roleAdminBadgeBg: rgb(37, 99, 235, 0.1);
+  --color-roleEditorBadgeBg: rgb(109, 40, 217, 0.1);
+  --color-roleViewerBadgeBg: rgb(22, 163, 74, 0.1);
+  --color-roleBannedBadgeBg: rgb(220, 38, 38, 0.1);
+  --color-roleSelectBg: rgb(36, 39, 43);
+  --color-roleSelectBgHover: rgb(42, 46, 51);
 
   /* Borders */
   --color-mainBorder: rgb(255, 255, 255, 0.05);
@@ -185,6 +196,11 @@
   --color-successAlertBorder: rgb(22, 163, 74, 0.5);
   --color-authThemeButtonBorder: rgb(255, 255, 255, 0.08);
   --color-authThemeButtonBorderHover: rgb(255, 255, 255, 0.18);
+  --color-roleAdminBadgeBorder: rgb(37, 99, 235, 0.3);
+  --color-roleEditorBadgeBorder: rgb(109, 40, 217, 0.3);
+  --color-roleViewerBadgeBorder: rgb(22, 163, 74, 0.3);
+  --color-roleBannedBadgeBorder: rgb(220, 38, 38, 0.3);
+  --color-roleDemoBannerBorder: rgb(255, 255, 255, 0.06);
 
   /* Shadows */
   --authModalShadow:

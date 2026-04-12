@@ -14,12 +14,14 @@ export const MailIcon = () => (
       rx="40"
       ry="40"
       fill="none"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="32"
     />
     <path
       fill="none"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="32"

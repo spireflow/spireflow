@@ -209,6 +209,7 @@
     "login": "Logowanie",
     "register": "Rejestracja",
     "forgotPassword": "Resetowanie hasła",
+    "userManagement": "Zarządzanie użytkownikami",
     "components": "Komponenty",
     "uiElements": "Elementy UI",
     "forms": "Formularze",
@@ -336,7 +337,8 @@
         "uiElements": "Elementy UI",
         "forms": "Formularze",
         "tables": "Tabele",
-        "charts": "Wykresy"
+        "charts": "Wykresy",
+        "userManagement": "Zarządzanie użytkownikami"
       }
     }
   },
@@ -417,7 +419,8 @@
     "forms": "Formularze",
     "tables": "Tabele",
     "ecommerce": "E-commerce",
-    "components": "Komponenty"
+    "components": "Komponenty",
+    "user management": "Zarządzanie użytkownikami"
   },
   "profile": {
     "memberSince": "Członek od",
@@ -548,24 +551,83 @@
     "gradientPieChart": "Wykres kołowy z gradientem",
     "lineAreaChart": "Trend zamówień i zwrotów"
   },
+  "userManagement": {
+    "title": "Zarządzanie użytkownikami",
+    "demoBanner": "Tryb demo - zmiany resetują się po odświeżeniu strony. Podłącz backend Better Auth dla trwałego RBAC.",
+    "searchPlaceholder": "Szukaj użytkowników...",
+    "filter": {
+      "all": "Wszyscy",
+      "active": "Aktywni",
+      "banned": "Zablokowani",
+      "allRoles": "Wszystkie role"
+    },
+    "button": {
+      "sortBy": "Sortuj",
+      "ascending": "Rosnąco",
+      "descending": "Malejąco",
+      "clearSorting": "Wyczyść sortowanie",
+      "clearFilters": "Wyczyść filtry"
+    },
+    "chip": {
+      "role": "Rola",
+      "status": "Status",
+      "sortedBy": "Sortuj wg"
+    },
+    "tableHeader": {
+      "name": "Imię i nazwisko",
+      "email": "Email",
+      "role": "Rola",
+      "status": "Status",
+      "joined": "Dołączył",
+      "actions": "Akcje"
+    },
+    "role": {
+      "admin": "Admin",
+      "editor": "Edytor",
+      "viewer": "Widz"
+    },
+    "status": {
+      "active": "Aktywny",
+      "banned": "Zablokowany"
+    },
+    "toast": {
+      "roleUpdated": "Rola zmieniona",
+      "roleUpdatedDesc": "{name} ma teraz rolę {role}",
+      "nameUpdated": "Nazwa zmieniona",
+      "nameUpdatedDesc": "Zmieniono nazwę na {name}",
+      "error": "Operacja nieudana",
+      "permissionDenied": "Nie masz uprawnień do wykonania tej akcji"
+    },
+    "selfDemotion": {
+      "title": "Jesteś pewien?",
+      "description": "Usunięcie własnej roli admina spowoduje wylogowanie. Będziesz potrzebować innego administratora, aby przywrócić dostęp.",
+      "cancel": "Anuluj",
+      "confirm": "Tak"
+    },
+    "totalUsers": "{count} użytkowników",
+    "loading": "Ładowanie użytkowników...",
+    "emptyState": "Nie znaleziono użytkowników",
+    "accessDenied": "Wymagany dostęp administratora",
+    "accessDeniedHint": "Ta strona jest dostępna tylko dla użytkowników z rolą admin. Poproś istniejącego administratora o zmianę roli lub ustaw ją bezpośrednio w bazie danych."
+  },
   "errorPages": {
     "backToHomepage": "Powrót do strony głównej",
     "tryAgain": "Spróbuj ponownie",
     "unexpectedError": {
       "title": "Coś poszło nie tak",
-      "description": "Wystąpił nieoczekiwany błąd podczas ładowania tej strony. Możesz spróbować ponownie lub wrócić do strony głównej."
+      "description": "Wystąpił nieoczekiwany błąd podczas ładowania tej strony."
     },
     "error401": {
       "title": "Brak dostępu",
-      "description": "Nie masz uprawnień do wyświetlenia tej strony. Zaloguj się przy użyciu prawidłowych danych, aby kontynuować."
+      "description": "Nie masz uprawnień do wyświetlenia tej strony."
     },
     "error404": {
       "title": "Strona nie znaleziona",
-      "description": "Strona, której szukasz, mogła zostać przeniesiona, usunięta lub nigdy nie istniała."
+      "description": "Strona, której szukasz, mogła zostać przeniesiona lub usunięta."
     },
     "error500": {
       "title": "Błąd serwera",
-      "description": "Coś poszło nie tak po naszej stronie. Serwer napotkał nieoczekiwany błąd podczas przetwarzania żądania."
+      "description": "Coś poszło nie tak po naszej stronie podczas przetwarzania żądania."
     }
   }
 }

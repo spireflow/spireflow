@@ -18,6 +18,11 @@
   --color-greenBadgeText: rgb(35, 140, 99);
   --color-redBadgeText: rgb(213, 61, 79);
   --color-orangeBadgeText: rgb(151, 96, 39);
+  --color-roleAdminBadgeText: rgb(37, 99, 235);
+  --color-roleEditorBadgeText: rgb(109, 40, 217);
+  --color-roleViewerBadgeText: rgb(22, 163, 74);
+  --color-roleBannedBadgeText: rgb(220, 38, 38);
+  --color-roleDemoBannerText: rgb(107, 114, 128);
   --color-percentageBadgeGreenText: rgb(20, 120, 80);
   --color-percentageBadgeRedText: rgb(180, 40, 60);
   --color-percentageBadgeGreenTextAccented: rgb(20, 120, 80);
@@ -153,6 +158,12 @@
   --color-sideMenuButtonBgHover: rgb(255, 255, 255, 0.06);
   --color-authThemeButtonBg: rgb(255, 255, 255, 0.85);
   --color-authThemeButtonBgHover: rgb(255, 255, 255, 1);
+  --color-roleAdminBadgeBg: rgb(239, 246, 255);
+  --color-roleEditorBadgeBg: rgb(245, 243, 255);
+  --color-roleViewerBadgeBg: rgb(240, 253, 244);
+  --color-roleBannedBadgeBg: rgb(254, 242, 242);
+  --color-roleSelectBg: rgb(255, 255, 255);
+  --color-roleSelectBgHover: rgb(249, 250, 251);
 
   /* Borders */
   --color-mainBorder: rgb(0, 0, 0, 0.12);
@@ -186,6 +197,11 @@
   --color-successAlertBorder: rgb(22, 163, 74, 0.5);
   --color-authThemeButtonBorder: rgb(0, 0, 0, 0.12);
   --color-authThemeButtonBorderHover: rgb(0, 0, 0, 0.25);
+  --color-roleAdminBadgeBorder: rgb(191, 219, 254);
+  --color-roleEditorBadgeBorder: rgb(221, 214, 254);
+  --color-roleViewerBadgeBorder: rgb(187, 247, 208);
+  --color-roleBannedBadgeBorder: rgb(254, 202, 202);
+  --color-roleDemoBannerBorder: rgb(0, 0, 0, 0.08);
 
   /* Shadows */
   --authModalShadow:

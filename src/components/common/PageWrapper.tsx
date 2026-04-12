@@ -33,6 +33,7 @@ const PAGE_CONFIG: Record<string, PageConfig> = {
   "UI Elements": { layoutType: "content", breadcrumbCategory: "components" },
   Forms: { layoutType: "content", breadcrumbCategory: "components" },
   Tables: { layoutType: "content", breadcrumbCategory: "components" },
+  "User Management": { layoutType: "table", breadcrumbCategory: "default" },
 };
 
 const DEFAULT_PAGE_CONFIG: PageConfig = {

@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     template: "%s | Nellavio",
   },
   description:
-    "Open source Next.js dashboard starter with auth, i18n, 17 pages, 60+ charts and 90+ UI components",
+    "Open source Next.js dashboard starter with auth, i18n, 18 pages, 60+ charts and 90+ UI components",
   keywords: [
     "nextjs dashboard",
     "react dashboard",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     siteName: "Nellavio",
     title: "Nellavio | Open Source Next.js Dashboard Starter",
     description:
-      "Open source Next.js dashboard starter with auth, i18n, 17 pages, 60+ charts and 90+ UI components",
+      "Open source Next.js dashboard starter with auth, i18n, 18 pages, 60+ charts and 90+ UI components",
     images: [
       {
         url: "/og-image.png",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nellavio | Open Source Next.js Dashboard Starter",
     description:
-      "Open source Next.js dashboard starter with auth, i18n, 17 pages, 60+ charts and 90+ UI components",
+      "Open source Next.js dashboard starter with auth, i18n, 18 pages, 60+ charts and 90+ UI components",
     images: ["/og-image.png"],
   },
 };

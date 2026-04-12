@@ -181,6 +181,12 @@ body.font-alternative {
   outline: none;
 }
 
+/* Hide native password reveal button (Edge/Chromium) - custom toggle is used instead */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 /* Inputs - subtle border focus instead of colored ring (consistent with Material, Chakra UI) */
 input:focus-visible,
 textarea:focus-visible {

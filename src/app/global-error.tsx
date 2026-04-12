@@ -70,7 +70,7 @@ const GlobalError = ({
           <h1
             style={{
               margin: 0,
-              fontSize: "7.5rem",
+              fontSize: "9rem",
               fontWeight: 700,
               letterSpacing: "-0.025em",
               lineHeight: 1,
@@ -101,8 +101,7 @@ const GlobalError = ({
               maxWidth: "24rem",
             }}
           >
-            A critical error occurred. Please try again or return to the
-            homepage.
+            A critical error occurred while loading this page.
           </p>
           <div style={{ display: "flex", gap: "0.75rem" }}>
             <button
