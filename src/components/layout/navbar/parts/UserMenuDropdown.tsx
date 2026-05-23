@@ -168,6 +168,20 @@ export const UserMenuDropdown = ({
             </div>
           )}
         </NavigationLink>
+        <NavigationLink
+          href={pathname}
+          locale="de"
+          className="py-2 pr-5 -ml-[3.2rem] pl-[3.2rem] flex hover:bg-dropdownBgHover cursor-pointer justify-between items-center text-sm focus-visible:bg-dropdownBgHover"
+          role="menuitem"
+          tabIndex={-1}
+        >
+          <span>{t("german")}</span>
+          {currentLanguage === "de" && (
+            <div className="text-secondaryText">
+              <CheckIcon />
+            </div>
+          )}
+        </NavigationLink>
       </DropdownMenuItem>
 
       {/* Theme Section - Expandable (visible only below xl) */}
